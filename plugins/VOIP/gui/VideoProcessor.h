@@ -29,8 +29,8 @@ public:
     JPEGVideo() ;
     
 protected:
-    virtual bool encodeData(const QImage& Image, uint32_t target_encoding_bitrate, RsVOIPDataChunk& chunk) ;
-    virtual bool decodeData(const RsVOIPDataChunk& chunk,QImage& image) ;
+    bool encodeData(const QImage& Image, uint32_t target_encoding_bitrate, RsVOIPDataChunk& chunk) override ;
+    bool decodeData(const RsVOIPDataChunk& chunk,QImage& image) override ;
 
     static const uint32_t JPEG_VIDEO_FLAGS_DIFFERENTIAL_FRAME = 0x0001 ;
 private:
@@ -53,8 +53,8 @@ public:
     ~FFmpegVideo() ;
 
 protected:
-    virtual bool encodeData(const QImage& Image, uint32_t target_encoding_bitrate, RsVOIPDataChunk& chunk) ;
-    virtual bool decodeData(const RsVOIPDataChunk& chunk,QImage& image) ;
+    bool encodeData(const QImage& Image, uint32_t target_encoding_bitrate, RsVOIPDataChunk& chunk) override ;
+    bool decodeData(const RsVOIPDataChunk& chunk,QImage& image) override ;
     
 private:
     AVCodec *encoding_codec;

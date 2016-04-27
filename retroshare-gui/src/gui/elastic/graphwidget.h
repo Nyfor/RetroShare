@@ -91,10 +91,10 @@ public:
 
 	 void forceRedraw() ;
 protected:
-    virtual void keyPressEvent(QKeyEvent *event);
-    virtual void timerEvent(QTimerEvent *event);
-    virtual void wheelEvent(QWheelEvent *event);
-    virtual void resizeEvent(QResizeEvent *event);
+    void keyPressEvent(QKeyEvent *event) override;
+    void timerEvent(QTimerEvent *event) override;
+    void wheelEvent(QWheelEvent *event) override;
+    void resizeEvent(QResizeEvent *event) override;
     //void drawBackground(QPainter *painter, const QRectF &rect);
 
     void scaleView(qreal scaleFactor);

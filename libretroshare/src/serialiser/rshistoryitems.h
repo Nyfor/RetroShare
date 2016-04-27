@@ -36,10 +36,10 @@ class RsHistoryMsgItem: public RsItem
 {
 public:
 	RsHistoryMsgItem();
-	virtual ~RsHistoryMsgItem();
+	~RsHistoryMsgItem() override;
 
-	virtual void clear();
-	std::ostream& print(std::ostream &out, uint16_t indent = 0);
+	void clear() override;
+	std::ostream& print(std::ostream &out, uint16_t indent = 0) override;
 
 	RsPeerId    chatPeerId; // empty for global chat
 	bool        incoming;
@@ -58,11 +58,11 @@ class RsHistorySerialiser: public RsSerialType
 {
 public:
 	RsHistorySerialiser();
-	virtual ~RsHistorySerialiser();
+	~RsHistorySerialiser() override;
 	
-	virtual	uint32_t size(RsItem*);
-	virtual	bool     serialise(RsItem* item, void* data, uint32_t* size);
-	virtual	RsItem*  deserialise(void* data, uint32_t* size);
+		uint32_t size(RsItem*) override;
+		bool     serialise(RsItem* item, void* data, uint32_t* size) override;
+		RsItem*  deserialise(void* data, uint32_t* size) override;
 
 private:
 	virtual	uint32_t          sizeHistoryMsgItem(RsHistoryMsgItem*);

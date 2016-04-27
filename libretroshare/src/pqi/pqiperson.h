@@ -56,22 +56,22 @@ public:
 		NetInterface(NULL, ni_in->PeerId()), // No need for callback
 		ni(ni_in) {}
 
-	virtual ~pqiconnect() {}
-	virtual bool getCryptoParams(RsPeerCryptoParams& params);
+	~pqiconnect() override {}
+	bool getCryptoParams(RsPeerCryptoParams& params) override;
 
 	// presents a virtual NetInterface -> passes to ni.
-	virtual int	connect(const struct sockaddr_storage &raddr) { return ni->connect(raddr); }
-	virtual int	listen() { return ni->listen(); }
-	virtual int	stoplistening() { return ni->stoplistening(); }
-	virtual int reset() { return ni->reset(); }
-	virtual int disconnect() { return ni->reset(); }
-	virtual bool connect_parameter(uint32_t type, uint32_t value) { return ni->connect_parameter(type, value);}
-    virtual bool connect_parameter(uint32_t type, const std::string& value) { return ni->connect_parameter(type, value);}
-	virtual bool connect_additional_address(uint32_t type, const struct sockaddr_storage &addr) { return ni->connect_additional_address(type, addr); }
-	virtual int getConnectAddress(struct sockaddr_storage &raddr){ return ni->getConnectAddress(raddr); }
+	int	connect(const struct sockaddr_storage &raddr) override { return ni->connect(raddr); }
+	int	listen() override { return ni->listen(); }
+	int	stoplistening() override { return ni->stoplistening(); }
+	int reset() override { return ni->reset(); }
+	int disconnect() override { return ni->reset(); }
+	bool connect_parameter(uint32_t type, uint32_t value) override { return ni->connect_parameter(type, value);}
+    bool connect_parameter(uint32_t type, const std::string& value) override { return ni->connect_parameter(type, value);}
+	bool connect_additional_address(uint32_t type, const struct sockaddr_storage &addr) override { return ni->connect_additional_address(type, addr); }
+	int getConnectAddress(struct sockaddr_storage &raddr) override{ return ni->getConnectAddress(raddr); }
 
 	// get the contact from the net side!
-	virtual const RsPeerId& PeerId() { return ni->PeerId(); }
+	const RsPeerId& PeerId() override { return ni->PeerId(); }
 
 	// to check if our interface.
 	virtual bool thisNetInterface(NetInterface *ni_in) { return (ni_in == ni); }
@@ -104,7 +104,7 @@ class pqiperson: public PQInterface
 {
 public:
 	pqiperson(const RsPeerId& id, pqipersongrp *ppg);
-	virtual ~pqiperson(); // must clean up children.
+	~pqiperson() override; // must clean up children.
 
 	// control of the connection.
 	int reset();
@@ -122,11 +122,11 @@ public:
 	// add in connection method.
 	int addChildInterface(uint32_t type, pqiconnect *pqi);
 
-	virtual bool getCryptoParams(RsPeerCryptoParams&);
+	bool getCryptoParams(RsPeerCryptoParams&) override;
 
 	// The PQInterface interface.
-	virtual int SendItem(RsItem *,uint32_t& serialized_size);
-	virtual int SendItem(RsItem *item)
+	int SendItem(RsItem *,uint32_t& serialized_size) override;
+	int SendItem(RsItem *item) override
 	{
 		std::cerr << "Warning pqiperson::sendItem(RsItem*) should not be called."
 				  << "Plz call SendItem(RsItem *,uint32_t& serialized_size) instead."
@@ -135,23 +135,23 @@ public:
 		return SendItem(item, serialized_size);
 	}
 
-	virtual RsItem *GetItem();
-	virtual bool RecvItem(RsItem *item);
+	RsItem *GetItem() override;
+	bool RecvItem(RsItem *item) override;
 	
-	virtual int status();
-	virtual int	tick();
+	int status() override;
+	int	tick() override;
 
 	// overloaded callback function for the child - notify of a change.
-	virtual int notifyEvent(NetInterface *ni, int event, const struct sockaddr_storage &addr);
+	int notifyEvent(NetInterface *ni, int event, const struct sockaddr_storage &addr) override;
 
 	// PQInterface for rate control overloaded....
-	virtual int getQueueSize(bool in);
-	virtual void getRates(RsBwRates &rates);
-	virtual float getRate(bool in);
-	virtual void setMaxRate(bool in, float val);
-	virtual void setRateCap(float val_in, float val_out);
-	virtual int gatherStatistics(std::list<RSTrafficClue>& outqueue_lst,
-								 std::list<RSTrafficClue>& inqueue_lst);
+	int getQueueSize(bool in) override;
+	void getRates(RsBwRates &rates) override;
+	float getRate(bool in) override;
+	void setMaxRate(bool in, float val) override;
+	void setRateCap(float val_in, float val_out) override;
+	int gatherStatistics(std::list<RSTrafficClue>& outqueue_lst,
+								 std::list<RSTrafficClue>& inqueue_lst) override;
 
 private:
 	void processNotifyEvents();

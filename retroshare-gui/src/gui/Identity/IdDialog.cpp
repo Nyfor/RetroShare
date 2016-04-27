@@ -102,7 +102,7 @@ class TreeWidgetItem : public QTreeWidgetItem {
   TreeWidgetItem(int type=Type): QTreeWidgetItem(type) {}
   TreeWidgetItem(QTreeWidget *tree): QTreeWidgetItem(tree) {}
   TreeWidgetItem(const QStringList& strings): QTreeWidgetItem (strings) {}
-  bool operator< (const QTreeWidgetItem& other ) const {
+  bool operator< (const QTreeWidgetItem& other ) const override {
     int column = treeWidget()->sortColumn();
     const QVariant v1 = data(column, Qt::DisplayRole);
     const QVariant v2 = other.data(column, Qt::DisplayRole);

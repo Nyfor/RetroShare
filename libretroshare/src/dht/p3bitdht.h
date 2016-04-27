@@ -146,29 +146,29 @@ public:
              UdpStack *udpstack, std::string bootstrapfile, const std::string &filteredipfile);
 
 
-    virtual	~p3BitDht();
+    	~p3BitDht() override;
 
 
     /***********************************************************************************************
  ********** External RsDHT Interface (defined in libretroshare/src/retroshare/rsdht.h) *********
 ************************************************************************************************/
 
-    virtual uint32_t getNetState(uint32_t type);
-    virtual int      getDhtPeers(int lvl, std::list<RsDhtPeer> &peers);
-    virtual int      getNetPeerList(std::list<RsPeerId> &peerIds);
-    virtual int      getNetPeerStatus(const RsPeerId& peerId, RsDhtNetPeer &status);
+    uint32_t getNetState(uint32_t type) override;
+    int      getDhtPeers(int lvl, std::list<RsDhtPeer> &peers) override;
+    int      getNetPeerList(std::list<RsPeerId> &peerIds) override;
+    int      getNetPeerStatus(const RsPeerId& peerId, RsDhtNetPeer &status) override;
 
-    virtual int     getRelayEnds(std::list<RsDhtRelayEnd> &relayEnds);
-    virtual int     getRelayProxies(std::list<RsDhtRelayProxy> &relayProxies);
+    int     getRelayEnds(std::list<RsDhtRelayEnd> &relayEnds) override;
+    int     getRelayProxies(std::list<RsDhtRelayProxy> &relayProxies) override;
 
     //virtual int      getNetFailedPeer(std::string peerId, PeerStatus &status);
 
-    virtual std::string getUdpAddressString();
+    std::string getUdpAddressString() override;
 
-    virtual void    getDhtRates(float &read, float &write);
-    virtual void    getRelayRates(float &read, float &write, float &relay);
+    void    getDhtRates(float &read, float &write) override;
+    void    getRelayRates(float &read, float &write, float &relay) override;
 
-    virtual bool    getOwnDhtId(std::string &ownDhtId);
+    bool    getOwnDhtId(std::string &ownDhtId) override;
 
     /***********************************************************************************************
  ********** External RsDHT Interface (defined in libretroshare/src/retroshare/rsdht.h) *********
@@ -182,42 +182,42 @@ public:
     void	start(); /* starts up the bitdht thread */
 
     /* pqiNetAssist - external interface functions */
-    virtual int     tick();
-    virtual void    enable(bool on);
-    virtual void    shutdown(); /* blocking call */
-    virtual void	restart();
+    int     tick() override;
+    void    enable(bool on) override;
+    void    shutdown() override; /* blocking call */
+    void	restart() override;
 
-    virtual bool    getEnabled();
-    virtual bool    getActive();
-    virtual bool    getNetworkStats(uint32_t &netsize, uint32_t &localnetsize);
+    bool    getEnabled() override;
+    bool    getActive() override;
+    bool    getNetworkStats(uint32_t &netsize, uint32_t &localnetsize) override;
 
     /* pqiNetAssistConnect - external interface functions */
 
     /* add / remove peers */
-    virtual bool 	findPeer(const RsPeerId& id);
-    virtual bool 	dropPeer(const RsPeerId& id);
+    bool 	findPeer(const RsPeerId& id) override;
+    bool 	dropPeer(const RsPeerId& id) override;
 
-    virtual int addBadPeer(const struct sockaddr_storage &addr, uint32_t reason, uint32_t flags, uint32_t age);
-    virtual int addKnownPeer(const RsPeerId &pid, const struct sockaddr_storage &addr, uint32_t flags);
+    int addBadPeer(const struct sockaddr_storage &addr, uint32_t reason, uint32_t flags, uint32_t age) override;
+    int addKnownPeer(const RsPeerId &pid, const struct sockaddr_storage &addr, uint32_t flags) override;
     //virtual int 	addFriend(const std::string pid);
     //virtual int 	addFriendOfFriend(const std::string pid);
     //virtual int 	addOther(const std::string pid);
 
     /* feedback on success failure of Connections */
-    virtual void 	ConnectionFeedback(const RsPeerId& pid, int state);
+    void 	ConnectionFeedback(const RsPeerId& pid, int state) override;
 
     /* extract current peer status */
-    virtual bool 	getPeerStatus(const RsPeerId& id,
+    bool 	getPeerStatus(const RsPeerId& id,
                                   struct sockaddr_storage &laddr, struct sockaddr_storage &raddr,
-                                  uint32_t &type, uint32_t &mode);
+                                  uint32_t &type, uint32_t &mode) override;
 
     virtual bool 	getExternalInterface(struct sockaddr_storage &raddr,
                                          uint32_t &mode);
 
-    virtual bool	isAddressBanned(const struct sockaddr_storage& raddr) ;
-    virtual void	getListOfBannedIps(std::list<RsDhtFilteredPeer> &lst) ;
+    bool	isAddressBanned(const struct sockaddr_storage& raddr) override ;
+    void	getListOfBannedIps(std::list<RsDhtFilteredPeer> &lst) override ;
 
-    virtual bool    setAttachMode(bool on);
+    bool    setAttachMode(bool on) override;
 
 
 
@@ -289,15 +289,15 @@ public:
 ************************************************************************************************/
 
     // Interface for controlling Relays & DHT Relay Mode
-    virtual int     getRelayServerList(std::list<std::string> &ids);
-    virtual int     addRelayServer(std::string ids);
-    virtual int     removeRelayServer(std::string ids);
+    int     getRelayServerList(std::list<std::string> &ids) override;
+    int     addRelayServer(std::string ids) override;
+    int     removeRelayServer(std::string ids) override;
 
-    virtual uint32_t getRelayMode();
-    virtual int      setRelayMode(uint32_t mode);
+    uint32_t getRelayMode() override;
+    int      setRelayMode(uint32_t mode) override;
 
-    virtual int     getRelayAllowance(int  classIdx, uint32_t &count, uint32_t &bandwidth);
-    virtual int     setRelayAllowance(int classIdx, uint32_t  count, uint32_t  bandwidth);
+    int     getRelayAllowance(int  classIdx, uint32_t &count, uint32_t &bandwidth) override;
+    int     setRelayAllowance(int classIdx, uint32_t  count, uint32_t  bandwidth) override;
 
 private:
 
@@ -312,10 +312,10 @@ protected:
     /*****************************************************************/
     /***********************  p3config  ******************************/
     /* Key Functions to be overloaded for Full Configuration */
-    virtual RsSerialiser *setupSerialiser();
-    virtual bool saveList(bool &cleanup, std::list<RsItem *>&);
-    virtual void saveDone();
-    virtual bool    loadList(std::list<RsItem *>& load);
+    RsSerialiser *setupSerialiser() override;
+    bool saveList(bool &cleanup, std::list<RsItem *>&) override;
+    void saveDone() override;
+    bool    loadList(std::list<RsItem *>& load) override;
     /*****************************************************************/
 
     // DATA RATES: Variables (Mutex Protected).

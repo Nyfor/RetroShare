@@ -54,7 +54,7 @@ class ConfigPage : public QWidget
 		virtual QString helpText() const = 0;
 
 	protected:
-		virtual void showEvent(QShowEvent * /*event*/)
+		void showEvent(QShowEvent * /*event*/) override
 		{
 			if(!loaded)
 			{

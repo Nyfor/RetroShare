@@ -95,9 +95,9 @@ public:
         PgpAuxUtils *pgpUtils = NULL,
         bool grpAutoSync = true, bool msgAutoSync = true);
 
-    virtual ~RsGxsNetService();
+    ~RsGxsNetService() override;
 
-    virtual RsServiceInfo getServiceInfo() { return mServiceInfo; }
+    RsServiceInfo getServiceInfo() override { return mServiceInfo; }
 
 public:
 
@@ -107,7 +107,7 @@ public:
      * @param age the max age a sync item can to be allowed in a synchronisation
      */
     // NOT IMPLEMENTED
-    virtual void setSyncAge(uint32_t age);
+    void setSyncAge(uint32_t age) override;
 
     /*!
      * pauses synchronisation of subscribed groups and request for group id
@@ -115,7 +115,7 @@ public:
      * @param enabled set to false to disable pause, and true otherwise
      */
     // NOT IMPLEMENTED
-    virtual void pauseSynchronisation(bool enabled);
+    void pauseSynchronisation(bool enabled) override;
 
 
     /*!
@@ -124,7 +124,7 @@ public:
      * @param msgId the messages to retrieve
      * @return request token to be redeemed
      */
-    virtual int requestMsg(const RsGxsGrpMsgIdPair& /* msgId */){ return 0;}
+    int requestMsg(const RsGxsGrpMsgIdPair& /* msgId */) override{ return 0;}
 
     /*!
      * Request for this group is sent through to peers on your network
@@ -132,48 +132,48 @@ public:
      * @param enabled set to false to disable pause, and true otherwise
      * @return request token to be redeemed
      */
-    virtual int requestGrp(const std::list<RsGxsGroupId>& grpId, const RsPeerId& peerId);
+    int requestGrp(const std::list<RsGxsGroupId>& grpId, const RsPeerId& peerId) override;
 
     /*!
      * share publish keys for the specified group with the peers in the specified list.
      */
 
-    virtual int sharePublishKey(const RsGxsGroupId& grpId,const std::set<RsPeerId>& peers) ;
+    int sharePublishKey(const RsGxsGroupId& grpId,const std::set<RsPeerId>& peers) override ;
 
     /*!
      * Returns statistics for the group networking activity: popularity (number of friends subscribers) and max_visible_msg_count,
      * that is the max nnumber of messages reported by a friend.
      */
-    virtual bool getGroupNetworkStats(const RsGxsGroupId& id,RsGroupNetworkStats& stats) ;
+    bool getGroupNetworkStats(const RsGxsGroupId& id,RsGroupNetworkStats& stats) override ;
 
     /*!
      * Used to inform the net service that we changed subscription status. That helps
      * optimising data transfer when e.g. unsubsribed groups are updated less often, etc
      */
-    virtual void subscribeStatusChanged(const RsGxsGroupId& id,bool subscribed) ;
+    void subscribeStatusChanged(const RsGxsGroupId& id,bool subscribed) override ;
 
-    virtual void rejectMessage(const RsGxsMessageId& msg_id) ;
+    void rejectMessage(const RsGxsMessageId& msg_id) override ;
     
-    virtual bool getGroupServerUpdateTS(const RsGxsGroupId& gid,time_t& grp_server_update_TS,time_t& msg_server_update_TS) ;
+    bool getGroupServerUpdateTS(const RsGxsGroupId& gid,time_t& grp_server_update_TS,time_t& msg_server_update_TS) override ;
     
     /* p3Config methods */
 public:
 
-    bool	loadList(std::list<RsItem *>& load);
-    bool saveList(bool &cleanup, std::list<RsItem *>&);
-    RsSerialiser *setupSerialiser();
+    bool	loadList(std::list<RsItem *>& load) override;
+    bool saveList(bool &cleanup, std::list<RsItem *>&) override;
+    RsSerialiser *setupSerialiser() override;
 
 public:
 
     /*!
      * initiates synchronisation
      */
-    int tick();
+    int tick() override;
 
     /*!
      * Processes transactions and job queue
      */
-    virtual void data_tick();
+    void data_tick() override;
 private:
 
     /*!

@@ -15,9 +15,9 @@ class GxsForumsFillThread : public QThread
 
 public:
 	GxsForumsFillThread(GxsForumThreadWidget *parent);
-	~GxsForumsFillThread();
+	~GxsForumsFillThread() override;
 
-	void run();
+	void run() override;
 	void stop();
 	bool wasStopped() { return mStopped; }
 

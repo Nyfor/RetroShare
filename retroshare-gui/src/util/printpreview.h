@@ -53,7 +53,7 @@ class PrintPreview : public QMainWindow
     Q_OBJECT
 public:
     PrintPreview(const QTextDocument *document, QWidget *parent);
-    virtual ~PrintPreview();
+    ~PrintPreview() override;
 
     QSizeF paperSize;
     QPointF pageTopLeft;
@@ -83,11 +83,11 @@ public slots:
     void zoomOut();
 
 protected:
-    virtual void paintEvent(QPaintEvent *e);
-    virtual void resizeEvent(QResizeEvent *);
-    virtual void mousePressEvent(QMouseEvent *e);
-    virtual void mouseMoveEvent(QMouseEvent *e);
-    virtual void mouseReleaseEvent(QMouseEvent *e);
+    void paintEvent(QPaintEvent *e) override;
+    void resizeEvent(QResizeEvent *) override;
+    void mousePressEvent(QMouseEvent *e) override;
+    void mouseMoveEvent(QMouseEvent *e) override;
+    void mouseReleaseEvent(QMouseEvent *e) override;
 
 private:
     void paintPage(QPainter *painter, int page);

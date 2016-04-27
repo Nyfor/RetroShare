@@ -55,11 +55,11 @@ class pqipersongrp: public pqihandler, public pqiMonitor, public p3ServiceServer
 	/*************************** Setup *************************/
 	/* pqilistener */
 
-virtual bool resetListener(const struct sockaddr_storage &local); // overloaded from pqiNetListener 
+bool resetListener(const struct sockaddr_storage &local) override; // overloaded from pqiNetListener 
 int     init_listener(); 
 
 	/*************** pqiMonitor callback ***********************/
-virtual void    statusChange(const std::list<pqipeer> &plist);
+void    statusChange(const std::list<pqipeer> &plist) override;
 
 #ifdef WINDOWS_SYS
 ///////////////////////////////////////////////////////////
@@ -92,8 +92,8 @@ bool    notifyConnect(const RsPeerId& id, uint32_t type, bool success, bool isIn
 //bool    notifyConnect(std::string id, uint32_t type, bool success);
 
 	// tick interfaces.
-virtual int tick();
-virtual int status();
+int tick() override;
+int status() override;
 
 virtual bool getCryptoParams(const RsPeerId&,RsPeerCryptoParams&) ;
 	protected:
@@ -135,8 +135,8 @@ class pqipersongrpDummy: public pqipersongrp
 	protected:
 
 	/********* FUNCTIONS to OVERLOAD for specialisation ********/
-virtual pqilistener *locked_createListener(const struct sockaddr_storage &laddr);
-virtual pqiperson   *locked_createPerson(const RsPeerId& id, pqilistener *listener);
+pqilistener *locked_createListener(const struct sockaddr_storage &laddr) override;
+pqiperson   *locked_createPerson(const RsPeerId& id, pqilistener *listener) override;
 	/********* FUNCTIONS to OVERLOAD for specialisation ********/
 };
 

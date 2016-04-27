@@ -69,7 +69,7 @@ class UdpLayer: public bdThread
 	public:
 
 	UdpLayer(UdpReceiver *recv, struct sockaddr_in &local);
-virtual ~UdpLayer() { return; }
+~UdpLayer() override { return; }
 
 int 	reset(struct sockaddr_in &local); /* calls join, close, openSocket */
 void	getDataTransferred(uint32_t &read, uint32_t &write);
@@ -81,7 +81,7 @@ int     status(std::ostream &out);
 	int openSocket();
 
 	/* RsThread functions */
-virtual void run(); /* called once the thread is started */
+void run() override; /* called once the thread is started */
 
 void	recv_loop(); /* uses callback to UdpReceiver */
 
@@ -130,12 +130,12 @@ class LossyUdpLayer: public UdpLayer
 {
 	public:
   LossyUdpLayer(UdpReceiver *udpr, struct sockaddr_in &local, double frac);
-virtual ~LossyUdpLayer();
+~LossyUdpLayer() override;
 
         protected:
 
-virtual int receiveUdpPacket(void *data, int *size, struct sockaddr_in &from);
-virtual	int sendUdpPacket(const void *data, int size, const struct sockaddr_in &to);
+int receiveUdpPacket(void *data, int *size, struct sockaddr_in &from) override;
+	int sendUdpPacket(const void *data, int size, const struct sockaddr_in &to) override;
 
 	double lossFraction;
 };
@@ -158,14 +158,14 @@ class RestrictedUdpLayer: public UdpLayer
 {
 	public:
   RestrictedUdpLayer(UdpReceiver *udpr, struct sockaddr_in &local);
-virtual ~RestrictedUdpLayer();
+~RestrictedUdpLayer() override;
 
 void	addRestrictedPortRange(int lp, int up);
 
         protected:
 
-virtual int receiveUdpPacket(void *data, int *size, struct sockaddr_in &from);
-virtual	int sendUdpPacket(const void *data, int size, const struct sockaddr_in &to);
+int receiveUdpPacket(void *data, int *size, struct sockaddr_in &from) override;
+	int sendUdpPacket(const void *data, int size, const struct sockaddr_in &to) override;
 
 	std::list<PortRange> mLostPorts;
 };
@@ -176,12 +176,12 @@ class TimedUdpLayer: public UdpLayer
 {
 	public:
   TimedUdpLayer(UdpReceiver *udpr, struct sockaddr_in &local);
-virtual ~TimedUdpLayer();
+~TimedUdpLayer() override;
 
         protected:
 
-virtual int receiveUdpPacket(void *data, int *size, struct sockaddr_in &from);
-virtual	int sendUdpPacket(const void *data, int size, const struct sockaddr_in &to);
+int receiveUdpPacket(void *data, int *size, struct sockaddr_in &from) override;
+	int sendUdpPacket(const void *data, int size, const struct sockaddr_in &to) override;
 
 	time_t mStartTime;
 	bool mActive;

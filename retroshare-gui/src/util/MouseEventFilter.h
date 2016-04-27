@@ -36,7 +36,7 @@ public:
 
 private:
 
-	virtual bool eventFilter(QObject * watched, QEvent * event);
+	bool eventFilter(QObject * watched, QEvent * event) override;
 };
 
 
@@ -52,7 +52,7 @@ public:
 
 private:
 
-	virtual bool eventFilter(QObject * watched, QEvent * event);
+	bool eventFilter(QObject * watched, QEvent * event) override;
 
 	Qt::MouseButton _button;
 };
@@ -70,7 +70,7 @@ public:
 
 private:
 
-	virtual bool eventFilter(QObject * watched, QEvent * event);
+	bool eventFilter(QObject * watched, QEvent * event) override;
 
 	Qt::MouseButton _button;
 };
@@ -88,7 +88,7 @@ public:
 
 private:
 
-	virtual bool eventFilter(QObject * watched, QEvent * event);
+	bool eventFilter(QObject * watched, QEvent * event) override;
 };
 
 
@@ -104,7 +104,7 @@ public:
 
 private:
 
-	virtual bool eventFilter(QObject * watched, QEvent * event);
+	bool eventFilter(QObject * watched, QEvent * event) override;
 };
 
 #endif	//MOUSEEVENTFILTER_H

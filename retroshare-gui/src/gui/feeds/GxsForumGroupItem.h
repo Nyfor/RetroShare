@@ -39,18 +39,18 @@ public:
 	/** Default Constructor */
 	GxsForumGroupItem(FeedHolder *feedHolder, uint32_t feedId, const RsGxsGroupId &groupId, bool isHome, bool autoUpdate);
 	GxsForumGroupItem(FeedHolder *feedHolder, uint32_t feedId, const RsGxsForumGroup &group, bool isHome, bool autoUpdate);
-	~GxsForumGroupItem();
+	~GxsForumGroupItem() override;
 
 	bool setGroup(const RsGxsForumGroup &group);
 
 protected:
 	/* FeedItem */
-	virtual void doExpand(bool open);
+	void doExpand(bool open) override;
 
 	/* GxsGroupFeedItem */
-	virtual QString groupName();
-	virtual void loadGroup(const uint32_t &token);
-	virtual RetroShareLink::enumType getLinkType() { return RetroShareLink::TYPE_FORUM; }
+	QString groupName() override;
+	void loadGroup(const uint32_t &token) override;
+	RetroShareLink::enumType getLinkType() override { return RetroShareLink::TYPE_FORUM; }
 
 private slots:
 	/* default stuff */

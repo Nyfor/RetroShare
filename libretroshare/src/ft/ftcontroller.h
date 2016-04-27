@@ -126,7 +126,7 @@ class ftController: public CacheTransfer, public RsTickingThread, public pqiServ
 		bool    activate();
 		bool 	isActiveAndNoPending();
 
-        virtual void data_tick();
+        void data_tick() override;
 
 		/***************************************************************/
 		/********************** Controller Access **********************/
@@ -188,15 +188,15 @@ class ftController: public CacheTransfer, public RsTickingThread, public pqiServ
 		bool assumeAvailability(const RsPeerId& peer_id) const ;
 
 		/* pqiMonitor callback (also provided mConnMgr pointer!) */
-		virtual void    statusChange(const std::list<pqiServicePeer> &plist);
+		void    statusChange(const std::list<pqiServicePeer> &plist) override;
 
         void addFileSource(const RsFileHash& hash,const RsPeerId& peer_id) ;
         void removeFileSource(const RsFileHash& hash,const RsPeerId& peer_id) ;
 
 	protected:
 
-    virtual bool RequestCacheFile(const RsPeerId& id, std::string path, const RsFileHash& hash, uint64_t size);
-        virtual bool CancelCacheFile(const RsPeerId& id, std::string path, const RsFileHash& hash, uint64_t size);
+    bool RequestCacheFile(const RsPeerId& id, std::string path, const RsFileHash& hash, uint64_t size) override;
+        bool CancelCacheFile(const RsPeerId& id, std::string path, const RsFileHash& hash, uint64_t size) override;
 
 		void cleanCacheDownloads() ;
 		void searchForDirectSources() ;
@@ -208,9 +208,9 @@ class ftController: public CacheTransfer, public RsTickingThread, public pqiServ
 
 
 		/* p3Config Interface */
-		virtual RsSerialiser *setupSerialiser();
-		virtual bool saveList(bool &cleanup, std::list<RsItem *>&);
-		virtual bool    loadList(std::list<RsItem *>& load);
+		RsSerialiser *setupSerialiser() override;
+		bool saveList(bool &cleanup, std::list<RsItem *>&) override;
+		bool    loadList(std::list<RsItem *>& load) override;
 		bool	loadConfigMap(std::map<std::string, std::string> &configMap);
 
 	private:

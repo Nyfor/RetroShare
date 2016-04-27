@@ -35,16 +35,16 @@ class MessagePage : public ConfigPage
 
 public:
     MessagePage(QWidget * parent = 0, Qt::WindowFlags flags = 0);
-    ~MessagePage();
+    ~MessagePage() override;
 
     /** Saves the changes on this page */
-    virtual bool save(QString &errmsg);
+    bool save(QString &errmsg) override;
     /** Loads the settings for this page */
-    virtual void load();
+    void load() override;
 
-	 virtual QPixmap iconPixmap() const { return QPixmap(":/images/evolution.png") ; }
-	 virtual QString pageName() const { return tr("Message") ; }
-	 virtual QString helpText() const { return ""; }
+	 QPixmap iconPixmap() const override { return QPixmap(":/images/evolution.png") ; }
+	 QString pageName() const override { return tr("Message") ; }
+	 QString helpText() const override { return ""; }
 
 
 private slots:

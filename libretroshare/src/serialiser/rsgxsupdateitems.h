@@ -51,10 +51,10 @@ public:
     RsGxsGrpUpdateItem(uint16_t servType) : RsItem(RS_PKT_VERSION_SERVICE, servType,
                                                    RS_PKT_SUBTYPE_GXS_GRP_UPDATE)
     {clear();}
-    virtual ~RsGxsGrpUpdateItem() {}
+    ~RsGxsGrpUpdateItem() override {}
 
-    virtual void clear();
-    virtual std::ostream &print(std::ostream &out, uint16_t indent);
+    void clear() override;
+    std::ostream &print(std::ostream &out, uint16_t indent) override;
 
     RsPeerId peerId;
     uint32_t grpUpdateTS;
@@ -65,10 +65,10 @@ public:
     RsGxsServerGrpUpdateItem(uint16_t servType) : RsItem(RS_PKT_VERSION_SERVICE, servType,
                                                          RS_PKT_SUBTYPE_GXS_SERVER_GRP_UPDATE)
         { clear();}
-    virtual ~RsGxsServerGrpUpdateItem() {}
+    ~RsGxsServerGrpUpdateItem() override {}
 
-        virtual void clear();
-        virtual std::ostream &print(std::ostream &out, uint16_t indent);
+        void clear() override;
+        std::ostream &print(std::ostream &out, uint16_t indent) override;
 
         uint32_t grpUpdateTS;
 };
@@ -78,10 +78,10 @@ class RsGxsMsgUpdateItem : public RsItem
 public:
     RsGxsMsgUpdateItem(uint16_t servType) : RsItem(RS_PKT_VERSION_SERVICE, servType, RS_PKT_SUBTYPE_GXS_MSG_UPDATE)
     { clear();}
-    virtual ~RsGxsMsgUpdateItem() {}
+    ~RsGxsMsgUpdateItem() override {}
 
-    virtual void clear();
-    virtual std::ostream &print(std::ostream &out, uint16_t indent);
+    void clear() override;
+    std::ostream &print(std::ostream &out, uint16_t indent) override;
 
     struct MsgUpdateInfo
     {
@@ -101,10 +101,10 @@ public:
     RsGxsServerMsgUpdateItem(uint16_t servType) : RsItem(RS_PKT_VERSION_SERVICE,
                                                          servType, RS_PKT_SUBTYPE_GXS_SERVER_MSG_UPDATE)
     { clear();}
-    virtual ~RsGxsServerMsgUpdateItem() {}
+    ~RsGxsServerMsgUpdateItem() override {}
 
-        virtual void clear();
-        virtual std::ostream &print(std::ostream &out, uint16_t indent);
+        void clear() override;
+        std::ostream &print(std::ostream &out, uint16_t indent) override;
 
         RsGxsGroupId grpId;
         uint32_t msgUpdateTS; // local time stamp this group last received a new msg
@@ -118,11 +118,11 @@ public:
 	RsGxsUpdateSerialiser(uint16_t servtype) :
             RsSerialType(RS_PKT_VERSION_SERVICE, servtype), SERVICE_TYPE(servtype) { return; }
 
-    virtual ~RsGxsUpdateSerialiser() { return; }
+    ~RsGxsUpdateSerialiser() override { return; }
 
-    virtual uint32_t size(RsItem *item);
-    virtual bool serialise(RsItem *item, void *data, uint32_t *size);
-    virtual RsItem* deserialise(void *data, uint32_t *size);
+    uint32_t size(RsItem *item) override;
+    bool serialise(RsItem *item, void *data, uint32_t *size) override;
+    RsItem* deserialise(void *data, uint32_t *size) override;
 
 private:
 

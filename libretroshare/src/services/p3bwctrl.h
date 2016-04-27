@@ -75,7 +75,7 @@ class p3BandwidthControl: public p3Service, public pqiServiceMonitor
 {
 	public:
 		p3BandwidthControl(pqipersongrp *pg);
-		virtual RsServiceInfo getServiceInfo();
+		RsServiceInfo getServiceInfo() override;
 
 		/***** overloaded from RsBanList *****/
 
@@ -84,7 +84,7 @@ class p3BandwidthControl: public p3Service, public pqiServiceMonitor
 		/*!
 		 * This retrieves all BwCtrl items
 		 */
-		virtual int   tick();
+		int   tick() override;
 		virtual int   status();
 
 
@@ -101,7 +101,7 @@ class p3BandwidthControl: public p3Service, public pqiServiceMonitor
 		 */
 
 		/*************** pqiMonitor callback ***********************/
-		virtual void statusChange(const std::list<pqiServicePeer> &plist);
+		void statusChange(const std::list<pqiServicePeer> &plist) override;
 
 
 		/************* from p3Config *******************/

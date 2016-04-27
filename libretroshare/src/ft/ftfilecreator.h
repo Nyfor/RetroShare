@@ -49,10 +49,10 @@ class ftFileCreator: public ftFileProvider
 
 		ftFileCreator(const std::string& savepath, uint64_t size, const RsFileHash& hash,bool assume_availability);
 
-		~ftFileCreator();
+		~ftFileCreator() override;
 
 		/* overloaded from FileProvider */
-        virtual bool 	getFileData(const RsPeerId& peer_id,uint64_t offset, uint32_t &chunk_size, void *data, bool allow_unverified = false);
+        bool 	getFileData(const RsPeerId& peer_id,uint64_t offset, uint32_t &chunk_size, void *data, bool allow_unverified = false) override;
 		bool	finished() ;
 		uint64_t getRecvd();
 
@@ -119,7 +119,7 @@ class ftFileCreator: public ftFileProvider
 		// 	- getting info about current chunks for the GUI
 		// 	- sending availability info to the peers for which we also are a source
 		//
-		virtual void getAvailabilityMap(CompressedChunkMap& cmap) ;
+		void getAvailabilityMap(CompressedChunkMap& cmap) override ;
 		void setAvailabilityMap(const CompressedChunkMap& cmap) ;
 
 		// This is called when receiving the availability map from a source peer, for the file being handled.

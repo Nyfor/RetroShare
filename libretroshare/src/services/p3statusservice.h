@@ -49,16 +49,16 @@ class p3StatusService: public p3Service, public p3Config, public pqiServiceMonit
 	public:
 
 	p3StatusService(p3ServiceControl *sc);
-virtual ~p3StatusService();
+~p3StatusService() override;
 
-virtual RsServiceInfo getServiceInfo();
+RsServiceInfo getServiceInfo() override;
 
 /***** overloaded from p3Service *****/
-virtual int tick();
+int tick() override;
 virtual int status();
 
 /*************** pqiMonitor callback ***********************/
-virtual void    statusChange(const std::list<pqiServicePeer> &plist);
+void    statusChange(const std::list<pqiServicePeer> &plist) override;
 
 /********* RsStatus ***********/
 
@@ -79,17 +79,17 @@ virtual bool sendStatus(const RsPeerId &id, uint32_t status);
 /*!
  * @return The serialiser the enables storage of save info
  */
-virtual RsSerialiser *setupSerialiser();
+RsSerialiser *setupSerialiser() override;
 
 /*!
  * This stores information on what your status was before you exited rs
  */
-virtual bool saveList(bool& cleanup, std::list<RsItem*>&);
+bool saveList(bool& cleanup, std::list<RsItem*>&) override;
 
 /*!
  * @param load Should contain a single item which is clients status from last rs session
  */
-virtual bool loadList(std::list<RsItem*>& load);
+bool loadList(std::list<RsItem*>& load) override;
 
 	private:
 

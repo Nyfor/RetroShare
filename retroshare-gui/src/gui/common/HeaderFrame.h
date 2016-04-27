@@ -13,7 +13,7 @@ class HeaderFrame : public QFrame
     
 public:
 	HeaderFrame(QWidget *parent = 0);
-	~HeaderFrame();
+	~HeaderFrame() override;
 
 	void setHeaderText(const QString &headerText);
 	void setHeaderImage(const QPixmap &headerImage);

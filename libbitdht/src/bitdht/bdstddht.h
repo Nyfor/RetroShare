@@ -70,22 +70,22 @@ class bdStdDht: public bdDhtFunctions
 
         bdStdDht();
         /* setup variables */
-virtual uint16_t bdNumBuckets();
-virtual uint16_t bdNodesPerBucket(); /* used for bdspace */
-virtual uint16_t bdNumQueryNodes(); /* used for queries */
-virtual uint16_t bdBucketBitSize();
+uint16_t bdNumBuckets() override;
+uint16_t bdNodesPerBucket() override; /* used for bdspace */
+uint16_t bdNumQueryNodes() override; /* used for queries */
+uint16_t bdBucketBitSize() override;
 
-virtual int bdDistance(const bdNodeId *n1, const bdNodeId *n2, bdMetric *metric);
-virtual int bdBucketDistance(const bdNodeId *n1, const bdNodeId *n2);
-virtual int bdBucketDistance(const bdMetric *metric);
+int bdDistance(const bdNodeId *n1, const bdNodeId *n2, bdMetric *metric) override;
+int bdBucketDistance(const bdNodeId *n1, const bdNodeId *n2) override;
+int bdBucketDistance(const bdMetric *metric) override;
 
-virtual bool bdSimilarId(const bdId *id1, const bdId *id2);
-virtual bool bdUpdateSimilarId(bdId *dest, const bdId *src); /* returns true if update was necessary */
+bool bdSimilarId(const bdId *id1, const bdId *id2) override;
+bool bdUpdateSimilarId(bdId *dest, const bdId *src) override; /* returns true if update was necessary */
 
-virtual void bdRandomMidId(const bdNodeId *target, const bdNodeId *other, bdNodeId *mid);
+void bdRandomMidId(const bdNodeId *target, const bdNodeId *other, bdNodeId *mid) override;
 
-virtual void bdPrintId(std::ostream &out, const bdId *a);
-virtual void bdPrintNodeId(std::ostream &out, const bdNodeId *a);
+void bdPrintId(std::ostream &out, const bdId *a) override;
+void bdPrintNodeId(std::ostream &out, const bdNodeId *a) override;
 
 };
 
@@ -94,7 +94,7 @@ class bdModDht: public bdStdDht
 	public:
 	bdModDht();
 virtual void setNodesPerBucket(uint16_t nodesPerBucket);
-virtual uint16_t bdNodesPerBucket(); /* used for bdspace */
+uint16_t bdNodesPerBucket() override; /* used for bdspace */
 
 	private:
 	uint16_t mNodesPerBucket;

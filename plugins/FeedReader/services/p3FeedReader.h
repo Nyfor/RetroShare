@@ -41,43 +41,43 @@ public:
 	p3FeedReader(RsPluginHandler *pgHandler, RsGxsForums *forums);
 
 	/****************** FeedReader Interface *************/
-	virtual void stop();
-	virtual void setNotify(RsFeedReaderNotify *notify);
+	void stop() override;
+	void setNotify(RsFeedReaderNotify *notify) override;
 
-	virtual uint32_t getStandardStorageTime();
-	virtual void     setStandardStorageTime(uint32_t storageTime);
-	virtual uint32_t getStandardUpdateInterval();
-	virtual void     setStandardUpdateInterval(uint32_t updateInterval);
-	virtual bool     getStandardProxy(std::string &proxyAddress, uint16_t &proxyPort);
-	virtual void     setStandardProxy(bool useProxy, const std::string &proxyAddress, uint16_t proxyPort);
-	virtual bool     getSaveInBackground();
-	virtual void     setSaveInBackground(bool saveInBackground);
+	uint32_t getStandardStorageTime() override;
+	void     setStandardStorageTime(uint32_t storageTime) override;
+	uint32_t getStandardUpdateInterval() override;
+	void     setStandardUpdateInterval(uint32_t updateInterval) override;
+	bool     getStandardProxy(std::string &proxyAddress, uint16_t &proxyPort) override;
+	void     setStandardProxy(bool useProxy, const std::string &proxyAddress, uint16_t proxyPort) override;
+	bool     getSaveInBackground() override;
+	void     setSaveInBackground(bool saveInBackground) override;
 
-	virtual RsFeedAddResult addFolder(const std::string parentId, const std::string &name, std::string &feedId);
-	virtual RsFeedAddResult setFolder(const std::string &feedId, const std::string &name);
-	virtual RsFeedAddResult addFeed(const FeedInfo &feedInfo, std::string &feedId);
-	virtual RsFeedAddResult setFeed(const std::string &feedId, const FeedInfo &feedInfo);
-	virtual bool            removeFeed(const std::string &feedId);
-	virtual bool            addPreviewFeed(const FeedInfo &feedInfo, std::string &feedId);
-	virtual void            getFeedList(const std::string &parentId, std::list<FeedInfo> &feedInfos);
-	virtual bool            getFeedInfo(const std::string &feedId, FeedInfo &feedInfo);
-	virtual bool            getMsgInfo(const std::string &feedId, const std::string &msgId, FeedMsgInfo &msgInfo);
-	virtual bool            removeMsg(const std::string &feedId, const std::string &msgId);
-	virtual bool            removeMsgs(const std::string &feedId, const std::list<std::string> &msgIds);
-	virtual bool            getMessageCount(const std::string &feedId, uint32_t *msgCount, uint32_t *newCount, uint32_t *unreadCount);
-	virtual bool            getFeedMsgList(const std::string &feedId, std::list<FeedMsgInfo> &msgInfos);
-	virtual bool            getFeedMsgIdList(const std::string &feedId, std::list<std::string> &msgIds);
-	virtual bool            processFeed(const std::string &feedId);
-	virtual bool            setMessageRead(const std::string &feedId, const std::string &msgId, bool read);
-	virtual bool            retransformMsg(const std::string &feedId, const std::string &msgId);
-	virtual bool            clearMessageCache(const std::string &feedId);
+	RsFeedAddResult addFolder(const std::string parentId, const std::string &name, std::string &feedId) override;
+	RsFeedAddResult setFolder(const std::string &feedId, const std::string &name) override;
+	RsFeedAddResult addFeed(const FeedInfo &feedInfo, std::string &feedId) override;
+	RsFeedAddResult setFeed(const std::string &feedId, const FeedInfo &feedInfo) override;
+	bool            removeFeed(const std::string &feedId) override;
+	bool            addPreviewFeed(const FeedInfo &feedInfo, std::string &feedId) override;
+	void            getFeedList(const std::string &parentId, std::list<FeedInfo> &feedInfos) override;
+	bool            getFeedInfo(const std::string &feedId, FeedInfo &feedInfo) override;
+	bool            getMsgInfo(const std::string &feedId, const std::string &msgId, FeedMsgInfo &msgInfo) override;
+	bool            removeMsg(const std::string &feedId, const std::string &msgId) override;
+	bool            removeMsgs(const std::string &feedId, const std::list<std::string> &msgIds) override;
+	bool            getMessageCount(const std::string &feedId, uint32_t *msgCount, uint32_t *newCount, uint32_t *unreadCount) override;
+	bool            getFeedMsgList(const std::string &feedId, std::list<FeedMsgInfo> &msgInfos) override;
+	bool            getFeedMsgIdList(const std::string &feedId, std::list<std::string> &msgIds) override;
+	bool            processFeed(const std::string &feedId) override;
+	bool            setMessageRead(const std::string &feedId, const std::string &msgId, bool read) override;
+	bool            retransformMsg(const std::string &feedId, const std::string &msgId) override;
+	bool            clearMessageCache(const std::string &feedId) override;
 
-	virtual RsFeedReaderErrorState processXPath(const std::list<std::string> &xpathsToUse, const std::list<std::string> &xpathsToRemove, std::string &description, std::string &errorString);
-	virtual RsFeedReaderErrorState processXslt(const std::string &xslt, std::string &description, std::string &errorString);
+	RsFeedReaderErrorState processXPath(const std::list<std::string> &xpathsToUse, const std::list<std::string> &xpathsToRemove, std::string &description, std::string &errorString) override;
+	RsFeedReaderErrorState processXslt(const std::string &xslt, std::string &description, std::string &errorString) override;
 
 	/****************** p3Service STUFF ******************/
-	virtual int tick();
-	virtual RsServiceInfo getServiceInfo() ;
+	int tick() override;
+	RsServiceInfo getServiceInfo() override ;
 
 	/****************** internal STUFF *******************/
 	bool getFeedToDownload(RsFeedReaderFeed &feed, const std::string &neededFeedId);
@@ -97,10 +97,10 @@ public:
 
 protected:
 	/****************** p3Config STUFF *******************/
-	virtual RsSerialiser *setupSerialiser();
-	virtual bool saveList(bool &cleanup, std::list<RsItem *>&);
-	virtual bool loadList(std::list<RsItem *>& load);
-	virtual void saveDone();
+	RsSerialiser *setupSerialiser() override;
+	bool saveList(bool &cleanup, std::list<RsItem *>&) override;
+	bool loadList(std::list<RsItem *>& load) override;
+	void saveDone() override;
 
 private:
 	void cleanFeeds();

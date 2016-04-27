@@ -56,7 +56,7 @@ class p3ChatService: public p3Service, public DistantChatService, public Distrib
 public:
 	p3ChatService(p3ServiceControl *cs, p3IdService *pids,p3LinkMgr *cm, p3HistoryMgr *historyMgr);
 
-	virtual RsServiceInfo getServiceInfo();
+	RsServiceInfo getServiceInfo() override;
 
 	/***** overloaded from p3Service *****/
 	/*!
@@ -66,10 +66,10 @@ public:
 		 * : notifyCustomState, notifyChatStatus, notifyPeerHasNewAvatar
 		 * @see NotifyBase
 		 */
-	virtual int   tick();
+	int   tick() override;
 
 	/*************** pqiMonitor callback ***********************/
-	virtual void statusChange(const std::list<pqiServicePeer> &plist);
+	void statusChange(const std::list<pqiServicePeer> &plist) override;
 
 	/*!
 		 * public chat sent to all peers
@@ -163,22 +163,22 @@ public:
 
 protected:
 	/************* from p3Config *******************/
-	virtual RsSerialiser *setupSerialiser() ;
+	RsSerialiser *setupSerialiser() override ;
 
 	/*!
 		 * chat msg items and custom status are saved
 		 */
-	virtual bool saveList(bool& cleanup, std::list<RsItem*>&) ;
-	virtual void saveDone();
-	virtual bool loadList(std::list<RsItem*>& load) ;
+	bool saveList(bool& cleanup, std::list<RsItem*>&) override ;
+	void saveDone() override;
+	bool loadList(std::list<RsItem*>& load) override ;
 
 	// accepts virtual peer id
 	bool isOnline(const RsPeerId &pid) ;
 
 	/// This is to be used by subclasses/parents to call IndicateConfigChanged()
-	virtual void triggerConfigSave()  { IndicateConfigChanged() ; }
+	void triggerConfigSave() override  { IndicateConfigChanged() ; }
 	/// Same, for storing messages in incoming list
-	virtual void locked_storeIncomingMsg(RsChatMsgItem *) ;
+	void locked_storeIncomingMsg(RsChatMsgItem *) override ;
 
 private:
 	RsMutex mChatMtx;
@@ -188,9 +188,9 @@ private:
 
 	// Receive chat queue
 	void receiveChatQueue();
-	void handleIncomingItem(RsItem *);	// called by the former, and turtle handler for incoming encrypted items
+	void handleIncomingItem(RsItem *) override;	// called by the former, and turtle handler for incoming encrypted items
 
-	virtual void sendChatItem(RsChatItem *) ;
+	void sendChatItem(RsChatItem *) override ;
 
 	void initChatMessage(RsChatMsgItem *c, ChatMessage& msg);
 
@@ -205,7 +205,7 @@ private:
 	void receiveStateString(const RsPeerId& id,const std::string& s) ;
 
 	/// methods for handling various Chat items.
-	virtual bool handleRecvChatMsgItem(RsChatMsgItem *&item) ;			// NULL-ifies the item if memory ownership is taken
+	bool handleRecvChatMsgItem(RsChatMsgItem *&item) override ;			// NULL-ifies the item if memory ownership is taken
     
 	void handleRecvChatStatusItem(RsChatStatusItem *item) ;
 	void handleRecvChatAvatarItem(RsChatAvatarItem *item) ;

@@ -52,23 +52,23 @@ class pqisslproxy: public pqissl
 {
 public:
         pqisslproxy(pqissllistener *l, PQInterface *parent, p3LinkMgr *lm);
-virtual ~pqisslproxy();
+~pqisslproxy() override;
 
 	// NetInterface. Is the same.
 	// BinInterface. Is the same.
 
-virtual bool connect_parameter(uint32_t type, const std::string &value);
-virtual bool connect_parameter(uint32_t type, uint32_t value);
+bool connect_parameter(uint32_t type, const std::string &value) override;
+bool connect_parameter(uint32_t type, uint32_t value) override;
 
 protected:
 
 //Initiate is the same - except it uses the Proxy Address rather than the Peer Address.
 // minor tweaks to setup data state.
-virtual int Initiate_Connection(); 
+int Initiate_Connection() override; 
 
 // The real overloading is done in Basic Connection Complete.
 // Instead of just checking for an open socket, we need to communicate with the SOCKS5 proxy.
-virtual int Basic_Connection_Complete();
+int Basic_Connection_Complete() override;
 
 // These are the internal steps in setting up the Proxy Connection.
 virtual int Proxy_Send_Method();

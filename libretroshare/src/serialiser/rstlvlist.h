@@ -36,9 +36,9 @@ template<class TLV_CLASS,uint32_t TLV_TYPE> class t_RsTlvList: public RsTlvItem
 {
 	public:
 		t_RsTlvList() {}
-		virtual ~t_RsTlvList() {}
+		~t_RsTlvList() override {}
 
-		virtual uint32_t TlvSize() const
+		uint32_t TlvSize() const override
 		{ 
 			uint32_t size = TLV_HEADER_SIZE;
 			typename std::list<TLV_CLASS>::const_iterator it;
@@ -48,8 +48,8 @@ template<class TLV_CLASS,uint32_t TLV_TYPE> class t_RsTlvList: public RsTlvItem
 			}
 			return size;
 		}
-		virtual void TlvClear(){ mList.clear(); }
-		virtual bool SetTlv(void *data, uint32_t size, uint32_t *offset) const
+		void TlvClear() override{ mList.clear(); }
+		bool SetTlv(void *data, uint32_t size, uint32_t *offset) const override
 		{	
 			uint32_t tlvsize = TlvSize();
 			uint32_t tlvend  = *offset + tlvsize;
@@ -76,7 +76,7 @@ template<class TLV_CLASS,uint32_t TLV_TYPE> class t_RsTlvList: public RsTlvItem
 			}
 			return ok ;
 		}
-		virtual bool GetTlv(void *data, uint32_t size, uint32_t *offset)
+		bool GetTlv(void *data, uint32_t size, uint32_t *offset) override
 		{
 			if (size < *offset + TLV_HEADER_SIZE)
 			{
@@ -123,7 +123,7 @@ template<class TLV_CLASS,uint32_t TLV_TYPE> class t_RsTlvList: public RsTlvItem
 			return *offset == tlvend ;
 		}
 
-		virtual std::ostream &print(std::ostream &out, uint16_t indent) const
+		std::ostream &print(std::ostream &out, uint16_t indent) const override
 		{
 			printBase(out, "Template TlvList", indent);
 			typename std::list<TLV_CLASS>::const_iterator it;

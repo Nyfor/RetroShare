@@ -42,9 +42,9 @@ private slots:
 	void textChanged();
 
 protected:
-	virtual void showEvent(QShowEvent *event);
-	virtual void hideEvent(QHideEvent *event);
-	virtual void mousePressEvent(QMouseEvent *event);
+	void showEvent(QShowEvent *event) override;
+	void hideEvent(QHideEvent *event) override;
+	void mousePressEvent(QMouseEvent *event) override;
 
 protected:
 	using QTextBrowser::setHtml;

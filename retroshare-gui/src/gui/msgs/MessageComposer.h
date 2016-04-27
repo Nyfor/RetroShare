@@ -53,7 +53,7 @@ public:
     /** Default Constructor */
 
     MessageComposer(QWidget *parent = 0, Qt::WindowFlags flags = 0);
-    ~MessageComposer();
+    ~MessageComposer() override;
 
     static void msgFriend(const RsPeerId &id);
     // send msg to all locations
@@ -91,8 +91,8 @@ public slots:
     void changeFormatType(int styleIndex );
 
 protected:
-    void closeEvent (QCloseEvent * event);
-    bool eventFilter(QObject *obj, QEvent *ev);
+    void closeEvent (QCloseEvent * event) override;
+    bool eventFilter(QObject *obj, QEvent *ev) override;
 
 private slots:
     /* toggle Contacts DockWidget */

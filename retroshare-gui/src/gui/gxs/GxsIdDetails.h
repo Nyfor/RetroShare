@@ -57,7 +57,7 @@ public:
     static const int ICON_TYPE_REDACTED= 0x0008 ;
 
 	GxsIdDetails();
-	virtual ~GxsIdDetails();
+	~GxsIdDetails() override;
 
 	static void initialize();
 	static void cleanup();
@@ -93,7 +93,7 @@ protected:
 	void connectObject_locked(QObject *object, bool doConnect);
 
 	/* Timer */
-	virtual void timerEvent(QTimerEvent *event);
+	void timerEvent(QTimerEvent *event) override;
 
 private:
 	static QList<qreal> getSprite(quint8 shapeType, quint16 size);

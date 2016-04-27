@@ -58,7 +58,7 @@ class p3MsgService: public p3Service, public p3Config, public pqiServiceMonitor,
 {
 public:
     p3MsgService(p3ServiceControl *sc, p3IdService *id_service);
-    virtual RsServiceInfo getServiceInfo();
+    RsServiceInfo getServiceInfo() override;
 
     /* External Interface */
     bool 	getMessageSummaries(std::list<Rs::Msgs::MsgInfoSummary> &msgList);
@@ -94,24 +94,24 @@ public:
     //std::list<RsMsgItem *> &getMsgList();
     //std::list<RsMsgItem *> &getMsgOutList();
 
-    int	tick();
+    int	tick() override;
     int	status();
 
     /*** Overloaded from p3Config ****/
-    virtual RsSerialiser *setupSerialiser();
-    virtual bool saveList(bool& cleanup, std::list<RsItem*>&);
-    virtual bool loadList(std::list<RsItem*>& load);
-    virtual void saveDone();
+    RsSerialiser *setupSerialiser() override;
+    bool saveList(bool& cleanup, std::list<RsItem*>&) override;
+    bool loadList(std::list<RsItem*>& load) override;
+    void saveDone() override;
     /*** Overloaded from p3Config ****/
 
     /*** Overloaded from pqiMonitor ***/
-    virtual void    statusChange(const std::list<pqiServicePeer> &plist);
+    void    statusChange(const std::list<pqiServicePeer> &plist) override;
     int     checkOutgoingMessages();
     /*** Overloaded from pqiMonitor ***/
 
     /*** overloaded from p3turtle   ***/
 
-    virtual void connectToGlobalRouter(p3GRouter *) ;
+    void connectToGlobalRouter(p3GRouter *) override ;
 
     struct DistantMessengingInvite
     {
@@ -140,9 +140,9 @@ private:
 
     // Overloaded from GRouterClientService
 
-    virtual bool acceptDataFromPeer(const RsGxsId& gxs_id) ;
-    virtual void receiveGRouterData(const RsGxsId& destination_key,const RsGxsId& signing_key, GRouterServiceId &client_id, uint8_t *data, uint32_t data_size) ;
-    virtual void notifyDataStatus(const GRouterMsgPropagationId& msg_id,const RsGxsId& signer_id,uint32_t data_status) ;
+    bool acceptDataFromPeer(const RsGxsId& gxs_id) override ;
+    void receiveGRouterData(const RsGxsId& destination_key,const RsGxsId& signing_key, GRouterServiceId &client_id, uint8_t *data, uint32_t data_size) override ;
+    void notifyDataStatus(const GRouterMsgPropagationId& msg_id,const RsGxsId& signer_id,uint32_t data_status) override ;
 
     // Utility functions
 

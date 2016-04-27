@@ -49,7 +49,7 @@ public:
 
 
     StatisticsWindow(QWidget *parent = 0);
-    ~StatisticsWindow();
+    ~StatisticsWindow() override;
 
   DhtWindow *dhtw;
   GlobalRouterStatistics *grsdlg;
@@ -62,7 +62,7 @@ public slots:
   void setNewPage(int page);
 	
 protected:
-    void changeEvent(QEvent *e);
+    void changeEvent(QEvent *e) override;
 
 private:
     void initStackedPage();

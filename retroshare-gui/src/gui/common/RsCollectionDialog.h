@@ -37,10 +37,10 @@ public:
 	                   , const std::vector<ColFileInfo> &colFileInfos
 	                   , const bool& creation
 	                   , const bool& readOnly = false) ;
-	virtual ~RsCollectionDialog();
+	~RsCollectionDialog() override;
 
 protected:
-	bool eventFilter(QObject *obj, QEvent *ev);
+	bool eventFilter(QObject *obj, QEvent *ev) override;
 
 private slots:
 	void directoryLoaded(QString dirLoaded);

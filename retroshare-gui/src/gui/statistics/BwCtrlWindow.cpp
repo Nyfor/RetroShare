@@ -44,9 +44,9 @@ class BWListDelegate: public QAbstractItemDelegate
 {
 public:
     BWListDelegate(QObject *parent=0);
-    virtual ~BWListDelegate();
-    void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const;
-    QSize sizeHint(const QStyleOptionViewItem &, const QModelIndex &) const;
+    ~BWListDelegate() override;
+    void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const override;
+    QSize sizeHint(const QStyleOptionViewItem &, const QModelIndex &) const override;
 };
 
 BWListDelegate::BWListDelegate(QObject *parent) : QAbstractItemDelegate(parent)

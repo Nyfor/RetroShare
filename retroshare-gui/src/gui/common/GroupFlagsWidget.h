@@ -11,7 +11,7 @@ class GroupFlagsWidget: public QWidget
 
 	public:
 		GroupFlagsWidget(QWidget *parent,FileStorageFlags flags = FileStorageFlags(0u)) ;
-		virtual ~GroupFlagsWidget() ;
+		~GroupFlagsWidget() override ;
 
 		FileStorageFlags flags() const ;
 		void setFlags(FileStorageFlags flags) ;

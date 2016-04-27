@@ -32,7 +32,7 @@ public:
 	RSListWidgetItem(const QIcon &icon, const QString &text, QListWidget *view = 0, int type = Type);
 	RSListWidgetItem(const QListWidgetItem &other);
 
-	bool operator<(const QListWidgetItem &other) const;
+	bool operator<(const QListWidgetItem &other) const override;
 };
 
 #endif

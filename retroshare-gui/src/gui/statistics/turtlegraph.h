@@ -6,7 +6,7 @@
 class TurtleGraphSource: public RSGraphSource
 {
 	public:
-		virtual void getValues(std::map<std::string,float>& values) const
+		void getValues(std::map<std::string,float>& values) const override
 		{
 			TurtleTrafficStatisticsInfo info ;
 			rsTurtle->getTrafficStatistics(info) ;
@@ -18,7 +18,7 @@ class TurtleGraphSource: public RSGraphSource
             values.insert(std::make_pair(QObject::tr("Data forward").toStdString(),(float)info.unknown_updn_Bps)) ;
 		}
 
-    virtual QString displayValue(float v) const
+    QString displayValue(float v) const override
     {
         if(v < 1000)
             return QString::number(v,'f',2) + " B/s" ;

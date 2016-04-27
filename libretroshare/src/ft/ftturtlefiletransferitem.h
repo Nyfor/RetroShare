@@ -36,36 +36,36 @@ class RsTurtleFileRequestItem: public RsTurtleGenericTunnelItem
 		RsTurtleFileRequestItem() : RsTurtleGenericTunnelItem(RS_TURTLE_SUBTYPE_FILE_REQUEST) { setPriorityLevel(QOS_PRIORITY_RS_TURTLE_FILE_REQUEST);}
 		RsTurtleFileRequestItem(void *data,uint32_t size) ;		// deserialization
 
-		virtual bool shouldStampTunnel() const { return false ; }
-		virtual Direction travelingDirection() const { return DIRECTION_SERVER ; }
+		bool shouldStampTunnel() const override { return false ; }
+		Direction travelingDirection() const override { return DIRECTION_SERVER ; }
 
 		uint64_t chunk_offset ;
 		uint32_t chunk_size ;
 
-		virtual std::ostream& print(std::ostream& o, uint16_t) ;
+		std::ostream& print(std::ostream& o, uint16_t) override ;
 	protected:
-		virtual bool serialize(void *data,uint32_t& size) ;	
-		virtual uint32_t serial_size() ; 
+		bool serialize(void *data,uint32_t& size) override ;	
+		uint32_t serial_size() override ; 
 };
 
 class RsTurtleFileDataItem: public RsTurtleGenericTunnelItem
 {
 	public:
 		RsTurtleFileDataItem() : RsTurtleGenericTunnelItem(RS_TURTLE_SUBTYPE_FILE_DATA) { setPriorityLevel(QOS_PRIORITY_RS_TURTLE_FILE_DATA) ;}
-		~RsTurtleFileDataItem() ;
+		~RsTurtleFileDataItem() override ;
 		RsTurtleFileDataItem(void *data,uint32_t size) ;		// deserialization
 
-		virtual bool shouldStampTunnel() const { return true ; }
-		virtual Direction travelingDirection() const { return DIRECTION_CLIENT ; }
+		bool shouldStampTunnel() const override { return true ; }
+		Direction travelingDirection() const override { return DIRECTION_CLIENT ; }
 
 		uint64_t chunk_offset ;	// offset in the file
 		uint32_t chunk_size ;	// size of the file chunk
 		void    *chunk_data ;	// actual data.
 
-		virtual std::ostream& print(std::ostream& o, uint16_t) ;
+		std::ostream& print(std::ostream& o, uint16_t) override ;
 
-		virtual bool serialize(void *data,uint32_t& size) ;	
-		virtual uint32_t serial_size() ; 
+		bool serialize(void *data,uint32_t& size) override ;	
+		uint32_t serial_size() override ; 
 };
 
 class RsTurtleFileMapRequestItem: public RsTurtleGenericTunnelItem			
@@ -74,12 +74,12 @@ class RsTurtleFileMapRequestItem: public RsTurtleGenericTunnelItem
 		RsTurtleFileMapRequestItem() : RsTurtleGenericTunnelItem(RS_TURTLE_SUBTYPE_FILE_MAP_REQUEST) { setPriorityLevel(QOS_PRIORITY_RS_TURTLE_FILE_MAP_REQUEST) ;}
 		RsTurtleFileMapRequestItem(void *data,uint32_t size) ;		// deserialization
 
-		virtual bool shouldStampTunnel() const { return false ; }
+		bool shouldStampTunnel() const override { return false ; }
 
-		virtual std::ostream& print(std::ostream& o, uint16_t) ;
+		std::ostream& print(std::ostream& o, uint16_t) override ;
 
-		virtual bool serialize(void *data,uint32_t& size) ;	
-		virtual uint32_t serial_size() ; 
+		bool serialize(void *data,uint32_t& size) override ;	
+		uint32_t serial_size() override ; 
 };
 
 class RsTurtleFileMapItem: public RsTurtleGenericTunnelItem			
@@ -88,16 +88,16 @@ class RsTurtleFileMapItem: public RsTurtleGenericTunnelItem
 		RsTurtleFileMapItem() : RsTurtleGenericTunnelItem(RS_TURTLE_SUBTYPE_FILE_MAP) { setPriorityLevel(QOS_PRIORITY_RS_TURTLE_FILE_MAP) ;}
 		RsTurtleFileMapItem(void *data,uint32_t size) ;		// deserialization
 
-		virtual bool shouldStampTunnel() const { return false ; }
+		bool shouldStampTunnel() const override { return false ; }
 
 		CompressedChunkMap compressed_map ;	// Map info for the file in compressed format. Each *bit* in the array uint's says "I have" or "I don't have"
 										// by default, we suppose the peer has all the chunks. This info will thus be and-ed 
 										// with the default file map for this source.
 												
-		virtual std::ostream& print(std::ostream& o, uint16_t) ;
+		std::ostream& print(std::ostream& o, uint16_t) override ;
 
-		virtual bool serialize(void *data,uint32_t& size) ;	
-		virtual uint32_t serial_size() ; 
+		bool serialize(void *data,uint32_t& size) override ;	
+		uint32_t serial_size() override ; 
 };
 
 class RsTurtleChunkCrcRequestItem: public RsTurtleGenericTunnelItem			
@@ -106,15 +106,15 @@ class RsTurtleChunkCrcRequestItem: public RsTurtleGenericTunnelItem
 		RsTurtleChunkCrcRequestItem() : RsTurtleGenericTunnelItem(RS_TURTLE_SUBTYPE_CHUNK_CRC_REQUEST) { setPriorityLevel(QOS_PRIORITY_RS_CHUNK_CRC_REQUEST);}
 		RsTurtleChunkCrcRequestItem(void *data,uint32_t size) ;		// deserialization
 
-		virtual bool shouldStampTunnel() const { return false ; }
-		virtual Direction travelingDirection() const { return DIRECTION_SERVER ; }
+		bool shouldStampTunnel() const override { return false ; }
+		Direction travelingDirection() const override { return DIRECTION_SERVER ; }
 
 		uint32_t chunk_number ; // id of the chunk to CRC.
 												
-		virtual std::ostream& print(std::ostream& o, uint16_t) ;
+		std::ostream& print(std::ostream& o, uint16_t) override ;
 
-		virtual bool serialize(void *data,uint32_t& size) ;	
-		virtual uint32_t serial_size() ; 
+		bool serialize(void *data,uint32_t& size) override ;	
+		uint32_t serial_size() override ; 
 };
 
 class RsTurtleChunkCrcItem: public RsTurtleGenericTunnelItem			
@@ -123,13 +123,13 @@ class RsTurtleChunkCrcItem: public RsTurtleGenericTunnelItem
 		RsTurtleChunkCrcItem() : RsTurtleGenericTunnelItem(RS_TURTLE_SUBTYPE_CHUNK_CRC) { setPriorityLevel(QOS_PRIORITY_RS_CHUNK_CRC);}
 		RsTurtleChunkCrcItem(void *data,uint32_t size) ;		// deserialization
 
-		virtual bool shouldStampTunnel() const { return true ; }
-		virtual Direction travelingDirection() const { return DIRECTION_CLIENT ; }
+		bool shouldStampTunnel() const override { return true ; }
+		Direction travelingDirection() const override { return DIRECTION_CLIENT ; }
 
 		uint32_t chunk_number ;
 		Sha1CheckSum check_sum ;
 
-		virtual std::ostream& print(std::ostream& o, uint16_t) ;
-		virtual bool serialize(void *data,uint32_t& size) ;	
-		virtual uint32_t serial_size() ; 
+		std::ostream& print(std::ostream& o, uint16_t) override ;
+		bool serialize(void *data,uint32_t& size) override ;	
+		uint32_t serial_size() override ; 
 };

@@ -59,12 +59,12 @@ class PreviewFeedDialog : public QDialog
 
 public:
 	PreviewFeedDialog(RsFeedReader *feedReader, FeedReaderNotify *notify, const FeedInfo &feedInfo, QWidget *parent = 0);
-	~PreviewFeedDialog();
+	~PreviewFeedDialog() override;
 
 	RsFeedTransformationType getData(std::list<std::string> &xpathsToUse, std::list<std::string> &xpathsToRemove, std::string &xslt);
 
 protected:
-	bool eventFilter(QObject *obj, QEvent *ev);
+	bool eventFilter(QObject *obj, QEvent *ev) override;
 
 private slots:
 	void previousMsg();

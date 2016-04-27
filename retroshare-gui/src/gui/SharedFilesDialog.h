@@ -37,10 +37,10 @@ public:
   SharedFilesDialog(RetroshareDirModel *tree_model,RetroshareDirModel *flat_model,QWidget *parent = 0);
 
   /** Default Destructor */
-  ~SharedFilesDialog() {}
+  ~SharedFilesDialog() override {}
 
-  virtual void hideEvent(QHideEvent *) ;
-  virtual void showEvent(QShowEvent *) ;
+  void hideEvent(QHideEvent *) override ;
+  void showEvent(QShowEvent *) override ;
 
 protected:
   QTreeView *directoryView() ;
@@ -145,15 +145,15 @@ class LocalSharedFilesDialog : public SharedFilesDialog
 
 	public:
 		LocalSharedFilesDialog(QWidget *parent=NULL) ;
-		virtual ~LocalSharedFilesDialog();
+		~LocalSharedFilesDialog() override;
 
-		virtual void spawnCustomPopupMenu(QPoint point);
+		void spawnCustomPopupMenu(QPoint point) override;
 		virtual void updatePage() { checkUpdate() ; }
 
 	protected:
-		virtual void processSettings(bool bLoad) ;
-		virtual void showProperColumns() ;
-		virtual bool isRemote() const { return false ; }
+		void processSettings(bool bLoad) override ;
+		void showProperColumns() override ;
+		bool isRemote() const override { return false ; }
 
 	private slots:
 		void addShares();
@@ -180,14 +180,14 @@ class RemoteSharedFilesDialog : public SharedFilesDialog
 
 	public:
 		RemoteSharedFilesDialog(QWidget *parent=NULL) ;
-		virtual ~RemoteSharedFilesDialog() ;
+		~RemoteSharedFilesDialog() override ;
 
-		virtual void spawnCustomPopupMenu(QPoint point);
+		void spawnCustomPopupMenu(QPoint point) override;
 
 	protected:
-		virtual void processSettings(bool bLoad) ;
-		virtual void showProperColumns() ;
-		virtual bool isRemote() const { return true ; }
+		void processSettings(bool bLoad) override ;
+		void showProperColumns() override ;
+		bool isRemote() const override { return true ; }
 
 	private slots:
 		void downloadRemoteSelected();

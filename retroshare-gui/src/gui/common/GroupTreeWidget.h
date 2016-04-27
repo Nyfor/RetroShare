@@ -73,7 +73,7 @@ class GroupTreeWidget : public QWidget
 
 public:
 	GroupTreeWidget(QWidget *parent = 0);
-	~GroupTreeWidget();
+	~GroupTreeWidget() override;
 
 	// Add a tool button to the tool area
 	void addToolButton(QToolButton *toolButton);
@@ -113,7 +113,7 @@ signals:
 	void treeItemActivated(const QString &id);
 
 protected:
-	void changeEvent(QEvent *e);
+	void changeEvent(QEvent *e) override;
 
 private slots:
 	void customContextMenuRequested(const QPoint &pos);

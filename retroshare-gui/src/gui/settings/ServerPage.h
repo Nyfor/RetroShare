@@ -38,16 +38,16 @@ class ServerPage: public ConfigPage
 
 public:
     ServerPage(QWidget * parent = 0, Qt::WindowFlags flags = 0);
-    ~ServerPage() {}
+    ~ServerPage() override {}
 
     /** Saves the changes on this page */
-    virtual bool save(QString &errmsg);
+    bool save(QString &errmsg) override;
     /** Loads the settings for this page */
-    virtual void load();
+    void load() override;
 
-    virtual QPixmap iconPixmap() const { return QPixmap(":/images/server_24x24.png") ; }
-    virtual QString pageName() const { return tr("Network") ; }
-    virtual QString helpText() const { return ""; }
+    QPixmap iconPixmap() const override { return QPixmap(":/images/server_24x24.png") ; }
+    QString pageName() const override { return tr("Network") ; }
+    QString helpText() const override { return ""; }
 
 public slots:
     void updateStatus();

@@ -119,7 +119,7 @@ public:
 	bool check();
 	bool isDone();
 
-	void run();
+	void run() override;
 
 	void getDeletedIds(std::list<RsGxsGroupId>& grpIds, std::map<RsGxsGroupId, std::vector<RsGxsMessageId> >& msgIds);
 

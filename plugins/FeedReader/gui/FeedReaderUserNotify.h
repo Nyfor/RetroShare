@@ -35,16 +35,16 @@ class FeedReaderUserNotify : public UserNotify
 public:
 	FeedReaderUserNotify(FeedReaderDialog *feedReaderDialog, RsFeedReader *feedReader, FeedReaderNotify *notify, QObject *parent);
 
-	virtual bool hasSetting(QString *name, QString *group);
+	bool hasSetting(QString *name, QString *group) override;
 
 private slots:
 	void feedChanged(const QString &feedId, int type);
 
 private:
-	virtual QIcon getIcon();
-	virtual QIcon getMainIcon(bool hasNew);
-	virtual unsigned int getNewCount();
-	virtual void iconClicked();
+	QIcon getIcon() override;
+	QIcon getMainIcon(bool hasNew) override;
+	unsigned int getNewCount() override;
+	void iconClicked() override;
 
 	FeedReaderDialog *mFeedReaderDialog;
 	RsFeedReader *mFeedReader;

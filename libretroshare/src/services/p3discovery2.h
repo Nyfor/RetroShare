@@ -80,25 +80,25 @@ class p3discovery2: public RsDisc, public p3Service, public pqiServiceMonitor, p
 	public:
 
 	p3discovery2(p3PeerMgr *peerMgr, p3LinkMgr *linkMgr, p3NetMgr *netMgr, p3ServiceControl *sc);
-virtual ~p3discovery2();
+~p3discovery2() override;
 
-virtual RsServiceInfo getServiceInfo();
+RsServiceInfo getServiceInfo() override;
 
 	/************* from pqiServiceMonitor *******************/
-	virtual void statusChange(const std::list<pqiServicePeer> &plist);
+	void statusChange(const std::list<pqiServicePeer> &plist) override;
 	/************* from pqiServiceMonitor *******************/
 	
-	int	tick();
+	int	tick() override;
 	
 	/* external interface */
-virtual bool    getDiscFriends(const RsPeerId &id, std::list<RsPeerId> &friends);
-virtual bool    getDiscPgpFriends(const RsPgpId &pgpid, std::list<RsPgpId> &gpg_friends);
-virtual bool    getPeerVersion(const RsPeerId &id, std::string &version);
-virtual bool    getWaitingDiscCount(unsigned int *sendCount, unsigned int *recvCount);
+bool    getDiscFriends(const RsPeerId &id, std::list<RsPeerId> &friends) override;
+bool    getDiscPgpFriends(const RsPgpId &pgpid, std::list<RsPgpId> &gpg_friends) override;
+bool    getPeerVersion(const RsPeerId &id, std::string &version) override;
+bool    getWaitingDiscCount(unsigned int *sendCount, unsigned int *recvCount) override;
 
         /************* from AuthGPService ****************/
-virtual AuthGPGOperation *getGPGOperation();
-virtual void setGPGOperation(AuthGPGOperation *operation);
+AuthGPGOperation *getGPGOperation() override;
+void setGPGOperation(AuthGPGOperation *operation) override;
 
 
 	private:

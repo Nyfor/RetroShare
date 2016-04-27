@@ -44,7 +44,7 @@ public:
 
 public:
 	p3FeedReaderThread(p3FeedReader *feedReader, Type type, const std::string &feedId);
-	virtual ~p3FeedReaderThread();
+	~p3FeedReaderThread() override;
 
 	std::string getFeedId() { return mFeedId; }
 
@@ -56,7 +56,7 @@ public:
 
 	static RsFeedReaderErrorState processTransformation(const RsFeedReaderFeed &feed, RsFeedReaderMsg *msg, std::string &errorString);
 private:
-    virtual void data_tick();
+    void data_tick() override;
 
 	RsFeedReaderErrorState download(const RsFeedReaderFeed &feed, std::string &content, std::string &icon, std::string &errorString);
 	RsFeedReaderErrorState process(const RsFeedReaderFeed &feed, std::list<RsFeedReaderMsg*> &entries, std::string &errorString);

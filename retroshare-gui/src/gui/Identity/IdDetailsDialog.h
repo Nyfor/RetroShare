@@ -41,10 +41,10 @@ public:
 	/** Default constructor */
 	IdDetailsDialog(const RsGxsGroupId &id, QWidget *parent = 0);
 	/** Default destructor */
-	~IdDetailsDialog();
+	~IdDetailsDialog() override;
 
 	/* TokenResponse */
-	void loadRequest(const TokenQueue *queue, const TokenRequest &req);
+	void loadRequest(const TokenQueue *queue, const TokenRequest &req) override;
 
 private slots:
 	void modifyReputation();

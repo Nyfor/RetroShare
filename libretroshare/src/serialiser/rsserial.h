@@ -81,7 +81,7 @@ class RsItem: public RsMemoryManagement::SmallObject
 		void operator delete(void *,size_t s) ;
 #endif
 
-		virtual ~RsItem();
+		~RsItem() override;
 		virtual void clear() = 0;
 		virtual std::ostream &print(std::ostream &out, uint16_t indent = 0) = 0;
 		void print_string(std::string &out, uint16_t indent = 0);
@@ -185,7 +185,7 @@ class RsRawItem: public RsItem
 			data = rs_malloc(len);
 		}
 
-		virtual ~RsRawItem()
+		~RsRawItem() override
 		{
 			if (data)
 				free(data);
@@ -196,8 +196,8 @@ class RsRawItem: public RsItem
 		uint32_t	getRawLength() { return len; }
 		void  *getRawData() { return data; }
 
-		virtual void clear() { return; } /* what can it do? */
-		virtual std::ostream &print(std::ostream &out, uint16_t indent = 0);
+		void clear() override { return; } /* what can it do? */
+		std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
 	private:
 		void *data;

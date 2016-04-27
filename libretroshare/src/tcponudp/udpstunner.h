@@ -73,7 +73,7 @@ class UdpStunner: public UdpSubReceiver
 	public:
 
 	UdpStunner(UdpPublisher *pub);
-virtual ~UdpStunner() { return; }
+~UdpStunner() override { return; }
 
 #ifdef UDPSTUN_ALLOW_LOCALNET
 	// For Local Testing Mode.
@@ -99,8 +99,8 @@ bool	needStunPeers();
 bool    externalAddr(struct sockaddr_in &remote, uint8_t &stable);
 
 	/* Packet IO */
-virtual int recvPkt(void *data, int size, struct sockaddr_in &from);
-virtual int status(std::ostream &out);
+int recvPkt(void *data, int size, struct sockaddr_in &from) override;
+int status(std::ostream &out) override;
 
 	/* monitoring / updates */
 	int tick();

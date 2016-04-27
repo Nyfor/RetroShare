@@ -14,10 +14,10 @@ public:
 	 *@param chanId The channel id to send request for
 	 */
     CreateLobbyDialog(const std::set<RsPeerId>& friends_list, int privacyLevel = 0, QWidget *parent = 0);
-	~CreateLobbyDialog();
+	~CreateLobbyDialog() override;
 
 protected:
-	void changeEvent(QEvent *e);
+	void changeEvent(QEvent *e) override;
 
 private:
 	Ui::CreateLobbyDialog *ui;

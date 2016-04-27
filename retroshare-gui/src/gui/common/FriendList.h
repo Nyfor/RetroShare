@@ -57,7 +57,7 @@ public:
 
 public:
     explicit FriendList(QWidget *parent = 0);
-    ~FriendList();
+    ~FriendList() override;
 
     // Add a tool button to the tool area
     void addToolButton(QToolButton *toolButton);
@@ -69,7 +69,7 @@ public:
 
     std::string getSelectedGroupId() const;
 
-    virtual void updateDisplay();
+    void updateDisplay() override;
     void setColumnVisible(Column column, bool visible);
 
     void sortByColumn(Column column, Qt::SortOrder sortOrder);
@@ -102,7 +102,7 @@ private slots:
     void peerTreeItemCollapsedExpanded(QTreeWidgetItem *item);
 
 protected:
-    void changeEvent(QEvent *e);
+    void changeEvent(QEvent *e) override;
     void createDisplayMenu();
 
 private:

@@ -44,20 +44,20 @@ protected:
 	/** Default constructor */
 	PopupChatDialog(QWidget *parent = 0, Qt::WindowFlags flags = 0);
 	/** Default destructor */
-	virtual ~PopupChatDialog();
+	~PopupChatDialog() override;
 
     virtual void init(const ChatId &chat_id, const QString &title);
-	virtual void showDialog(uint chatflags);
-	virtual ChatWidget *getChatWidget();
-	virtual bool hasPeerStatus() { return true; }
-	virtual bool notifyBlink();
+	void showDialog(uint chatflags) override;
+	ChatWidget *getChatWidget() override;
+	bool hasPeerStatus() override { return true; }
+	bool notifyBlink() override;
 
 	virtual void updateStatus(int /*status*/) {}
 
 	void processSettings(bool load);
 
 protected:
-    virtual void addChatMsg(const ChatMessage& msg);
+    void addChatMsg(const ChatMessage& msg) override;
     //virtual void onChatChanged(int list, int type);
 
 protected:

@@ -34,7 +34,7 @@ public:
 	/** Default Constructor */
 	ToasterItem(QWidget *child = 0);
 	/** Default Destructor */
-	virtual ~ToasterItem();
+	~ToasterItem() override;
 
 	QWidget *widget;
 

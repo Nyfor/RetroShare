@@ -106,12 +106,12 @@ class p3DhtMgr: public pqiNetAssistConnect, public RsThread
 
 	/* OVERLOADED From pqiNetAssistConnect. */
 
-virtual void enable(bool on);
-virtual void shutdown();
-virtual void restart();
+void enable(bool on) override;
+void shutdown() override;
+void restart() override;
 
-virtual bool getEnabled(); /* on */
-virtual bool getActive();  /* actually working */
+bool getEnabled() override; /* on */
+bool getActive() override;  /* actually working */
 
 virtual void	setBootstrapAllowed(bool on);
 virtual bool 	getBootstrapAllowed();

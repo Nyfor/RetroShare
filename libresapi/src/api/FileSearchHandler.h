@@ -13,10 +13,10 @@ class FileSearchHandler: public ResourceRouter, NotifyClient
 {
 public:
     FileSearchHandler(StateTokenServer* sts, RsNotify* notify, RsTurtle* turtle, RsFiles* files);
-    virtual ~FileSearchHandler();
+    ~FileSearchHandler() override;
 
     // from NotifyClient
-    virtual void notifyTurtleSearchResult(uint32_t search_id, const std::list<TurtleFileInfo>& files);
+    void notifyTurtleSearchResult(uint32_t search_id, const std::list<TurtleFileInfo>& files) override;
 private:
     void handleWildcard(Request& req, Response& resp);
     void handleCreateSearch(Request& req, Response& resp);

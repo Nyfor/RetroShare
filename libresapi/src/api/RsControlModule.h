@@ -26,18 +26,18 @@ public:
     // full_control: set to true if this module should handle rsinit and login
     // set to false if rsinit is handled by the Qt gui
     RsControlModule(int argc, char **argv, StateTokenServer* sts, ApiServer* apiserver, bool full_control);
-    ~RsControlModule();
+    ~RsControlModule() override;
 
     // returns true if the process should terminate
     bool processShouldExit();
 
     // from NotifyClient
-    virtual bool askForPassword(const std::string& key_details, bool prev_is_bad , std::string& password,bool& canceled);
+    bool askForPassword(const std::string& key_details, bool prev_is_bad , std::string& password,bool& canceled) override;
 
 protected:
     // from RsThread
     // wee need a thread to call into things which block like askForPassword()
-    virtual void run();
+    void run() override;
 
 private:
     enum RunState { WAITING_INIT, FATAL_ERROR, WAITING_ACCOUNT_SELECT, WAITING_STARTUP, RUNNING_OK, RUNNING_OK_NO_FULL_CONTROL};

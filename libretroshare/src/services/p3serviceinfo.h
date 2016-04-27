@@ -48,13 +48,13 @@ class p3ServiceInfo: public p3Service, public pqiMonitor
 {
 	public:
 		p3ServiceInfo(p3ServiceControl *serviceControl);
-		virtual RsServiceInfo getServiceInfo();
+		RsServiceInfo getServiceInfo() override;
 
-		virtual int   tick();
+		int   tick() override;
 		virtual int   status();
 
 		/*************** pqiMonitor callback ***********************/
-		virtual void statusChange(const std::list<pqipeer> &plist);
+		void statusChange(const std::list<pqipeer> &plist) override;
 
 	private:
 

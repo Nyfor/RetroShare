@@ -77,12 +77,12 @@ public:
         setPriorityLevel(QOS_PRIORITY_RS_GXS_NET);
         return;
     }
-    virtual ~RsNxsItem(){}
+    ~RsNxsItem() override{}
    
     virtual bool serialise(void *data,uint32_t& size) const = 0 ;	
     virtual uint32_t serial_size() const = 0 ; 			
-    virtual void clear() = 0;
-    virtual std::ostream &print(std::ostream &out, uint16_t indent = 0) = 0;
+    void clear() override = 0;
+    std::ostream &print(std::ostream &out, uint16_t indent = 0) override = 0;
 
     bool serialise_header(void *data,uint32_t& pktsize,uint32_t& tlvsize, uint32_t& offset) const;
 
@@ -104,11 +104,11 @@ public:
 
 	RsNxsSyncGrpReqItem(uint16_t servtype) : RsNxsItem(servtype, RS_PKT_SUBTYPE_NXS_SYNC_GRP_REQ_ITEM) { clear(); return;}
 
-	virtual void clear();
-	virtual std::ostream &print(std::ostream &out, uint16_t indent);
+	void clear() override;
+	std::ostream &print(std::ostream &out, uint16_t indent) override;
 
-	virtual bool serialise(void *data,uint32_t& size) const;	
-	virtual uint32_t serial_size() const ; 			
+	bool serialise(void *data,uint32_t& size) const override;	
+	uint32_t serial_size() const override ; 			
         
 	uint8_t flag; // advises whether to use sync hash
 	uint32_t createdSince; // how far back to sync data
@@ -125,11 +125,11 @@ public:
 
     RsNxsSyncGrpStatsItem(uint16_t servtype) : RsNxsItem(servtype, RS_PKT_SUBTYPE_NXS_SYNC_GRP_STATS_ITEM) {}
 
-    virtual void clear() {}
-    virtual std::ostream &print(std::ostream &out, uint16_t indent);
+    void clear() override {}
+    std::ostream &print(std::ostream &out, uint16_t indent) override;
 
-    virtual bool serialise(void *data,uint32_t& size) const;	
-    virtual uint32_t serial_size() const ; 			
+    bool serialise(void *data,uint32_t& size) const override;	
+    uint32_t serial_size() const override ; 			
         
     static const uint8_t GROUP_INFO_TYPE_REQUEST  = 0x01;
     static const uint8_t GROUP_INFO_TYPE_RESPONSE = 0x02; 
@@ -150,11 +150,11 @@ class RsNxsGroupPublishKeyItem : public RsNxsItem
 public:
     RsNxsGroupPublishKeyItem(uint16_t servtype) : RsNxsItem(servtype, RS_PKT_SUBTYPE_NXS_GRP_PUBLISH_KEY_ITEM) { clear(); return;}
 
-    virtual void clear();
-    virtual std::ostream &print(std::ostream &out, uint16_t indent);
+    void clear() override;
+    std::ostream &print(std::ostream &out, uint16_t indent) override;
 
-	virtual bool serialise(void *data,uint32_t& size) const;	
-	virtual uint32_t serial_size() const; 			
+	bool serialise(void *data,uint32_t& size) const override;	
+	uint32_t serial_size() const override; 			
         
     RsGxsGroupId grpId ;
     RsTlvSecurityKey key ;
@@ -194,13 +194,13 @@ public:
     static const uint16_t FLAG_TYPE_ENCRYPTED_DATA;
 
     RsNxsTransacItem(uint16_t servtype) : RsNxsItem(servtype, RS_PKT_SUBTYPE_NXS_TRANSAC_ITEM) { clear(); return; }
-    virtual ~RsNxsTransacItem() { return ; }
+    ~RsNxsTransacItem() override { return ; }
 
-	virtual bool serialise(void *data,uint32_t& size) const;	
-	virtual uint32_t serial_size() const ; 			
+	bool serialise(void *data,uint32_t& size) const override;	
+	uint32_t serial_size() const override ; 			
         
-    virtual void clear();
-    virtual std::ostream &print(std::ostream &out, uint16_t indent);
+    void clear() override;
+    std::ostream &print(std::ostream &out, uint16_t indent) override;
 
     uint16_t transactFlag;
     uint32_t nItems;
@@ -224,13 +224,13 @@ public:
     static const uint8_t FLAG_USE_SYNC_HASH;
 
     RsNxsSyncGrpItem(uint16_t servtype) : RsNxsItem(servtype, RS_PKT_SUBTYPE_NXS_SYNC_GRP_ITEM) { clear(); return ; }
-    virtual ~RsNxsSyncGrpItem() { return; }
+    ~RsNxsSyncGrpItem() override { return; }
 
-	virtual bool serialise(void *data,uint32_t& size) const;	
-	virtual uint32_t serial_size() const; 			
+	bool serialise(void *data,uint32_t& size) const override;	
+	uint32_t serial_size() const override; 			
         
-    virtual void clear();
-    virtual std::ostream &print(std::ostream &out, uint16_t indent);
+    void clear() override;
+    std::ostream &print(std::ostream &out, uint16_t indent) override;
 
 
     uint8_t flag; // request or response
@@ -253,13 +253,13 @@ class RsNxsSessionKeyItem : public RsNxsItem
 public:
 
     RsNxsSessionKeyItem(uint16_t servtype) : RsNxsItem(servtype, RS_PKT_SUBTYPE_NXS_SESSION_KEY_ITEM) { clear(); }
-    virtual ~RsNxsSessionKeyItem() {}
+    ~RsNxsSessionKeyItem() override {}
 
-	virtual bool serialise(void *data,uint32_t& size) const;	
-	virtual uint32_t serial_size() const; 			
+	bool serialise(void *data,uint32_t& size) const override;	
+	uint32_t serial_size() const override; 			
         
-    virtual void clear();
-    virtual std::ostream &print(std::ostream &out, uint16_t indent);
+    void clear() override;
+    std::ostream &print(std::ostream &out, uint16_t indent) override;
 
     /// Session key encrypted for the whole group
     /// 
@@ -280,13 +280,13 @@ public:
 	encrypted_data.tlvtype = TLV_TYPE_BIN_ENCRYPTED ;
 	clear(); 
     }
-    virtual ~RsNxsEncryptedDataItem() {}
+    ~RsNxsEncryptedDataItem() override {}
 
-	virtual bool serialise(void *data,uint32_t& size) const;	
-	virtual uint32_t serial_size() const; 			
+	bool serialise(void *data,uint32_t& size) const override;	
+	uint32_t serial_size() const override; 			
         
-    virtual void clear();
-    virtual std::ostream &print(std::ostream &out, uint16_t indent);
+    void clear() override;
+    std::ostream &print(std::ostream &out, uint16_t indent) override;
 
     /// grpId of grp held by sending peer
     /// 
@@ -308,17 +308,17 @@ public:
     metaData(NULL) { clear();
     //std::cout << "\nGrp refcount++ : " << ++refcount << std::endl;
     return; }
-    virtual ~RsNxsGrp() { if(metaData) delete metaData;
+    ~RsNxsGrp() override { if(metaData) delete metaData;
     //std::cout << "\nGrp refcount-- : " << --refcount << std::endl;
     }
 
     RsNxsGrp* clone() const;
 
-	virtual bool serialise(void *data,uint32_t& size) const;	
-	virtual uint32_t serial_size() const; 			
+	bool serialise(void *data,uint32_t& size) const override;	
+	uint32_t serial_size() const override; 			
         
-    virtual void clear();
-    virtual std::ostream &print(std::ostream &out, uint16_t indent);
+    void clear() override;
+    std::ostream &print(std::ostream &out, uint16_t indent) override;
 
     RsGxsGroupId grpId; /// group Id, needed to complete version Id (ncvi)
     static int refcount;
@@ -351,12 +351,12 @@ public:
 
     RsNxsSyncMsgReqItem(uint16_t servtype) : RsNxsItem(servtype, RS_PKT_SUBTYPE_NXS_SYNC_MSG_REQ_ITEM) { clear(); return; }
 
-	virtual bool serialise(void *data,uint32_t& size) const;	
-	virtual uint32_t serial_size() const; 			
+	bool serialise(void *data,uint32_t& size) const override;	
+	uint32_t serial_size() const override; 			
         
 
-    virtual void clear();
-    virtual std::ostream &print(std::ostream &out, uint16_t indent);
+    void clear() override;
+    std::ostream &print(std::ostream &out, uint16_t indent) override;
 
     RsGxsGroupId grpId;
     uint8_t flag;
@@ -378,11 +378,11 @@ public:
     static const uint8_t FLAG_USE_SYNC_HASH;
     RsNxsSyncMsgItem(uint16_t servtype) : RsNxsItem(servtype, RS_PKT_SUBTYPE_NXS_SYNC_MSG_ITEM) { clear(); return; }
 
-	virtual bool serialise(void *data,uint32_t& size) const;	
-	virtual uint32_t serial_size() const; 			
+	bool serialise(void *data,uint32_t& size) const override;	
+	uint32_t serial_size() const override; 			
         
-    virtual void clear();
-    virtual std::ostream &print(std::ostream &out, uint16_t indent);
+    void clear() override;
+    std::ostream &print(std::ostream &out, uint16_t indent) override;
 
     uint8_t flag; // response/req
     RsGxsGroupId grpId;
@@ -405,7 +405,7 @@ public:
     //	std::cout << "\nrefcount++ : " << ++refcount << std::endl;
     	clear(); return;
     }
-    virtual ~RsNxsMsg()
+    ~RsNxsMsg() override
     {
     	//std::cout << "\nrefcount-- : " << --refcount << std::endl;
     	if(metaData){
@@ -414,11 +414,11 @@ public:
     	}
     }
 
-	virtual bool serialise(void *data,uint32_t& size) const;	
-	virtual uint32_t serial_size() const; 			
+	bool serialise(void *data,uint32_t& size) const override;	
+	uint32_t serial_size() const override; 			
         
-    virtual void clear();
-    virtual std::ostream &print(std::ostream &out, uint16_t indent);
+    void clear() override;
+    std::ostream &print(std::ostream &out, uint16_t indent) override;
 
     uint8_t pos; /// used for splitting up msg
     uint8_t count; /// number of split up messages
@@ -450,13 +450,13 @@ class RsNxsSearchReqItem : public RsNxsItem
 public:
 
     RsNxsSearchReqItem(uint16_t servtype): RsNxsItem(servtype, RS_PKT_SUBTYPE_EXT_SEARCH_REQ), serviceSearchItem(servtype) { return; }
-    virtual ~RsNxsSearchReqItem() { return;}
+    ~RsNxsSearchReqItem() override { return;}
 
-	virtual bool serialise(void *data,uint32_t& size) const;	
-	virtual uint32_t serial_size() const; 			
+	bool serialise(void *data,uint32_t& size) const override;	
+	uint32_t serial_size() const override; 			
         
-    virtual void clear() { return;}
-    virtual std::ostream &print(std::ostream &out, uint16_t /*indent*/) { return out; }
+    void clear() override { return;}
+    std::ostream &print(std::ostream &out, uint16_t /*indent*/) override { return out; }
 
     uint8_t nHops; /// how many peers to jump to
     uint32_t token; // search token
@@ -550,11 +550,11 @@ public:
     RsNxsSerialiser(uint16_t servtype) :
             RsSerialType(RS_PKT_VERSION_SERVICE, servtype), SERVICE_TYPE(servtype) { return; }
 
-    virtual ~RsNxsSerialiser() { return; }
+    ~RsNxsSerialiser() override { return; }
 
-    virtual uint32_t size(RsItem *item);
-    virtual bool serialise(RsItem *item, void *data, uint32_t *size);
-    virtual RsItem* deserialise(void *data, uint32_t *size);
+    uint32_t size(RsItem *item) override;
+    bool serialise(RsItem *item, void *data, uint32_t *size) override;
+    RsItem* deserialise(void *data, uint32_t *size) override;
 
 private:
     RsNxsSyncGrpReqItem      *deserialNxsSyncGrpReqItem(void *data, uint32_t *size);      /* RS_PKT_SUBTYPE_SYNC_GRP */

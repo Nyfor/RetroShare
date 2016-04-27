@@ -55,9 +55,9 @@ class RsGxsTunnelItem: public RsItem
 			setPriorityLevel(QOS_PRIORITY_RS_CHAT_ITEM) ;
 		}
 
-		virtual ~RsGxsTunnelItem() {}
-		virtual void clear() {}
-		virtual std::ostream& print(std::ostream &out, uint16_t indent = 0) = 0 ;
+		~RsGxsTunnelItem() override {}
+		void clear() override {}
+		std::ostream& print(std::ostream &out, uint16_t indent = 0) override = 0 ;
 
 		virtual bool serialise(void *data,uint32_t& size) = 0 ;	// Isn't it better that items can serialize themselves ?
 		virtual uint32_t serial_size() = 0 ; 							// deserialise is handled using a constructor
@@ -76,12 +76,12 @@ public:
     RsGxsTunnelDataItem() :RsGxsTunnelItem(RS_PKT_SUBTYPE_GXS_TUNNEL_DATA) { data=NULL ;data_size=0;service_id=0;unique_item_counter=0; }
     RsGxsTunnelDataItem(uint8_t subtype) :RsGxsTunnelItem(subtype) { data=NULL ;data_size=0; }
 
-    virtual ~RsGxsTunnelDataItem() {}
-    virtual void clear() {}
-    virtual std::ostream& print(std::ostream &out, uint16_t indent = 0);
+    ~RsGxsTunnelDataItem() override {}
+    void clear() override {}
+    std::ostream& print(std::ostream &out, uint16_t indent = 0) override;
 
-    virtual bool serialise(void *data,uint32_t& size) ;	// Isn't it better that items can serialize themselves ?
-    virtual uint32_t serial_size() ;				// deserialise is handled using a constructor
+    bool serialise(void *data,uint32_t& size) override ;	// Isn't it better that items can serialize themselves ?
+    uint32_t serial_size() override ;				// deserialise is handled using a constructor
 
     uint64_t unique_item_counter;				// this allows to make the item unique
     uint32_t flags;						// mainly NEEDS_HACK?
@@ -99,11 +99,11 @@ class RsGxsTunnelStatusItem: public RsGxsTunnelItem
 		RsGxsTunnelStatusItem() :RsGxsTunnelItem(RS_PKT_SUBTYPE_GXS_TUNNEL_STATUS) , status(0) {}
 		RsGxsTunnelStatusItem(void *data,uint32_t size) ; // deserialization
 
-		virtual ~RsGxsTunnelStatusItem() {}
-		virtual std::ostream& print(std::ostream &out, uint16_t indent = 0);
+		~RsGxsTunnelStatusItem() override {}
+		std::ostream& print(std::ostream &out, uint16_t indent = 0) override;
 
-		virtual bool serialise(void *data,uint32_t& size) ;	// Isn't it better that items can serialize themselves ?
-		virtual uint32_t serial_size() ;			// deserialise is handled using a constructor
+		bool serialise(void *data,uint32_t& size) override ;	// Isn't it better that items can serialize themselves ?
+		uint32_t serial_size() override ;			// deserialise is handled using a constructor
 
 		uint32_t status ;
 };
@@ -116,11 +116,11 @@ class RsGxsTunnelDataAckItem: public RsGxsTunnelItem
 		RsGxsTunnelDataAckItem() :RsGxsTunnelItem(RS_PKT_SUBTYPE_GXS_TUNNEL_DATA_ACK) {}
 		RsGxsTunnelDataAckItem(void *data,uint32_t size) ; // deserialization
 
-		virtual ~RsGxsTunnelDataAckItem() {}
-		virtual std::ostream& print(std::ostream &out, uint16_t indent = 0);
+		~RsGxsTunnelDataAckItem() override {}
+		std::ostream& print(std::ostream &out, uint16_t indent = 0) override;
 
-		virtual bool serialise(void *data,uint32_t& size) ;	// Isn't it better that items can serialize themselves ?
-		virtual uint32_t serial_size() ;			// deserialise is handled using a constructor
+		bool serialise(void *data,uint32_t& size) override ;	// Isn't it better that items can serialize themselves ?
+		uint32_t serial_size() override ;			// deserialise is handled using a constructor
 
         	uint64_t unique_item_counter ;					// unique identifier for that item
 };
@@ -135,11 +135,11 @@ class RsGxsTunnelDHPublicKeyItem: public RsGxsTunnelItem
 		RsGxsTunnelDHPublicKeyItem() :RsGxsTunnelItem(RS_PKT_SUBTYPE_GXS_TUNNEL_DH_PUBLIC_KEY) {}
 		RsGxsTunnelDHPublicKeyItem(void *data,uint32_t size) ; // deserialization
 
-		virtual ~RsGxsTunnelDHPublicKeyItem() ;
-		virtual std::ostream& print(std::ostream &out, uint16_t indent = 0);
+		~RsGxsTunnelDHPublicKeyItem() override ;
+		std::ostream& print(std::ostream &out, uint16_t indent = 0) override;
 
-		virtual bool serialise(void *data,uint32_t& size) ;	// Isn't it better that items can serialize themselves ?
-		virtual uint32_t serial_size() ; 							// deserialise is handled using a constructor
+		bool serialise(void *data,uint32_t& size) override ;	// Isn't it better that items can serialize themselves ?
+		uint32_t serial_size() override ; 							// deserialise is handled using a constructor
 
 		// Private data to DH public key item
 		//
@@ -159,15 +159,15 @@ class RsGxsTunnelSerialiser: public RsSerialType
 public:
 	RsGxsTunnelSerialiser() :RsSerialType(RS_PKT_VERSION_SERVICE, RS_SERVICE_TYPE_GXS_TUNNEL) {}
 
-	virtual uint32_t 	size (RsItem *item) 
+	uint32_t 	size (RsItem *item) override 
 	{ 
 		return static_cast<RsGxsTunnelItem *>(item)->serial_size() ; 
 	}
-	virtual bool serialise(RsItem *item, void *data, uint32_t *size) 
+	bool serialise(RsItem *item, void *data, uint32_t *size) override 
 	{ 
 		return static_cast<RsGxsTunnelItem *>(item)->serialise(data,*size) ; 
 	}
-	RsItem *deserialise(void *data, uint32_t *pktsize);
+	RsItem *deserialise(void *data, uint32_t *pktsize) override;
 private:
 	static RsGxsTunnelDataAckItem     *deserialise_RsGxsTunnelDataAckItem    (void *data, uint32_t size) ;
 	static RsGxsTunnelDataItem        *deserialise_RsGxsTunnelDataItem       (void *data, uint32_t size) ;

@@ -107,7 +107,7 @@ class FileIndexMonitor: public CacheSource, public RsTickingThread
 {
 	public:
         FileIndexMonitor(CacheStrapper *cs, std::string cachedir, const RsPeerId& pid, const std::string& config_dir);
-		virtual ~FileIndexMonitor();
+		~FileIndexMonitor() override;
 
 		/* external interface for filetransfer */
         bool findLocalFile(const RsFileHash& hash,FileSearchFlags flags,const RsPeerId& peer_id, std::string &fullpath, uint64_t &size,FileStorageFlags& storage_flags,std::list<std::string>& parent_groups) const;
@@ -124,14 +124,14 @@ class FileIndexMonitor: public CacheSource, public RsTickingThread
 
 		/* Interacting with CacheSource */
 		/* overloaded from CacheSource */
-		virtual bool loadLocalCache(const RsCacheData &data);  /* called with stored data */
+		bool loadLocalCache(const RsCacheData &data) override;  /* called with stored data */
         bool 	updateCache(const RsCacheData &data,const std::set<RsPeerId>& dest_peers);     /* we call when we have a new cache for others */
 
 
 		/* the FileIndexMonitor inner workings */
 		//virtual void 	run(std::string& currentJob); /* overloaded from RsThread */
 		//void 	updateCycle(std::string& currentJob);
-        virtual void 	data_tick(); /* overloaded from RsThread */
+        void 	data_tick() override; /* overloaded from RsThread */
 		void 	updateCycle();
 
 		// Interface for browsing dir hirarchy
@@ -151,7 +151,7 @@ class FileIndexMonitor: public CacheSource, public RsTickingThread
 		/* util fns */
 
 		// from CacheSource
-        virtual bool cachesAvailable(const RsPeerId& pid, std::map<CacheId, RsCacheData> &ids) ;
+        bool cachesAvailable(const RsPeerId& pid, std::map<CacheId, RsCacheData> &ids) override ;
 
 	protected:
 		// Sets/gets the duration period within which already hashed files are remembered.

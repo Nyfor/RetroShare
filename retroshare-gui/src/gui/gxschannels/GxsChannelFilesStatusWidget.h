@@ -36,7 +36,7 @@ class GxsChannelFilesStatusWidget : public QWidget
 
 public:
 	explicit GxsChannelFilesStatusWidget(const RsGxsGroupId &groupId, const RsGxsMessageId &messageId, const RsGxsFile &file, QWidget *parent = 0);
-	~GxsChannelFilesStatusWidget();
+	~GxsChannelFilesStatusWidget() override;
 
 private slots:
 	void check();

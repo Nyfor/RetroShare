@@ -42,11 +42,11 @@ template<class ID_CLASS,uint32_t TLV_TYPE> class t_RsTlvIdSet: public RsTlvItem
 {
 	public:
 		t_RsTlvIdSet() {}
-		virtual ~t_RsTlvIdSet() {}
+		~t_RsTlvIdSet() override {}
 
-		virtual uint32_t TlvSize() const { return ID_CLASS::SIZE_IN_BYTES * ids.size() + TLV_HEADER_SIZE; }
-		virtual void TlvClear(){ ids.clear() ; }
-		virtual bool SetTlv(void *data, uint32_t size, uint32_t *offset) const
+		uint32_t TlvSize() const override { return ID_CLASS::SIZE_IN_BYTES * ids.size() + TLV_HEADER_SIZE; }
+		void TlvClear() override{ ids.clear() ; }
+		bool SetTlv(void *data, uint32_t size, uint32_t *offset) const override
 		{	/* must check sizes */
 			uint32_t tlvsize = TlvSize();
 			uint32_t tlvend  = *offset + tlvsize;
@@ -64,7 +64,7 @@ template<class ID_CLASS,uint32_t TLV_TYPE> class t_RsTlvIdSet: public RsTlvItem
 
 			return ok ;
 		}
-		virtual bool GetTlv(void *data, uint32_t size, uint32_t *offset) 
+		bool GetTlv(void *data, uint32_t size, uint32_t *offset) override 
 		{
 			if (size < *offset + TLV_HEADER_SIZE)
 				return false;
@@ -97,7 +97,7 @@ template<class ID_CLASS,uint32_t TLV_TYPE> class t_RsTlvIdSet: public RsTlvItem
 				std::cerr << "(EE) deserialisaiton error in " << __PRETTY_FUNCTION__ << std::endl;
 			return *offset == tlvend ;
 		}
-		virtual std::ostream &print(std::ostream &out, uint16_t /* indent */) const
+		std::ostream &print(std::ostream &out, uint16_t /* indent */) const override
 		{
             for(typename std::set<ID_CLASS>::const_iterator it(ids.begin());it!=ids.end();++it)
 				out << (*it).toStdString() << ", " ;
@@ -125,12 +125,12 @@ class RsTlvServiceIdSet: public RsTlvItem
 {
 	public:
 	 RsTlvServiceIdSet() { return; }
-virtual ~RsTlvServiceIdSet() { return; }
-virtual uint32_t TlvSize() const;
-virtual void	 TlvClear();
-virtual bool     SetTlv(void *data, uint32_t size, uint32_t *offset) const; 
-virtual bool     GetTlv(void *data, uint32_t size, uint32_t *offset); 
-virtual std::ostream &print(std::ostream &out, uint16_t indent) const;
+~RsTlvServiceIdSet() override { return; }
+uint32_t TlvSize() const override;
+void	 TlvClear() override;
+bool     SetTlv(void *data, uint32_t size, uint32_t *offset) const override; 
+bool     GetTlv(void *data, uint32_t size, uint32_t *offset) override; 
+std::ostream &print(std::ostream &out, uint16_t indent) const override;
 
 	std::list<uint32_t> ids; /* Mandatory */
 };

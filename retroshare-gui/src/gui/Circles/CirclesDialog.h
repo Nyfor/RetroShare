@@ -38,16 +38,16 @@ class CirclesDialog : public RsGxsUpdateBroadcastPage, public TokenResponse
 
 public:
 	CirclesDialog(QWidget *parent = 0);
-	~CirclesDialog();
+	~CirclesDialog() override;
 
-	virtual QIcon iconPixmap() const { return QIcon(IMAGE_CIRCLES) ; } //MainPage
-	virtual QString pageName() const { return tr("Circles") ; } //MainPage
-	virtual QString helpText() const { return ""; } //MainPage
+	QIcon iconPixmap() const override { return QIcon(IMAGE_CIRCLES) ; } //MainPage
+	QString pageName() const override { return tr("Circles") ; } //MainPage
+	QString helpText() const override { return ""; } //MainPage
 
-	void loadRequest(const TokenQueue *queue, const TokenRequest &req);
+	void loadRequest(const TokenQueue *queue, const TokenRequest &req) override;
 
 protected:
-	virtual void updateDisplay(bool complete);
+	void updateDisplay(bool complete) override;
 
 private slots:
 	void todo();

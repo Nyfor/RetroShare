@@ -84,20 +84,20 @@ virtual const 	RsPeerId& getOwnId();
 	 * External Interface (RsServiceControl).
 	 */
 
-virtual bool getOwnServices(RsPeerServiceInfo &info);
+bool getOwnServices(RsPeerServiceInfo &info) override;
 
 	// This is what is passed to peers, can be displayed by GUI too.
-virtual bool getServicesAllowed(const RsPeerId &peerId, RsPeerServiceInfo &info);
+bool getServicesAllowed(const RsPeerId &peerId, RsPeerServiceInfo &info) override;
 
 	// Information provided by peer.
-virtual bool getServicesProvided(const RsPeerId &peerId, RsPeerServiceInfo &info);
+bool getServicesProvided(const RsPeerId &peerId, RsPeerServiceInfo &info) override;
 
 	// Main Permission Interface.
-virtual bool getServicePermissions(uint32_t serviceId, RsServicePermissions &permissions);
-virtual bool updateServicePermissions(uint32_t serviceId, const RsServicePermissions &permissions);
+bool getServicePermissions(uint32_t serviceId, RsServicePermissions &permissions) override;
+bool updateServicePermissions(uint32_t serviceId, const RsServicePermissions &permissions) override;
 
 	// Get List of Peers using this Service.
-virtual void getPeersConnected(const uint32_t serviceId, std::set<RsPeerId> &peerSet);
+void getPeersConnected(const uint32_t serviceId, std::set<RsPeerId> &peerSet) override;
 virtual bool isPeerConnected(const uint32_t serviceId, const RsPeerId &peerId);
 
 	/**
@@ -129,13 +129,13 @@ virtual void getServiceChanges(std::set<RsPeerId> &updateSet);
 virtual bool updateServicesProvided(const RsPeerId &peerId, const RsPeerServiceInfo &info);
 
 	// pqiMonitor.
-virtual void    statusChange(const std::list<pqipeer> &plist);
+void    statusChange(const std::list<pqipeer> &plist) override;
 
 protected:
 	// configuration.
-virtual bool saveList(bool &cleanup, std::list<RsItem *>&);
-virtual bool loadList(std::list<RsItem *>& load);
-virtual RsSerialiser *setupSerialiser() ;
+bool saveList(bool &cleanup, std::list<RsItem *>&) override;
+bool loadList(std::list<RsItem *>& load) override;
+RsSerialiser *setupSerialiser() override ;
 
 private:
 

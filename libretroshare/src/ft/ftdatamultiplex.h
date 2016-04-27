@@ -139,17 +139,17 @@ class ftDataMultiplex: public ftDataRecv, public RsQueueThread
 		/*************** RECV INTERFACE (provides ftDataRecv) ****************/
 
 		/* Client Recv */
-		virtual bool recvData(const RsPeerId& peerId, const RsFileHash& hash, uint64_t size, uint64_t offset, uint32_t chunksize, void *data);
+		bool recvData(const RsPeerId& peerId, const RsFileHash& hash, uint64_t size, uint64_t offset, uint32_t chunksize, void *data) override;
 		/* Server Recv */
-		virtual bool	recvDataRequest(const RsPeerId& peerId, const RsFileHash& hash, uint64_t size, uint64_t offset, uint32_t chunksize);
+		bool	recvDataRequest(const RsPeerId& peerId, const RsFileHash& hash, uint64_t size, uint64_t offset, uint32_t chunksize) override;
 
 		/// Receive a request for a chunk map
-		virtual bool recvChunkMapRequest(const RsPeerId& peer_id,const RsFileHash& hash,bool is_client) ;
+		bool recvChunkMapRequest(const RsPeerId& peer_id,const RsFileHash& hash,bool is_client) override ;
 		/// Receive a chunk map
-		virtual bool recvChunkMap(const RsPeerId& peer_id,const RsFileHash& hash,const CompressedChunkMap& cmap,bool is_client) ;
+		bool recvChunkMap(const RsPeerId& peer_id,const RsFileHash& hash,const CompressedChunkMap& cmap,bool is_client) override ;
 
-		virtual bool recvSingleChunkCRCRequest(const RsPeerId& peer_id,const RsFileHash& hash,uint32_t chunk_id) ;
-		virtual bool recvSingleChunkCRC(const RsPeerId& peer_id,const RsFileHash& hash,uint32_t chunk_id,const Sha1CheckSum& sum) ;
+		bool recvSingleChunkCRCRequest(const RsPeerId& peer_id,const RsFileHash& hash,uint32_t chunk_id) override ;
+		bool recvSingleChunkCRC(const RsPeerId& peer_id,const RsFileHash& hash,uint32_t chunk_id,const Sha1CheckSum& sum) override ;
 		
 		// Returns the chunk map from the file uploading client. Also initiates a chunk map request if this 
 		// map is too old. This supposes that the caller will ask again in a few seconds.
@@ -159,8 +159,8 @@ class ftDataMultiplex: public ftDataRecv, public RsQueueThread
 	protected:
 
 		/* Overloaded from RsQueueThread */
-		virtual bool workQueued();
-		virtual bool doWork();
+		bool workQueued() override;
+		bool doWork() override;
 
 	private:
 

@@ -39,12 +39,12 @@ class RsTlvIpAddress: public RsTlvItem
 {
 	public:
 	 RsTlvIpAddress();
-virtual ~RsTlvIpAddress() { return; }
-virtual uint32_t TlvSize() const;
-virtual void	 TlvClear();
-virtual bool     SetTlv(void *data, uint32_t size, uint32_t *offset) const; 
-virtual bool     GetTlv(void *data, uint32_t size, uint32_t *offset); 
-virtual std::ostream &print(std::ostream &out, uint16_t indent) const;
+~RsTlvIpAddress() override { return; }
+uint32_t TlvSize() const override;
+void	 TlvClear() override;
+bool     SetTlv(void *data, uint32_t size, uint32_t *offset) const override; 
+bool     GetTlv(void *data, uint32_t size, uint32_t *offset) override; 
+std::ostream &print(std::ostream &out, uint16_t indent) const override;
 
 	struct sockaddr_storage addr; 			// Mandatory :
 };
@@ -54,12 +54,12 @@ class RsTlvIpAddressInfo: public RsTlvItem
 {
 	public:
 	 RsTlvIpAddressInfo();
-virtual ~RsTlvIpAddressInfo() { return; }
-virtual uint32_t TlvSize() const;
-virtual void	 TlvClear();
-virtual bool     SetTlv(void *data, uint32_t size, uint32_t *offset) const; 
-virtual bool     GetTlv(void *data, uint32_t size, uint32_t *offset); 
-virtual std::ostream &print(std::ostream &out, uint16_t indent) const;
+~RsTlvIpAddressInfo() override { return; }
+uint32_t TlvSize() const override;
+void	 TlvClear() override;
+bool     SetTlv(void *data, uint32_t size, uint32_t *offset) const override; 
+bool     GetTlv(void *data, uint32_t size, uint32_t *offset) override; 
+std::ostream &print(std::ostream &out, uint16_t indent) const override;
 
 	RsTlvIpAddress addr; 				// Mandatory :
 	uint64_t  seenTime;				// Mandatory :

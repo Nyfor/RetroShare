@@ -41,12 +41,12 @@ class RsPluginItem: public RsItem
 {
 	public:
 		RsPluginItem(uint8_t plugin_item_subtype): RsItem(RS_PKT_VERSION1,RS_PKT_CLASS_CONFIG,RS_PKT_TYPE_PLUGIN_CONFIG,plugin_item_subtype) {}
-		virtual ~RsPluginItem() {}
+		~RsPluginItem() override {}
 
 		virtual bool serialise(void *data,uint32_t& size) = 0 ;	// Isn't it better that items can serialise themselves ?
 		virtual uint32_t serial_size() = 0 ; 							// deserialise is handled using a constructor
 
-		virtual void clear() {} 
+		void clear() override {} 
 };
 
 class RsPluginSerialiser: public RsSerialType
@@ -54,15 +54,15 @@ class RsPluginSerialiser: public RsSerialType
 	public:
 		RsPluginSerialiser() : RsSerialType(RS_PKT_VERSION1, RS_PKT_CLASS_CONFIG, RS_PKT_TYPE_PLUGIN_CONFIG) {}
 
-		virtual uint32_t 	size (RsItem *item) 
+		uint32_t 	size (RsItem *item) override 
 		{ 
 			return dynamic_cast<RsPluginItem *>(item)->serial_size() ;
 		}
-		virtual bool serialise(RsItem *item, void *data, uint32_t *size) 
+		bool serialise(RsItem *item, void *data, uint32_t *size) override 
 		{ 
 			return dynamic_cast<RsPluginItem *>(item)->serialise(data,*size) ;
 		}
-		virtual RsItem *deserialise (void *data, uint32_t *size) ;
+		RsItem *deserialise (void *data, uint32_t *size) override ;
 };
 
 class RsPluginHashSetItem: public RsPluginItem
@@ -73,11 +73,11 @@ class RsPluginHashSetItem: public RsPluginItem
 
 		RsTlvHashSet hashes ;
 
-		virtual std::ostream& print(std::ostream& o, uint16_t) ;
+		std::ostream& print(std::ostream& o, uint16_t) override ;
 
 	protected:
-		virtual bool serialise(void *data,uint32_t& size) ;
-		virtual uint32_t serial_size() ;
+		bool serialise(void *data,uint32_t& size) override ;
+		uint32_t serial_size() override ;
 };
 
 

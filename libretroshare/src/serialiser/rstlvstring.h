@@ -38,12 +38,12 @@ class RsTlvStringSet: public RsTlvItem
 {
 	public:
 	 RsTlvStringSet(uint16_t type);
-virtual ~RsTlvStringSet() { return; }
-virtual uint32_t TlvSize() const;
-virtual void	 TlvClear();
-virtual bool     SetTlv(void *data, uint32_t size, uint32_t *offset) const;
-virtual bool     GetTlv(void *data, uint32_t size, uint32_t *offset); 
-virtual std::ostream &print(std::ostream &out, uint16_t indent) const;
+~RsTlvStringSet() override { return; }
+uint32_t TlvSize() const override;
+void	 TlvClear() override;
+bool     SetTlv(void *data, uint32_t size, uint32_t *offset) const override;
+bool     GetTlv(void *data, uint32_t size, uint32_t *offset) override; 
+std::ostream &print(std::ostream &out, uint16_t indent) const override;
 virtual std::ostream &printHex(std::ostream &out, uint16_t indent) const;
 
 	uint16_t mType;
@@ -54,12 +54,12 @@ class RsTlvStringSetRef: public RsTlvItem
 {
 	public:
      RsTlvStringSetRef(uint16_t type, std::list<std::string> &refids);
-virtual ~RsTlvStringSetRef() { return; }
-virtual uint32_t TlvSize() const;
-virtual void	 TlvClear();
-virtual bool     SetTlv(void *data, uint32_t size, uint32_t *offset) const; 
-virtual bool     GetTlv(void *data, uint32_t size, uint32_t *offset); 
-virtual std::ostream &print(std::ostream &out, uint16_t indent) const;
+~RsTlvStringSetRef() override { return; }
+uint32_t TlvSize() const override;
+void	 TlvClear() override;
+bool     SetTlv(void *data, uint32_t size, uint32_t *offset) const override; 
+bool     GetTlv(void *data, uint32_t size, uint32_t *offset) override; 
+std::ostream &print(std::ostream &out, uint16_t indent) const override;
 
 	uint16_t mType;
     std::list<std::string> &ids; /* Mandatory */

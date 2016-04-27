@@ -54,7 +54,7 @@ signals:
 	void filterChanged(int id);
 
 protected:
-	void resizeEvent(QResizeEvent *);
+	void resizeEvent(QResizeEvent *) override;
 #if QT_VERSION < 0x040700
 	void focusInEvent(QFocusEvent *event);
 	void focusOutEvent(QFocusEvent *event);

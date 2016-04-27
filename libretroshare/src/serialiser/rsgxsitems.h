@@ -43,7 +43,7 @@ public:
 
     RsGxsGrpItem(uint16_t service, uint8_t subtype)
     : RsItem(RS_PKT_VERSION_SERVICE, service, subtype) { return; }
-    virtual ~RsGxsGrpItem(){}
+    ~RsGxsGrpItem() override{}
 
 
     RsGroupMetaData meta;
@@ -55,7 +55,7 @@ class RsGxsMsgItem : public RsItem
 public:
     RsGxsMsgItem(uint16_t service, uint8_t subtype)
     : RsItem(RS_PKT_VERSION_SERVICE, service, subtype) { return; }
-    virtual ~RsGxsMsgItem(){}
+    ~RsGxsMsgItem() override{}
 
     RsMsgMetaData meta;
 };

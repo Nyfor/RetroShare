@@ -32,15 +32,15 @@ public:
 	ChatLobbyWidget(QWidget *parent = 0, Qt::WindowFlags flags = 0);
 
 	/** Default destructor */
-	~ChatLobbyWidget();
+	~ChatLobbyWidget() override;
 
-	virtual QIcon iconPixmap() const { return QIcon(IMAGE_CHATLOBBY) ; } //MainPage
-	virtual QString pageName() const { return tr("Chat Lobbies") ; } //MainPage
-	virtual QString helpText() const { return ""; } //MainPage
+	QIcon iconPixmap() const override { return QIcon(IMAGE_CHATLOBBY) ; } //MainPage
+	QString pageName() const override { return tr("Chat Lobbies") ; } //MainPage
+	QString helpText() const override { return ""; } //MainPage
 
-	virtual UserNotify *getUserNotify(QObject *parent); //MainPage
+	UserNotify *getUserNotify(QObject *parent) override; //MainPage
 
-	virtual void updateDisplay();
+	void updateDisplay() override;
 
 	void setCurrentChatPage(ChatLobbyDialog *) ;	// used by ChatLobbyDialog to raise.
 	void addChatPage(ChatLobbyDialog *) ;

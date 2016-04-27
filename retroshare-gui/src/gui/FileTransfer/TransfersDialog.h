@@ -57,17 +57,17 @@ public:
 
     /** Default Constructor */
     TransfersDialog(QWidget *parent = 0);
-    ~TransfersDialog();
+    ~TransfersDialog() override;
 
-    virtual QIcon iconPixmap() const { return QIcon(IMAGE_TRANSFERS) ; } //MainPage
-    virtual QString pageName() const { return tr("File sharing") ; } //MainPage
-    virtual QString helpText() const { return ""; } //MainPage
+    QIcon iconPixmap() const override { return QIcon(IMAGE_TRANSFERS) ; } //MainPage
+    QString pageName() const override { return tr("File sharing") ; } //MainPage
+    QString helpText() const override { return ""; } //MainPage
 
-    virtual UserNotify *getUserNotify(QObject *parent);
+    UserNotify *getUserNotify(QObject *parent) override;
 
 	 void activatePage(TransfersDialog::Page page) ;
 
-    virtual void updateDisplay() ;				// derived from RsAutoUpdateWidget
+    void updateDisplay() override ;				// derived from RsAutoUpdateWidget
 
 	 static DetailsDialog *detailsDialog() ;
 

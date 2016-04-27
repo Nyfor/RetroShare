@@ -193,7 +193,7 @@ class PQInterface: public RateInterface
 {
 	public:
 		PQInterface(const RsPeerId &id) :peerId(id) { return; }
-		virtual	~PQInterface() { return; }
+			~PQInterface() override { return; }
 
 		/*!
 		 * allows user to send RsItems to a particular facility  (file, network)
@@ -399,7 +399,7 @@ class NetBinInterface: public NetInterface, public BinInterface
 public:
 	NetBinInterface(PQInterface *parent, const RsPeerId& id) :
 		NetInterface(parent, id) {}
-	virtual ~NetBinInterface() {}
+	~NetBinInterface() override {}
 };
 
 #define CHAN_SIGN_SIZE 16

@@ -40,12 +40,12 @@ class RsTlvBanListEntry: public RsTlvItem
 {
 	public:
 	 RsTlvBanListEntry();
-virtual ~RsTlvBanListEntry() { return; }
-virtual uint32_t TlvSize() const;
-virtual void	 TlvClear();
-virtual bool     SetTlv(void *data, uint32_t size, uint32_t *offset) const; 
-virtual bool     GetTlv(void *data, uint32_t size, uint32_t *offset); 
-virtual std::ostream &print(std::ostream &out, uint16_t indent) const;
+~RsTlvBanListEntry() override { return; }
+uint32_t TlvSize() const override;
+void	 TlvClear() override;
+bool     SetTlv(void *data, uint32_t size, uint32_t *offset) const override; 
+bool     GetTlv(void *data, uint32_t size, uint32_t *offset) override; 
+std::ostream &print(std::ostream &out, uint16_t indent) const override;
 
 	RsTlvIpAddress addr;
 	uint32_t level;

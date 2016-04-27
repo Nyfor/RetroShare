@@ -36,9 +36,9 @@ class NetworkView : public RsAutoUpdatePage
 
 	public:
 		NetworkView(QWidget *parent = 0);
-		virtual ~NetworkView();
+		~NetworkView() override;
 
-		virtual void updateDisplay() ; // derived from RsAutoUpdatePage
+		void updateDisplay() override ; // derived from RsAutoUpdatePage
 
 	public slots:
 		void update() ;

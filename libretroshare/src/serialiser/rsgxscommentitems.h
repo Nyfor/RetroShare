@@ -45,9 +45,9 @@ public:
 
 	RsGxsCommentItem(uint16_t service_type): RsGxsMsgItem(service_type, 
 			RS_PKT_SUBTYPE_GXSCOMMENT_COMMENT_ITEM) {return; }
-        virtual ~RsGxsCommentItem() { return;}
-        void clear();
-	std::ostream &print(std::ostream &out, uint16_t indent = 0);
+        ~RsGxsCommentItem() override { return;}
+        void clear() override;
+	std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
 	RsGxsComment mMsg;
 };
@@ -59,9 +59,9 @@ public:
 
 	RsGxsVoteItem(uint16_t service_type): RsGxsMsgItem(service_type, 
 			RS_PKT_SUBTYPE_GXSCOMMENT_VOTE_ITEM) {return; }
-        virtual ~RsGxsVoteItem() { return;}
-        void clear();
-	std::ostream &print(std::ostream &out, uint16_t indent = 0);
+        ~RsGxsVoteItem() override { return;}
+        void clear() override;
+	std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
 	RsGxsVote mMsg;
 };
@@ -74,11 +74,11 @@ public:
 	RsGxsCommentSerialiser(uint16_t service_type)
 	:RsSerialType(RS_PKT_VERSION_SERVICE, service_type)
 	{ return; }
-	virtual     ~RsGxsCommentSerialiser() { return; }
+	    ~RsGxsCommentSerialiser() override { return; }
 
-	uint32_t    size(RsItem *item);
-	bool        serialise  (RsItem *item, void *data, uint32_t *size);
-	RsItem *    deserialise(void *data, uint32_t *size);
+	uint32_t    size(RsItem *item) override;
+	bool        serialise  (RsItem *item, void *data, uint32_t *size) override;
+	RsItem *    deserialise(void *data, uint32_t *size) override;
 
 	private:
 

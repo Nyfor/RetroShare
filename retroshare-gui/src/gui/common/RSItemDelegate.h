@@ -30,8 +30,8 @@ class RSItemDelegate : public QItemDelegate
 public:
     RSItemDelegate(QObject *parent = 0);
 
-    void paint (QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
-    QSize sizeHint (const QStyleOptionViewItem &option, const QModelIndex &index) const;
+    void paint (QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
+    QSize sizeHint (const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 
     void removeFocusRect(int column);
     void setSpacing(const QSize &spacing);

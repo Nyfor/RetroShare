@@ -34,13 +34,13 @@ public:
 	AppearancePage(QWidget * parent = 0, Qt::WindowFlags flags = 0);
 
 	/** Saves the changes on this page */
-	virtual bool save(QString &errmsg);
+	bool save(QString &errmsg) override;
 	/** Loads the settings for this page */
-	virtual void load();
+	void load() override;
 
-	virtual QPixmap iconPixmap() const { return QPixmap(":/images/looknfeel.png") ; }
-	virtual QString pageName() const { return tr("Appearance") ; }
-	virtual QString helpText() const { return ""; }
+	QPixmap iconPixmap() const override { return QPixmap(":/images/looknfeel.png") ; }
+	QString pageName() const override { return tr("Appearance") ; }
+	QString helpText() const override { return ""; }
 
 private slots:
 	void loadStyleSheet(int index);

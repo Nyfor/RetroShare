@@ -39,7 +39,7 @@ class RSFeedWidgetScrollBar : public QScrollBar
 public:
 	RSFeedWidgetScrollBar(QWidget *parent = 0) : QScrollBar(parent) {}
 
-	void sliderChange(SliderChange change)
+	void sliderChange(SliderChange change) override
 	{
 		if (change == SliderStepsChange) {
 			if (singleStep() > SINGLE_STEP) {

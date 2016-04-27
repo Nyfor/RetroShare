@@ -57,13 +57,13 @@ class RsFileTransferItem: public RsItem
 			: RsItem(RS_PKT_VERSION_SERVICE,RS_SERVICE_TYPE_FILE_TRANSFER,ft_subtype) 
 		{}
 
-		virtual ~RsFileTransferItem() {}
+		~RsFileTransferItem() override {}
 
 		virtual bool serialise(void *data,uint32_t& size) = 0 ;	
 		virtual uint32_t serial_size() = 0 ; 						
 
-		virtual std::ostream &print(std::ostream &out, uint16_t indent = 0) = 0;
-		virtual void clear() = 0 ;
+		std::ostream &print(std::ostream &out, uint16_t indent = 0) override = 0;
+		void clear() override = 0 ;
 
 	protected:
 		bool serialise_header(void *data, uint32_t& pktsize, uint32_t& tlvsize, uint32_t& offset) ;
@@ -76,14 +76,14 @@ class RsFileTransferDataRequestItem: public RsFileTransferItem
 	{ 
 		setPriorityLevel(QOS_PRIORITY_RS_FILE_REQUEST) ;
 	}
-	virtual ~RsFileTransferDataRequestItem() {}
+	~RsFileTransferDataRequestItem() override {}
 
-	virtual bool serialise(void *data,uint32_t& size) ;	
-	virtual uint32_t serial_size() ; 						
+	bool serialise(void *data,uint32_t& size) override ;	
+	uint32_t serial_size() override ; 						
 
-	virtual void clear();
+	void clear() override;
 
-	std::ostream &print(std::ostream &out, uint16_t indent = 0);
+	std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
 	// Private data part.
 	//
@@ -101,13 +101,13 @@ class RsFileTransferDataItem: public RsFileTransferItem
 	{ 
 		setPriorityLevel(QOS_PRIORITY_RS_FILE_DATA) ;	
 	}
-	virtual ~RsFileTransferDataItem() { clear() ; }
+	~RsFileTransferDataItem() override { clear() ; }
 
-	virtual bool serialise(void *data,uint32_t& size) ;	
-	virtual uint32_t serial_size() ; 						
-	virtual void clear();
+	bool serialise(void *data,uint32_t& size) override ;	
+	uint32_t serial_size() override ; 						
+	void clear() override;
 
-	virtual std::ostream& print(std::ostream &out, uint16_t indent = 0);
+	std::ostream& print(std::ostream &out, uint16_t indent = 0) override;
 
 	// Private data part.
 	//
@@ -121,11 +121,11 @@ class RsFileTransferChunkMapRequestItem: public RsFileTransferItem
 		{
 			setPriorityLevel(QOS_PRIORITY_RS_FILE_MAP_REQUEST) ;
 		}
-		virtual ~RsFileTransferChunkMapRequestItem() {}
-		virtual bool serialise(void *data,uint32_t& size) ;	
-		virtual uint32_t serial_size() ; 						
-		virtual void clear() {}
-		virtual std::ostream &print(std::ostream &out, uint16_t indent = 0);
+		~RsFileTransferChunkMapRequestItem() override {}
+		bool serialise(void *data,uint32_t& size) override ;	
+		uint32_t serial_size() override ; 						
+		void clear() override {}
+		std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
 		// Private data part.
 		//
@@ -141,12 +141,12 @@ class RsFileTransferChunkMapItem: public RsFileTransferItem
 		{
 			setPriorityLevel(QOS_PRIORITY_RS_FILE_MAP) ;
 		}
-		virtual ~RsFileTransferChunkMapItem() {}
-		virtual bool serialise(void *data,uint32_t& size) ;	
-		virtual uint32_t serial_size() ; 						
-		virtual void clear() {}
+		~RsFileTransferChunkMapItem() override {}
+		bool serialise(void *data,uint32_t& size) override ;	
+		uint32_t serial_size() override ; 						
+		void clear() override {}
 
-		virtual std::ostream &print(std::ostream &out, uint16_t indent = 0);
+		std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
 		// Private data part.
 		//
@@ -162,12 +162,12 @@ class RsFileTransferSingleChunkCrcRequestItem: public RsFileTransferItem
 		{
 			setPriorityLevel(QOS_PRIORITY_RS_CHUNK_CRC_REQUEST) ;
 		}
-		virtual ~RsFileTransferSingleChunkCrcRequestItem() {}
-		virtual bool serialise(void *data,uint32_t& size) ;	
-		virtual uint32_t serial_size() ; 						
-		virtual void clear() {}
+		~RsFileTransferSingleChunkCrcRequestItem() override {}
+		bool serialise(void *data,uint32_t& size) override ;	
+		uint32_t serial_size() override ; 						
+		void clear() override {}
 
-		virtual std::ostream &print(std::ostream &out, uint16_t indent = 0);
+		std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
 		// Private data part.
 		//
@@ -182,12 +182,12 @@ class RsFileTransferSingleChunkCrcItem: public RsFileTransferItem
 		{
 			setPriorityLevel(QOS_PRIORITY_RS_CHUNK_CRC) ;
 		}
-		virtual ~RsFileTransferSingleChunkCrcItem() {}
-		virtual bool serialise(void *data,uint32_t& size) ;	
-		virtual uint32_t serial_size() ; 						
-		virtual void clear() {}
+		~RsFileTransferSingleChunkCrcItem() override {}
+		bool serialise(void *data,uint32_t& size) override ;	
+		uint32_t serial_size() override ; 						
+		void clear() override {}
 
-		virtual std::ostream &print(std::ostream &out, uint16_t indent = 0);
+		std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
 		// Private data part.
 		//
@@ -204,11 +204,11 @@ class RsFileTransferCacheItem: public RsFileTransferItem
 			setPriorityLevel(QOS_PRIORITY_RS_CACHE_ITEM); 
 		}
 
-		virtual ~RsFileTransferCacheItem(){ clear() ; }
-		virtual bool serialise(void *data,uint32_t& size) ;	
-		virtual uint32_t serial_size() ; 						
-		virtual void clear();
-		virtual std::ostream &print(std::ostream &out, uint16_t indent = 0);
+		~RsFileTransferCacheItem() override{ clear() ; }
+		bool serialise(void *data,uint32_t& size) override ;	
+		uint32_t serial_size() override ; 						
+		void clear() override;
+		std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
 		// private part.
 		//
@@ -225,9 +225,9 @@ class RsFileTransferSerialiser: public RsSerialType
 	public:
 		RsFileTransferSerialiser(): RsSerialType(RS_PKT_VERSION_SERVICE, RS_SERVICE_TYPE_FILE_TRANSFER) {}
 
-		virtual ~RsFileTransferSerialiser() {}
+		~RsFileTransferSerialiser() override {}
 
-		virtual uint32_t size(RsItem *item)
+		uint32_t size(RsItem *item) override
 		{
 			RsFileTransferItem *ftitem = dynamic_cast<RsFileTransferItem *>(item);
 			if (!ftitem)
@@ -236,7 +236,7 @@ class RsFileTransferSerialiser: public RsSerialType
 			}
 			return ftitem->serial_size() ;
 		}
-		virtual bool serialise(RsItem *item, void *data, uint32_t *size)
+		bool serialise(RsItem *item, void *data, uint32_t *size) override
 		{
 			RsFileTransferItem *ftitem = dynamic_cast<RsFileTransferItem *>(item);
 			if (!ftitem)
@@ -245,7 +245,7 @@ class RsFileTransferSerialiser: public RsSerialType
 			}
 			return ftitem->serialise(data,*size) ;
 		}
-		virtual RsFileTransferItem *deserialise(void *data, uint32_t *size);
+		RsFileTransferItem *deserialise(void *data, uint32_t *size) override;
 
 	private:
 		RsFileTransferItem *deserialise_RsFileTransferCacheItem(void *data, uint32_t pktsize);

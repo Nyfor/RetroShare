@@ -154,7 +154,7 @@ class p3LinkMgr: public pqiConnectCb
 	public:
 
         p3LinkMgr() { return; }
-virtual ~p3LinkMgr() { return; }
+~p3LinkMgr() override { return; }
 
 
 virtual const 	RsPeerId& getOwnId() = 0;
@@ -215,51 +215,51 @@ class p3LinkMgrIMPL: public p3LinkMgr
 /* EXTERNAL INTERFACE */
 /************************************************************************************************/
 
-virtual const 	RsPeerId& getOwnId();
-virtual bool  	isOnline(const RsPeerId &ssl_id);
-virtual void  	getOnlineList(std::list<RsPeerId> &ssl_peers);
-virtual bool  	getPeerName(const RsPeerId &ssl_id, std::string &name);
-virtual uint32_t getLinkType(const RsPeerId &ssl_id);
+const 	RsPeerId& getOwnId() override;
+bool  	isOnline(const RsPeerId &ssl_id) override;
+void  	getOnlineList(std::list<RsPeerId> &ssl_peers) override;
+bool  	getPeerName(const RsPeerId &ssl_id, std::string &name) override;
+uint32_t getLinkType(const RsPeerId &ssl_id) override;
 
 
 	/**************** handle monitors *****************/
-virtual void	addMonitor(pqiMonitor *mon);
-virtual void	removeMonitor(pqiMonitor *mon);
+void	addMonitor(pqiMonitor *mon) override;
+void	removeMonitor(pqiMonitor *mon) override;
 
 	/****************** Connections *******************/
-virtual bool	connectAttempt(const RsPeerId &id, struct sockaddr_storage &raddr,
+bool	connectAttempt(const RsPeerId &id, struct sockaddr_storage &raddr,
 					struct sockaddr_storage &proxyaddr, struct sockaddr_storage &srcaddr,
 					uint32_t &delay, uint32_t &period, uint32_t &type, uint32_t &flags, uint32_t &bandwidth, 
-					std::string &domain_addr, uint16_t &domain_port);
+					std::string &domain_addr, uint16_t &domain_port) override;
 	
-virtual bool 	connectResult(const RsPeerId &id, bool success, bool isIncomingConnection, uint32_t flags, const struct sockaddr_storage &remote_peer_address);
-virtual bool	retryConnect(const RsPeerId &id);
+bool 	connectResult(const RsPeerId &id, bool success, bool isIncomingConnection, uint32_t flags, const struct sockaddr_storage &remote_peer_address) override;
+bool	retryConnect(const RsPeerId &id) override;
 
-virtual void 	notifyDeniedConnection(const RsPgpId& gpgid,const RsPeerId& sslid,const std::string& sslcn,const struct sockaddr_storage &addr, bool incoming);
+void 	notifyDeniedConnection(const RsPgpId& gpgid,const RsPeerId& sslid,const std::string& sslcn,const struct sockaddr_storage &addr, bool incoming) override;
 
 	/* Network Addresses */
-virtual bool 	setLocalAddress(const struct sockaddr_storage &addr);
-virtual bool 	getLocalAddress(struct sockaddr_storage &addr);
+bool 	setLocalAddress(const struct sockaddr_storage &addr) override;
+bool 	getLocalAddress(struct sockaddr_storage &addr) override;
 
 	/******* overloaded from pqiConnectCb *************/
-virtual void    peerStatus(const RsPeerId& id, const pqiIpAddrSet &addrs, 
-                        uint32_t type, uint32_t flags, uint32_t source);
-virtual void    peerConnectRequest(const RsPeerId& id, const struct sockaddr_storage &raddr,
+void    peerStatus(const RsPeerId& id, const pqiIpAddrSet &addrs, 
+                        uint32_t type, uint32_t flags, uint32_t source) override;
+void    peerConnectRequest(const RsPeerId& id, const struct sockaddr_storage &raddr,
                         const struct sockaddr_storage &proxyaddr,  const struct sockaddr_storage &srcaddr, 
-                        uint32_t source, uint32_t flags, uint32_t delay, uint32_t bandwidth);
+                        uint32_t source, uint32_t flags, uint32_t delay, uint32_t bandwidth) override;
 
 
 	/************* DEPRECIATED FUNCTIONS (TO REMOVE) ********/
 
-virtual void	getFriendList(std::list<RsPeerId> &ssl_peers); // ONLY used by p3peers.cc USE p3PeerMgr instead.
-virtual bool	getFriendNetStatus(const RsPeerId &id, peerConnectState &state); // ONLY used by p3peers.cc
+void	getFriendList(std::list<RsPeerId> &ssl_peers) override; // ONLY used by p3peers.cc USE p3PeerMgr instead.
+bool	getFriendNetStatus(const RsPeerId &id, peerConnectState &state) override; // ONLY used by p3peers.cc
 
 /************************************************************************************************/
 /* Extra IMPL Functions (used by p3PeerMgr, p3NetMgr + Setup) */
 /************************************************************************************************/
 
         p3LinkMgrIMPL(p3PeerMgrIMPL *peerMgr, p3NetMgrIMPL *netMgr);
-        virtual ~p3LinkMgrIMPL();
+        ~p3LinkMgrIMPL() override;
 
 void 	tick();
 
@@ -269,12 +269,12 @@ void    setFriendVisibility(const RsPeerId &id, bool isVisible);
     void disconnectFriend(const RsPeerId& id) ;
 
 	/* add/remove friends */
-virtual int 	addFriend(const RsPeerId &ssl_id, bool isVisible);
+int 	addFriend(const RsPeerId &ssl_id, bool isVisible) override;
 int 	removeFriend(const RsPeerId &ssl_id);
 
 void 	printPeerLists(std::ostream &out);
 
-virtual bool checkPotentialAddr(const struct sockaddr_storage &addr, time_t age);
+bool checkPotentialAddr(const struct sockaddr_storage &addr, time_t age) override;
 protected:
 	/* THESE CAN PROBABLY BE REMOVED */
 //bool	shutdown(); /* blocking shutdown call */

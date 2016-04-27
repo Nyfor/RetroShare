@@ -52,30 +52,30 @@ public:
 	/** Default Constructor */
 	GxsChannelPostsWidget(const RsGxsGroupId &channelId, QWidget *parent = 0);
 	/** Default Destructor */
-	~GxsChannelPostsWidget();
+	~GxsChannelPostsWidget() override;
 
 	/* GxsMessageFrameWidget */
-	virtual QIcon groupIcon();
+	QIcon groupIcon() override;
 
 	/* FeedHolder */
-	virtual QScrollArea *getScrollArea();
-	virtual void deleteFeedItem(QWidget *item, uint32_t type);
-	virtual void openChat(const RsPeerId& peerId);
-	virtual void openComments(uint32_t type, const RsGxsGroupId &groupId, const RsGxsMessageId &msgId, const QString &title);
+	QScrollArea *getScrollArea() override;
+	void deleteFeedItem(QWidget *item, uint32_t type) override;
+	void openChat(const RsPeerId& peerId) override;
+	void openComments(uint32_t type, const RsGxsGroupId &groupId, const RsGxsMessageId &msgId, const QString &title) override;
 
 protected:
 	/* GxsMessageFramePostWidget */
-	virtual void groupNameChanged(const QString &name);
-	virtual bool insertGroupData(const uint32_t &token, RsGroupMetaData &metaData);
-	virtual void insertAllPosts(const uint32_t &token, GxsMessageFramePostThread *thread);
-	virtual void insertPosts(const uint32_t &token);
-	virtual void clearPosts();
-	virtual bool useThread() { return mUseThread; }
-	virtual void fillThreadCreatePost(const QVariant &post, bool related, int current, int count);
-	virtual bool navigatePostItem(const RsGxsMessageId& msgId);
+	void groupNameChanged(const QString &name) override;
+	bool insertGroupData(const uint32_t &token, RsGroupMetaData &metaData) override;
+	void insertAllPosts(const uint32_t &token, GxsMessageFramePostThread *thread) override;
+	void insertPosts(const uint32_t &token) override;
+	void clearPosts() override;
+	bool useThread() override { return mUseThread; }
+	void fillThreadCreatePost(const QVariant &post, bool related, int current, int count) override;
+	bool navigatePostItem(const RsGxsMessageId& msgId) override;
 
 	/* GxsMessageFrameWidget */
-	virtual void setAllMessagesReadDo(bool read, uint32_t &token);
+	void setAllMessagesReadDo(bool read, uint32_t &token) override;
 
 private slots:
 	void createMsg();

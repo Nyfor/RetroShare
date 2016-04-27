@@ -19,7 +19,7 @@ class RsAutoUpdatePage: public MainPage
 
 	public:
 		RsAutoUpdatePage(int ms_update_period = 1000, QWidget *parent = NULL, Qt::WindowFlags flags = 0) ;
-		virtual ~RsAutoUpdatePage() ;
+		~RsAutoUpdatePage() override ;
 
 		static void lockAllEvents() ;
 		static void unlockAllEvents() ;
@@ -40,7 +40,7 @@ class RsAutoUpdatePage: public MainPage
 		//
 		virtual void updateDisplay() {}
 	
-		virtual void showEvent(QShowEvent *e) ;
+		void showEvent(QShowEvent *e) override ;
 
 	private slots:
 		void timerUpdate() ;

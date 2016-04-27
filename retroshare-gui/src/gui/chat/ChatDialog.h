@@ -76,9 +76,9 @@ private slots:
 
 protected:
 	explicit ChatDialog(QWidget *parent = 0, Qt::WindowFlags flags = 0);
-	virtual ~ChatDialog();
+	~ChatDialog() override;
 
-	void closeEvent(QCloseEvent *event);
+	void closeEvent(QCloseEvent *event) override;
 	virtual bool canClose() { return true; }
 
     virtual QString getPeerName(const ChatId &sslid) const ;	// can be overloaded for chat dialogs that have specific peers

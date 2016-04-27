@@ -50,9 +50,9 @@ class RsBanListItem: public RsItem
 		return; 
 	}
 
-    virtual ~RsBanListItem();
-    virtual void clear();
-    std::ostream &print(std::ostream &out, uint16_t indent = 0);
+    ~RsBanListItem() override;
+    void clear() override;
+    std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
 	RsTlvBanList	peerList;
 };
@@ -63,10 +63,10 @@ public:
     RsBanListConfigItem()
             :RsItem(RS_PKT_VERSION_SERVICE, RS_SERVICE_TYPE_BANLIST, RS_PKT_SUBTYPE_BANLIST_CONFIG_ITEM) {}
 
-    virtual ~RsBanListConfigItem(){}
-    virtual void clear();
+    ~RsBanListConfigItem() override{}
+    void clear() override;
 
-    std::ostream &print(std::ostream &out, uint16_t indent = 0);
+    std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
     uint32_t		type ;
     RsPeerId  		peerId ;
@@ -80,12 +80,12 @@ public:
     RsBanListSerialiser()
             :RsSerialType(RS_PKT_VERSION_SERVICE, RS_SERVICE_TYPE_BANLIST)
     { return; }
-    virtual     ~RsBanListSerialiser()
+        ~RsBanListSerialiser() override
     { return; }
 
-    virtual	uint32_t    size(RsItem *);
-    virtual	bool        serialise  (RsItem *item, void *data, uint32_t *size);
-    virtual	RsItem *    deserialise(void *data, uint32_t *size);
+    	uint32_t    size(RsItem *) override;
+    	bool        serialise  (RsItem *item, void *data, uint32_t *size) override;
+    	RsItem *    deserialise(void *data, uint32_t *size) override;
 
 private:
 

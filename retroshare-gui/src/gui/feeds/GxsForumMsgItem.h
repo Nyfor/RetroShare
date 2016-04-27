@@ -41,30 +41,30 @@ public:
 	GxsForumMsgItem(FeedHolder *feedHolder, uint32_t feedId, const RsGxsGroupId &groupId, const RsGxsMessageId &messageId, bool isHome, bool autoUpdate);
 	GxsForumMsgItem(FeedHolder *feedHolder, uint32_t feedId, const RsGxsForumGroup &group, const RsGxsForumMsg &post, bool isHome, bool autoUpdate);
 	GxsForumMsgItem(FeedHolder *feedHolder, uint32_t feedId, const RsGxsForumMsg &post, bool isHome, bool autoUpdate);
-	virtual ~GxsForumMsgItem();
+	~GxsForumMsgItem() override;
 
 	bool setGroup(const RsGxsForumGroup &group, bool doFill = true);
 	bool setMessage(const RsGxsForumMsg &msg, bool doFill = true);
 
 protected:
 	/* FeedItem */
-	virtual void doExpand(bool open);
-	virtual void expandFill(bool first);
+	void doExpand(bool open) override;
+	void expandFill(bool first) override;
 
 	/* load message data */
 	void requestParentMessage(const RsGxsMessageId &msgId);
 	virtual void loadParentMessage(const uint32_t &token);
 
 	/* GxsGroupFeedItem */
-	virtual QString groupName();
-	virtual void loadGroup(const uint32_t &token);
-	virtual void loadRequest(const TokenQueue *queue, const TokenRequest &req);
-	virtual RetroShareLink::enumType getLinkType() { return RetroShareLink::TYPE_FORUM; }
-	virtual bool isLoading();
+	QString groupName() override;
+	void loadGroup(const uint32_t &token) override;
+	void loadRequest(const TokenQueue *queue, const TokenRequest &req) override;
+	RetroShareLink::enumType getLinkType() override { return RetroShareLink::TYPE_FORUM; }
+	bool isLoading() override;
 
 	/* GxsFeedItem */
-	virtual void loadMessage(const uint32_t &token);
-	virtual QString messageName();
+	void loadMessage(const uint32_t &token) override;
+	QString messageName() override;
 
 private slots:
 	/* default stuff */

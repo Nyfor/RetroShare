@@ -252,10 +252,10 @@ class PictureFlowSoftwareRenderer: public PictureFlowAbstractRenderer
 {
 public:
 	PictureFlowSoftwareRenderer();
-	~PictureFlowSoftwareRenderer();
+	~PictureFlowSoftwareRenderer() override;
 
-	virtual void init();
-	virtual void paint();
+	void init() override;
+	void paint() override;
 
 private:
 	QSize size;

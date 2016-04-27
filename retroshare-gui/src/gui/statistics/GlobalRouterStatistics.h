@@ -36,7 +36,7 @@ class GlobalRouterStatistics: public RsAutoUpdatePage, public Ui::GlobalRouterSt
 
 	public:
 		GlobalRouterStatistics(QWidget *parent = NULL) ;
-		~GlobalRouterStatistics();
+		~GlobalRouterStatistics() override;
 		
 		// Cache for peer names.
         static QString getPeerName(const RsPeerId& peer_id) ;
@@ -53,7 +53,7 @@ private slots:
 		void processSettings(bool bLoad);
 		bool m_bProcessSettings;
 
-		virtual void updateDisplay() ;
+		void updateDisplay() override ;
 
 
 		GlobalRouterStatisticsWidget *_tst_CW ;
@@ -66,9 +66,9 @@ class GlobalRouterStatisticsWidget:  public QWidget
 	public:
 		GlobalRouterStatisticsWidget(QWidget *parent = NULL) ;
 
-		virtual void paintEvent(QPaintEvent *event) ;
-		virtual void resizeEvent(QResizeEvent *event);
-		virtual void wheelEvent(QWheelEvent *event);
+		void paintEvent(QPaintEvent *event) override ;
+		void resizeEvent(QResizeEvent *event) override;
+		void wheelEvent(QWheelEvent *event) override;
 
 		void updateContent() ;
 	private:

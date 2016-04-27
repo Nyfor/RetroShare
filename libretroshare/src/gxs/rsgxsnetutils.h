@@ -93,10 +93,10 @@ class RsNxsNetMgrImpl : public RsNxsNetMgr
 public:
 
     RsNxsNetMgrImpl(p3ServiceControl* sc);
-    virtual ~RsNxsNetMgrImpl(){};
+    ~RsNxsNetMgrImpl() override{};
 
-    virtual const RsPeerId& getOwnId();
-    virtual void getOnlineList(const uint32_t serviceId, std::set<RsPeerId>& ssl_peers);
+    const RsPeerId& getOwnId() override;
+    void getOnlineList(const uint32_t serviceId, std::set<RsPeerId>& ssl_peers) override;
 
 private:
 
@@ -185,8 +185,8 @@ public:
 
 	MsgRespPending(RsGixsReputation* rep, const RsPeerId& peerId, const MsgAuthorV& msgAuthV, int cutOff = 0);
 
-	int getType() const;
-	bool accepted();
+	int getType() const override;
+	bool accepted() override;
 	RsPeerId mPeerId;
 	MsgAuthorV mMsgAuthV;
 	int mCutOff;
@@ -197,8 +197,8 @@ class GrpRespPending : public AuthorPending
 public:
 
 	GrpRespPending(RsGixsReputation* rep, const RsPeerId& peerId, const GrpAuthorV& grpAuthV, int cutOff = 0);
-	int getType() const;
-	bool accepted();
+	int getType() const override;
+	bool accepted() override;
 	RsPeerId mPeerId;
 	GrpAuthorV mGrpAuthV;
 	int mCutOff;
@@ -267,8 +267,8 @@ public:
 	GrpCircleIdRequestVetting(RsGcxs* const circles, 
 			PgpAuxUtils *pgpUtils, 
 			std::vector<GrpIdCircleVet> mGrpCircleV, const RsPeerId& peerId);
-	bool cleared();
-	int getType() const;
+	bool cleared() override;
+	int getType() const override;
 	std::vector<GrpIdCircleVet> mGrpCircleV;
 	RsPeerId mPeerId;
 };
@@ -280,8 +280,8 @@ public:
 			PgpAuxUtils *auxUtils, 
 			std::vector<MsgIdCircleVet> msgs, const RsGxsGroupId& grpId,
 			const RsPeerId& peerId, const RsGxsCircleId& circleId);
-	bool cleared();
-	int getType() const;
+	bool cleared() override;
+	int getType() const override;
 	std::vector<MsgIdCircleVet> mMsgs;
 	RsGxsGroupId mGrpId;
 	RsPeerId mPeerId;

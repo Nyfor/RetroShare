@@ -37,15 +37,15 @@ class pqiloopback: public PQInterface
 {
 public:
 	pqiloopback(const RsPeerId& id);
-virtual ~pqiloopback();
+~pqiloopback() override;
 
 // search Interface.
-virtual int	SendItem(RsItem *item);
-virtual RsItem *GetItem();
+int	SendItem(RsItem *item) override;
+RsItem *GetItem() override;
 
 // PQI interface.
-virtual int	tick();
-virtual int	status();
+int	tick() override;
+int	status() override;
 
 virtual int     notifyEvent(NetInterface */*ni*/, int /*event*/) { return 0; }  /* Not used */
 	private:

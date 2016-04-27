@@ -48,12 +48,12 @@ class RsTlvGenericPairRef: public RsTlvItem
 	:mPairType(pair_type), mKeyType(key_type), 
 	 mValueType(value_type), mKey(k), mValue(v)  { return; }
 
-virtual ~RsTlvGenericPairRef() { return; }
-virtual uint32_t TlvSize() const;
-virtual void	 TlvClear();
-virtual bool     SetTlv(void *data, uint32_t size, uint32_t *offset) const; 
-virtual bool     GetTlv(void *data, uint32_t size, uint32_t *offset); 
-virtual std::ostream &print(std::ostream &out, uint16_t indent) const;
+~RsTlvGenericPairRef() override { return; }
+uint32_t TlvSize() const override;
+void	 TlvClear() override;
+bool     SetTlv(void *data, uint32_t size, uint32_t *offset) const override; 
+bool     GetTlv(void *data, uint32_t size, uint32_t *offset) override; 
+std::ostream &print(std::ostream &out, uint16_t indent) const override;
 
 	uint16_t mPairType;
 	uint16_t mKeyType;
@@ -74,12 +74,12 @@ class RsTlvGenericMapRef: public RsTlvItem
 	:mMapType(map_type), mPairType(pair_type), 
 	 mKeyType(key_type), mValueType(value_type), mRefMap(refmap)  { return; }
 
-virtual ~RsTlvGenericMapRef() { return; }
-virtual uint32_t TlvSize() const;
-virtual void	 TlvClear();
-virtual bool     SetTlv(void *data, uint32_t size, uint32_t *offset) const; 
-virtual bool     GetTlv(void *data, uint32_t size, uint32_t *offset); 
-virtual std::ostream &print(std::ostream &out, uint16_t indent) const;
+~RsTlvGenericMapRef() override { return; }
+uint32_t TlvSize() const override;
+void	 TlvClear() override;
+bool     SetTlv(void *data, uint32_t size, uint32_t *offset) const override; 
+bool     GetTlv(void *data, uint32_t size, uint32_t *offset) override; 
+std::ostream &print(std::ostream &out, uint16_t indent) const override;
 
 	uint16_t mMapType;
 	uint16_t mPairType;

@@ -33,7 +33,7 @@ class FeedNotify : public QObject
 
 public:
 	FeedNotify(QObject *parent = 0);
-	~FeedNotify();
+	~FeedNotify() override;
 
 	virtual bool hasSetting(QString &/*name*/);
 	virtual bool notifyEnabled();

@@ -38,7 +38,7 @@ public:
 	/** Default Constructor */
 	HelpDialog(QWidget *parent = 0);
 	/** Default Destructor */
-	virtual ~HelpDialog();
+	~HelpDialog() override;
 
 private:
 	/** Qt Designer generated object */

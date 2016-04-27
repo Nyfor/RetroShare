@@ -80,16 +80,16 @@ class RsServer: public RsControl, public RsTickingThread
 	public:
 		/****************************************/
 		/* p3face-startup.cc: init... */
-		virtual int StartupRetroShare();
+		int StartupRetroShare() override;
 
 		/****************************************/
 		/* p3face.cc: main loop / util fns / locking. */
 
 		RsServer() ;
-		virtual ~RsServer();
+		~RsServer() override;
 
 		/* Thread Fn: Run the Core */
-        virtual void data_tick();
+        void data_tick() override;
 
 		/* locking stuff */
 		void    lockRsCore() 
@@ -120,7 +120,7 @@ class RsServer: public RsControl, public RsTickingThread
 	public:
 		/* Config */
 
-        virtual void    ConfigFinalSave( );
+        void    ConfigFinalSave( ) override;
         virtual void	startServiceThread(RsTickingThread *t) ;
 
 		/************* Rs shut down function: in upnp 'port lease time' bug *****************/
@@ -129,13 +129,13 @@ class RsServer: public RsControl, public RsTickingThread
 		 * This function is responsible for ensuring Retroshare exits in a legal state:
 		 * i.e. releases all held resources and saves current configuration
 		 */
-		virtual void 	rsGlobalShutDown( ); 
+		void 	rsGlobalShutDown( ) override; 
 
 		/****************************************/
 
 	public:
-		virtual bool getPeerCryptoDetails(const RsPeerId& ssl_id,RsPeerCryptoParams& params) { return pqih->getCryptoParams(ssl_id,params); }
-		virtual void getLibraries(std::list<RsLibraryInfo> &libraries);
+		bool getPeerCryptoDetails(const RsPeerId& ssl_id,RsPeerCryptoParams& params) override { return pqih->getCryptoParams(ssl_id,params); }
+		void getLibraries(std::list<RsLibraryInfo> &libraries) override;
 
 	private: 
 

@@ -617,7 +617,7 @@ void DhtWindow::updateRelays()
 class DhtTreeWidgetItem : public QTreeWidgetItem
     {
 public:
-    virtual bool operator<(const QTreeWidgetItem &other) const
+    bool operator<(const QTreeWidgetItem &other) const override
 	{
 	  int column = treeWidget()->sortColumn();
 	  if (column == DTW_COL_RECV || column == DTW_COL_SEND

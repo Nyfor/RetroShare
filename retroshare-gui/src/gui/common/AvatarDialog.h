@@ -39,7 +39,7 @@ class AvatarDialog : public QDialog
 
 public:
 	AvatarDialog(QWidget *parent = 0);
-	~AvatarDialog();
+	~AvatarDialog() override;
 
 	void setAvatar(const QPixmap &avatar);
 

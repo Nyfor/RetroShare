@@ -219,17 +219,17 @@ class p3turtle: public p3Service, public RsTurtle, public p3Config
 {
 	public:
 		p3turtle(p3ServiceControl *sc,p3LinkMgr *lm) ;
-		virtual RsServiceInfo getServiceInfo();
+		RsServiceInfo getServiceInfo() override;
 
 		// Enables/disable the service. Still ticks, but does nothing. Default is true.
 		//
-		virtual void setEnabled(bool) ;	
-		virtual bool enabled() const ;	
+		void setEnabled(bool) override ;	
+		bool enabled() const override ;	
 
 		// This is temporary, used by Operating Mode. 
 		// Turtle operates when both enabled() && sessionEnabled() are true.
-		virtual void setSessionEnabled(bool);
-		virtual bool sessionEnabled() const;
+		void setSessionEnabled(bool) override;
+		bool sessionEnabled() const override;
 
 		// Lauches a search request through the pipes, and immediately returns
 		// the request id, which will be further used by the gui to store results
@@ -238,8 +238,8 @@ class p3turtle: public p3Service, public RsTurtle, public p3Config
 		// Eventually, search requests should be handled by client services. We will therefore
 		// remove the specific file search packets from the turtle router.
 		//
-		virtual TurtleSearchRequestId turtleSearch(const std::string& string_to_match) ;
-		virtual TurtleSearchRequestId turtleSearch(const LinearizedExpression& expr) ;
+		TurtleSearchRequestId turtleSearch(const std::string& string_to_match) override ;
+		TurtleSearchRequestId turtleSearch(const LinearizedExpression& expr) override ;
 
 		// Initiates tunnel handling for the given file hash.  tunnels.  Launches
 		// an exception if an error occurs during the initialization process. The
@@ -253,12 +253,12 @@ class p3turtle: public p3Service, public RsTurtle, public p3Config
 		//  This function should be called in addition to ftServer::FileRequest() so that the turtle router
 		//  automatically provide tunnels for the file to download.
 		//
-        virtual void monitorTunnels(const RsFileHash& file_hash,RsTurtleClientService *client_service, bool allow_multi_tunnels) ;
+        void monitorTunnels(const RsFileHash& file_hash,RsTurtleClientService *client_service, bool allow_multi_tunnels) override ;
 
 		/// This should be called when canceling a file download, so that the turtle router stops
 		/// handling tunnels for this file.
 		///
-		virtual void stopMonitoringTunnels(const RsFileHash& file_hash) ;
+		void stopMonitoringTunnels(const RsFileHash& file_hash) override ;
 
         /// This is provided to turtle clients to force the TR to ask tunnels again. To be used wisely:
         /// too many tunnel requests will kill the network. This might be useful to speed-up the re-establishment
@@ -273,15 +273,15 @@ class p3turtle: public p3Service, public RsTurtle, public p3Config
 		///	p3ChatService:		tunnels correspond to private distant chatting
 		///	ftServer		 : 	tunnels correspond to file data transfer
 		///
-		virtual void registerTunnelService(RsTurtleClientService *service) ;
+		void registerTunnelService(RsTurtleClientService *service) override ;
 
 		/// get info about tunnels
-		virtual void getInfo(std::vector<std::vector<std::string> >&,
+		void getInfo(std::vector<std::vector<std::string> >&,
 									std::vector<std::vector<std::string> >&,
 									std::vector<TurtleRequestDisplayInfo >&,
-									std::vector<TurtleRequestDisplayInfo >&) const ;
+									std::vector<TurtleRequestDisplayInfo >&) const override ;
 		
-		virtual void getTrafficStatistics(TurtleTrafficStatisticsInfo& info) const ;
+		void getTrafficStatistics(TurtleTrafficStatisticsInfo& info) const override ;
 
 		/************* from p3service *******************/
 
@@ -291,21 +291,21 @@ class p3turtle: public p3Service, public RsTurtle, public p3Config
 		/// 	- it cleans unused (tunnel+search) requests.
 		/// 	- it maintains the pool of tunnels, for each request file hash.
 		///
-		virtual int tick();
+		int tick() override;
 
 		/************* from p3Config *******************/
-		virtual RsSerialiser *setupSerialiser() ;
-		virtual bool saveList(bool& cleanup, std::list<RsItem*>&) ;
-		virtual bool loadList(std::list<RsItem*>& /*load*/) ;
+		RsSerialiser *setupSerialiser() override ;
+		bool saveList(bool& cleanup, std::list<RsItem*>&) override ;
+		bool loadList(std::list<RsItem*>& /*load*/) override ;
 
 		/************* Communication with clients *******************/
 		/// Does the turtle router manages tunnels to this peer ? (this is not a
 		/// real id, but a fake one, that the turtle router is capable of connecting with a tunnel id).
-		virtual bool isTurtlePeer(const RsPeerId& peer_id) const ;
+		bool isTurtlePeer(const RsPeerId& peer_id) const override ;
 
 		/// sets/gets the max number of forwarded tunnel requests per second.
-		virtual void setMaxTRForwardRate(int max_tr_up_rate) ;
-		virtual int getMaxTRForwardRate() const ;
+		void setMaxTRForwardRate(int max_tr_up_rate) override ;
+		int getMaxTRForwardRate() const override ;
 		
 		/// Examines the peer id, finds the turtle tunnel in it, and respond yes if the tunnel is ok and operational.
 		bool isOnline(const RsPeerId& peer_id) const ;

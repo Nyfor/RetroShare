@@ -54,7 +54,7 @@ public:
   /** Default Constructor */
     PluginsPage(QWidget *parent = 0);
   /** Default Destructor */
-    virtual ~PluginsPage() ;
+    ~PluginsPage() override ;
 
 public slots:
     //! A slot for processing new plugin registration events.

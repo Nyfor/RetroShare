@@ -43,11 +43,11 @@ class pqisslpersongrp: public pqipersongrp
 	protected:
 
 	/********* FUNCTIONS to OVERLOAD for specialisation ********/
-virtual pqilistener *locked_createListener(const struct sockaddr_storage &laddr);
-virtual pqiperson   *locked_createPerson(const RsPeerId& id, pqilistener *listener);
+pqilistener *locked_createListener(const struct sockaddr_storage &laddr) override;
+pqiperson   *locked_createPerson(const RsPeerId& id, pqilistener *listener) override;
     /********* FUNCTIONS to OVERLOAD for specialisation ********/
 
-    virtual void disconnectPeer(const RsPeerId& peer) ;
+    void disconnectPeer(const RsPeerId& peer) override ;
 
 	private:
 

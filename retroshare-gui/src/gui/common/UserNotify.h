@@ -36,7 +36,7 @@ class UserNotify : public QObject
 
 public:
 	UserNotify(QObject *parent = 0);
-	virtual ~UserNotify();
+	~UserNotify() override;
 
 	void initialize(QToolBar *mainToolBar, QAction *mainAction, QListWidgetItem *listItem);
 	void createIcons(QMenu *notifyMenu);

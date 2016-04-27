@@ -15,11 +15,11 @@ class IdentityHandler: public ResourceRouter, NotifyClient
 {
 public:
     IdentityHandler(StateTokenServer* sts, RsNotify* notify, RsIdentity* identity);
-    virtual ~IdentityHandler();
+    ~IdentityHandler() override;
 
     // from NotifyClient
     // note: this may get called from foreign threads
-    virtual void notifyGxsChange(const RsGxsChanges &changes);
+    void notifyGxsChange(const RsGxsChanges &changes) override;
 
 private:
     void handleWildcard(Request& req, Response& resp);

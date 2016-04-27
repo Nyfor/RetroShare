@@ -31,10 +31,10 @@ class RsServiceSerialiser: public RsSerialType
 {
 	public:
 		RsServiceSerialiser() :RsSerialType(RS_PKT_VERSION_SERVICE, 0, 0) { }
-		virtual     ~RsServiceSerialiser() { }
+		    ~RsServiceSerialiser() override { }
 
-		virtual	uint32_t    size(RsItem *);
-		virtual	bool        serialise  (RsItem *item, void *data, uint32_t *size);
-		virtual	RsItem *    deserialise(void *data, uint32_t *size);
+			uint32_t    size(RsItem *) override;
+			bool        serialise  (RsItem *item, void *data, uint32_t *size) override;
+			RsItem *    deserialise(void *data, uint32_t *size) override;
 };
 

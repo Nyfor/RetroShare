@@ -77,7 +77,7 @@ public:
             : RsServiceControlItem(RS_PKT_SUBTYPE_SERVICE_CONTROL_SERVICE_PERMISSIONS),
               RsServicePermissions(perms) {}
 
-    virtual uint32_t serial_size() const
+    uint32_t serial_size() const override
     {
         uint32_t s = 8 ; // header
 
@@ -91,7 +91,7 @@ public:
 
     return s ;
     }
-    virtual bool serialise(uint8_t *data,uint32_t size) const
+    bool serialise(uint8_t *data,uint32_t size) const override
     {
         uint32_t tlvsize,offset=0;
         bool ok = true;
@@ -173,8 +173,8 @@ public:
         return item;
     }
 
-    virtual void clear() {}
-    virtual std::ostream& print(std::ostream& out,uint16_t)
+    void clear() override {}
+    std::ostream& print(std::ostream& out,uint16_t) override
     {
         std::cerr << __PRETTY_FUNCTION__ << ": not implemented!" << std::endl;
     return out ;
@@ -186,7 +186,7 @@ class ServiceControlSerialiser: public RsSerialType
 public:
     ServiceControlSerialiser() : RsSerialType(RS_PKT_VERSION_SERVICE, RS_SERVICE_TYPE_SERVICE_CONTROL) {}
 
-    virtual uint32_t size (RsItem *item)
+    uint32_t size (RsItem *item) override
     {
         RsServiceControlItem *scitem = dynamic_cast<RsServiceControlItem *>(item);
         if (!scitem)
@@ -195,7 +195,7 @@ public:
         }
         return scitem->serial_size() ;
     }
-    virtual bool serialise(RsItem *item, void *data, uint32_t *size)
+    bool serialise(RsItem *item, void *data, uint32_t *size) override
     {
         RsServiceControlItem *scitem = dynamic_cast<RsServiceControlItem *>(item);
         if (!scitem)
@@ -204,7 +204,7 @@ public:
         }
         return scitem->serialise((uint8_t*)data,*size) ;
     }
-    virtual RsItem *deserialise (void *data, uint32_t *size)
+    RsItem *deserialise (void *data, uint32_t *size) override
     {
                 uint32_t rstype = getRsItemId(data);
 

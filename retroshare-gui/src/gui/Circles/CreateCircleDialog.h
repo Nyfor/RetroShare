@@ -37,7 +37,7 @@ class CreateCircleDialog : public QDialog, public TokenResponse
 
 public:
 	CreateCircleDialog();
-	~CreateCircleDialog();
+	~CreateCircleDialog() override;
 
 	void editNewId(bool isExternal);
 	void editExistingId(const RsGxsGroupId &circleId, const bool &clearList = true, bool readonly=true);
@@ -45,7 +45,7 @@ public:
 	void addMember(const RsGxsIdGroup &idGroup);
 	void addCircle(const RsGxsCircleDetails &cirDetails);
 
-	virtual void loadRequest(const TokenQueue *queue, const TokenRequest &req);
+	void loadRequest(const TokenQueue *queue, const TokenRequest &req) override;
     
 private slots:
 	void addMember();

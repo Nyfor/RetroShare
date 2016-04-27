@@ -218,7 +218,7 @@ public:
     virtual void data_tick() =0;
 
 private:
-    virtual void runloop() ; /* called once the thread is started. Should be overloaded by subclasses. */
+    void runloop() override ; /* called once the thread is started. Should be overloaded by subclasses. */
 };
 
 class RsSingleJobThread: public RsThread
@@ -227,7 +227,7 @@ public:
     virtual void run() =0;
 
 protected:
-    virtual void runloop() ;
+    void runloop() override ;
 };
 
 class RsQueueThread: public RsTickingThread
@@ -235,13 +235,13 @@ class RsQueueThread: public RsTickingThread
 public:
 
     RsQueueThread(uint32_t min, uint32_t max, double relaxFactor );
-    virtual ~RsQueueThread() { return; }
+    ~RsQueueThread() override { return; }
 
 protected:
 
     virtual bool workQueued() = 0;
     virtual bool doWork() = 0;
-    virtual void data_tick() ;
+    void data_tick() override ;
 
 private:
     uint32_t mMinSleep; /* ms */

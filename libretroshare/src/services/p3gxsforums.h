@@ -46,26 +46,26 @@ class p3GxsForums: public RsGenExchange, public RsGxsForums,
 
 	p3GxsForums(RsGeneralDataService* gds, RsNetworkExchangeService* nes, RsGixs* gixs);
 
-virtual RsServiceInfo getServiceInfo();
+RsServiceInfo getServiceInfo() override;
 
-virtual void service_tick();
+void service_tick() override;
 
 	protected:
 
 
-virtual void notifyChanges(std::vector<RsGxsNotify*>& changes);
+void notifyChanges(std::vector<RsGxsNotify*>& changes) override;
 
         // Overloaded from RsTickEvent.
-virtual void handle_event(uint32_t event_type, const std::string &elabel);
+void handle_event(uint32_t event_type, const std::string &elabel) override;
 
 	public:
 
-virtual bool getGroupData(const uint32_t &token, std::vector<RsGxsForumGroup> &groups);
-virtual bool getMsgData(const uint32_t &token, std::vector<RsGxsForumMsg> &msgs);
-virtual bool getRelatedMessages(const uint32_t &token, std::vector<RsGxsForumMsg> &msgs);
+bool getGroupData(const uint32_t &token, std::vector<RsGxsForumGroup> &groups) override;
+bool getMsgData(const uint32_t &token, std::vector<RsGxsForumMsg> &msgs) override;
+bool getRelatedMessages(const uint32_t &token, std::vector<RsGxsForumMsg> &msgs) override;
 
         //////////////////////////////////////////////////////////////////////////////
-virtual void setMessageReadStatus(uint32_t& token, const RsGxsGrpMsgIdPair& msgId, bool read);
+void setMessageReadStatus(uint32_t& token, const RsGxsGrpMsgIdPair& msgId, bool read) override;
 
 //virtual bool setMessageStatus(const std::string &msgId, const uint32_t status, const uint32_t statusMask);
 //virtual bool setGroupSubscribeFlags(const std::string &groupId, uint32_t subscribeFlags, uint32_t subscribeMask);
@@ -73,8 +73,8 @@ virtual void setMessageReadStatus(uint32_t& token, const RsGxsGrpMsgIdPair& msgI
 //virtual bool groupRestoreKeys(const std::string &groupId);
 //virtual bool groupShareKeys(const std::string &groupId, std::list<std::string>& peers);
 
-virtual bool createGroup(uint32_t &token, RsGxsForumGroup &group);
-virtual bool createMsg(uint32_t &token, RsGxsForumMsg &msg);
+bool createGroup(uint32_t &token, RsGxsForumGroup &group) override;
+bool createMsg(uint32_t &token, RsGxsForumMsg &msg) override;
 
 /*!
  * To update forum group with new information
@@ -82,7 +82,7 @@ virtual bool createMsg(uint32_t &token, RsGxsForumMsg &msg);
  * @param group group to be updated, groupId element must be set or will be rejected
  * @return false groupId not set, true if set and accepted (still check token for completion)
  */
-virtual bool updateGroup(uint32_t &token, RsGxsForumGroup &group);
+bool updateGroup(uint32_t &token, RsGxsForumGroup &group) override;
 
 
 	private:

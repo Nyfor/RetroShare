@@ -40,11 +40,11 @@ class FeedReaderFeedItem : public FeedItem
 
 public:
 	FeedReaderFeedItem(RsFeedReader *feedReader, FeedReaderNotify *notify, FeedHolder *parent, const FeedInfo &feedInfo, const FeedMsgInfo &msgInfo);
-	~FeedReaderFeedItem();
+	~FeedReaderFeedItem() override;
 
 protected:
 	/* FeedItem */
-	virtual void doExpand(bool open);
+	void doExpand(bool open) override;
 
 private slots:
 	/* default stuff */

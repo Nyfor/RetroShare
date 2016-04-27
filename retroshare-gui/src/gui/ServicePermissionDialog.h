@@ -42,7 +42,7 @@ public:
 
 private:
 	ServicePermissionDialog();
-	~ServicePermissionDialog();
+	~ServicePermissionDialog() override;
 
 private slots:
 	void itemAdded(int idType, const QString &id, QTreeWidgetItem *item);

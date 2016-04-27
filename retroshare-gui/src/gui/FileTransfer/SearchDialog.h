@@ -45,7 +45,7 @@ public:
 /** Default Constructor */
     SearchDialog(QWidget *parent = 0);
 /** Default Destructor */
-    ~SearchDialog();
+    ~SearchDialog() override;
 
     void searchKeywords(const QString& keywords);
 
@@ -93,7 +93,7 @@ private slots:
 
 /** management of the adv search dialog object when switching search modes */
     void toggleAdvancedSearchDialog(bool);
-    void hideEvent(QHideEvent * event);
+    void hideEvent(QHideEvent * event) override;
 
 /** raises (and if necessary instantiates) the advanced search dialog */
     void showAdvSearchDialog(bool=true);

@@ -35,11 +35,11 @@ public:
     pqithreadstreamer(PQInterface *parent, RsSerialiser *rss, const RsPeerId& peerid, BinInterface *bio_in, int bio_flagsin);
 
     // from pqistreamer
-    virtual bool RecvItem(RsItem *item);
-    virtual int  tick();
+    bool RecvItem(RsItem *item) override;
+    int  tick() override;
 
 protected:
-    virtual void  data_tick();
+    void  data_tick() override;
 
     PQInterface *mParent;
     uint32_t mTimeout;

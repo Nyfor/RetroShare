@@ -38,12 +38,12 @@ class RsTlvFileItem: public RsTlvItem
 {
 	public:
 	 RsTlvFileItem();
-virtual ~RsTlvFileItem() { return; }
-virtual uint32_t TlvSize() const;
-virtual void	 TlvClear();
-virtual bool     SetTlv(void *data, uint32_t size, uint32_t *offset) const; 
-virtual bool     GetTlv(void *data, uint32_t size, uint32_t *offset); 
-virtual std::ostream &print(std::ostream &out, uint16_t indent) const;
+~RsTlvFileItem() override { return; }
+uint32_t TlvSize() const override;
+void	 TlvClear() override;
+bool     SetTlv(void *data, uint32_t size, uint32_t *offset) const override; 
+bool     GetTlv(void *data, uint32_t size, uint32_t *offset) override; 
+std::ostream &print(std::ostream &out, uint16_t indent) const override;
 
 	uint64_t filesize; /// Mandatory: size of file to be downloaded
     RsFileHash hash;  /// Mandatory: to find file
@@ -61,12 +61,12 @@ class RsTlvFileSet: public RsTlvItem
 {
 	public:
 	 RsTlvFileSet() { return; }
-virtual ~RsTlvFileSet() { return; }
-virtual uint32_t TlvSize() const;
-virtual void	 TlvClear();
-virtual bool     SetTlv(void *data, uint32_t size, uint32_t *offset) const; 
-virtual bool     GetTlv(void *data, uint32_t size, uint32_t *offset); 
-virtual std::ostream &print(std::ostream &out, uint16_t indent) const;
+~RsTlvFileSet() override { return; }
+uint32_t TlvSize() const override;
+void	 TlvClear() override;
+bool     SetTlv(void *data, uint32_t size, uint32_t *offset) const override; 
+bool     GetTlv(void *data, uint32_t size, uint32_t *offset) override; 
+std::ostream &print(std::ostream &out, uint16_t indent) const override;
 
 	std::list<RsTlvFileItem> items; /// Mandatory 
 	std::string title;   		/// Optional: title of file set
@@ -78,12 +78,12 @@ class RsTlvFileData: public RsTlvItem
 {
 	public:
 	 RsTlvFileData(); 
-	 virtual ~RsTlvFileData() { return; }
-virtual uint32_t TlvSize() const;
-virtual void	 TlvClear();
-virtual bool     SetTlv(void *data, uint32_t size, uint32_t *offset) const; 
-virtual bool     GetTlv(void *data, uint32_t size, uint32_t *offset); 
-virtual std::ostream &print(std::ostream &out, uint16_t indent) const;
+	 ~RsTlvFileData() override { return; }
+uint32_t TlvSize() const override;
+void	 TlvClear() override;
+bool     SetTlv(void *data, uint32_t size, uint32_t *offset) const override; 
+bool     GetTlv(void *data, uint32_t size, uint32_t *offset) override; 
+std::ostream &print(std::ostream &out, uint16_t indent) const override;
 
 	RsTlvFileItem   file;         /// Mandatory: file information	
 	uint64_t        file_offset;  /// Mandatory: where to start in bin data

@@ -114,7 +114,7 @@ public:
 private:
     ChatHandler::LobbyParticipantsInfo mParticipantsInfo;
 protected:
-    virtual void gxsDoWork(Request &/*req*/, Response &resp)
+    void gxsDoWork(Request &/*req*/, Response &resp) override
     {
         resp.mDataStream.getStreamToMember();
         const std::map<RsGxsId, time_t>& map = mParticipantsInfo.participants;
@@ -1000,7 +1000,7 @@ private:
     ChatId mId;
     ChatHandler::TypingLabelInfo mInfo;
 protected:
-    void gxsDoWork(Request& /*req*/, Response& resp)
+    void gxsDoWork(Request& /*req*/, Response& resp) override
     {
         if(mState == BEGIN)
         {

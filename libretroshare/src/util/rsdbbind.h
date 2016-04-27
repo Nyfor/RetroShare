@@ -54,7 +54,7 @@ class RsDoubleBind : public RetroBind
 {
 public:
 	RsDoubleBind(double value, int index);
-	bool bind(sqlite3_stmt* const stm) const;
+	bool bind(sqlite3_stmt* const stm) const override;
 	double mValue;
 };
 
@@ -62,7 +62,7 @@ class RsStringBind : public RetroBind
 {
 public:
 	RsStringBind(const std::string& value, int index);
-	bool bind(sqlite3_stmt* const stm) const ;
+	bool bind(sqlite3_stmt* const stm) const override ;
 	std::string mValue;
 };
 
@@ -70,7 +70,7 @@ class RsInt32Bind : public RetroBind
 {
 public:
 	RsInt32Bind(int32_t value, int index);
-	bool bind(sqlite3_stmt* const stm) const ;
+	bool bind(sqlite3_stmt* const stm) const override ;
 	int32_t mValue;
 };
 
@@ -78,7 +78,7 @@ class RsInt64bind : public RetroBind
 {
 public:
 	RsInt64bind(int64_t value, int index);
-	bool bind(sqlite3_stmt* const stm) const ;
+	bool bind(sqlite3_stmt* const stm) const override ;
 	int64_t mValue;
 };
 
@@ -86,7 +86,7 @@ class RsBoolBind : public RetroBind
 {
 public:
 	RsBoolBind(bool value, int index);
-	bool bind(sqlite3_stmt* const stm) const ;
+	bool bind(sqlite3_stmt* const stm) const override ;
 	bool mValue;
 };
 
@@ -94,7 +94,7 @@ class RsBlobBind : public RetroBind
 {
 public:
 	RsBlobBind(char* data, uint32_t dataLen, int index);
-	bool bind(sqlite3_stmt* const stm) const;
+	bool bind(sqlite3_stmt* const stm) const override;
 	char* mData;
 	uint32_t mDataLen;
 };

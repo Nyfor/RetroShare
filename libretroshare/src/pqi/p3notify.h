@@ -69,15 +69,15 @@ class p3Notify: public RsNotify
 		p3Notify() : noteMtx("p3Notify") { return; }
 		virtual ~p3Notify() { return; }
 
-		virtual void registerNotifyClient(NotifyClient *nc) ;
-        virtual bool unregisterNotifyClient(NotifyClient *nc) ;
+		void registerNotifyClient(NotifyClient *nc) override ;
+        bool unregisterNotifyClient(NotifyClient *nc) override ;
 
 		/* Pull output methods for retroshare-gui */
-		virtual bool NotifySysMessage(uint32_t &sysid, uint32_t &type, std::string &title, std::string &msg);
-		virtual bool NotifyPopupMessage(uint32_t &ptype, std::string &name, std::string &title, std::string &msg);
-		virtual bool NotifyLogMessage(uint32_t &sysid, uint32_t &type, std::string &title, std::string &msg);
+		bool NotifySysMessage(uint32_t &sysid, uint32_t &type, std::string &title, std::string &msg) override;
+		bool NotifyPopupMessage(uint32_t &ptype, std::string &name, std::string &title, std::string &msg) override;
+		bool NotifyLogMessage(uint32_t &sysid, uint32_t &type, std::string &title, std::string &msg) override;
 
-		virtual bool GetFeedItem(RsFeedItem &item);
+		bool GetFeedItem(RsFeedItem &item) override;
 
 		/* Control over Messages */
 		bool GetSysMessageList(std::map<uint32_t, std::string> &list);

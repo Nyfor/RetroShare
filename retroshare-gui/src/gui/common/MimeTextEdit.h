@@ -56,11 +56,11 @@ signals:
 	void calculateContextMenuActions();
 
 protected:
-	virtual bool canInsertFromMimeData(const QMimeData* source) const;
-	virtual void insertFromMimeData(const QMimeData* source);
-	virtual void contextMenuEvent(QContextMenuEvent *e);
-	virtual void keyPressEvent(QKeyEvent *e);
-	virtual void focusInEvent(QFocusEvent *e);
+	bool canInsertFromMimeData(const QMimeData* source) const override;
+	void insertFromMimeData(const QMimeData* source) override;
+	void contextMenuEvent(QContextMenuEvent *e) override;
+	void keyPressEvent(QKeyEvent *e) override;
+	void focusInEvent(QFocusEvent *e) override;
 
 private slots:
 	void insertCompletion(const QString &completion);

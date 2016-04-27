@@ -43,23 +43,23 @@ class p3Wire: public RsGenExchange, public RsWire
 {
 public:
     p3Wire(RsGeneralDataService* gds, RsNetworkExchangeService* nes, RsGixs *gixs);
-virtual RsServiceInfo getServiceInfo();
+RsServiceInfo getServiceInfo() override;
 static uint32_t wireAuthenPolicy();
 
 protected:
 
-virtual void notifyChanges(std::vector<RsGxsNotify*>& changes) ;
+void notifyChanges(std::vector<RsGxsNotify*>& changes) override ;
 
 public:
 
-virtual void service_tick();
+void service_tick() override;
 
         /* Specific Service Data */
-virtual bool getGroupData(const uint32_t &token, std::vector<RsWireGroup> &groups);
-virtual bool getPulseData(const uint32_t &token, std::vector<RsWirePulse> &pulses);
+bool getGroupData(const uint32_t &token, std::vector<RsWireGroup> &groups) override;
+bool getPulseData(const uint32_t &token, std::vector<RsWirePulse> &pulses) override;
 
-virtual bool createGroup(uint32_t &token, RsWireGroup &group);
-virtual bool createPulse(uint32_t &token, RsWirePulse &pulse);
+bool createGroup(uint32_t &token, RsWireGroup &group) override;
+bool createPulse(uint32_t &token, RsWirePulse &pulse) override;
 
 	private:
 

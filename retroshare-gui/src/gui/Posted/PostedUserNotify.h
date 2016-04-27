@@ -31,12 +31,12 @@ class PostedUserNotify : public GxsUserNotify
 public:
 	PostedUserNotify(RsGxsIfaceHelper *ifaceImpl, QObject *parent = 0);
 
-	virtual bool hasSetting(QString *name, QString *group);
+	bool hasSetting(QString *name, QString *group) override;
 
 private:
-	virtual QIcon getIcon();
-	virtual QIcon getMainIcon(bool hasNew);
-	virtual void iconClicked();
+	QIcon getIcon() override;
+	QIcon getMainIcon(bool hasNew) override;
+	void iconClicked() override;
 };
 
 #endif // POSTEDUSERNOTIFY_H

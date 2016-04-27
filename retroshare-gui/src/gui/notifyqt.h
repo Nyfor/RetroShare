@@ -35,40 +35,40 @@ class NotifyQt: public QObject, public NotifyClient
 		static bool isAllDisable();
 		void enable() ;
 
-		virtual ~NotifyQt() { return; }
+		~NotifyQt() override { return; }
 
 		void setNetworkDialog(NetworkDialog *c) { cDialog = c; }
 
-		virtual void notifyListPreChange(int list, int type);
-		virtual void notifyListChange(int list, int type);
-		virtual void notifyErrorMsg(int list, int sev, std::string msg);
-		virtual void notifyChatMessage(const ChatMessage&        /* msg */);
-		virtual void notifyChatStatus(const ChatId &chat_id,const std::string& status_string);
-		virtual void notifyChatCleared(const ChatId &chat_id);
-		virtual void notifyCustomState(const std::string& peer_id, const std::string& status_string);
-		virtual void notifyHashingInfo(uint32_t type, const std::string& fileinfo);
-		virtual void notifyTurtleSearchResult(uint32_t search_id,const std::list<TurtleFileInfo>& found_files);
-		virtual void notifyPeerHasNewAvatar(std::string peer_id) ;
-		virtual void notifyOwnAvatarChanged() ;
-        virtual void notifyChatLobbyEvent(uint64_t /* lobby id */, uint32_t /* event type */, const RsGxsId & /*nickname*/, const std::string& /* any string */) ;
-		virtual void notifyChatLobbyTimeShift(int time_shift) ;
+		void notifyListPreChange(int list, int type) override;
+		void notifyListChange(int list, int type) override;
+		void notifyErrorMsg(int list, int sev, std::string msg) override;
+		void notifyChatMessage(const ChatMessage&        /* msg */) override;
+		void notifyChatStatus(const ChatId &chat_id,const std::string& status_string) override;
+		void notifyChatCleared(const ChatId &chat_id) override;
+		void notifyCustomState(const std::string& peer_id, const std::string& status_string) override;
+		void notifyHashingInfo(uint32_t type, const std::string& fileinfo) override;
+		void notifyTurtleSearchResult(uint32_t search_id,const std::list<TurtleFileInfo>& found_files) override;
+		void notifyPeerHasNewAvatar(std::string peer_id) override ;
+		void notifyOwnAvatarChanged() override ;
+        void notifyChatLobbyEvent(uint64_t /* lobby id */, uint32_t /* event type */, const RsGxsId & /*nickname*/, const std::string& /* any string */) override ;
+		void notifyChatLobbyTimeShift(int time_shift) override ;
 
-		virtual void notifyOwnStatusMessageChanged() ;
-		virtual void notifyDiskFull(uint32_t loc,uint32_t size_in_mb) ;
+		void notifyOwnStatusMessageChanged() override ;
+		void notifyDiskFull(uint32_t loc,uint32_t size_in_mb) override ;
 		/* peer has changed the state */
-		virtual void notifyPeerStatusChanged(const std::string& peer_id, uint32_t state);
+		void notifyPeerStatusChanged(const std::string& peer_id, uint32_t state) override;
 		/* one or more peers has changed the states */
-		virtual void notifyPeerStatusChangedSummary();
+		void notifyPeerStatusChangedSummary() override;
 
-        virtual void notifyGxsChange(const RsGxsChanges& change);
+        void notifyGxsChange(const RsGxsChanges& change) override;
 
-		virtual void notifyHistoryChanged(uint32_t msgId, int type);
+		void notifyHistoryChanged(uint32_t msgId, int type) override;
 
-		virtual void notifyDiscInfoChanged() ;
-		virtual void notifyDownloadComplete(const std::string& fileHash);
-		virtual void notifyDownloadCompleteCount(uint32_t count);
-        virtual bool askForPassword(const std::string& key_details, bool prev_is_bad, std::string& password, bool &cancelled);
-		virtual bool askForPluginConfirmation(const std::string& plugin_filename, const std::string& plugin_file_hash);
+		void notifyDiscInfoChanged() override ;
+		void notifyDownloadComplete(const std::string& fileHash) override;
+		void notifyDownloadCompleteCount(uint32_t count) override;
+        bool askForPassword(const std::string& key_details, bool prev_is_bad, std::string& password, bool &cancelled) override;
+		bool askForPluginConfirmation(const std::string& plugin_filename, const std::string& plugin_file_hash) override;
 
 		// Queues the signature event so that it canhappen in the main GUI thread (to ask for passwd).
 		// To use this function: call is multiple times as soon as it returns true.
@@ -82,7 +82,7 @@ class NotifyQt: public QObject, public NotifyClient
 		// 					1: signature success
 		// 					2: signature failed. Wrong passwd, user pressed cancel, etc.
 		//
-		virtual bool askForDeferredSelfSignature(const void *data, const uint32_t len, unsigned char *sign, unsigned int *signlen,int& signature_result) ;
+		bool askForDeferredSelfSignature(const void *data, const uint32_t len, unsigned char *sign, unsigned int *signlen,int& signature_result) override ;
 
 		/* Notify from GUI */
 		void notifyChatFontChanged();

@@ -40,13 +40,13 @@ class AddFeedDialog : public QDialog, public TokenResponse
     
 public:
 	AddFeedDialog(RsFeedReader *feedReader, FeedReaderNotify *notify, QWidget *parent);
-	~AddFeedDialog();
+	~AddFeedDialog() override;
 
 	void setParent(const std::string &parentId);
 	bool fillFeed(const std::string &feedId);
 
 	/* TokenResponse */
-	virtual void loadRequest(const TokenQueue *queue, const TokenRequest &req);
+	void loadRequest(const TokenQueue *queue, const TokenRequest &req) override;
 
 private slots:
 	void authenticationToggled();

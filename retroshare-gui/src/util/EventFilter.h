@@ -74,7 +74,7 @@ protected:
 	 * @param event event filtered of the watched object
 	 * @return true then stops the event being handled further
 	 */
-	virtual bool eventFilter(QObject * watched, QEvent * event);
+	bool eventFilter(QObject * watched, QEvent * event) override;
 
 Q_SIGNALS:
 

@@ -44,23 +44,23 @@ class pqistreamer: public PQInterface
 {
 	public:
 		pqistreamer(RsSerialiser *rss, const RsPeerId& peerid, BinInterface *bio_in, int bio_flagsin);
-		virtual ~pqistreamer();
+		~pqistreamer() override;
 
 		// PQInterface
-		virtual int     SendItem(RsItem *item)
+		int     SendItem(RsItem *item) override
 		{
 			std::cerr << "Warning pqistreamer::sendItem(RsItem*) should not be called. Plz call SendItem(RsItem *,uint32_t& serialized_size) instead." << std::endl;
 			uint32_t serialized_size ;
 			return SendItem(item,serialized_size) ;
 		}
-		virtual int     SendItem(RsItem *,uint32_t& serialized_size);
-		virtual RsItem *GetItem();
-		virtual int     status();
+		int     SendItem(RsItem *,uint32_t& serialized_size) override;
+		RsItem *GetItem() override;
+		int     status() override;
 
 		time_t  getLastIncomingTS(); 	// Time of last data packet, for checking a connection is alive.
-		virtual void    getRates(RsBwRates &rates);
-		virtual int     getQueueSize(bool in); // extracting data.
-		virtual int     gatherStatistics(std::list<RSTrafficClue>& outqueue_stats,std::list<RSTrafficClue>& inqueue_stats); // extracting data.
+		void    getRates(RsBwRates &rates) override;
+		int     getQueueSize(bool in) override; // extracting data.
+		int     gatherStatistics(std::list<RSTrafficClue>& outqueue_stats,std::list<RSTrafficClue>& inqueue_stats) override; // extracting data.
     protected:
 
 		int tick_bio();

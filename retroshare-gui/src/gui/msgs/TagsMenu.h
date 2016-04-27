@@ -40,7 +40,7 @@ signals:
 	void tagRemoveAll();
 
 protected:
-	virtual void paintEvent(QPaintEvent *e);
+	void paintEvent(QPaintEvent *e) override;
 
 private slots:
 	void fillTags();

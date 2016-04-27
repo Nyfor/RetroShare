@@ -30,16 +30,16 @@ class PluginsPage : public ConfigPage
 
 	public:
 		PluginsPage(QWidget * parent = 0, Qt::WindowFlags flags = 0);
-		~PluginsPage();
+		~PluginsPage() override;
 
 		/** Saves the changes on this page */
-		virtual bool save(QString &errmsg);
+		bool save(QString &errmsg) override;
 		/** Loads the settings for this page */
-		virtual void load();
+		void load() override;
 
-		virtual QPixmap iconPixmap() const { return QPixmap(":/images/extension_32.png") ; }
-		virtual QString pageName() const { return tr("Plugins") ; }
-		virtual QString helpText() const ;
+		QPixmap iconPixmap() const override { return QPixmap(":/images/extension_32.png") ; }
+		QString pageName() const override { return tr("Plugins") ; }
+		QString helpText() const override ;
 
 
 	public slots:

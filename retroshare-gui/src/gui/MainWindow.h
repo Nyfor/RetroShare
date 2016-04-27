@@ -109,7 +109,7 @@ public:
     static MainWindow *getInstance();
 
     /** Destructor. */
-    ~MainWindow();
+    ~MainWindow() override;
 
     static void raiseWindow();
     /** Shows the MainWindow dialog with focus set to the given page. */
@@ -192,7 +192,7 @@ protected:
     /** Default Constructor */
     MainWindow(QWidget *parent = 0, Qt::WindowFlags flags = 0);
 
-    void closeEvent(QCloseEvent *);
+    void closeEvent(QCloseEvent *) override;
     
     /** Called when the user changes the UI translation. */
     virtual void retranslateUi();

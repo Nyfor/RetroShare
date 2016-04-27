@@ -44,11 +44,11 @@
 class RSHumanReadableDelegate: public QAbstractItemDelegate
 {
 	public:
-		virtual QSize sizeHint(const QStyleOptionViewItem&, const QModelIndex&) const 
+		QSize sizeHint(const QStyleOptionViewItem&, const QModelIndex&) const override 
 		{
 			return QSize(50,17) ;
 		}
-		virtual void paint(QPainter *painter,const QStyleOptionViewItem & option, const QModelIndex & index) const = 0;
+		void paint(QPainter *painter,const QStyleOptionViewItem & option, const QModelIndex & index) const override = 0;
 
 	protected:
 		virtual void setPainterOptions(QPainter *painter,QStyleOptionViewItem& option,const QModelIndex& index) const
@@ -88,7 +88,7 @@ class RSHumanReadableDelegate: public QAbstractItemDelegate
 class RSHumanReadableAgeDelegate: public RSHumanReadableDelegate
 {
 	public:
-		virtual void paint(QPainter *painter,const QStyleOptionViewItem & option, const QModelIndex & index) const
+		void paint(QPainter *painter,const QStyleOptionViewItem & option, const QModelIndex & index) const override
 		{
 			QStyleOptionViewItem opt(option) ;
 			setPainterOptions(painter,opt,index) ;
@@ -100,7 +100,7 @@ class RSHumanReadableAgeDelegate: public RSHumanReadableDelegate
 class RSHumanReadableSizeDelegate: public RSHumanReadableDelegate
 {
 	public:
-		virtual void paint(QPainter *painter,const QStyleOptionViewItem & option, const QModelIndex & index) const
+		void paint(QPainter *painter,const QStyleOptionViewItem & option, const QModelIndex & index) const override
 		{
 			QStyleOptionViewItem opt(option) ;
 			setPainterOptions(painter,opt,index) ;

@@ -46,7 +46,7 @@ class p3Msgs: public RsMsgs
 
           p3Msgs(p3MsgService *p3m, p3ChatService *p3c)
                  :mMsgSrv(p3m), mChatSrv(p3c) { return; }
-	  virtual ~p3Msgs() { return; }
+	  ~p3Msgs() override { return; }
 
 	  /****************************************/
 	  /* Message Items */
@@ -54,64 +54,64 @@ class p3Msgs: public RsMsgs
 	  /*!
 	   * @param msgList ref to list summarising client's msgs
 	   */
-	  virtual bool getMessageSummaries(std::list<Rs::Msgs::MsgInfoSummary> &msgList);
-	  virtual bool getMessage(const std::string &mId, Rs::Msgs::MessageInfo &msg);
-	  virtual void getMessageCount(unsigned int *pnInbox, unsigned int *pnInboxNew, unsigned int *pnOutbox, unsigned int *pnDraftbox, unsigned int *pnSentbox, unsigned int *pnTrashbox);
+	  bool getMessageSummaries(std::list<Rs::Msgs::MsgInfoSummary> &msgList) override;
+	  bool getMessage(const std::string &mId, Rs::Msgs::MessageInfo &msg) override;
+	  void getMessageCount(unsigned int *pnInbox, unsigned int *pnInboxNew, unsigned int *pnOutbox, unsigned int *pnDraftbox, unsigned int *pnSentbox, unsigned int *pnTrashbox) override;
 
-	  virtual bool MessageSend(Rs::Msgs::MessageInfo &info);
-	  virtual bool SystemMessage(const std::string &title, const std::string &message, uint32_t systemFlag);
-	  virtual bool MessageToDraft(Rs::Msgs::MessageInfo &info, const std::string &msgParentId);
-	  virtual bool MessageToTrash(const std::string &mid, bool bTrash);
-	  virtual bool MessageDelete(const std::string &mid);
-	  virtual bool MessageRead(const std::string &mid, bool unreadByUser);
-	  virtual bool MessageReplied(const std::string &mid, bool replied);
-	  virtual bool MessageForwarded(const std::string &mid, bool forwarded);
-	  virtual bool MessageStar(const std::string &mid, bool star);
-	  virtual bool MessageLoadEmbeddedImages(const std::string &mid, bool load);
-	  virtual bool getMsgParentId(const std::string &msgId, std::string &msgParentId);
+	  bool MessageSend(Rs::Msgs::MessageInfo &info) override;
+	  bool SystemMessage(const std::string &title, const std::string &message, uint32_t systemFlag) override;
+	  bool MessageToDraft(Rs::Msgs::MessageInfo &info, const std::string &msgParentId) override;
+	  bool MessageToTrash(const std::string &mid, bool bTrash) override;
+	  bool MessageDelete(const std::string &mid) override;
+	  bool MessageRead(const std::string &mid, bool unreadByUser) override;
+	  bool MessageReplied(const std::string &mid, bool replied) override;
+	  bool MessageForwarded(const std::string &mid, bool forwarded) override;
+	  bool MessageStar(const std::string &mid, bool star) override;
+	  bool MessageLoadEmbeddedImages(const std::string &mid, bool load) override;
+	  bool getMsgParentId(const std::string &msgId, std::string &msgParentId) override;
 
-	  virtual bool getMessageTagTypes(Rs::Msgs::MsgTagType& tags);
-	  virtual bool setMessageTagType(uint32_t tagId, std::string& text, uint32_t rgb_color);
-	  virtual bool removeMessageTagType(uint32_t tagId);
+	  bool getMessageTagTypes(Rs::Msgs::MsgTagType& tags) override;
+	  bool setMessageTagType(uint32_t tagId, std::string& text, uint32_t rgb_color) override;
+	  bool removeMessageTagType(uint32_t tagId) override;
 
-	  virtual bool getMessageTag(const std::string &msgId, Rs::Msgs::MsgTagInfo& info);
+	  bool getMessageTag(const std::string &msgId, Rs::Msgs::MsgTagInfo& info) override;
 	  /* set == false && tagId == 0 --> remove all */
-	  virtual bool setMessageTag(const std::string &msgId, uint32_t tagId, bool set);
+	  bool setMessageTag(const std::string &msgId, uint32_t tagId, bool set) override;
 
-	  virtual bool resetMessageStandardTagTypes(Rs::Msgs::MsgTagType& tags);
+	  bool resetMessageStandardTagTypes(Rs::Msgs::MsgTagType& tags) override;
 
-	  virtual uint32_t getDistantMessagingPermissionFlags() ;
-	  virtual void setDistantMessagingPermissionFlags(uint32_t flags) ;
+	  uint32_t getDistantMessagingPermissionFlags() override ;
+	  void setDistantMessagingPermissionFlags(uint32_t flags) override ;
 
 	  /*!
 	   * gets avatar from peer, image data in jpeg format
 	   */
-	  virtual void getAvatarData(const RsPeerId& pid,unsigned char *& data,int& size);
+	  void getAvatarData(const RsPeerId& pid,unsigned char *& data,int& size) override;
 
 	  /*!
 	   * sets clients avatar, image data should be in jpeg format
 	   */
-	  virtual void setOwnAvatarData(const unsigned char *data,int size);
+	  void setOwnAvatarData(const unsigned char *data,int size) override;
 
 	  /*!
 	   * retrieve clients avatar, image data in jpeg format
 	   */
-	  virtual void getOwnAvatarData(unsigned char *& data,int& size);
+	  void getOwnAvatarData(unsigned char *& data,int& size) override;
 
 	  /*!
 	   * sets clients custom status (e.g. "i'm tired")
 	   */
-	  virtual void setCustomStateString(const std::string&  status_string) ;
+	  void setCustomStateString(const std::string&  status_string) override ;
 
 	  /*!
 	   * retrieves client's custom status
 	   */
-	  virtual std::string getCustomStateString() ;
+	  std::string getCustomStateString() override ;
 
 	  /*!
 	   * retrieves peer's custom status
 	   */
-	  virtual std::string getCustomStateString(const RsPeerId& peer_id) ;
+	  std::string getCustomStateString(const RsPeerId& peer_id) override ;
 	  
 
 	  /*!
@@ -120,51 +120,51 @@ class p3Msgs: public RsMsgs
        * @param msg the message
        * @see ChatId
 	   */
-      virtual bool sendChat(ChatId destination, std::string msg) ;
+      bool sendChat(ChatId destination, std::string msg) override ;
 
 	  /*!
 	   * Return the max message size for security forwarding
 	   */
-	  virtual uint32_t getMaxMessageSecuritySize(int type);
+	  uint32_t getMaxMessageSecuritySize(int type) override;
 
     /*!
      * sends immediate status string to a specific peer, e.g. in a private chat
      * @param chat_id chat id to send status string to
      * @param status_string immediate status to send
      */
-    virtual void    sendStatusString(const ChatId& id, const std::string& status_string) ;
+    void    sendStatusString(const ChatId& id, const std::string& status_string) override ;
 
     /**
      * @brief clearChatLobby: Signal chat was cleared by GUI.
      * @param id: Chat id cleared.
      */
-    virtual void clearChatLobby(const ChatId &id);
+    void clearChatLobby(const ChatId &id) override;
 
 	  /****************************************/
 
-      virtual bool joinVisibleChatLobby(const ChatLobbyId& id, const RsGxsId &own_id) ;
-	  virtual void getListOfNearbyChatLobbies(std::vector<VisibleChatLobbyRecord>& public_lobbies) ;
-      virtual void getChatLobbyList(std::list<ChatLobbyId>& cl_list) ;
-      virtual bool getChatLobbyInfo(const ChatLobbyId& id,ChatLobbyInfo& info) ;
-      virtual void invitePeerToLobby(const ChatLobbyId&, const RsPeerId&) ;
-      virtual bool acceptLobbyInvite(const ChatLobbyId& id, const RsGxsId &gxs_id) ;
-	  virtual void denyLobbyInvite(const ChatLobbyId& id) ;
-	  virtual void getPendingChatLobbyInvites(std::list<ChatLobbyInvite>& invites) ;
-	  virtual void unsubscribeChatLobby(const ChatLobbyId& lobby_id) ;
-      virtual bool setIdentityForChatLobby(const ChatLobbyId& lobby_id,const RsGxsId&) ;
-      virtual bool getIdentityForChatLobby(const ChatLobbyId&,RsGxsId& nick) ;
-      virtual bool setDefaultIdentityForChatLobby(const RsGxsId&) ;
-      virtual void getDefaultIdentityForChatLobby(RsGxsId& nick) ;
-    virtual void setLobbyAutoSubscribe(const ChatLobbyId& lobby_id, const bool autoSubscribe);
-    virtual bool getLobbyAutoSubscribe(const ChatLobbyId& lobby_id);
-      virtual ChatLobbyId createChatLobby(const std::string& lobby_name,const RsGxsId& lobby_identity,const std::string& lobby_topic,const std::set<RsPeerId>& invited_friends,ChatLobbyFlags privacy_type) ;
+      bool joinVisibleChatLobby(const ChatLobbyId& id, const RsGxsId &own_id) override ;
+	  void getListOfNearbyChatLobbies(std::vector<VisibleChatLobbyRecord>& public_lobbies) override ;
+      void getChatLobbyList(std::list<ChatLobbyId>& cl_list) override ;
+      bool getChatLobbyInfo(const ChatLobbyId& id,ChatLobbyInfo& info) override ;
+      void invitePeerToLobby(const ChatLobbyId&, const RsPeerId&) override ;
+      bool acceptLobbyInvite(const ChatLobbyId& id, const RsGxsId &gxs_id) override ;
+	  void denyLobbyInvite(const ChatLobbyId& id) override ;
+	  void getPendingChatLobbyInvites(std::list<ChatLobbyInvite>& invites) override ;
+	  void unsubscribeChatLobby(const ChatLobbyId& lobby_id) override ;
+      bool setIdentityForChatLobby(const ChatLobbyId& lobby_id,const RsGxsId&) override ;
+      bool getIdentityForChatLobby(const ChatLobbyId&,RsGxsId& nick) override ;
+      bool setDefaultIdentityForChatLobby(const RsGxsId&) override ;
+      void getDefaultIdentityForChatLobby(RsGxsId& nick) override ;
+    void setLobbyAutoSubscribe(const ChatLobbyId& lobby_id, const bool autoSubscribe) override;
+    bool getLobbyAutoSubscribe(const ChatLobbyId& lobby_id) override;
+      ChatLobbyId createChatLobby(const std::string& lobby_name,const RsGxsId& lobby_identity,const std::string& lobby_topic,const std::set<RsPeerId>& invited_friends,ChatLobbyFlags privacy_type) override ;
 
-      virtual bool initiateDistantChatConnexion(const RsGxsId& to_gxs_id, const RsGxsId& from_gxs_id, DistantChatPeerId &pid, uint32_t& error_code) ;
-      virtual bool getDistantChatStatus(const DistantChatPeerId& gxs_id,DistantChatPeerInfo& info);
-      virtual bool closeDistantChatConnexion(const DistantChatPeerId &pid) ;
+      bool initiateDistantChatConnexion(const RsGxsId& to_gxs_id, const RsGxsId& from_gxs_id, DistantChatPeerId &pid, uint32_t& error_code) override ;
+      bool getDistantChatStatus(const DistantChatPeerId& gxs_id,DistantChatPeerInfo& info) override;
+      bool closeDistantChatConnexion(const DistantChatPeerId &pid) override ;
 
-    virtual uint32_t getDistantChatPermissionFlags() ;
-    virtual bool setDistantChatPermissionFlags(uint32_t flags) ;
+    uint32_t getDistantChatPermissionFlags() override ;
+    bool setDistantChatPermissionFlags(uint32_t flags) override ;
     
    private:
 

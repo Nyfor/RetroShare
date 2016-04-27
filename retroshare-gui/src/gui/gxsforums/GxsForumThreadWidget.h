@@ -27,7 +27,7 @@ class GxsForumThreadWidget : public GxsMessageFrameWidget
 
 public:
 	explicit GxsForumThreadWidget(const RsGxsGroupId &forumId, QWidget *parent = NULL);
-	~GxsForumThreadWidget();
+	~GxsForumThreadWidget() override;
 
 	QColor textColorRead() const { return mTextColorRead; }
 	QColor textColorUnread() const { return mTextColorUnread; }
@@ -42,11 +42,11 @@ public:
 	void setTextColorMissing(QColor color) { mTextColorMissing = color; }
 
 	/* GxsMessageFrameWidget */
-	virtual void groupIdChanged();
-	virtual QString groupName(bool withUnreadCount);
-	virtual QIcon groupIcon();
-	virtual bool navigate(const RsGxsMessageId& msgId);
-	virtual bool isLoading();
+	void groupIdChanged() override;
+	QString groupName(bool withUnreadCount) override;
+	QIcon groupIcon() override;
+	bool navigate(const RsGxsMessageId& msgId) override;
+	bool isLoading() override;
 
 	unsigned int newCount() { return mNewCount; }
 	unsigned int unreadCount() { return mUnreadCount; }
@@ -55,17 +55,17 @@ public:
 	QTreeWidgetItem *generateMissingItem(const RsGxsMessageId &msgId);
 
 	// Callback for all Loads.
-	virtual void loadRequest(const TokenQueue *queue, const TokenRequest &req);
+	void loadRequest(const TokenQueue *queue, const TokenRequest &req) override;
 
 protected:
-	bool eventFilter(QObject *obj, QEvent *ev);
-	void changeEvent(QEvent *e);
+	bool eventFilter(QObject *obj, QEvent *ev) override;
+	void changeEvent(QEvent *e) override;
 
 	/* RsGxsUpdateBroadcastWidget */
-	virtual void updateDisplay(bool complete);
+	void updateDisplay(bool complete) override;
 
 	/* GxsMessageFrameWidget */
-	virtual void setAllMessagesReadDo(bool read, uint32_t &token);
+	void setAllMessagesReadDo(bool read, uint32_t &token) override;
     
 private slots:
 	/** Create the context popup menu and it's submenus */

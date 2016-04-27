@@ -44,7 +44,7 @@ public:
 	GxsChannelPostItem(FeedHolder *feedHolder, uint32_t feedId, const RsGxsGroupId &groupId, const RsGxsMessageId &messageId, bool isHome, bool autoUpdate);
 	GxsChannelPostItem(FeedHolder *feedHolder, uint32_t feedId, const RsGxsChannelGroup &group, const RsGxsChannelPost &post, bool isHome, bool autoUpdate);
 	GxsChannelPostItem(FeedHolder *feedHolder, uint32_t feedId, const RsGxsChannelPost &post, bool isHome, bool autoUpdate);
-	virtual ~GxsChannelPostItem();
+	~GxsChannelPostItem() override;
 
 	bool setGroup(const RsGxsChannelGroup &group, bool doFill = true);
 	bool setPost(const RsGxsChannelPost &post, bool doFill = true);
@@ -59,17 +59,17 @@ public:
 
 protected:
 	/* FeedItem */
-	virtual void doExpand(bool open);
-	virtual void expandFill(bool first);
+	void doExpand(bool open) override;
+	void expandFill(bool first) override;
 
 	/* GxsGroupFeedItem */
-	virtual QString groupName();
-	virtual void loadGroup(const uint32_t &token);
-	virtual RetroShareLink::enumType getLinkType() { return RetroShareLink::TYPE_CHANNEL; }
+	QString groupName() override;
+	void loadGroup(const uint32_t &token) override;
+	RetroShareLink::enumType getLinkType() override { return RetroShareLink::TYPE_CHANNEL; }
 
 	/* GxsFeedItem */
-	virtual void loadMessage(const uint32_t &token);
-	virtual QString messageName();
+	void loadMessage(const uint32_t &token) override;
+	QString messageName() override;
 
 private slots:
 	/* default stuff */

@@ -33,14 +33,14 @@ public:
 	enum Page { Page_Intro, Page_Text, Page_Cert, Page_ErrorMessage, Page_Conclusion, Page_Foff, Page_Rsid, Page_WebMail, Page_Email, Page_FriendRequest, Page_FriendRecommendations };
 
 	ConnectFriendWizard(QWidget *parent = 0);
-	~ConnectFriendWizard();
+	~ConnectFriendWizard() override;
 
 	void setCertificate(const QString &certificate, bool friendRequest);
 	void setGpgId(const RsPgpId &gpgId, const RsPeerId &sslId, bool friendRequest);
 
-	virtual bool validateCurrentPage();
-	virtual int nextId() const;
-	virtual void accept();
+	bool validateCurrentPage() override;
+	int nextId() const override;
+	void accept() override;
 
 	void setGroup(const std::string &id);
 
@@ -54,7 +54,7 @@ public:
 	QString titleColor();
 
 protected:
-	void initializePage(int id);
+	void initializePage(int id) override;
 
 private slots:
 	/* TextPage */
@@ -136,7 +136,7 @@ public:
 	ConnectFriendPage(QWidget *parent = 0);
 
 	void setComplete(bool isComplete);
-	virtual bool isComplete() const;
+	bool isComplete() const override;
 
 private:
 	bool useComplete;

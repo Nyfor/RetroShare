@@ -47,7 +47,7 @@ public:
 
 protected:
 	/* FeedItem */
-	virtual void doExpand(bool open);
+	void doExpand(bool open) override;
 
 private slots:
 	/* default stuff */

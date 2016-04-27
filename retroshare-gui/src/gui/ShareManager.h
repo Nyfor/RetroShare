@@ -40,16 +40,16 @@ private:
     /** Default constructor */
     ShareManager();
     /** Default destructor */
-    ~ShareManager();
+    ~ShareManager() override;
 
     /** Loads the settings for this page */
     void load();
 
 protected:
-    virtual void showEvent(QShowEvent * event);
+    void showEvent(QShowEvent * event) override;
 
-    virtual void dragEnterEvent(QDragEnterEvent *event);
-    virtual void dropEvent(QDropEvent *event);
+    void dragEnterEvent(QDragEnterEvent *event) override;
+    void dropEvent(QDropEvent *event) override;
 
 private slots:
     /** Create the context popup menu and it's submenus */

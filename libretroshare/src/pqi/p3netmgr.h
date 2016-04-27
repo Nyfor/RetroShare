@@ -170,39 +170,39 @@ class p3NetMgrIMPL: public p3NetMgr
 	/*************** External Control ****************/
 
 	// Setup Network State.
-virtual bool 	setNetworkMode(uint32_t netMode);
-virtual bool 	setVisState(uint16_t vs_disc, uint16_t vs_dht);
+bool 	setNetworkMode(uint32_t netMode) override;
+bool 	setVisState(uint16_t vs_disc, uint16_t vs_dht) override;
 
 	// Switch DHT On/Off.
-virtual bool netAssistFriend(const RsPeerId &id, bool on);
-virtual bool netAssistKnownPeer(const RsPeerId &id, const struct sockaddr_storage &addr, uint32_t flags);
-virtual bool netAssistBadPeer(const struct sockaddr_storage &addr, uint32_t reason, uint32_t flags, uint32_t age);
-virtual bool netAssistStatusUpdate(const RsPeerId &id, int mode);
+bool netAssistFriend(const RsPeerId &id, bool on) override;
+bool netAssistKnownPeer(const RsPeerId &id, const struct sockaddr_storage &addr, uint32_t flags) override;
+bool netAssistBadPeer(const struct sockaddr_storage &addr, uint32_t reason, uint32_t flags, uint32_t age) override;
+bool netAssistStatusUpdate(const RsPeerId &id, int mode) override;
 
 	/* Get Network State */
-virtual uint32_t getNetStateMode();
-virtual uint32_t getNetworkMode();
-virtual uint32_t getNatTypeMode();
-virtual uint32_t getNatHoleMode();
-virtual uint32_t getConnectModes();
+uint32_t getNetStateMode() override;
+uint32_t getNetworkMode() override;
+uint32_t getNatTypeMode() override;
+uint32_t getNatHoleMode() override;
+uint32_t getConnectModes() override;
 
 	/* Shut It Down! */
-virtual bool	shutdown(); /* blocking shutdown call */
+bool	shutdown() override; /* blocking shutdown call */
 
         /************* DEPRECIATED FUNCTIONS (TO REMOVE) ********/
 
 	// THESE SHOULD BE MOVED TO p3PeerMgr (as it controls the config).
 	// The functional object should be transformed into a NetAssistFirewall object.
 	// ONLY USED by p3peers.cc & p3peermgr.cc
-virtual bool  getIPServersEnabled();
-virtual void  setIPServersEnabled(bool b);
-virtual void  getIPServersList(std::list<std::string>& ip_servers);
+bool  getIPServersEnabled() override;
+void  setIPServersEnabled(bool b) override;
+void  getIPServersList(std::list<std::string>& ip_servers) override;
 
 	// ONLY USED by p3face-config.cc WHICH WILL BE REMOVED.
-virtual void 	getNetStatus(pqiNetStatus &status);
-virtual bool    getUPnPState();
-virtual bool	getUPnPEnabled();
-virtual bool	getDHTEnabled();
+void 	getNetStatus(pqiNetStatus &status) override;
+bool    getUPnPState() override;
+bool	getUPnPEnabled() override;
+bool	getDHTEnabled() override;
 
 /************************************************************************************************/
 /* Extra IMPL Functions (used by p3PeerMgr, p3NetMgr + Setup) */

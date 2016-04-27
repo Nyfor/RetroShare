@@ -33,7 +33,7 @@ class Idle : public QObject
 	Q_OBJECT
 public:
 	Idle();
-	~Idle();
+	~Idle() override;
 
 	bool isActive() const;
 	bool usingPlatform() const;

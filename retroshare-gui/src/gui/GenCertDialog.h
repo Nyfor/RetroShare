@@ -34,8 +34,8 @@ public:
 	/** Default constructor */
 	GenCertDialog(bool onlyGenerateIdentity, QWidget *parent = 0);
 
-	virtual ~GenCertDialog() ;
-	virtual void mouseMoveEvent(QMouseEvent *e) ;
+	~GenCertDialog() override ;
+	void mouseMoveEvent(QMouseEvent *e) override ;
 private slots:
 	void genPerson();
 	void importIdentity();

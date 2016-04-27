@@ -51,10 +51,10 @@ public:
 
 	RsGxsChannelGroupItem():  RsGxsGrpItem(RS_SERVICE_GXS_TYPE_CHANNELS,
 			RS_PKT_SUBTYPE_GXSCHANNEL_GROUP_ITEM) { return;}
-        virtual ~RsGxsChannelGroupItem() { return;}
+        ~RsGxsChannelGroupItem() override { return;}
 
-        void clear();
-	std::ostream &print(std::ostream &out, uint16_t indent = 0);
+        void clear() override;
+	std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
 	// use conversion functions to transform:
 	bool fromChannelGroup(RsGxsChannelGroup &group, bool moveImage);
@@ -70,9 +70,9 @@ public:
 
 	RsGxsChannelPostItem(): RsGxsMsgItem(RS_SERVICE_GXS_TYPE_CHANNELS,
 			RS_PKT_SUBTYPE_GXSCHANNEL_POST_ITEM) {return; }
-        virtual ~RsGxsChannelPostItem() { return;}
-        void clear();
-	std::ostream &print(std::ostream &out, uint16_t indent = 0);
+        ~RsGxsChannelPostItem() override { return;}
+        void clear() override;
+	std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
 	// Slightly unusual structure.
 	// use conversion functions to transform:
@@ -92,11 +92,11 @@ public:
 	RsGxsChannelSerialiser()
 	:RsGxsCommentSerialiser(RS_SERVICE_GXS_TYPE_CHANNELS)
 	{ return; }
-	virtual     ~RsGxsChannelSerialiser() { return; }
+	    ~RsGxsChannelSerialiser() override { return; }
 
-	uint32_t    size(RsItem *item);
-	bool        serialise  (RsItem *item, void *data, uint32_t *size);
-	RsItem *    deserialise(void *data, uint32_t *size);
+	uint32_t    size(RsItem *item) override;
+	bool        serialise  (RsItem *item, void *data, uint32_t *size) override;
+	RsItem *    deserialise(void *data, uint32_t *size) override;
 
 	private:
 

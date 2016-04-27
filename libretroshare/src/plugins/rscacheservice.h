@@ -19,9 +19,9 @@ class RsCacheService: public CacheSource, public CacheStore, public p3Config
 
 		// Functions from p3config
 		//
-		virtual RsSerialiser *setupSerialiser() { return NULL ; }
-		virtual bool saveList(bool&, std::list<RsItem*>&) =0;
-		virtual bool loadList(std::list<RsItem*>&) =0;
+		RsSerialiser *setupSerialiser() override { return NULL ; }
+		bool saveList(bool&, std::list<RsItem*>&) override =0;
+		bool loadList(std::list<RsItem*>&) override =0;
 
 	private:
 		uint32_t _tick_delay_in_seconds ;

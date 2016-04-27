@@ -46,7 +46,7 @@ public:
 
 public:
 	MessageWidget(bool controlled, QWidget *parent = 0, Qt::WindowFlags flags = 0);
-	~MessageWidget();
+	~MessageWidget() override;
 
 	static MessageWidget *openMsg(const std::string &msgId, bool window);
 

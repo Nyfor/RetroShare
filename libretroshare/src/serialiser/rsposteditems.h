@@ -18,10 +18,10 @@ class RsGxsPostedGroupItem : public RsGxsGrpItem
 public:
 	RsGxsPostedGroupItem() : RsGxsGrpItem(RS_SERVICE_GXS_TYPE_POSTED,
 		 RS_PKT_SUBTYPE_POSTED_GRP_ITEM) { return; }
-	virtual ~RsGxsPostedGroupItem() { return; }
+	~RsGxsPostedGroupItem() override { return; }
 
-	void clear();
-	std::ostream &print(std::ostream &out, uint16_t indent = 0);
+	void clear() override;
+	std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
 	RsPostedGroup mGroup;
 };
@@ -31,10 +31,10 @@ class RsGxsPostedPostItem : public RsGxsMsgItem
 public:
 	RsGxsPostedPostItem() : RsGxsMsgItem(RS_SERVICE_GXS_TYPE_POSTED,
 		 RS_PKT_SUBTYPE_POSTED_POST_ITEM) {return ; }
-	virtual ~RsGxsPostedPostItem() { return; }
+	~RsGxsPostedPostItem() override { return; }
 
-	void clear();
-	std::ostream &print(std::ostream &out, uint16_t indent = 0);
+	void clear() override;
+	std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
 	RsPostedPost mPost;
 };
@@ -48,11 +48,11 @@ public:
 	:RsGxsCommentSerialiser(RS_SERVICE_GXS_TYPE_POSTED)
 	{ return; }
 
-	virtual ~RsGxsPostedSerialiser() { return; }
+	~RsGxsPostedSerialiser() override { return; }
 
-	uint32_t size(RsItem *item);
-	bool serialise(RsItem *item, void *data, uint32_t *size);
-	RsItem* deserialise(void *data, uint32_t *size);
+	uint32_t size(RsItem *item) override;
+	bool serialise(RsItem *item, void *data, uint32_t *size) override;
+	RsItem* deserialise(void *data, uint32_t *size) override;
 
 private:
 

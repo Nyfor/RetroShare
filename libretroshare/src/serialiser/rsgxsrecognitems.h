@@ -58,9 +58,9 @@ class RsGxsRecognReqItem: public RsItem
 		setPriorityLevel(QOS_PRIORITY_DEFAULT);
 		return; 
 	}
-virtual ~RsGxsRecognReqItem();
-virtual void clear();  
-std::ostream &print(std::ostream &out, uint16_t indent = 0);
+~RsGxsRecognReqItem() override;
+void clear() override;  
+std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
 
 	uint32_t issued_at;
@@ -86,9 +86,9 @@ class RsGxsRecognTagItem: public RsItem
 		setPriorityLevel(QOS_PRIORITY_DEFAULT);
 		return; 
 	}
-virtual ~RsGxsRecognTagItem();
-virtual void clear();  
-std::ostream &print(std::ostream &out, uint16_t indent = 0);
+~RsGxsRecognTagItem() override;
+void clear() override;  
+std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
 	uint32_t valid_from;
 	uint32_t valid_to;
@@ -112,9 +112,9 @@ class RsGxsRecognSignerItem: public RsItem
 		setPriorityLevel(QOS_PRIORITY_DEFAULT);
 		return; 
 	}
-virtual ~RsGxsRecognSignerItem();
-virtual void clear();  
-std::ostream &print(std::ostream &out, uint16_t indent = 0);
+~RsGxsRecognSignerItem() override;
+void clear() override;  
+std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
 	RsTlvServiceIdSet signing_classes;
 	RsTlvSecurityKey  key; // has from->to, and flags.
@@ -128,13 +128,13 @@ class RsGxsRecognSerialiser: public RsSerialType
 	RsGxsRecognSerialiser()
 	:RsSerialType(RS_PKT_VERSION_SERVICE, RS_SERVICE_TYPE_GXS_RECOGN)
 	{ return; }
-virtual     ~RsGxsRecognSerialiser()
+    ~RsGxsRecognSerialiser() override
 	{ return; }
 
 	
-virtual	uint32_t    size(RsItem *);
-virtual	bool        serialise  (RsItem *item, void *data, uint32_t *size);
-virtual	RsItem *    deserialise(void *data, uint32_t *size);
+	uint32_t    size(RsItem *) override;
+	bool        serialise  (RsItem *item, void *data, uint32_t *size) override;
+	RsItem *    deserialise(void *data, uint32_t *size) override;
 
 	private:
 

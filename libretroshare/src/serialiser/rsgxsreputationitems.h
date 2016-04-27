@@ -47,13 +47,13 @@ class RsReputationItem: public RsItem
 			setPriorityLevel(QOS_PRIORITY_RS_GXSREPUTATION_ITEM);
 		}
 
-		virtual ~RsReputationItem() {}
+		~RsReputationItem() override {}
 
 		virtual bool serialise(void *data,uint32_t& size) const = 0 ;	
 		virtual uint32_t serial_size() const = 0 ; 						
 
-		virtual void clear() = 0 ;
-		virtual std::ostream& print(std::ostream &out, uint16_t indent = 0) = 0;
+		void clear() override = 0 ;
+		std::ostream& print(std::ostream &out, uint16_t indent = 0) override = 0;
 
 	protected:
 		bool serialise_header(void *data, uint32_t& pktsize, uint32_t& tlvsize, uint32_t& offset) const;
@@ -64,12 +64,12 @@ class RsGxsReputationConfigItem: public RsReputationItem
 public:
 	RsGxsReputationConfigItem()  :RsReputationItem(RS_PKT_SUBTYPE_GXS_REPUTATION_CONFIG_ITEM) {}
 
-	virtual ~RsGxsReputationConfigItem() {}
-	virtual void clear() {}
-	std::ostream &print(std::ostream &out, uint16_t indent = 0);
+	~RsGxsReputationConfigItem() override {}
+	void clear() override {}
+	std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
-	virtual bool serialise(void *data,uint32_t& size) const ;	
-	virtual uint32_t serial_size() const ; 						
+	bool serialise(void *data,uint32_t& size) const override ;	
+	uint32_t serial_size() const override ; 						
     	
 	RsPeerId mPeerId;
 	uint32_t mLatestUpdate; // timestamp they returned.
@@ -81,12 +81,12 @@ class RsGxsReputationSetItem: public RsReputationItem
 public:
 	RsGxsReputationSetItem()  :RsReputationItem(RS_PKT_SUBTYPE_GXS_REPUTATION_SET_ITEM) {}
 
-    virtual ~RsGxsReputationSetItem() {}
-	virtual void clear();  
-	std::ostream &print(std::ostream &out, uint16_t indent = 0);
+    ~RsGxsReputationSetItem() override {}
+	void clear() override;  
+	std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
-	virtual bool serialise(void *data,uint32_t& size) const ;	
-	virtual uint32_t serial_size() const ; 						
+	bool serialise(void *data,uint32_t& size) const override ;	
+	uint32_t serial_size() const override ; 						
     	
 	RsGxsId mGxsId;
 	uint32_t mOwnOpinion;
@@ -100,12 +100,12 @@ class RsGxsReputationUpdateItem: public RsReputationItem
 public:
     RsGxsReputationUpdateItem()  :RsReputationItem(RS_PKT_SUBTYPE_GXS_REPUTATION_UPDATE_ITEM) {}
 
-    virtual ~RsGxsReputationUpdateItem() {}
-    virtual void clear();  
-    std::ostream &print(std::ostream &out, uint16_t indent = 0);
+    ~RsGxsReputationUpdateItem() override {}
+    void clear() override;  
+    std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
-    virtual bool serialise(void *data,uint32_t& size) const ;	
-    virtual uint32_t serial_size() const ; 						
+    bool serialise(void *data,uint32_t& size) const override ;	
+    uint32_t serial_size() const override ; 						
 
     uint32_t mLatestUpdate; 
     std::map<RsGxsId, uint32_t> mOpinions; // GxsId -> Opinion.
@@ -116,12 +116,12 @@ class RsGxsReputationRequestItem: public RsReputationItem
 public:
     RsGxsReputationRequestItem()  :RsReputationItem(RS_PKT_SUBTYPE_GXS_REPUTATION_REQUEST_ITEM) {}
 
-    virtual ~RsGxsReputationRequestItem() {}
-    virtual void clear() {}
-	std::ostream &print(std::ostream &out, uint16_t indent = 0);
+    ~RsGxsReputationRequestItem() override {}
+    void clear() override {}
+	std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
-    virtual bool serialise(void *data,uint32_t& size) const ;	
-    virtual uint32_t serial_size() const ; 						
+    bool serialise(void *data,uint32_t& size) const override ;	
+    uint32_t serial_size() const override ; 						
 
 	uint32_t mLastUpdate;
 };
@@ -132,17 +132,17 @@ class RsGxsReputationSerialiser: public RsSerialType
 public:
     RsGxsReputationSerialiser() :RsSerialType(RS_PKT_VERSION_SERVICE, RS_SERVICE_GXS_TYPE_REPUTATION){}
 
-    virtual     ~RsGxsReputationSerialiser(){}
+        ~RsGxsReputationSerialiser() override{}
 
-    virtual	uint32_t    size(RsItem *item)
+    	uint32_t    size(RsItem *item) override
     {
 	    return dynamic_cast<RsReputationItem*>(item)->serial_size() ;
     }
-    virtual	bool        serialise  (RsItem *item, void *data, uint32_t *size)
+    	bool        serialise  (RsItem *item, void *data, uint32_t *size) override
     {
 	    return dynamic_cast<RsReputationItem*>(item)->serialise(data,*size) ;
     }
-    virtual	RsItem *    deserialise(void *data, uint32_t *size);
+    	RsItem *    deserialise(void *data, uint32_t *size) override;
 
 private:
     static	RsGxsReputationConfigItem  *deserialiseReputationConfigItem            (void *data, uint32_t size);

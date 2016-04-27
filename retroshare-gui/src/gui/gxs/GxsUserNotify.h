@@ -35,16 +35,16 @@ class GxsUserNotify : public UserNotify, public TokenResponse
 
 public:
 	GxsUserNotify(RsGxsIfaceHelper *ifaceImpl, QObject *parent = 0);
-	virtual ~GxsUserNotify();
+	~GxsUserNotify() override;
 
 	/* TokenResponse */
-	virtual void loadRequest(const TokenQueue *queue, const TokenRequest &req);
+	void loadRequest(const TokenQueue *queue, const TokenRequest &req) override;
 
 protected:
-	virtual void startUpdate();
+	void startUpdate() override;
 
 private:
-	virtual unsigned int getNewCount() { return mCountChildMsgs ? (mNewThreadMessageCount + mNewChildMessageCount) : mNewThreadMessageCount; }
+	unsigned int getNewCount() override { return mCountChildMsgs ? (mNewThreadMessageCount + mNewChildMessageCount) : mNewThreadMessageCount; }
 
 protected:
 	bool mCountChildMsgs; // Count new child messages?

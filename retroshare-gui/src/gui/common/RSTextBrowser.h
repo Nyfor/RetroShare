@@ -21,7 +21,7 @@ public:
 
 	void activateLinkClick(bool active);
 
-	virtual QVariant loadResource(int type, const QUrl &name);
+	QVariant loadResource(int type, const QUrl &name) override;
 
 	QColor textColorQuote() const { return highliter->textColorQuote();}
 
@@ -34,7 +34,7 @@ private slots:
 	void destroyImageBlockWidget();
 
 protected:
-	void paintEvent(QPaintEvent *event);
+	void paintEvent(QPaintEvent *event) override;
 
 private:
 	QString mPlaceholderText;

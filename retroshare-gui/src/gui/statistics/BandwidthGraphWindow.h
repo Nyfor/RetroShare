@@ -47,7 +47,7 @@ public:
 
 public slots:
   /** Overloaded QWidget.show */
-  void showWindow();
+  void showWindow() override;
 
 private slots:
   /** Called when settings button is toggled */

@@ -43,30 +43,30 @@ class PostedListWidget : public GxsMessageFramePostWidget, public FeedHolder
 
 public:
 	PostedListWidget(const RsGxsGroupId &postedId, QWidget *parent = 0);
-	~PostedListWidget();
+	~PostedListWidget() override;
 
 	/* GxsMessageFrameWidget */
-	virtual QIcon groupIcon();
+	QIcon groupIcon() override;
 
 	/* FeedHolder */
-	virtual QScrollArea *getScrollArea();
-	virtual void deleteFeedItem(QWidget *item, uint32_t type);
-	virtual void openChat(const RsPeerId& peerId);
-	virtual void openComments(uint32_t type, const RsGxsGroupId &groupId, const RsGxsMessageId &msgId, const QString &title);
+	QScrollArea *getScrollArea() override;
+	void deleteFeedItem(QWidget *item, uint32_t type) override;
+	void openChat(const RsPeerId& peerId) override;
+	void openComments(uint32_t type, const RsGxsGroupId &groupId, const RsGxsMessageId &msgId, const QString &title) override;
 
 	/* GXS functions */
-	virtual void loadRequest(const TokenQueue *queue, const TokenRequest &req);
+	void loadRequest(const TokenQueue *queue, const TokenRequest &req) override;
 
 protected:
 	/* GxsMessageFramePostWidget */
-	virtual bool insertGroupData(const uint32_t &token, RsGroupMetaData &metaData);
-	virtual void insertAllPosts(const uint32_t &token, GxsMessageFramePostThread *thread);
-	virtual void insertPosts(const uint32_t &token);
-	virtual void clearPosts();
-	virtual bool navigatePostItem(const RsGxsMessageId& msgId);
+	bool insertGroupData(const uint32_t &token, RsGroupMetaData &metaData) override;
+	void insertAllPosts(const uint32_t &token, GxsMessageFramePostThread *thread) override;
+	void insertPosts(const uint32_t &token) override;
+	void clearPosts() override;
+	bool navigatePostItem(const RsGxsMessageId& msgId) override;
 
 	/* GxsMessageFrameWidget */
-	virtual void setAllMessagesReadDo(bool read, uint32_t &token);
+	void setAllMessagesReadDo(bool read, uint32_t &token) override;
 
 private slots:
 	void newPost();

@@ -41,7 +41,7 @@ public:
     CreateGxsChannelMsg(const RsGxsGroupId& cId);
 
 	/** Default Destructor */
-	~CreateGxsChannelMsg();
+	~CreateGxsChannelMsg() override;
 
 	void addAttachment(const std::string &path);
     void addAttachment(const RsFileHash &hash, const std::string &fname, uint64_t size, bool local, const RsPeerId &srcId);
@@ -51,11 +51,11 @@ public:
 	QPixmap picture;
 
 	// overload from TokenResponse
-	virtual void loadRequest(const TokenQueue*, const TokenRequest&);
+	void loadRequest(const TokenQueue*, const TokenRequest&) override;
 
 protected:
-	virtual void dragEnterEvent(QDragEnterEvent *event);
-	virtual void dropEvent(QDropEvent *event);
+	void dragEnterEvent(QDragEnterEvent *event) override;
+	void dropEvent(QDropEvent *event) override;
 
 private slots:
 	void addExtraFile();

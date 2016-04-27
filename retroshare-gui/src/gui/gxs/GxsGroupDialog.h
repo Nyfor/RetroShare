@@ -146,12 +146,12 @@ public:
 	 */
 	GxsGroupDialog(TokenQueue *tokenExternalQueue, RsTokenService *tokenService, Mode mode, RsGxsGroupId groupId, uint32_t enableFlags, uint32_t defaultFlags, QWidget *parent = NULL);
 
-	~GxsGroupDialog();
+	~GxsGroupDialog() override;
 
 	uint32_t mode() { return mMode; }
 
 	// overloaded from TokenResponse
-	virtual void loadRequest(const TokenQueue *queue, const TokenRequest &req);
+	void loadRequest(const TokenQueue *queue, const TokenRequest &req) override;
 
 private:
 	void newGroup();
@@ -165,7 +165,7 @@ protected slots:
 	void addGroupLogo();
 
 protected:
-	virtual void showEvent(QShowEvent*);
+	void showEvent(QShowEvent*) override;
 
 	virtual void initUi() = 0;
 	virtual QPixmap serviceImage() = 0;

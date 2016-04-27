@@ -36,7 +36,7 @@ public:
     ProfileWidget(QWidget *parent = 0, Qt::WindowFlags flags = 0);
 
 private slots:
-    void showEvent ( QShowEvent * event );
+    void showEvent ( QShowEvent * event ) override;
     void statusmessagedlg();
     void copyCert();
     void profilemanager();

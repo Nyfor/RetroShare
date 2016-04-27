@@ -51,16 +51,16 @@ class UdpPeerReceiver: public UdpSubReceiver
 	public:
 
 	UdpPeerReceiver(UdpPublisher *pub);
-virtual ~UdpPeerReceiver() { return; }
+~UdpPeerReceiver() override { return; }
 
 	/* add a TCPonUDP stream */
 int	addUdpPeer(UdpPeer *peer, const struct sockaddr_in &raddr);
 int 	removeUdpPeer(UdpPeer *peer);
 
 	/* callback for recved data (overloaded from UdpReceiver) */
-virtual int recvPkt(void *data, int size, struct sockaddr_in &from);
+int recvPkt(void *data, int size, struct sockaddr_in &from) override;
 
-int     status(std::ostream &out);
+int     status(std::ostream &out) override;
 
 	private:
 

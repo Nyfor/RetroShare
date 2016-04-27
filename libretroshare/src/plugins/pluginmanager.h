@@ -46,30 +46,30 @@ class RsPluginManager: public RsPluginHandler, public p3Config
 {
 	public:
         RsPluginManager(const RsFileHash& current_executable_sha1_hash) ;
-		virtual ~RsPluginManager() {}
+		~RsPluginManager() override {}
 		
 		// ------------ Derived from RsPluginHandler ----------------//
 		//
-		virtual int nbPlugins() const { return _plugins.size() ; }
-		virtual RsPlugin *plugin(int i) { return _plugins[i].plugin ; }
-		virtual const std::vector<std::string>& getPluginDirectories() const { return _plugin_directories ; }
-        virtual void getPluginStatus(int i, uint32_t& status,std::string& file_name, RsFileHash& hash,uint32_t& svn_revision,std::string& error_string) const ;
-        virtual void enablePlugin(const RsFileHash& hash) ;
-        virtual void disablePlugin(const RsFileHash &hash) ;
+		int nbPlugins() const override { return _plugins.size() ; }
+		RsPlugin *plugin(int i) override { return _plugins[i].plugin ; }
+		const std::vector<std::string>& getPluginDirectories() const override { return _plugin_directories ; }
+        void getPluginStatus(int i, uint32_t& status,std::string& file_name, RsFileHash& hash,uint32_t& svn_revision,std::string& error_string) const override ;
+        void enablePlugin(const RsFileHash& hash) override ;
+        void disablePlugin(const RsFileHash &hash) override ;
 
-		virtual void slowTickPlugins(time_t sec) ;
-		virtual const std::string& getLocalCacheDir() const ;
-		virtual const std::string& getRemoteCacheDir() const ;
-		virtual RsServiceControl *getServiceControl() const ;
+		void slowTickPlugins(time_t sec) override ;
+		const std::string& getLocalCacheDir() const override ;
+		const std::string& getRemoteCacheDir() const override ;
+		RsServiceControl *getServiceControl() const override ;
 
-		virtual void allowAllPlugins(bool b) ;
-		virtual bool getAllowAllPlugins() const ;
+		void allowAllPlugins(bool b) override ;
+		bool getAllowAllPlugins() const override ;
 
 		// ---------------- Derived from p3Config -------------------//
 		//
-		bool saveList(bool& cleanup, std::list<RsItem*>& list) ;
-		bool loadList(std::list<RsItem*>& list) ;
-		virtual RsSerialiser* setupSerialiser() ;
+		bool saveList(bool& cleanup, std::list<RsItem*>& list) override ;
+		bool loadList(std::list<RsItem*>& list) override ;
+		RsSerialiser* setupSerialiser() override ;
 
 		// -------------------- Own members -------------------------//
 		//

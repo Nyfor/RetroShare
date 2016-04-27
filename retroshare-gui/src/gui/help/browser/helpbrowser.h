@@ -48,7 +48,7 @@ class HelpBrowser : public RWindow
 protected:
   /** Default constructor **/
   HelpBrowser(QWidget *parent = 0);
-  virtual ~HelpBrowser();
+  ~HelpBrowser() override;
 
 public:
   /** Overrides the default QWidget::show() */

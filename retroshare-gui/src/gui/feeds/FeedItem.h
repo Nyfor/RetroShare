@@ -32,7 +32,7 @@ public:
 	/** Default Constructor */
 	FeedItem(QWidget *parent = 0);
 	/** Default Destructor */
-	virtual ~FeedItem();
+	~FeedItem() override;
 
 	bool wasExpanded() { return mWasExpanded; }
 	void expand(bool open);

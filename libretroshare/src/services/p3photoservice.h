@@ -34,7 +34,7 @@ class p3PhotoService : public RsPhoto, public RsGenExchange
 public:
 
     p3PhotoService(RsGeneralDataService* gds, RsNetworkExchangeService* nes, RsGixs* gixs);
-virtual RsServiceInfo getServiceInfo();
+RsServiceInfo getServiceInfo() override;
 
 static uint32_t photoAuthenPolicy();
 
@@ -43,45 +43,45 @@ public:
     /*!
      * @return true if a change has occured
      */
-    bool updated();
+    bool updated() override;
 
     /*!
      *
      */
-    void service_tick();
+    void service_tick() override;
 
 protected:
 
-    void notifyChanges(std::vector<RsGxsNotify*>& changes);
+    void notifyChanges(std::vector<RsGxsNotify*>& changes) override;
 public:
 
     /** Requests **/
 
-    void groupsChanged(std::list<RsGxsGroupId>& grpIds);
+    void groupsChanged(std::list<RsGxsGroupId>& grpIds) override;
 
 
     void msgsChanged(std::map<RsGxsGroupId,
-                             std::vector<RsGxsMessageId> >& msgs);
+                             std::vector<RsGxsMessageId> >& msgs) override;
 
-    RsTokenService* getTokenService();
+    RsTokenService* getTokenService() override;
 
     bool getGroupList(const uint32_t &token,
-                              std::list<RsGxsGroupId> &groupIds);
+                              std::list<RsGxsGroupId> &groupIds) override;
     bool getMsgList(const uint32_t &token,
-                            GxsMsgIdResult& msgIds);
+                            GxsMsgIdResult& msgIds) override;
 
     /* Generic Summary */
     bool getGroupSummary(const uint32_t &token,
-                                 std::list<RsGroupMetaData> &groupInfo);
+                                 std::list<RsGroupMetaData> &groupInfo) override;
 
     bool getMsgSummary(const uint32_t &token,
-                               MsgMetaResult &msgInfo);
+                               MsgMetaResult &msgInfo) override;
 
     /* Specific Service Data */
-    bool getAlbum(const uint32_t &token, std::vector<RsPhotoAlbum> &albums);
-    bool getPhoto(const uint32_t &token, PhotoResult &photos);
-    bool getPhotoComment(const uint32_t &token, PhotoCommentResult &comments);
-    bool getPhotoRelatedComment(const uint32_t &token, PhotoRelatedCommentResult &comments);
+    bool getAlbum(const uint32_t &token, std::vector<RsPhotoAlbum> &albums) override;
+    bool getPhoto(const uint32_t &token, PhotoResult &photos) override;
+    bool getPhotoComment(const uint32_t &token, PhotoCommentResult &comments) override;
+    bool getPhotoRelatedComment(const uint32_t &token, PhotoRelatedCommentResult &comments) override;
 
 public:
 
@@ -93,7 +93,7 @@ public:
      * @param token token to redeem for acknowledgement
      * @param album album to be submitted
      */
-    bool submitAlbumDetails(uint32_t& token, RsPhotoAlbum &album);
+    bool submitAlbumDetails(uint32_t& token, RsPhotoAlbum &album) override;
 
     /*!
      * submits photo, which returns a token that needs
@@ -101,7 +101,7 @@ public:
      * @param token token to redeem for acknowledgement
      * @param photo photo to be submitted
      */
-    bool submitPhoto(uint32_t& token, RsPhotoPhoto &photo);
+    bool submitPhoto(uint32_t& token, RsPhotoPhoto &photo) override;
 
     /*!
      * submits photo comment, which returns a token that needs
@@ -111,7 +111,7 @@ public:
      * @param token token to redeem for acknowledgement
      * @param comment comment to be submitted
      */
-    bool submitComment(uint32_t& token, RsPhotoComment &photo);
+    bool submitComment(uint32_t& token, RsPhotoComment &photo) override;
 
     /*!
      * subscribes to group, and returns token which can be used
@@ -119,7 +119,7 @@ public:
      * @param token token to redeem for acknowledgement
      * @param grpId the id of the group to subscribe to
      */
-    bool subscribeToAlbum(uint32_t& token, const RsGxsGroupId& grpId, bool subscribe);
+    bool subscribeToAlbum(uint32_t& token, const RsGxsGroupId& grpId, bool subscribe) override;
 
     /*!
      * This allows the client service to acknowledge that their msgs has
@@ -128,7 +128,7 @@ public:
      * @param msgIds map of grpid->msgIds of message created/modified
      * @return true if token exists false otherwise
      */
-    bool acknowledgeMsg(const uint32_t& token, std::pair<RsGxsGroupId, RsGxsMessageId>& msgId);
+    bool acknowledgeMsg(const uint32_t& token, std::pair<RsGxsGroupId, RsGxsMessageId>& msgId) override;
 
     /*!
 	 * This allows the client service to acknowledge that their grps has
@@ -137,7 +137,7 @@ public:
 	 * @param msgIds vector of ids of groups created/modified
 	 * @return true if token exists false otherwise
 	 */
-    bool acknowledgeGrp(const uint32_t& token, RsGxsGroupId& grpId);
+    bool acknowledgeGrp(const uint32_t& token, RsGxsGroupId& grpId) override;
 
 private:
 

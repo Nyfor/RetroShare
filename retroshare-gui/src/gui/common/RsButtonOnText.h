@@ -16,7 +16,7 @@ public:
 	RSButtonOnText(QTextEdit *textEdit, QWidget *parent = 0);
 	RSButtonOnText(const QString &text, QTextEdit *textEdit, QWidget *parent = 0);
 	RSButtonOnText(const QIcon& icon, const QString &text, QTextEdit *textEdit, QWidget *parent = 0);
-	~RSButtonOnText();
+	~RSButtonOnText() override;
 
 	QString uuid();
 	QString htmlText();
@@ -29,7 +29,7 @@ signals:
 	void mouseLeave();
 
 protected:
-	bool eventFilter(QObject *obj, QEvent *event);
+	bool eventFilter(QObject *obj, QEvent *event) override;
 
 private:
 	bool isEventForThis(QObject *obj, QEvent *event, QPoint &point);

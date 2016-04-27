@@ -43,7 +43,7 @@ class IdEditDialog : public QDialog, public TokenResponse
 
 public:
 	IdEditDialog(QWidget *parent = 0);
-	~IdEditDialog();
+	~IdEditDialog() override;
 
 	void setupNewId(bool pseudo, bool enable_anon = true);
 	void setupExistingId(const RsGxsGroupId &keyId);
@@ -51,7 +51,7 @@ public:
 
 	RsGxsGroupId groupId() { return mGroupId; }
 
-	void loadRequest(const TokenQueue *queue, const TokenRequest &req);
+	void loadRequest(const TokenQueue *queue, const TokenRequest &req) override;
 
 private slots:
 	void idTypeToggled(bool checked);

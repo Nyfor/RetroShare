@@ -39,7 +39,7 @@ class AudioBar : public QWidget {
 		Q_OBJECT
 		Q_DISABLE_COPY(AudioBar)
 	protected:
-		void paintEvent(QPaintEvent *event);
+		void paintEvent(QPaintEvent *event) override;
 	public:
 		AudioBar(QWidget *parent = NULL);
 		int iMin, iMax;

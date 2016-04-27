@@ -47,13 +47,13 @@ class PeopleDialog : public RsGxsUpdateBroadcastPage, public Ui::PeopleDialog, p
 	static const uint32_t PD_CIRCLES   ;
 
 		PeopleDialog(QWidget *parent = 0);
-		~PeopleDialog();
+		~PeopleDialog() override;
 
-		virtual QIcon iconPixmap() const { return QIcon(IMAGE_IDENTITY) ; } //MainPage
-		virtual QString pageName() const { return tr("People") ; } //MainPage
-		virtual QString helpText() const { return ""; } //MainPage
+		QIcon iconPixmap() const override { return QIcon(IMAGE_IDENTITY) ; } //MainPage
+		QString pageName() const override { return tr("People") ; } //MainPage
+		QString helpText() const override { return ""; } //MainPage
 
-	void loadRequest(const TokenQueue * queue, const TokenRequest &req) ;
+	void loadRequest(const TokenQueue * queue, const TokenRequest &req) override ;
 
 	void requestIdList() ;
 	void requestCirclesList() ;
@@ -63,7 +63,7 @@ class PeopleDialog : public RsGxsUpdateBroadcastPage, public Ui::PeopleDialog, p
 
 	protected:
 	// Derives from RsGxsUpdateBroadcastPage
-		virtual void updateDisplay(bool complete);
+		void updateDisplay(bool complete) override;
 	//End RsGxsUpdateBroadcastPage
 
 private slots:

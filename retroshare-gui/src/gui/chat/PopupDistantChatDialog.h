@@ -36,13 +36,13 @@ class PopupDistantChatDialog: public PopupChatDialog
 		/** Default constructor */
 		PopupDistantChatDialog(const DistantChatPeerId &tunnel_id, QWidget *parent = 0, Qt::WindowFlags flags = 0);
 		/** Default destructor */
-		virtual ~PopupDistantChatDialog();
+		~PopupDistantChatDialog() override;
 	
 		virtual void init(const DistantChatPeerId& peer_id);
-		virtual void closeEvent(QCloseEvent *e) ;
+		void closeEvent(QCloseEvent *e) override ;
 	
-        virtual QString getPeerName(const ChatId &id) const ;
-        virtual QString getOwnName() const;
+        QString getPeerName(const ChatId &id) const override ;
+        QString getOwnName() const override;
 
 	protected slots:
 		void updateDisplay() ; // overloads RsAutoUpdatePage

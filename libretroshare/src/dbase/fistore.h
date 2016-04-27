@@ -66,10 +66,10 @@ class FileIndexStore: public CacheStore
 	public:
 
 	FileIndexStore(CacheStrapper *cs, CacheTransfer *cft, p3PeerMgr *pmgr, RsPeerId ownid, std::string cachedir);
-virtual ~FileIndexStore();
+~FileIndexStore() override;
 
 	/* virtual functions overloaded by cache implementor */
-virtual int loadCache(const RsCacheData &data);	  /* actual load, once data available */
+int loadCache(const RsCacheData &data) override;	  /* actual load, once data available */
 
 	/* Search Interface - For FileTransfer Lookup */
     int SearchHash(const RsFileHash &hash, std::list<FileDetail> &results) const;

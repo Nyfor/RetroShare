@@ -55,7 +55,7 @@ class UIStateHelper : public QObject
 
 public:
 	UIStateHelper(QObject *parent = 0);
-	~UIStateHelper();
+	~UIStateHelper() override;
 
 	/* Add widgets */
 	void addWidget(int index, QWidget *widget, UIStates states = UISTATE_LOADING_DISABLED | UISTATE_ACTIVE_ENABLED);

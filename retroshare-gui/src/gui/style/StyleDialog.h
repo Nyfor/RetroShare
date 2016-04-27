@@ -38,7 +38,7 @@ public:
 	/** Default constructor */
 	StyleDialog(RSStyle &style, QWidget *parent = 0);
 	/** Default destructor */
-	~StyleDialog();
+	~StyleDialog() override;
 
 	void getStyle(RSStyle &style);
 

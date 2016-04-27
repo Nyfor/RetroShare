@@ -53,7 +53,7 @@ class ftFiStore: public FileIndexStore, public ftSearch
                         RsPeerId ownid, std::string cachedir);
 
 	/* overloaded search function */
-virtual bool search(const RsFileHash &hash, FileSearchFlags hintflags, FileInfo &info) const;
+bool search(const RsFileHash &hash, FileSearchFlags hintflags, FileInfo &info) const override;
 };
 
 class ftFiMonitor: public FileIndexMonitor, public ftSearch, public p3Config
@@ -62,11 +62,11 @@ class ftFiMonitor: public FileIndexMonitor, public ftSearch, public p3Config
 	ftFiMonitor(CacheStrapper *cs,std::string cachedir, const RsPeerId& pid,const std::string& config_dir);
 
 	/* overloaded search function */
-    virtual bool search(const RsFileHash &hash, FileSearchFlags hintflags, FileInfo &info) const;
-    virtual bool search(const RsFileHash &hash, FileSearchFlags hintflags, const RsPeerId& peer_id, FileInfo &info) const;
+    bool search(const RsFileHash &hash, FileSearchFlags hintflags, FileInfo &info) const override;
+    bool search(const RsFileHash &hash, FileSearchFlags hintflags, const RsPeerId& peer_id, FileInfo &info) const override;
 
 	/* overloaded set dirs enables config indication */
-	virtual void setSharedDirectories(const std::list<SharedDirInfo>& dirList);
+	void setSharedDirectories(const std::list<SharedDirInfo>& dirList) override;
 	virtual void updateShareFlags(const SharedDirInfo& info) ;
 
 	void	setRememberHashCacheDuration(uint32_t days) ;
@@ -82,9 +82,9 @@ class ftFiMonitor: public FileIndexMonitor, public ftSearch, public p3Config
 	*/
 	protected:
 
-virtual RsSerialiser *setupSerialiser();
-virtual bool saveList(bool &cleanup, std::list<RsItem *>&);
-virtual bool    loadList(std::list<RsItem *>& load);
+RsSerialiser *setupSerialiser() override;
+bool saveList(bool &cleanup, std::list<RsItem *>&) override;
+bool    loadList(std::list<RsItem *>& load) override;
 	
 
 };
@@ -95,7 +95,7 @@ class ftCacheStrapper: public CacheStrapper, public ftSearch
         ftCacheStrapper(p3ServiceControl *cm, uint32_t ftServiceId);
 
 	/* overloaded search function */
-virtual bool search(const RsFileHash &hash, FileSearchFlags hintflags, FileInfo &info) const;
+bool search(const RsFileHash &hash, FileSearchFlags hintflags, FileInfo &info) const override;
 
 };
 

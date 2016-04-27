@@ -62,7 +62,7 @@ class rsUdpStack: public UdpStack, public pqiNetListener
 	:UdpStack(testmode, local) { return; }
 
 	/* from pqiNetListener */
-virtual bool resetListener(const struct sockaddr_storage &local)
+bool resetListener(const struct sockaddr_storage &local) override
 	{
 		std::cerr << "rsUdpStack::resetListener(" << sockaddr_storage_tostring(local) << ")";
 		std::cerr << std::endl;
@@ -90,7 +90,7 @@ class rsFixedUdpStack: public UdpStack, public pqiNetListener
 	:UdpStack(testmode, local) { return; }
 
 	/* from pqiNetListener */
-virtual bool resetListener(const struct sockaddr_storage &local)
+bool resetListener(const struct sockaddr_storage &local) override
 	{
 		struct sockaddr_in addr;
 		getLocalAddress(addr);

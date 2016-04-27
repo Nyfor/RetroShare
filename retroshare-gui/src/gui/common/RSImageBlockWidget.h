@@ -34,7 +34,7 @@ class RSImageBlockWidget : public QWidget
 
 public:
 	explicit RSImageBlockWidget(QWidget *parent = 0);
-	~RSImageBlockWidget();
+	~RSImageBlockWidget() override;
 
 	void addButtonAction(const QString &text, const QObject *receiver, const char *member, bool standardAction);
 

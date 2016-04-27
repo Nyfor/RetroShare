@@ -41,7 +41,7 @@ public:
 
 protected:
 	RSettingsWin(QWidget *parent = 0);
-	~RSettingsWin();
+	~RSettingsWin() override;
 
 	void addPage(ConfigPage*) ;
 

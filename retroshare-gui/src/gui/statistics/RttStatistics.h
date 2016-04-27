@@ -34,9 +34,9 @@ class RttGraphSource: public RSGraphSource
 public:
     RttGraphSource() {}
 
-    virtual void getValues(std::map<std::string,float>& vals) const ;
-    virtual QString unitName() const ;
-    virtual QString displayName(int i) const ;
+    void getValues(std::map<std::string,float>& vals) const override ;
+    QString unitName() const override ;
+    QString displayName(int i) const override ;
 };
 
 class RttStatisticsGraph: public RSGraphWidget
@@ -49,7 +49,7 @@ class RttStatistics: public MainPage, public Ui::RttStatistics
 {
 public:
     RttStatistics(QWidget *parent = NULL) ;
-    ~RttStatistics();
+    ~RttStatistics() override;
 
 private:
     void processSettings(bool bLoad);

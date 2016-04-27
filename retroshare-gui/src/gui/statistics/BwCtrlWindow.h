@@ -56,12 +56,12 @@ class BwCtrlWindow : public RsAutoUpdatePage,  public Ui::BwCtrlWindow
 public:
 
     BwCtrlWindow(QWidget *parent = 0);
-    ~BwCtrlWindow();
+    ~BwCtrlWindow() override;
 
     void updateBandwidth();
 
 public slots:
-    virtual void updateDisplay() ;
+    void updateDisplay() override ;
 
 protected:
     BWListDelegate *BWDelegate;

@@ -38,7 +38,7 @@ class RsTurtleItem: public RsItem
 		virtual bool serialize(void *data,uint32_t& size) = 0 ;	// Isn't it better that items can serialize themselves ?
 		virtual uint32_t serial_size() = 0 ; 							// deserialise is handled using a constructor
 
-		virtual void clear() {} 
+		void clear() override {} 
 };
 
 /***********************************************************************************/
@@ -60,11 +60,11 @@ class RsTurtleSearchResultItem: public RsTurtleItem
 														
 		std::list<TurtleFileInfo> result ;
 
-		virtual std::ostream& print(std::ostream& o, uint16_t) ;
+		std::ostream& print(std::ostream& o, uint16_t) override ;
 
 	protected:
-		virtual bool serialize(void *data,uint32_t& size) ;
-		virtual uint32_t serial_size() ;
+		bool serialize(void *data,uint32_t& size) override ;
+		uint32_t serial_size() override ;
 };
 
 class RsTurtleSearchRequestItem: public RsTurtleItem
@@ -87,13 +87,13 @@ class RsTurtleStringSearchRequestItem: public RsTurtleSearchRequestItem
 			
 		std::string match_string ;	// string to match
 
-		virtual RsTurtleSearchRequestItem *clone() const { return new RsTurtleStringSearchRequestItem(*this) ; }
-		virtual void performLocalSearch(std::list<TurtleFileInfo>&) const ;
+		RsTurtleSearchRequestItem *clone() const override { return new RsTurtleStringSearchRequestItem(*this) ; }
+		void performLocalSearch(std::list<TurtleFileInfo>&) const override ;
 
-		virtual std::ostream& print(std::ostream& o, uint16_t) ;
+		std::ostream& print(std::ostream& o, uint16_t) override ;
 	protected:
-		virtual bool serialize(void *data,uint32_t& size) ;	
-		virtual uint32_t serial_size() ; 
+		bool serialize(void *data,uint32_t& size) override ;	
+		uint32_t serial_size() override ; 
 };
 
 class RsTurtleRegExpSearchRequestItem: public RsTurtleSearchRequestItem
@@ -104,13 +104,13 @@ class RsTurtleRegExpSearchRequestItem: public RsTurtleSearchRequestItem
 
 		LinearizedExpression expr ;	// Reg Exp in linearised mode
 
-		virtual RsTurtleSearchRequestItem *clone() const { return new RsTurtleRegExpSearchRequestItem(*this) ; }
-		virtual void performLocalSearch(std::list<TurtleFileInfo>&) const ;
+		RsTurtleSearchRequestItem *clone() const override { return new RsTurtleRegExpSearchRequestItem(*this) ; }
+		void performLocalSearch(std::list<TurtleFileInfo>&) const override ;
 
-		virtual std::ostream& print(std::ostream& o, uint16_t) ;
+		std::ostream& print(std::ostream& o, uint16_t) override ;
 	protected:
-		virtual bool serialize(void *data,uint32_t& size) ;	
-		virtual uint32_t serial_size() ; 
+		bool serialize(void *data,uint32_t& size) override ;	
+		uint32_t serial_size() override ; 
 };
 
 /***********************************************************************************/
@@ -128,11 +128,11 @@ class RsTurtleOpenTunnelItem: public RsTurtleItem
 		uint32_t partial_tunnel_id ; // uncomplete tunnel id. Will be completed at destination.
 		uint16_t depth ;				  // Used for limiting search depth.
 
-		virtual std::ostream& print(std::ostream& o, uint16_t) ;
+		std::ostream& print(std::ostream& o, uint16_t) override ;
 
 	protected:
-		virtual bool serialize(void *data,uint32_t& size) ;	
-		virtual uint32_t serial_size() ; 
+		bool serialize(void *data,uint32_t& size) override ;	
+		uint32_t serial_size() override ; 
 };
 
 class RsTurtleTunnelOkItem: public RsTurtleItem
@@ -144,11 +144,11 @@ class RsTurtleTunnelOkItem: public RsTurtleItem
 		uint32_t tunnel_id ;		// id of the tunnel. Should be identical for a tunnel between two same peers for the same hash.
 		uint32_t request_id ;	// randomly generated request id corresponding to the intial request.
 
-		virtual std::ostream& print(std::ostream& o, uint16_t) ;
+		std::ostream& print(std::ostream& o, uint16_t) override ;
 
 	protected:
-		virtual bool serialize(void *data,uint32_t& size) ;	
-		virtual uint32_t serial_size() ; 
+		bool serialize(void *data,uint32_t& size) override ;	
+		uint32_t serial_size() override ; 
 };
 
 /***********************************************************************************/
@@ -199,17 +199,17 @@ class RsTurtleGenericDataItem: public RsTurtleGenericTunnelItem
         RsTurtleGenericDataItem() : RsTurtleGenericTunnelItem(RS_TURTLE_SUBTYPE_GENERIC_DATA), data_size(0), data_bytes(0) { setPriorityLevel(QOS_PRIORITY_RS_TURTLE_FILE_REQUEST);}
 		RsTurtleGenericDataItem(void *data,uint32_t size) ;		// deserialization
 
-		virtual ~RsTurtleGenericDataItem() { if(data_bytes != NULL) free(data_bytes) ; }
+		~RsTurtleGenericDataItem() override { if(data_bytes != NULL) free(data_bytes) ; }
 
-		virtual bool shouldStampTunnel() const { return true ; }
+		bool shouldStampTunnel() const override { return true ; }
 
 		uint32_t data_size ;
 		void *data_bytes ;
 
-		virtual std::ostream& print(std::ostream& o, uint16_t) ;
+		std::ostream& print(std::ostream& o, uint16_t) override ;
 	protected:
-		virtual bool serialize(void *data,uint32_t& size) ;	
-		virtual uint32_t serial_size() ; 
+		bool serialize(void *data,uint32_t& size) override ;	
+		uint32_t serial_size() override ; 
 };
 
 /***********************************************************************************/
@@ -221,15 +221,15 @@ class RsTurtleSerialiser: public RsSerialType
 	public:
 		RsTurtleSerialiser() : RsSerialType(RS_PKT_VERSION_SERVICE, RS_SERVICE_TYPE_TURTLE) {}
 
-		virtual uint32_t 	size (RsItem *item) 
+		uint32_t 	size (RsItem *item) override 
 		{ 
 			return dynamic_cast<RsTurtleItem *>(item)->serial_size() ;
 		}
-		virtual bool serialise(RsItem *item, void *data, uint32_t *size) 
+		bool serialise(RsItem *item, void *data, uint32_t *size) override 
 		{ 
 			return dynamic_cast<RsTurtleItem *>(item)->serialize(data,*size) ;
 		}
-		virtual RsItem *deserialise (void *data, uint32_t *size) ;
+		RsItem *deserialise (void *data, uint32_t *size) override ;
 
 		// This is used by the turtle router to add services to its serialiser.
 		// Client services are only used for deserialising, since the serialisation is

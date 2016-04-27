@@ -33,16 +33,16 @@ class TransferPage: public ConfigPage
 
 	public:
 		TransferPage(QWidget * parent = 0, Qt::WindowFlags flags = 0);
-		~TransferPage() {}
+		~TransferPage() override {}
 
 		/** Saves the changes on this page */
-		virtual bool save(QString &/*errmsg*/) { return true ; }
+		bool save(QString &/*errmsg*/) override { return true ; }
 		/** Loads the settings for this page */
-		virtual void load() {}
+		void load() override {}
 
-		virtual QPixmap iconPixmap() const { return QPixmap(":/images/ktorrent32.png") ; }
-        virtual QString pageName() const { return tr("File transfer") ; }
-		virtual QString helpText() const { return ""; }
+		QPixmap iconPixmap() const override { return QPixmap(":/images/ktorrent32.png") ; }
+        QString pageName() const override { return tr("File transfer") ; }
+		QString helpText() const override { return ""; }
 
 	public slots:
 		void updateQueueSize(int) ;

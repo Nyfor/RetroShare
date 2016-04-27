@@ -57,41 +57,41 @@ class p3BanList: public RsBanList, public p3Service, public pqiNetAssistPeerShar
 {
 public:
     p3BanList(p3ServiceControl *sc, p3NetMgr *nm);
-    virtual RsServiceInfo getServiceInfo();
+    RsServiceInfo getServiceInfo() override;
 
     /***** overloaded from RsBanList *****/
 
-    virtual bool isAddressAccepted(const struct sockaddr_storage& addr, uint32_t checking_flags,uint32_t *check_result=NULL) ;
+    bool isAddressAccepted(const struct sockaddr_storage& addr, uint32_t checking_flags,uint32_t *check_result=NULL) override ;
 
-    virtual void getBannedIps(std::list<BanListPeer>& list) ;
-    virtual void getWhiteListedIps(std::list<BanListPeer>& list) ;
+    void getBannedIps(std::list<BanListPeer>& list) override ;
+    void getWhiteListedIps(std::list<BanListPeer>& list) override ;
 
-    virtual bool addIpRange(const struct sockaddr_storage& addr,int masked_bytes,uint32_t list_type,const std::string& comment) ;
-    virtual bool removeIpRange(const sockaddr_storage &addr, int masked_bytes, uint32_t list_type);
+    bool addIpRange(const struct sockaddr_storage& addr,int masked_bytes,uint32_t list_type,const std::string& comment) override ;
+    bool removeIpRange(const sockaddr_storage &addr, int masked_bytes, uint32_t list_type) override;
 
-    virtual void enableIPFiltering(bool b) ;
-    virtual bool ipFilteringEnabled() ;
+    void enableIPFiltering(bool b) override ;
+    bool ipFilteringEnabled() override ;
 
-    virtual bool autoRangeEnabled() { return mAutoRangeIps ; }
-    virtual void enableAutoRange(bool b) ;
+    bool autoRangeEnabled() override { return mAutoRangeIps ; }
+    void enableAutoRange(bool b) override ;
 
-    virtual int  autoRangeLimit()   { return mAutoRangeLimit ; }
-    virtual void setAutoRangeLimit(int b) ;
+    int  autoRangeLimit() override   { return mAutoRangeLimit ; }
+    void setAutoRangeLimit(int b) override ;
 
-    virtual void enableIPsFromFriends(bool b) ;
-    virtual bool IPsFromFriendsEnabled() { return mIPFriendGatheringEnabled ;}
+    void enableIPsFromFriends(bool b) override ;
+    bool IPsFromFriendsEnabled() override { return mIPFriendGatheringEnabled ;}
 
-    virtual void enableIPsFromDHT(bool b) ;
-    virtual bool iPsFromDHTEnabled() { return mIPDHTGatheringEnabled ;}
+    void enableIPsFromDHT(bool b) override ;
+    bool iPsFromDHTEnabled() override { return mIPDHTGatheringEnabled ;}
 
     /***** overloaded from pqiNetAssistPeerShare *****/
 
-    virtual void    updatePeer(const RsPeerId& id, const struct sockaddr_storage &addr, int type, int reason, int time_stamp);
+    void    updatePeer(const RsPeerId& id, const struct sockaddr_storage &addr, int type, int reason, int time_stamp) override;
 
     /***********************  p3config  ******************************/
-    virtual RsSerialiser *setupSerialiser();
-    virtual bool saveList(bool &cleanup, std::list<RsItem *>& itemlist);
-    virtual bool loadList(std::list<RsItem *>& load);
+    RsSerialiser *setupSerialiser() override;
+    bool saveList(bool &cleanup, std::list<RsItem *>& itemlist) override;
+    bool loadList(std::list<RsItem *>& load) override;
 
     /***** overloaded from p3Service *****/
     /*!
@@ -102,7 +102,7 @@ public:
      * @see NotifyBase
 
      */
-    virtual int   tick();
+    int   tick() override;
     virtual int   status();
 
     int     sendPackets();

@@ -153,10 +153,10 @@ class bdNode: public bdNodePublisher
     //void loadFilteredPeers(const std::list<bdFilteredPeer> &peers);
 
 	/* simplified outgoing msg functions (for the managers) */
-	virtual void send_ping(bdId *id); /* message out */
-	virtual void send_query(bdId *id, bdNodeId *targetNodeId, bool localnet); /* message out */
-	virtual void send_connect_msg(bdId *id, int msgtype, 
-				bdId *srcAddr, bdId *destAddr, int mode, int param, int status);
+	void send_ping(bdId *id) override; /* message out */
+	void send_query(bdId *id, bdNodeId *targetNodeId, bool localnet) override; /* message out */
+	void send_connect_msg(bdId *id, int msgtype, 
+				bdId *srcAddr, bdId *destAddr, int mode, int param, int status) override;
 
 // This is implemented in bdManager.
 //        virtual void callbackConnect(bdId *srcId, bdId *proxyId, bdId *destId,

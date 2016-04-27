@@ -14,10 +14,10 @@ public:
     // no need to call start or stop or something
     // parameter api must not be null
     TerminalApiClient(ApiServer* api);
-    ~TerminalApiClient();
+    ~TerminalApiClient() override;
 protected:
     // from RsThread
-    virtual void data_tick(); /* called once the thread is started. Should be overloaded by subclasses. */
+    void data_tick() override; /* called once the thread is started. Should be overloaded by subclasses. */
 private:
     void waitForResponse(ApiServer::RequestId id);
     bool isTokenValid(StateToken st);

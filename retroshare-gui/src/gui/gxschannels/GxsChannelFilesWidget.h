@@ -41,7 +41,7 @@ class GxsChannelFilesWidget : public QWidget
 
 public:
 	explicit GxsChannelFilesWidget(QWidget *parent = 0);
-	~GxsChannelFilesWidget();
+	~GxsChannelFilesWidget() override;
 
 	void addFiles(const RsGxsChannelPost &post, bool related);
 	void clear();

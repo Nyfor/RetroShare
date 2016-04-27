@@ -46,12 +46,12 @@ class RsTlvParamRef: public RsTlvItem
 {
 	public:
 	 RsTlvParamRef(uint16_t param_type, T &p): mParamType(param_type), mParam(p) {}
-virtual ~RsTlvParamRef() { return; }
-virtual uint32_t TlvSize() const;
-virtual void	 TlvClear();
-virtual bool     SetTlv(void *data, uint32_t size, uint32_t *offset) const; 
-virtual bool     GetTlv(void *data, uint32_t size, uint32_t *offset); 
-virtual std::ostream &print(std::ostream &out, uint16_t indent) const;
+~RsTlvParamRef() override { return; }
+uint32_t TlvSize() const override;
+void	 TlvClear() override;
+bool     SetTlv(void *data, uint32_t size, uint32_t *offset) const override; 
+bool     GetTlv(void *data, uint32_t size, uint32_t *offset) override; 
+std::ostream &print(std::ostream &out, uint16_t indent) const override;
 
 	uint16_t mParamType;
 	T &mParam;

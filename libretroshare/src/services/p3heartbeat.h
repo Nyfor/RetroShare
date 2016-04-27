@@ -38,11 +38,11 @@ class p3heartbeat: public p3Service
 	public:
 
 	p3heartbeat(p3ServiceControl *sc, pqipersongrp *pqipg);
-virtual ~p3heartbeat();
+~p3heartbeat() override;
 
-virtual RsServiceInfo getServiceInfo();
+RsServiceInfo getServiceInfo() override;
 
-	int	tick();
+	int	tick() override;
 
 	private:
 

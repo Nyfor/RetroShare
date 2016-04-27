@@ -42,9 +42,9 @@ class RsRttItem: public RsItem
 		RsRttItem(uint8_t chat_subtype) : RsItem(RS_PKT_VERSION_SERVICE,RS_SERVICE_TYPE_RTT,chat_subtype) 
 	{ setPriorityLevel(QOS_PRIORITY_RS_RTT_PING) ;}	// should be refined later.
 
-		virtual ~RsRttItem() {};
-		virtual void clear() {};
-		virtual std::ostream& print(std::ostream &out, uint16_t indent = 0) = 0 ;
+		~RsRttItem() override {};
+		void clear() override {};
+		std::ostream& print(std::ostream &out, uint16_t indent = 0) override = 0 ;
 };
 
 class RsRttPingItem: public RsRttItem
@@ -52,9 +52,9 @@ class RsRttPingItem: public RsRttItem
 	public:
 		RsRttPingItem() :RsRttItem(RS_PKT_SUBTYPE_RTT_PING) {}
 
-		virtual ~RsRttPingItem();
-		virtual void clear();
-		virtual std::ostream& print(std::ostream &out, uint16_t indent = 0);
+		~RsRttPingItem() override;
+		void clear() override;
+		std::ostream& print(std::ostream &out, uint16_t indent = 0) override;
 
 		uint32_t mSeqNo;
 		uint64_t mPingTS;
@@ -65,9 +65,9 @@ class RsRttPongItem: public RsRttItem
 	public:
 		RsRttPongItem() :RsRttItem(RS_PKT_SUBTYPE_RTT_PONG) {}
 
-		virtual ~RsRttPongItem();
-		virtual void clear();
-		virtual std::ostream& print(std::ostream &out, uint16_t indent = 0);
+		~RsRttPongItem() override;
+		void clear() override;
+		std::ostream& print(std::ostream &out, uint16_t indent = 0) override;
 
 		uint32_t mSeqNo;
 		uint64_t mPingTS;
@@ -82,11 +82,11 @@ class RsRttSerialiser: public RsSerialType
 	:RsSerialType(RS_PKT_VERSION_SERVICE, RS_SERVICE_TYPE_RTT)
 	{ return; }
 	
-virtual     ~RsRttSerialiser() { return; }
+    ~RsRttSerialiser() override { return; }
 	
-virtual	uint32_t    size(RsItem *);
-virtual	bool        serialise  (RsItem *item, void *data, uint32_t *size);
-virtual	RsItem *    deserialise(void *data, uint32_t *size);
+	uint32_t    size(RsItem *) override;
+	bool        serialise  (RsItem *item, void *data, uint32_t *size) override;
+	RsItem *    deserialise(void *data, uint32_t *size) override;
 
 	private:
 

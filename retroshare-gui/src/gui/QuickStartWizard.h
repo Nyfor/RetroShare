@@ -35,14 +35,14 @@ class QuickStartWizard : public QDialog
     
 public:
     explicit QuickStartWizard(QWidget *parent = 0);
-    virtual ~QuickStartWizard();
+    ~QuickStartWizard() override;
     
     void loadNetwork();
     void loadShare();    
     void loadGeneral();
 
 protected:
-    virtual void changeEvent(QEvent *e);
+    void changeEvent(QEvent *e) override;
    // virtual void showEvent(QShowEvent * event);
 
 private:

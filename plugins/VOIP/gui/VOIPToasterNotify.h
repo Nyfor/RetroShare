@@ -49,14 +49,14 @@ protected:
 
 public:
 	VOIPToasterNotify(RsVOIP *VOIP, VOIPNotify *notify, QObject *parent = 0);
-	~VOIPToasterNotify();
+	~VOIPToasterNotify() override;
 
 	/// From ToasterNotify ///
-	virtual bool hasSettings(QString &mainName, QMap<QString,QString> &tagAndTexts);
-	virtual bool notifyEnabled(QString tag);
-	virtual void setNotifyEnabled(QString tag, bool enabled);
-	virtual ToasterItem *toasterItem();
-	virtual ToasterItem *testToasterItem(QString tag);
+	bool hasSettings(QString &mainName, QMap<QString,QString> &tagAndTexts) override;
+	bool notifyEnabled(QString tag) override;
+	void setNotifyEnabled(QString tag, bool enabled) override;
+	ToasterItem *toasterItem() override;
+	ToasterItem *testToasterItem(QString tag) override;
 
 private slots:
 #ifdef VOIPTOASTERNOTIFY_ALL

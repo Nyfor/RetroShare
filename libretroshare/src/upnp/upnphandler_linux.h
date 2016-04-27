@@ -24,24 +24,24 @@ class upnphandler: public pqiNetAssistFirewall
 	public:
 
 	    upnphandler();
-	    virtual	~upnphandler();
+	    	~upnphandler() override;
 
 	    /* External Interface (pqiNetAssistFirewall) */
-	    virtual void    enable(bool active);
-	    virtual void    shutdown();
-	    virtual void    restart();
+	    void    enable(bool active) override;
+	    void    shutdown() override;
+	    void    restart() override;
 
-	    virtual bool    getEnabled();
-	    virtual bool    getActive();
+	    bool    getEnabled() override;
+	    bool    getActive() override;
 
-	    virtual void    setInternalPort(unsigned short iport_in);
-	    virtual void    setExternalPort(unsigned short eport_in);
-	    virtual bool    getInternalAddress(struct sockaddr_storage &addr);
-	    virtual bool    getExternalAddress(struct sockaddr_storage &addr);
+	    void    setInternalPort(unsigned short iport_in) override;
+	    void    setExternalPort(unsigned short eport_in) override;
+	    bool    getInternalAddress(struct sockaddr_storage &addr) override;
+	    bool    getExternalAddress(struct sockaddr_storage &addr) override;
 
             /* TO IMPLEMENT: New Port Forward interface to support as many ports as necessary */
-	    virtual bool    requestPortForward(const PortForwardParams & /* params */) { return false; }
-	    virtual bool    statusPortForward(const uint32_t /* fwdId */, PortForwardParams & /*params*/) { return false; }
+	    bool    requestPortForward(const PortForwardParams & /* params */) override { return false; }
+	    bool    statusPortForward(const uint32_t /* fwdId */, PortForwardParams & /*params*/) override { return false; }
 
 	    /* Public functions - for background thread operation,
 	     * but effectively private from rest of RS, as in derived class

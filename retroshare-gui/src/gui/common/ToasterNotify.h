@@ -33,7 +33,7 @@ class ToasterNotify : public QObject
 
 public:
 	ToasterNotify(QObject *parent = 0);
-	~ToasterNotify();
+	~ToasterNotify() override;
 
 	virtual bool hasSetting(QString &/*name*/);
 	virtual bool notifyEnabled();

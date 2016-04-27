@@ -34,32 +34,32 @@ class VOIPPlugin: public RsPlugin
 {
 	public:
 		VOIPPlugin() ;
-		virtual ~VOIPPlugin() {}
+		~VOIPPlugin() override {}
 
-		virtual p3Service      *p3_service() 			const	;
-		virtual p3Config       *p3_config()             const { return mVOIP; }
-		virtual uint16_t        rs_service_id()         const { return RS_SERVICE_TYPE_VOIP_PLUGIN ; }
-		virtual ConfigPage     *qt_config_page()        const ;
-		virtual QDialog        *qt_about_page()         const ;
-		virtual ChatWidgetHolder *qt_get_chat_widget_holder(ChatWidget *chatWidget) const ;
+		p3Service      *p3_service() 			const override	;
+		p3Config       *p3_config()             const override { return mVOIP; }
+		uint16_t        rs_service_id()         const override { return RS_SERVICE_TYPE_VOIP_PLUGIN ; }
+		ConfigPage     *qt_config_page()        const override ;
+		QDialog        *qt_about_page()         const override ;
+		ChatWidgetHolder *qt_get_chat_widget_holder(ChatWidget *chatWidget) const override ;
 		
-		virtual QIcon *qt_icon() const;
-		virtual std::string    qt_stylesheet() { return "VOIP"; }
-		virtual QTranslator    *qt_translator(QApplication *app, const QString& languageCode, const QString& externalDir) const;
-		virtual void           qt_sound_events(SoundEvents &events) const;
+		QIcon *qt_icon() const override;
+		std::string    qt_stylesheet() override { return "VOIP"; }
+		QTranslator    *qt_translator(QApplication *app, const QString& languageCode, const QString& externalDir) const override;
+		void           qt_sound_events(SoundEvents &events) const override;
 
-		virtual void getPluginVersion(int& major, int& minor, int &build, int& svn_rev) const ;
-		virtual void setPlugInHandler(RsPluginHandler *pgHandler);
+		void getPluginVersion(int& major, int& minor, int &build, int& svn_rev) const override ;
+		void setPlugInHandler(RsPluginHandler *pgHandler) override;
 
-		virtual std::string configurationFileName() const { return "voip.cfg" ; }
+		std::string configurationFileName() const override { return "voip.cfg" ; }
 
-		virtual std::string getShortPluginDescription() const ;
-		virtual std::string getPluginName() const;
-		virtual void getLibraries(std::list<RsLibraryInfo> &libraries);
-		virtual void setInterfaces(RsPlugInInterfaces& interfaces);
+		std::string getShortPluginDescription() const override ;
+		std::string getPluginName() const override;
+		void getLibraries(std::list<RsLibraryInfo> &libraries) override;
+		void setInterfaces(RsPlugInInterfaces& interfaces) override;
 
 		//================================== RsPlugin Notify ==================================//
-		virtual ToasterNotify *qt_toasterNotify();
+		ToasterNotify *qt_toasterNotify() override;
 
 	private:
 		mutable p3VOIP *mVOIP ;

@@ -44,7 +44,7 @@ namespace QtSpeex {
                 float dPeakSpeaker, dPeakSignal, dMaxMic, dPeakMic, dPeakCleanMic, dVoiceAcivityLevel;
                 float fSpeechProb;
                 SpeexInputProcessor(QObject* parent = 0);
-                virtual ~SpeexInputProcessor();
+                ~SpeexInputProcessor() override;
 
 		bool hasPendingPackets();
                 QByteArray getNetworkPacket();
@@ -60,9 +60,9 @@ namespace QtSpeex {
 		void networkPacketReady();
 
 	protected:
-                virtual qint64 readData(char * /*data*/, qint64 /*maxSize*/) {return false;} //not used for input processor
-		virtual qint64 writeData(const char *data, qint64 maxSize);
-                virtual bool isSequential() const;
+                qint64 readData(char * /*data*/, qint64 /*maxSize*/) override {return false;} //not used for input processor
+		qint64 writeData(const char *data, qint64 maxSize) override;
+                bool isSequential() const override;
 
         private:
                 QByteArray* lastEchoFrame;
@@ -90,14 +90,14 @@ namespace QtSpeex {
 
         public:
                 SpeexOutputProcessor(QObject* parent = 0);
-                virtual ~SpeexOutputProcessor();
+                ~SpeexOutputProcessor() override;
 
                 void putNetworkPacket(QString name, QByteArray packet);
 
         protected:
-                virtual qint64 readData(char *data, qint64 maxSize);
-                virtual qint64 writeData(const char * /*data*/, qint64 /*maxSize*/) {return 0;} //not used for output processor
-                virtual bool isSequential() const;
+                qint64 readData(char *data, qint64 maxSize) override;
+                qint64 writeData(const char * /*data*/, qint64 /*maxSize*/) override {return 0;} //not used for output processor
+                bool isSequential() const override;
 
         signals:
                 void playingFrame(QByteArray*);

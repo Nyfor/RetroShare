@@ -23,11 +23,11 @@ public:
 
     // re-derived from RSGraphSource
 
-    virtual void getValues(std::map<std::string,float>& values) const;
-    virtual QString displayValue(float v) const;
-    virtual QString legend(int i,float v) const;
-    virtual void update();
-    QString unitName() const ;
+    void getValues(std::map<std::string,float>& values) const override;
+    QString displayValue(float v) const override;
+    QString legend(int i,float v) const override;
+    void update() override;
+    QString unitName() const override ;
 
     // own methdods to control what's used to create displayed info
 

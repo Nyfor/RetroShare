@@ -37,18 +37,18 @@ public:
     static void clearWaitingChat(ChatId id);
 
 	ChatUserNotify(QObject *parent = 0);
-    ~ChatUserNotify();
+    ~ChatUserNotify() override;
 
-	virtual bool hasSetting(QString *name, QString *group);
+	bool hasSetting(QString *name, QString *group) override;
 
 private slots:
     void chatMessageReceived(ChatMessage msg);
 
 private:
-	virtual QIcon getIcon();
-	virtual QIcon getMainIcon(bool hasNew);
-	virtual unsigned int getNewCount();
-	virtual void iconClicked();
+	QIcon getIcon() override;
+	QIcon getMainIcon(bool hasNew) override;
+	unsigned int getNewCount() override;
+	void iconClicked() override;
 };
 
 #endif // CHATUSERNOTIFY_H

@@ -39,18 +39,18 @@ public:
 	/** Default Constructor */
 	PostedGroupItem(FeedHolder *feedHolder, uint32_t feedId, const RsGxsGroupId &groupId, bool isHome, bool autoUpdate);
 	PostedGroupItem(FeedHolder *feedHolder, uint32_t feedId, const RsPostedGroup &group, bool isHome, bool autoUpdate);
-	~PostedGroupItem();
+	~PostedGroupItem() override;
 
 	bool setGroup(const RsPostedGroup &group);
 
 protected:
 	/* FeedItem */
-	virtual void doExpand(bool open);
+	void doExpand(bool open) override;
 
 	/* GxsGroupFeedItem */
-	virtual QString groupName();
-	virtual void loadGroup(const uint32_t &token);
-	virtual RetroShareLink::enumType getLinkType() { return RetroShareLink::TYPE_UNKNOWN; }
+	QString groupName() override;
+	void loadGroup(const uint32_t &token) override;
+	RetroShareLink::enumType getLinkType() override { return RetroShareLink::TYPE_UNKNOWN; }
 
 private slots:
 	/* default stuff */

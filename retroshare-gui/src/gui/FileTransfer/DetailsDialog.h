@@ -36,7 +36,7 @@ public:
   /** Default constructor */
   DetailsDialog(QWidget *parent = 0);
   /** Default destructor */
-  ~DetailsDialog() {}
+  ~DetailsDialog() override {}
   
     void setFileHash(const RsFileHash &hash) ;
 

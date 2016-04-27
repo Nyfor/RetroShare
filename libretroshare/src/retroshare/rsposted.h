@@ -79,7 +79,7 @@ class RsPosted : public RsGxsIfaceHelper, public RsGxsCommentService
 	//static const uint32_t FLAG_MSGTYPE_MASK;
 
 	RsPosted(RsGxsIface* gxs) : RsGxsIfaceHelper(gxs) { return; }
-virtual ~RsPosted() { return; }
+~RsPosted() override { return; }
 
 	    /* Specific Service Data */
 virtual bool getGroupData(const uint32_t &token, std::vector<RsPostedGroup> &groups) = 0;

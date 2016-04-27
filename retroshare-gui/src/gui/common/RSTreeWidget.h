@@ -60,8 +60,8 @@ private slots:
 	void columnVisible();
 
 protected:
-	void paintEvent(QPaintEvent *event);
-	virtual void mousePressEvent(QMouseEvent *event);
+	void paintEvent(QPaintEvent *event) override;
+	void mousePressEvent(QMouseEvent *event) override;
 
 private:
 	QString mPlaceholderText;

@@ -45,7 +45,7 @@ class p3HistoryMgr: public p3Config
 {
 public:
 	p3HistoryMgr();
-	virtual ~p3HistoryMgr();
+	~p3HistoryMgr() override;
 
 	/******** p3HistoryMgr *********/
 
@@ -67,10 +67,10 @@ public:
 
 	/********* p3config ************/
 
-	virtual RsSerialiser *setupSerialiser();
-	virtual bool saveList(bool& cleanup, std::list<RsItem*>& saveData);
-	virtual void saveDone();
-	virtual bool loadList(std::list<RsItem*>& load);
+	RsSerialiser *setupSerialiser() override;
+	bool saveList(bool& cleanup, std::list<RsItem*>& saveData) override;
+	void saveDone() override;
+	bool loadList(std::list<RsItem*>& load) override;
 
 private:
     static bool chatIdToVirtualPeerId(ChatId chat_id, RsPeerId& peer_id);

@@ -35,16 +35,16 @@ public:
 	/** Default Constructor */
 	SoundPage(QWidget * parent = 0, Qt::WindowFlags flags = 0);
 	/** Default Destructor */
-	~SoundPage();
+	~SoundPage() override;
 
 	/** Saves the changes on this page */
-	virtual bool save(QString &errmsg);
+	bool save(QString &errmsg) override;
 	/** Loads the settings for this page */
-	virtual void load();
+	void load() override;
 
-	virtual QPixmap iconPixmap() const { return QPixmap(":/images/sound.png") ; }
-	virtual QString pageName() const { return tr("Sound") ; }
-	virtual QString helpText() const { return ""; }
+	QPixmap iconPixmap() const override { return QPixmap(":/images/sound.png") ; }
+	QString pageName() const override { return tr("Sound") ; }
+	QString helpText() const override { return ""; }
 
 private slots:
 	void eventChanged(QTreeWidgetItem *current, QTreeWidgetItem *previous);

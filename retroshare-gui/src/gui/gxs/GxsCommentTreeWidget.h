@@ -36,14 +36,14 @@ class GxsCommentTreeWidget : public QTreeWidget, public TokenResponse
         
 public:
     GxsCommentTreeWidget(QWidget *parent = 0);
-    ~GxsCommentTreeWidget();
+    ~GxsCommentTreeWidget() override;
     void setup(RsTokenService *token_service, RsGxsCommentService *comment_service);
 
     void requestComments(const RsGxsGrpMsgIdPair& threadId);
     void getCurrentMsgId(RsGxsMessageId& parentId);
     void applyRankings(std::map<RsGxsMessageId, uint32_t>& positions);
 
-    void loadRequest(const TokenQueue *queue, const TokenRequest &req);
+    void loadRequest(const TokenQueue *queue, const TokenRequest &req) override;
     void setVoteId(const RsGxsId &voterId);
 
 protected:

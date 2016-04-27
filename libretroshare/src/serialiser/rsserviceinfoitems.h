@@ -73,9 +73,9 @@ class RsServiceInfoListItem: public RsItem
 		return; 
 	}
 
-virtual ~RsServiceInfoListItem();
-virtual void clear();  
-std::ostream &print(std::ostream &out, uint16_t indent = 0);
+~RsServiceInfoListItem() override;
+void clear() override;  
+std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
 	std::map<uint32_t, RsServiceInfo> mServiceInfo;	
 };
@@ -92,9 +92,9 @@ class RsServiceInfoPermissionsItem: public RsItem
 		return; 
 	}
 
-virtual ~RsServiceInfoPermissionsItem();
-virtual void clear();  
-std::ostream &print(std::ostream &out, uint16_t indent = 0);
+~RsServiceInfoPermissionsItem() override;
+void clear() override;  
+std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
 	uint32_t	allowedBw; // Units are bytes/sec => 4Gb/s; 
 
@@ -107,12 +107,12 @@ class RsServiceInfoSerialiser: public RsSerialType
 	RsServiceInfoSerialiser()
 	:RsSerialType(RS_PKT_VERSION_SERVICE, RS_SERVICE_TYPE_SERVICEINFO)
 	{ return; }
-virtual     ~RsServiceInfoSerialiser()
+    ~RsServiceInfoSerialiser() override
 	{ return; }
 	
-virtual	uint32_t    size(RsItem *);
-virtual	bool        serialise  (RsItem *item, void *data, uint32_t *size);
-virtual	RsItem *    deserialise(void *data, uint32_t *size);
+	uint32_t    size(RsItem *) override;
+	bool        serialise  (RsItem *item, void *data, uint32_t *size) override;
+	RsItem *    deserialise(void *data, uint32_t *size) override;
 
 	private:
 

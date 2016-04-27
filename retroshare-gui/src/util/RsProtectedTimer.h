@@ -29,7 +29,7 @@ public:
 	RsProtectedTimer(QObject *parent);
 
 protected:
-	virtual void timerEvent(QTimerEvent *e);
+	void timerEvent(QTimerEvent *e) override;
 
 private:
 	// do not use, please use setInterval, setSingleShot and connect signal timeout

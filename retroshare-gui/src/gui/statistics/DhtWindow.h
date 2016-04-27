@@ -31,7 +31,7 @@ class DhtWindow : public RsAutoUpdatePage/*,  public Ui::DhtWindow*/ {
 public:
 
     DhtWindow(QWidget *parent = 0);
-    ~DhtWindow();
+    ~DhtWindow() override;
 
 	void updateNetStatus();
 	void updateNetPeers();
@@ -40,7 +40,7 @@ public:
 	void getDHTStatus();
 
 public slots:
-	virtual void updateDisplay() ;
+	void updateDisplay() override ;
 	
   void filterColumnChanged(int);
   void filterItems(const QString &text);

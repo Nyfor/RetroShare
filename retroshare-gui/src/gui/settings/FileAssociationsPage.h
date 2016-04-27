@@ -49,12 +49,12 @@ class FileAssociationsPage : public ConfigPage
 
 public:
     FileAssociationsPage(QWidget * parent = 0, Qt::WindowFlags flags = 0);
-    virtual ~FileAssociationsPage();
+    ~FileAssociationsPage() override;
 
-    virtual void load();
-    virtual bool save (QString &errmsg);
-	 virtual QPixmap iconPixmap() const { return QPixmap(":/images/filetype-association.png") ; }
-	 virtual QString pageName() const { return tr("Associations") ; }
+    void load() override;
+    bool save (QString &errmsg) override;
+	 QPixmap iconPixmap() const override { return QPixmap(":/images/filetype-association.png") ; }
+	 QString pageName() const override { return tr("Associations") ; }
 
 protected:
     QToolBar* toolBar;

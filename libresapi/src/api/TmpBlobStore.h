@@ -14,7 +14,7 @@ public:
     virtual ~TmpBlobStore();
 
     // from Tickable
-    virtual void tick();
+    void tick() override;
 
     // 30MB should be enough for avatars pictures, pdfs and mp3s
     // can remove this limit, once we can store data on disk

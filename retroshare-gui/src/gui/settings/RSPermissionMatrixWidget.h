@@ -58,7 +58,7 @@ class RSPermissionMatrixWidget: public QFrame
 
 public:
     RSPermissionMatrixWidget(QWidget *parent=NULL);
-    virtual ~RSPermissionMatrixWidget() ;
+    ~RSPermissionMatrixWidget() override ;
 
 public slots:
     void setHideOffline(bool hide);
@@ -71,12 +71,12 @@ protected slots:
     void defaultPermissionSwitched(uint32_t ServiceId,bool b);
     void userPermissionSwitched(uint32_t ServiceId,const RsPeerId& friend_id,bool b);
 
-    virtual void mousePressEvent(QMouseEvent *e) ;
-    virtual void mouseMoveEvent(QMouseEvent *e) ;
+    void mousePressEvent(QMouseEvent *e) override ;
+    void mouseMoveEvent(QMouseEvent *e) override ;
 
 protected:
     /** Overloaded QWidget::paintEvent() */
-    void paintEvent(QPaintEvent *event);
+    void paintEvent(QPaintEvent *event) override;
 
 private:
     bool computeServiceAndPeer(int x,int y,uint32_t& service_id,RsPeerId& peer_id) const ;

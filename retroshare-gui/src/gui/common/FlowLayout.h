@@ -78,7 +78,7 @@ public:
 		setFocusPolicy(Qt::StrongFocus);
 		setAcceptDrops(true);
 	}
-	~FlowLayoutItem(){}
+	~FlowLayoutItem() override{}
 
 	/// \brief getImage
 	/// \return Image to represent your widget (not necessary all the widget).
@@ -107,7 +107,7 @@ public:
 
 	/// \brief paintEvent
 	///To get Style working on widget and not on all children.
-	void paintEvent(QPaintEvent *)
+	void paintEvent(QPaintEvent *) override
 	{
 		QStyleOption opt;
 		opt.init(this);
@@ -127,14 +127,14 @@ signals:
 	void imageUpdated();
 
 protected:
-	void keyPressEvent(QKeyEvent *event){event->ignore();}
-	void keyReleaseEvent(QKeyEvent *event){event->ignore();}
-	void mousePressEvent(QMouseEvent *event);
-	void mouseMoveEvent(QMouseEvent *event);
-	void mouseReleaseEvent(QMouseEvent *event);
-	void dragEnterEvent(QDragEnterEvent *event);
-	void dragMoveEvent(QDragMoveEvent *event);
-	void dropEvent(QDropEvent *event);
+	void keyPressEvent(QKeyEvent *event) override{event->ignore();}
+	void keyReleaseEvent(QKeyEvent *event) override{event->ignore();}
+	void mousePressEvent(QMouseEvent *event) override;
+	void mouseMoveEvent(QMouseEvent *event) override;
+	void mouseReleaseEvent(QMouseEvent *event) override;
+	void dragEnterEvent(QDragEnterEvent *event) override;
+	void dragMoveEvent(QDragMoveEvent *event) override;
+	void dropEvent(QDropEvent *event) override;
 
 	QString m_myName;
 	bool m_isSelected;
@@ -167,13 +167,13 @@ class FlowLayout : public QLayout
 public:
 	FlowLayout(QWidget *parent, int margin = -1, int hSpacing = -1, int vSpacing = -1);
 	FlowLayout(int margin = -1, int hSpacing = -1, int vSpacing = -1);
-	~FlowLayout();
+	~FlowLayout() override;
 
 	///
 	/// \brief addItem QLayoutItem
 	/// \param item
 	///to add a new item. (normally called by addWidget)
-	void addItem(QLayoutItem *item);
+	void addItem(QLayoutItem *item) override;
 	///
 	/// \brief addItem FlowLayoutItem
 	/// \param item
@@ -204,28 +204,28 @@ public:
 	/// \return Qt::Orientations
 	///Returns the Qt::Orientations in which the layout can make
 	/// use of more space than its sizeHint().
-	Qt::Orientations expandingDirections() const;
+	Qt::Orientations expandingDirections() const override;
 	///
 	/// \brief hasHeightForWidth
 	/// \return bool
 	///Indicates if heightForWidth() is implemented.
-	bool hasHeightForWidth() const;
+	bool hasHeightForWidth() const override;
 	///
 	/// \brief heightForWidth
 	/// \return int
 	///To adjust to widgets of which height is dependent on width.
-	int heightForWidth(int) const;
+	int heightForWidth(int) const override;
 	///
 	/// \brief count
 	/// \return int
 	///Returns items count.
-	int count() const;
+	int count() const override;
 	///
 	/// \brief itemAt
 	/// \param index
 	/// \return QLayoutItem*
 	///Returns item at index position.
-	QLayoutItem *itemAt(int index) const;
+	QLayoutItem *itemAt(int index) const override;
 	///
 	/// \brief itemAtGlobal
 	/// \param p
@@ -254,24 +254,24 @@ public:
 	/// \brief minimumSize
 	/// \return QSize
 	///Returns the minimum size of all child items.
-	QSize minimumSize() const;
+	QSize minimumSize() const override;
 	///
 	/// \brief setGeometry
 	/// \param rect
 	///Set the geometry of the layout relative to its parent and excluding the window frame.
 	///It's for redraw item list when it was resized.
-	void setGeometry(const QRect &rect);
+	void setGeometry(const QRect &rect) override;
 	///
 	/// \brief sizeHint
 	/// \return QSize
 	///Returns recommended (minimum) size.
-	QSize sizeHint() const;
+	QSize sizeHint() const override;
 	///
 	/// \brief takeAt
 	/// \param index
 	/// \return QLayoutItem*
 	///Take an item in list (erase it).
-	QLayoutItem *takeAt(int index);
+	QLayoutItem *takeAt(int index) override;
 	///
 	/// \brief selectionList
 	/// \return QList<QLayoutItem *>
@@ -289,7 +289,7 @@ public:
 	int currentIndex() const { return m_currentIndex;}
 
 protected:
-	bool eventFilter(QObject *obj, QEvent *event);
+	bool eventFilter(QObject *obj, QEvent *event) override;
 	void unsetCurrent();
 	void setCurrent();
 
@@ -331,10 +331,10 @@ class FlowLayoutWidget : public QWidget
 public:
 	FlowLayoutWidget(QWidget *parent, int margin = -1, int hSpacing = -1, int vSpacing = -1);
 	FlowLayoutWidget(int margin = -1, int hSpacing = -1, int vSpacing = -1);
-	~FlowLayoutWidget();
+	~FlowLayoutWidget() override;
 
 protected:
-	bool eventFilter(QObject *obj, QEvent *event);
+	bool eventFilter(QObject *obj, QEvent *event) override;
 
 private:
 	void updateParent();

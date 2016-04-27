@@ -33,16 +33,16 @@ class RelayPage: public ConfigPage
 
 	public:
 		RelayPage(QWidget * parent = 0, Qt::WindowFlags flags = 0);
-		~RelayPage() {}
+		~RelayPage() override {}
 
 		/** Saves the changes on this page */
-		virtual bool save(QString &/*errmsg*/);
+		bool save(QString &/*errmsg*/) override;
 		/** Loads the settings for this page */
-		virtual void load();
+		void load() override;
 
-		virtual QPixmap iconPixmap() const { return QPixmap(":/images/server_24x24.png") ; }
-	 virtual QString pageName() const { return tr("Relay") ; }
-		virtual QString helpText() const ;
+		QPixmap iconPixmap() const override { return QPixmap(":/images/server_24x24.png") ; }
+	 QString pageName() const override { return tr("Relay") ; }
+		QString helpText() const override ;
 
 	public slots:
 		void updateRelayOptions();

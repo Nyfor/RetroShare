@@ -46,13 +46,13 @@ protected:
 
 public:
 	FeedReaderFeedNotify(RsFeedReader *feedReader, FeedReaderNotify *notify, QObject *parent = 0);
-	~FeedReaderFeedNotify();
+	~FeedReaderFeedNotify() override;
 
-	virtual bool hasSetting(QString &name);
-	virtual bool notifyEnabled();
-	virtual void setNotifyEnabled(bool enabled);
-	virtual FeedItem *feedItem(FeedHolder *parent);
-	virtual FeedItem *testFeedItem(FeedHolder *parent);
+	bool hasSetting(QString &name) override;
+	bool notifyEnabled() override;
+	void setNotifyEnabled(bool enabled) override;
+	FeedItem *feedItem(FeedHolder *parent) override;
+	FeedItem *testFeedItem(FeedHolder *parent) override;
 
 private slots:
 	void msgChanged(const QString &feedId, const QString &msgId, int type);

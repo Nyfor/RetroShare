@@ -29,15 +29,15 @@ class NetworkPage : public ConfigPage
 {
 public:
     NetworkPage(QWidget * parent = 0, Qt::WindowFlags flags = 0);
-    ~NetworkPage() {}
+    ~NetworkPage() override {}
 
     /** Saves the changes on this page */
-    virtual bool save(QString &errmsg);
+    bool save(QString &errmsg) override;
     /** Loads the settings for this page */
-    virtual void load();
+    void load() override;
 
-	 virtual QPixmap iconPixmap() const { return QPixmap(":/images/server_24x24.png") ; }
-	 virtual QString pageName() const { return tr("Network") ; }
+	 QPixmap iconPixmap() const override { return QPixmap(":/images/server_24x24.png") ; }
+	 QString pageName() const override { return tr("Network") ; }
 
 private:
     Ui::NetworkPage ui;

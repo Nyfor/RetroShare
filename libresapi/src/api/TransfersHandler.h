@@ -13,10 +13,10 @@ class TransfersHandler: public ResourceRouter, Tickable
 {
 public:
     TransfersHandler(StateTokenServer* sts, RsFiles* files);
-    virtual ~TransfersHandler();
+    ~TransfersHandler() override;
 
     // from Tickable
-    virtual void tick();
+    void tick() override;
 private:
     void handleWildcard(Request& req, Response& resp);
     void handleControlDownload(Request& req, Response& resp);

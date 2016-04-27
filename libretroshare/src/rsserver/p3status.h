@@ -43,10 +43,10 @@ public:
 	virtual ~p3Status();
 
 
-	virtual bool getOwnStatus(StatusInfo& statusInfo);
-	virtual bool getStatusList(std::list<StatusInfo>& statusInfo);
-	virtual bool getStatus(const RsPeerId &id, StatusInfo &statusInfo);
-	virtual bool sendStatus(const RsPeerId &id, uint32_t status);
+	bool getOwnStatus(StatusInfo& statusInfo) override;
+	bool getStatusList(std::list<StatusInfo>& statusInfo) override;
+	bool getStatus(const RsPeerId &id, StatusInfo &statusInfo) override;
+	bool sendStatus(const RsPeerId &id, uint32_t status) override;
 
 private:
 

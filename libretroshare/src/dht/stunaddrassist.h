@@ -39,7 +39,7 @@ class  stunAddrAssist: public pqiAddrAssist
                 mStunner = stunner;
         }
 
-virtual bool    getExternalAddr(struct sockaddr_storage &remote, uint8_t &stable) 
+bool    getExternalAddr(struct sockaddr_storage &remote, uint8_t &stable) override 
         {
 		// IPV4 ONLY.
 		struct sockaddr_in remotev4;
@@ -56,12 +56,12 @@ virtual bool    getExternalAddr(struct sockaddr_storage &remote, uint8_t &stable
 		return false;
         }
 
-virtual int     tick()
+int     tick() override
 	{
                 return mStunner->tick();
         }
 
-virtual void    setRefreshPeriod(int32_t period)
+void    setRefreshPeriod(int32_t period) override
 	{
 		return mStunner->setTargetStunPeriod(period);
 	}

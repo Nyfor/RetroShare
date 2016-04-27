@@ -34,15 +34,15 @@ class GxsFeedWidget : public RSFeedWidget
 
 public:
 	GxsFeedWidget(QWidget *parent = 0);
-	virtual ~GxsFeedWidget();
+	~GxsFeedWidget() override;
 
 	GxsFeedItem *findGxsFeedItem(const RsGxsGroupId &groupId, const RsGxsMessageId &messageId);
 
 protected:
 	/* RSFeedWidget */
-	virtual void feedAdded(FeedItem *feedItem, QTreeWidgetItem *treeItem);
-	virtual void feedRemoved(FeedItem *feedItem);
-	virtual void feedsCleared();
+	void feedAdded(FeedItem *feedItem, QTreeWidgetItem *treeItem) override;
+	void feedRemoved(FeedItem *feedItem) override;
+	void feedsCleared() override;
 
 private:
 	/* Items */

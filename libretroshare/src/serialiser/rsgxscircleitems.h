@@ -57,10 +57,10 @@ public:
 			subCircleSet(GXSCIRCLE_SUBCIRCLESET) 
 #endif
 			{ return;}
-        virtual ~RsGxsCircleGroupItem() { return;}
+        ~RsGxsCircleGroupItem() override { return;}
 
-        void clear();
-	std::ostream &print(std::ostream &out, uint16_t indent = 0);
+        void clear() override;
+	std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
 	bool convertFrom(const RsGxsCircleGroup &group);
 	bool convertTo(RsGxsCircleGroup &group) const;
@@ -77,9 +77,9 @@ public:
 
 	RsGxsCircleMsgItem(): RsGxsMsgItem(RS_SERVICE_GXS_TYPE_GXSCIRCLE,
 			RS_PKT_SUBTYPE_GXSCIRCLE_MSG_ITEM) {return; }
-        virtual ~RsGxsCircleMsgItem() { return;}
-        void clear();
-	std::ostream &print(std::ostream &out, uint16_t indent = 0);
+        ~RsGxsCircleMsgItem() override { return;}
+        void clear() override;
+	std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 	RsGxsCircleMsg msg;
 };
 
@@ -90,11 +90,11 @@ public:
 	RsGxsCircleSerialiser()
 	:RsSerialType(RS_PKT_VERSION_SERVICE, RS_SERVICE_GXS_TYPE_GXSCIRCLE)
 	{ return; }
-	virtual     ~RsGxsCircleSerialiser() { return; }
+	    ~RsGxsCircleSerialiser() override { return; }
 
-	uint32_t    size(RsItem *item);
-	bool        serialise  (RsItem *item, void *data, uint32_t *size);
-	RsItem *    deserialise(void *data, uint32_t *size);
+	uint32_t    size(RsItem *item) override;
+	bool        serialise  (RsItem *item, void *data, uint32_t *size) override;
+	RsItem *    deserialise(void *data, uint32_t *size) override;
 
 	private:
 

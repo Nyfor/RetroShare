@@ -39,12 +39,12 @@ public:
 
      void setFileHash(const RsFileHash& hash) { _file_hash = hash ; }
 
-	 virtual void updateDisplay() ;	// update from RsAutoUpdateWidget
+	 void updateDisplay() override ;	// update from RsAutoUpdateWidget
 protected:
 	 void draw(const FileInfo& nfo,const FileChunksInfo& details,QPainter *painter) ;
 
-    virtual void paintEvent(QPaintEvent *);
-    virtual void resizeEvent(QResizeEvent *event);
+    void paintEvent(QPaintEvent *) override;
+    void resizeEvent(QResizeEvent *event) override;
 
 private:
     int x;

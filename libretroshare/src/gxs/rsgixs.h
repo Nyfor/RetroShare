@@ -194,7 +194,7 @@ class RsGxsIdExchange:
 public:
 	RsGxsIdExchange(RsGeneralDataService* gds, RsNetworkExchangeService* ns, RsSerialType* serviceSerialiser, uint16_t mServType, uint32_t authenPolicy)
 	:RsGenExchange(gds,ns,serviceSerialiser,mServType, this, authenPolicy) { return; }
-virtual ~RsGxsIdExchange() { return; }
+~RsGxsIdExchange() override { return; }
 
 };
 
@@ -228,9 +228,9 @@ public:
 	RsGxsCircleExchange(RsGeneralDataService* gds, RsNetworkExchangeService* ns, RsSerialType* serviceSerialiser, 
 			uint16_t mServType, RsGixs* gixs, uint32_t authenPolicy)
 	:RsGenExchange(gds,ns,serviceSerialiser,mServType, gixs, authenPolicy)  { return; }
-	virtual ~RsGxsCircleExchange() { return; }
+	~RsGxsCircleExchange() override { return; }
     
-	virtual bool getLocalCircleServerUpdateTS(const RsGxsCircleId& gid,time_t& grp_server_update_TS,time_t& msg_server_update_TS) 
+	bool getLocalCircleServerUpdateTS(const RsGxsCircleId& gid,time_t& grp_server_update_TS,time_t& msg_server_update_TS) override 
 	{
 		return RsGenExchange::getGroupServerUpdateTS(RsGxsGroupId(gid),grp_server_update_TS,msg_server_update_TS) ;
 	}

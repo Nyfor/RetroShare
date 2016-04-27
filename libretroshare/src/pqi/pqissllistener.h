@@ -65,15 +65,15 @@ class pqissllistenbase: public pqilistener
 {
 public:
 	pqissllistenbase(const struct sockaddr_storage &addr, p3PeerMgr *pm);
-	virtual ~pqissllistenbase();
+	~pqissllistenbase() override;
 
 	/*************************************/
 	/*       LISTENER INTERFACE          */
-	virtual int tick();
-	virtual int status();
-	virtual int setListenAddr(const struct sockaddr_storage &addr);
-	virtual int setuplisten();
-	virtual int resetlisten();
+	int tick() override;
+	int status() override;
+	int setListenAddr(const struct sockaddr_storage &addr) override;
+	int setuplisten() override;
+	int resetlisten() override;
 	/*************************************/
 
 	int acceptconnection();
@@ -116,15 +116,15 @@ class pqissllistener: public pqissllistenbase
 public:
 	pqissllistener(const struct sockaddr_storage &addr, p3PeerMgr *pm) :
 		pqissllistenbase(addr, pm) {}
-	virtual ~pqissllistener() {}
+	~pqissllistener() override {}
 
 	int addlistenaddr(const RsPeerId& id, pqissl *acc);
 	int removeListenPort(const RsPeerId& id);
 
-	virtual int status();
-	virtual int completeConnection(int sockfd, IncomingSSLInfo&);
-	virtual int finaliseConnection(int fd, SSL *ssl, const RsPeerId& peerId,
-								   const sockaddr_storage &raddr);
+	int status() override;
+	int completeConnection(int sockfd, IncomingSSLInfo&) override;
+	int finaliseConnection(int fd, SSL *ssl, const RsPeerId& peerId,
+								   const sockaddr_storage &raddr) override;
 
 private:
 	std::map<RsPeerId, pqissl*> listenaddr;

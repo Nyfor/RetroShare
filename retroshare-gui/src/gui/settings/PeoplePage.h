@@ -31,16 +31,16 @@ class PeoplePage : public ConfigPage
 
 public:
 	PeoplePage(QWidget * parent = 0, Qt::WindowFlags flags = 0);
-	~PeoplePage();
+	~PeoplePage() override;
 
 	/** Saves the changes on this page */
-	virtual bool save(QString &errmsg);
+	bool save(QString &errmsg) override;
 	/** Loads the settings for this page */
-	virtual void load();
+	void load() override;
 
-	virtual QPixmap iconPixmap() const { return QPixmap(":/icons/friends_128.png") ; }
-	virtual QString pageName() const { return tr("People") ; }
-	virtual QString helpText() const { return ""; }
+	QPixmap iconPixmap() const override { return QPixmap(":/icons/friends_128.png") ; }
+	QString pageName() const override { return tr("People") ; }
+	QString helpText() const override { return ""; }
 
 private:
 	Ui::PeoplePage ui;

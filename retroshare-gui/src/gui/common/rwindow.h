@@ -39,7 +39,7 @@ public:
   /** Default constructor. */
   RWindow(QString name, QWidget *parent = 0, Qt::WindowFlags flags = 0);
   /** Destructor. */
-  ~RWindow();
+  ~RWindow() override;
   
   /** Associates a shortcut key sequence with a slot. */
   void setShortcut(QString shortcut, const char *slot);
@@ -56,7 +56,7 @@ public:
 
 public slots:
   /** Shows or hides this window. */
-  virtual void setVisible(bool visible);
+  void setVisible(bool visible) override;
   /** Show this window. This method really just exists for subclasses to 
    * override, since QMainWindow::show() is non-virtual. */
   virtual void showWindow() { QMainWindow::show(); }

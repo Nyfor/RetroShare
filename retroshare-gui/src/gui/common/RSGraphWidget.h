@@ -51,7 +51,7 @@ class RSGraphSource: public QObject
 
 public:
     RSGraphSource();
-    virtual ~RSGraphSource() ;
+    ~RSGraphSource() override ;
 
     void start() ;
     void stop() ;
@@ -131,7 +131,7 @@ public:
 	/** Default Constructor */
 	RSGraphWidget(QWidget *parent = 0);
 	/** Default Destructor */
-	~RSGraphWidget();
+	~RSGraphWidget() override;
 
 	// sets the update interval period.
 	//
@@ -153,14 +153,14 @@ public:
 	void resetFlags(uint32_t flag) { _flags &= ~flag ; }
 protected:
 	/** Overloaded QWidget::paintEvent() */
-	void paintEvent(QPaintEvent *event);
+	void paintEvent(QPaintEvent *event) override;
 
 	virtual QSizeF sizeHint( Qt::SizeHint which, const QSizeF & constraint = QSizeF() ) const;
 
 protected slots:
 	void updateIfPossible() ;
 
-	virtual void wheelEvent(QWheelEvent *e);
+	void wheelEvent(QWheelEvent *e) override;
 private:
 	/** Gets the width of the desktop, the max # of points. */
 	int getNumPoints();

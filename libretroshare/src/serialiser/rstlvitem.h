@@ -59,10 +59,10 @@ class RsTlvUnit: public RsTlvItem
 {
 	public:
 	 RsTlvUnit(uint16_t tlv_type);
-virtual ~RsTlvUnit() { return; }
-virtual uint32_t TlvSize() const;
-virtual bool     SetTlv(void *data, uint32_t size, uint32_t *offset) const;
-virtual bool     GetTlv(void *data, uint32_t size, uint32_t *offset);
+~RsTlvUnit() override { return; }
+uint32_t TlvSize() const override;
+bool     SetTlv(void *data, uint32_t size, uint32_t *offset) const override;
+bool     GetTlv(void *data, uint32_t size, uint32_t *offset) override;
 
 virtual uint16_t TlvType() const { return mTlvType; }
 

@@ -33,7 +33,7 @@ class GxsFeedItem : public GxsGroupFeedItem
 public:
 	/** Note parent can = NULL */
 	GxsFeedItem(FeedHolder *feedHolder, uint32_t feedId, const RsGxsGroupId &groupId, const RsGxsMessageId &messageId, bool isHome, RsGxsIfaceHelper *iface, bool autoUpdate);
-	virtual ~GxsFeedItem();
+	~GxsFeedItem() override;
 
 	RsGxsMessageId messageId() { return mMessageId; }
 
@@ -45,11 +45,11 @@ protected:
 	virtual QString messageName() = 0;
 
 	/* GxsGroupFeedItem */
-	virtual bool isLoading();
-	virtual void fillDisplay(RsGxsUpdateBroadcastBase *updateBroadcastBase, bool complete);
+	bool isLoading() override;
+	void fillDisplay(RsGxsUpdateBroadcastBase *updateBroadcastBase, bool complete) override;
 
 	/* TokenResponse */
-	virtual void loadRequest(const TokenQueue *queue, const TokenRequest &req);
+	void loadRequest(const TokenQueue *queue, const TokenRequest &req) override;
 
 protected slots:
 	void comments(const QString &title);

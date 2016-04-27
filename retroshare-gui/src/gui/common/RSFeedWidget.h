@@ -46,7 +46,7 @@ class RSFeedWidget : public QWidget
 
 public:
 	RSFeedWidget(QWidget *parent = 0);
-	virtual ~RSFeedWidget();
+	~RSFeedWidget() override;
 
 	QString placeholderText();
 	void setPlaceholderText(const QString &placeholderText);
@@ -86,7 +86,7 @@ public slots:
 	void setFilterType(int type);
 
 protected:
-	bool eventFilter(QObject *object, QEvent *event);
+	bool eventFilter(QObject *object, QEvent *event) override;
 	virtual void feedAdded(FeedItem *feedItem, QTreeWidgetItem *treeItem);
 	virtual void feedRemoved(FeedItem *feedItem);
 	virtual void feedsCleared();

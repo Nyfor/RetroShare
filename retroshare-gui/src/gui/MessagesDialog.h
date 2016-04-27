@@ -42,13 +42,13 @@ public:
   /** Default Constructor */
   MessagesDialog(QWidget *parent = 0);
   /** Default Destructor */
-  ~MessagesDialog();
+  ~MessagesDialog() override;
 
-  virtual QIcon iconPixmap() const { return QIcon(IMAGE_MESSAGES) ; } //MainPage
-  virtual QString pageName() const { return tr("Messages") ; } //MainPage
-  virtual QString helpText() const { return ""; } //MainPage
+  QIcon iconPixmap() const override { return QIcon(IMAGE_MESSAGES) ; } //MainPage
+  QString pageName() const override { return tr("Messages") ; } //MainPage
+  QString helpText() const override { return ""; } //MainPage
 
-  virtual UserNotify *getUserNotify(QObject *parent);
+  UserNotify *getUserNotify(QObject *parent) override;
 
 // replaced by shortcut
 //  virtual void keyPressEvent(QKeyEvent *) ;
@@ -58,8 +58,8 @@ public:
   void setTextColorInbox(QColor color) { mTextColorInbox = color; }
 
 protected:
-  bool eventFilter(QObject *obj, QEvent *ev);
-  void changeEvent(QEvent *e);
+  bool eventFilter(QObject *obj, QEvent *ev) override;
+  void changeEvent(QEvent *e) override;
 
 public slots:
   void insertMessages();

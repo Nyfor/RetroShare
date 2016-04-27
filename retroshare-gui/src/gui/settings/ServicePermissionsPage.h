@@ -33,16 +33,16 @@ class ServicePermissionsPage: public ConfigPage
 
 public:
     ServicePermissionsPage(QWidget * parent = 0, Qt::WindowFlags flags = 0);
-    ~ServicePermissionsPage() {}
+    ~ServicePermissionsPage() override {}
 
     /** Saves the changes on this page */
-    virtual bool save(QString &/*errmsg*/) { return true ;}
+    bool save(QString &/*errmsg*/) override { return true ;}
     /** Loads the settings for this page */
-    virtual void load() {}
+    void load() override {}
 
-    virtual QPixmap iconPixmap() const { return QPixmap(":/images/admin-24.png") ; }
-    virtual QString pageName() const { return tr("Permissions") ; }
-    virtual QString helpText() const ;
+    QPixmap iconPixmap() const override { return QPixmap(":/images/admin-24.png") ; }
+    QString pageName() const override { return tr("Permissions") ; }
+    QString helpText() const override ;
 
 private:
     Ui::ServicePermissionsPage ui;

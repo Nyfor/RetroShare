@@ -72,29 +72,29 @@ public:
     void addEdge(Edge *edge);
     const QList<Edge *>& edges() const;
 
-	int type() const { return Type; }
+	int type() const override { return Type; }
 	std::string idString() const { return _gpg_id.toStdString() ; }
 	std::string descString() const { return _desc_string ; }
 
     void calculateForces(const double *data,int width,int height,int W,int H,float x,float y,float speedf);
     bool advance();
 
-    QRectF boundingRect() const;
-    QPainterPath shape() const;
+    QRectF boundingRect() const override;
+    QPainterPath shape() const override;
 
 	void setNodeDrawSize(int nds){mNodeDrawSize = nds;}
 	int getNodeDrawSize(){return mNodeDrawSize;}
 
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
 
 	 int n_edges() const { return edgeList.size() ; }
 protected:
-    virtual QVariant itemChange(GraphicsItemChange change, const QVariant &value);
+    QVariant itemChange(GraphicsItemChange change, const QVariant &value) override;
 
-    virtual void mousePressEvent(QGraphicsSceneMouseEvent *event);
-    virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+    void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
 
-	 virtual void contextMenuEvent(QGraphicsSceneContextMenuEvent *) ;
+	 void contextMenuEvent(QGraphicsSceneContextMenuEvent *) override ;
     
  protected slots:
 	 void denyFriend() ;

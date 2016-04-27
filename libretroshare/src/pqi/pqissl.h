@@ -88,33 +88,33 @@ class pqissl: public NetBinInterface
 public:
 	pqissl(pqissllistener *l, PQInterface *parent, 
                 p3LinkMgr *lm);
-virtual ~pqissl();
+~pqissl() override;
 
 	// NetInterface
-virtual int connect(const struct sockaddr_storage &raddr);
-virtual int listen();
-virtual int stoplistening();
-virtual int reset();
-virtual int disconnect();
-virtual int getConnectAddress(struct sockaddr_storage &raddr);
+int connect(const struct sockaddr_storage &raddr) override;
+int listen() override;
+int stoplistening() override;
+int reset() override;
+int disconnect() override;
+int getConnectAddress(struct sockaddr_storage &raddr) override;
 
-virtual bool connect_parameter(uint32_t /*type*/, const std::string & /*value*/) { return false; }
-virtual bool connect_parameter(uint32_t type, uint32_t value);
+bool connect_parameter(uint32_t /*type*/, const std::string & /*value*/) override { return false; }
+bool connect_parameter(uint32_t type, uint32_t value) override;
 
 	// BinInterface
-virtual int	tick();
+int	tick() override;
 virtual int     status();
 
-virtual int senddata(void*, int);
-virtual int readdata(void*, int);
-virtual int netstatus();
-virtual int isactive();
-virtual bool moretoread(uint32_t usec);
-virtual bool cansend(uint32_t usec);
+int senddata(void*, int) override;
+int readdata(void*, int) override;
+int netstatus() override;
+int isactive() override;
+bool moretoread(uint32_t usec) override;
+bool cansend(uint32_t usec) override;
 
-virtual int close(); /* BinInterface version of reset() */
-virtual RsFileHash gethash(); /* not used here */
-virtual bool bandwidthLimited() { return true ; } // replace by !sameLAN to avoid bandwidth limiting on LAN
+int close() override; /* BinInterface version of reset() */
+RsFileHash gethash() override; /* not used here */
+bool bandwidthLimited() override { return true ; } // replace by !sameLAN to avoid bandwidth limiting on LAN
 
 public:
 

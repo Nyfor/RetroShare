@@ -31,16 +31,16 @@ class ForumPage : public ConfigPage
 
 public:
 	ForumPage(QWidget * parent = 0, Qt::WindowFlags flags = 0);
-	~ForumPage();
+	~ForumPage() override;
 
 	/** Saves the changes on this page */
-	virtual bool save(QString &errmsg);
+	bool save(QString &errmsg) override;
 	/** Loads the settings for this page */
-	virtual void load();
+	void load() override;
 
-	virtual QPixmap iconPixmap() const { return QPixmap(":/images/konversation.png") ; }
-	virtual QString pageName() const { return tr("Forum") ; }
-	virtual QString helpText() const { return ""; }
+	QPixmap iconPixmap() const override { return QPixmap(":/images/konversation.png") ; }
+	QString pageName() const override { return tr("Forum") ; }
+	QString helpText() const override { return ""; }
 
 private:
 	Ui::ForumPage ui;

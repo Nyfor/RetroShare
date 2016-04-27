@@ -123,7 +123,7 @@ class CompoundExpression : public Expression
 		CompoundExpression( enum LogicalOperator op, Expression * exp1, Expression *exp2)
 			: Lexp(exp1), Rexp(exp2), Op(op){ }
 
-		bool eval (FileEntry *file) {
+		bool eval (FileEntry *file) override {
 			if (Lexp == NULL or Rexp == NULL) {
 				return false;	
 			}
@@ -138,12 +138,12 @@ class CompoundExpression : public Expression
 					return false;
 			}
 		}
-		virtual ~CompoundExpression(){
+		~CompoundExpression() override{
 			delete Lexp;
 			delete Rexp;
 		}	
 
-		virtual void linearize(LinearizedExpression& e) const ;
+		void linearize(LinearizedExpression& e) const override ;
 	private:
 		Expression *Lexp;
 		Expression *Rexp;
@@ -156,7 +156,7 @@ class StringExpression: public Expression
 	public:
 		StringExpression(enum StringOperator op, std::list<std::string> &t, bool ic): Op(op),terms(t), IgnoreCase(ic){}
 
-		virtual void linearize(LinearizedExpression& e) const ;
+		void linearize(LinearizedExpression& e) const override ;
 	protected:
         bool evalStr(const std::string &str);
 
@@ -171,7 +171,7 @@ class RelExpression: public Expression
 	public:	
 		RelExpression(enum RelOperator op, T lv, T hv): Op(op), LowerValue(lv), HigherValue(hv) {}
 
-		virtual void linearize(LinearizedExpression& e) const ;
+		void linearize(LinearizedExpression& e) const override ;
 	protected:
 		bool evalRel(T val);
 
@@ -231,9 +231,9 @@ class NameExpression: public StringExpression
 	public:
 		NameExpression(enum StringOperator op, std::list<std::string> &t, bool ic): 
 			StringExpression(op,t,ic) {}
-		bool eval(FileEntry *file);
+		bool eval(FileEntry *file) override;
 
-		virtual void linearize(LinearizedExpression& e) const
+		void linearize(LinearizedExpression& e) const override
 		{
 			e._tokens.push_back(LinearizedExpression::EXPR_NAME) ;
 			StringExpression::linearize(e) ;
@@ -244,9 +244,9 @@ class PathExpression: public StringExpression {
 public:
 	PathExpression(enum StringOperator op, std::list<std::string> &t, bool ic): 
 					StringExpression(op,t,ic) {}
-	bool eval(FileEntry *file);
+	bool eval(FileEntry *file) override;
 
-		virtual void linearize(LinearizedExpression& e) const
+		void linearize(LinearizedExpression& e) const override
 		{
 			e._tokens.push_back(LinearizedExpression::EXPR_PATH) ;
 			StringExpression::linearize(e) ;
@@ -257,9 +257,9 @@ class ExtExpression: public StringExpression {
 public:
 	ExtExpression(enum StringOperator op, std::list<std::string> &t, bool ic): 
 					StringExpression(op,t,ic) {}
-	bool eval(FileEntry *file);
+	bool eval(FileEntry *file) override;
 
-		virtual void linearize(LinearizedExpression& e) const
+		void linearize(LinearizedExpression& e) const override
 		{
 			e._tokens.push_back(LinearizedExpression::EXPR_EXT) ;
 			StringExpression::linearize(e) ;
@@ -270,9 +270,9 @@ class HashExpression: public StringExpression {
 public:
 	HashExpression(enum StringOperator op, std::list<std::string> &t): 
 					StringExpression(op,t, true) {}
-	bool eval(FileEntry *file);
+	bool eval(FileEntry *file) override;
 
-		virtual void linearize(LinearizedExpression& e) const
+		void linearize(LinearizedExpression& e) const override
 		{
 			e._tokens.push_back(LinearizedExpression::EXPR_HASH) ;
 			StringExpression::linearize(e) ;
@@ -290,9 +290,9 @@ class DateExpression: public RelExpression<int>
 		DateExpression(enum RelOperator op, int v): RelExpression<int>(op,v,v){}
 		DateExpression(enum RelOperator op, int lv, int hv): 
 			RelExpression<int>(op,lv,hv) {}
-		bool eval(FileEntry *file);
+		bool eval(FileEntry *file) override;
 
-		virtual void linearize(LinearizedExpression& e) const
+		void linearize(LinearizedExpression& e) const override
 		{
 			e._tokens.push_back(LinearizedExpression::EXPR_DATE) ;
 			RelExpression<int>::linearize(e) ;
@@ -305,9 +305,9 @@ class SizeExpression: public RelExpression<int>
 		SizeExpression(enum RelOperator op, int v): RelExpression<int>(op,v,v){}
 		SizeExpression(enum RelOperator op, int lv, int hv): 
 			RelExpression<int>(op,lv,hv) {}
-		bool eval(FileEntry *file);
+		bool eval(FileEntry *file) override;
 
-		virtual void linearize(LinearizedExpression& e) const
+		void linearize(LinearizedExpression& e) const override
 		{
 			e._tokens.push_back(LinearizedExpression::EXPR_SIZE) ;
 			RelExpression<int>::linearize(e) ;
@@ -320,9 +320,9 @@ class SizeExpressionMB: public RelExpression<int>
 		SizeExpressionMB(enum RelOperator op, int v): RelExpression<int>(op,v,v){}
 		SizeExpressionMB(enum RelOperator op, int lv, int hv): 
 			RelExpression<int>(op,lv,hv) {}
-		bool eval(FileEntry *file);
+		bool eval(FileEntry *file) override;
 
-		virtual void linearize(LinearizedExpression& e) const
+		void linearize(LinearizedExpression& e) const override
 		{
 			e._tokens.push_back(LinearizedExpression::EXPR_SIZE_MB) ;
 			RelExpression<int>::linearize(e) ;
@@ -334,9 +334,9 @@ class PopExpression: public RelExpression<int>
 		PopExpression(enum RelOperator op, int v): RelExpression<int>(op,v,v){}
 		PopExpression(enum RelOperator op, int lv, int hv): RelExpression<int>(op,lv,hv) {}
 		PopExpression(const LinearizedExpression& e) ;
-		bool eval(FileEntry *file);
+		bool eval(FileEntry *file) override;
 
-		virtual void linearize(LinearizedExpression& e) const
+		void linearize(LinearizedExpression& e) const override
 		{
 			e._tokens.push_back(LinearizedExpression::EXPR_POP) ;
 			RelExpression<int>::linearize(e) ;

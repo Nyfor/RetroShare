@@ -35,28 +35,28 @@ class FeedReaderPlugin: public RsPlugin
 public:
 	FeedReaderPlugin();
 
-	virtual uint16_t rs_service_id() const { return RS_SERVICE_TYPE_PLUGIN_FEEDREADER; }
-	virtual p3Service *p3_service() const { return mFeedReader; }
-	virtual p3Config *p3_config() const { return mFeedReader; }
-	virtual void stop();
+	uint16_t rs_service_id() const override { return RS_SERVICE_TYPE_PLUGIN_FEEDREADER; }
+	p3Service *p3_service() const override { return mFeedReader; }
+	p3Config *p3_config() const override { return mFeedReader; }
+	void stop() override;
 
-	virtual MainPage *qt_page() const;
-	virtual QIcon *qt_icon() const;
-	virtual std::string qt_stylesheet() { return "FeedReader"; }
-	virtual QTranslator *qt_translator(QApplication *app, const QString& languageCode, const QString& externalDir) const;
+	MainPage *qt_page() const override;
+	QIcon *qt_icon() const override;
+	std::string qt_stylesheet() override { return "FeedReader"; }
+	QTranslator *qt_translator(QApplication *app, const QString& languageCode, const QString& externalDir) const override;
 
-	virtual void getPluginVersion(int &major, int &minor, int &build, int &svn_rev) const;
-	virtual void setPlugInHandler(RsPluginHandler *pgHandler);
+	void getPluginVersion(int &major, int &minor, int &build, int &svn_rev) const override;
+	void setPlugInHandler(RsPluginHandler *pgHandler) override;
 
-	virtual std::string configurationFileName() const { return "feedreader.cfg" ; }
+	std::string configurationFileName() const override { return "feedreader.cfg" ; }
 
-	virtual std::string getShortPluginDescription() const;
-	virtual std::string getPluginName() const;
-	virtual void getLibraries(std::list<RsLibraryInfo> &libraries);
-	virtual void setInterfaces(RsPlugInInterfaces& interfaces);
-	virtual ConfigPage *qt_config_page() const;
+	std::string getShortPluginDescription() const override;
+	std::string getPluginName() const override;
+	void getLibraries(std::list<RsLibraryInfo> &libraries) override;
+	void setInterfaces(RsPlugInInterfaces& interfaces) override;
+	ConfigPage *qt_config_page() const override;
 
-	virtual FeedNotify *qt_feedNotify();
+	FeedNotify *qt_feedNotify() override;
 
 private:
 	RsPlugInInterfaces mInterfaces;

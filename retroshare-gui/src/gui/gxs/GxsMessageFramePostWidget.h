@@ -36,23 +36,23 @@ class GxsMessageFramePostWidget : public GxsMessageFrameWidget
 
 public:
 	explicit GxsMessageFramePostWidget(RsGxsIfaceHelper *ifaceImpl, QWidget *parent = NULL);
-	virtual ~GxsMessageFramePostWidget();
+	~GxsMessageFramePostWidget() override;
 
 	/* GxsMessageFrameWidget */
-	virtual void groupIdChanged();
-	virtual QString groupName(bool withUnreadCount);
+	void groupIdChanged() override;
+	QString groupName(bool withUnreadCount) override;
 //	virtual QIcon groupIcon() = 0;
-	virtual bool navigate(const RsGxsMessageId& msgId);
-	virtual bool isLoading();
+	bool navigate(const RsGxsMessageId& msgId) override;
+	bool isLoading() override;
 
 	/* GXS functions */
-	virtual void loadRequest(const TokenQueue *queue, const TokenRequest &req);
+	void loadRequest(const TokenQueue *queue, const TokenRequest &req) override;
 
 	int subscribeFlags() { return mSubscribeFlags; }
 
 protected:
 	/* RsGxsUpdateBroadcastWidget */
-	virtual void updateDisplay(bool complete);
+	void updateDisplay(bool complete) override;
 
 	virtual void groupNameChanged(const QString &/*name*/) {}
 
@@ -98,9 +98,9 @@ class GxsMessageFramePostThread : public QThread
 
 public:
 	GxsMessageFramePostThread(uint32_t token, GxsMessageFramePostWidget *parent);
-	~GxsMessageFramePostThread();
+	~GxsMessageFramePostThread() override;
 
-	void run();
+	void run() override;
 	void stop(bool waitForStop);
 	bool stopped() { return mStopped; }
 

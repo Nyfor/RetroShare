@@ -15,7 +15,7 @@ class GroupFrameSettingsWidget : public QWidget
 
 public:
 	explicit GroupFrameSettingsWidget(QWidget *parent = 0);
-	~GroupFrameSettingsWidget();
+	~GroupFrameSettingsWidget() override;
 
 	void setOpenAllInNewTabText(const QString &text);
 

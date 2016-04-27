@@ -43,7 +43,7 @@ class GxsGroupFeedItem : public FeedItem, public TokenResponse
 public:
 	/** Note parent can = NULL */
 	GxsGroupFeedItem(FeedHolder *feedHolder, uint32_t feedId, const RsGxsGroupId &groupId, bool isHome, RsGxsIfaceHelper *iface, bool autoUpdate);
-	virtual ~GxsGroupFeedItem();
+	~GxsGroupFeedItem() override;
 
 	RsGxsGroupId groupId() { return mGroupId; }
 	uint32_t feedId() { return mFeedId; }
@@ -62,7 +62,7 @@ protected:
 	virtual void fillDisplay(RsGxsUpdateBroadcastBase *updateBroadcastBase, bool complete);
 
 	/* TokenResponse */
-	virtual void loadRequest(const TokenQueue *queue, const TokenRequest &req);
+	void loadRequest(const TokenQueue *queue, const TokenRequest &req) override;
 
 protected slots:
 	void subscribe();

@@ -49,8 +49,8 @@ class RsGxsIdItem: public RsGxsGrpItem
         virtual bool serialise(void *data,uint32_t& size) = 0 ;
         virtual uint32_t serial_size() = 0 ;
 
-        virtual void clear() = 0 ;
-        virtual std::ostream& print(std::ostream &out, uint16_t indent = 0) = 0;
+        void clear() override = 0 ;
+        std::ostream& print(std::ostream &out, uint16_t indent = 0) override = 0;
 
     bool serialise_header(void *data,uint32_t& pktsize,uint32_t& tlvsize, uint32_t& offset) ;
 };
@@ -60,13 +60,13 @@ class RsGxsIdGroupItem : public RsGxsIdItem
 public:
 
     RsGxsIdGroupItem():  RsGxsIdItem(RS_PKT_SUBTYPE_GXSID_GROUP_ITEM) {}
-    virtual ~RsGxsIdGroupItem() {}
+    ~RsGxsIdGroupItem() override {}
 
-    virtual void clear();
-    virtual std::ostream &print(std::ostream &out, uint16_t indent = 0);
+    void clear() override;
+    std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
-    virtual bool serialise(void *data,uint32_t& size) ;
-    virtual uint32_t serial_size() ;
+    bool serialise(void *data,uint32_t& size) override ;
+    uint32_t serial_size() override ;
 
     bool fromGxsIdGroup(RsGxsIdGroup &group, bool moveImage);
     bool toGxsIdGroup(RsGxsIdGroup &group, bool moveImage);
@@ -88,13 +88,13 @@ class RsGxsIdLocalInfoItem : public RsGxsIdItem
 public:
 
     RsGxsIdLocalInfoItem():  RsGxsIdItem(RS_PKT_SUBTYPE_GXSID_LOCAL_INFO_ITEM) {}
-    virtual ~RsGxsIdLocalInfoItem() {}
+    ~RsGxsIdLocalInfoItem() override {}
 
-    virtual void clear();
-    virtual std::ostream &print(std::ostream &out, uint16_t indent = 0);
+    void clear() override;
+    std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
-    virtual bool serialise(void *data,uint32_t& size) ;
-    virtual uint32_t serial_size() ;
+    bool serialise(void *data,uint32_t& size) override ;
+    uint32_t serial_size() override ;
 
     std::map<RsGxsId,time_t> mTimeStamps ;
     std::set<RsGxsId> mContacts ;
@@ -137,9 +137,9 @@ class RsGxsIdSerialiser : public RsSerialType
 {
 public:
     RsGxsIdSerialiser() :RsSerialType(RS_PKT_VERSION_SERVICE, RS_SERVICE_GXS_TYPE_GXSID) {}
-    virtual     ~RsGxsIdSerialiser() {}
+        ~RsGxsIdSerialiser() override {}
 
-    virtual uint32_t 	size (RsItem *item)
+    uint32_t 	size (RsItem *item) override
     {
         RsGxsIdItem *idItem = dynamic_cast<RsGxsIdItem *>(item);
         if (!idItem)
@@ -148,7 +148,7 @@ public:
         }
         return idItem->serial_size() ;
     }
-    virtual bool serialise(RsItem *item, void *data, uint32_t *size)
+    bool serialise(RsItem *item, void *data, uint32_t *size) override
     {
         RsGxsIdItem *idItem = dynamic_cast<RsGxsIdItem *>(item);
         if (!idItem)
@@ -157,7 +157,7 @@ public:
         }
         return idItem->serialise(data,*size) ;
     }
-    virtual RsItem *deserialise (void *data, uint32_t *size) ;
+    RsItem *deserialise (void *data, uint32_t *size) override ;
 
 private:
 #if 0

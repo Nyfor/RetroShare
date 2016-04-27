@@ -32,31 +32,31 @@ class GxsForumsDialog : public GxsGroupFrameDialog
 
 public:
 	GxsForumsDialog(QWidget *parent = 0);
-	~GxsForumsDialog();
+	~GxsForumsDialog() override;
 
-	virtual QIcon iconPixmap() const { return QIcon(IMAGE_GXSFORUMS) ; } //MainPage
-	virtual QString pageName() const { return tr("Forums") ; } //MainPage
-	virtual QString helpText() const { return ""; } //MainPage
+	QIcon iconPixmap() const override { return QIcon(IMAGE_GXSFORUMS) ; } //MainPage
+	QString pageName() const override { return tr("Forums") ; } //MainPage
+	QString helpText() const override { return ""; } //MainPage
 
-	virtual UserNotify *getUserNotify(QObject *parent);
+	UserNotify *getUserNotify(QObject *parent) override;
 
 protected:
-	virtual QString getHelpString() const ;
-	virtual RetroShareLink::enumType getLinkType() { return RetroShareLink::TYPE_FORUM; }
-	virtual GroupFrameSettings::Type groupFrameSettingsType() { return GroupFrameSettings::Forum; }
-	virtual void groupInfoToGroupItemInfo(const RsGroupMetaData &groupInfo, GroupItemInfo &groupItemInfo, const RsUserdata *userdata);
+	QString getHelpString() const override ;
+	RetroShareLink::enumType getLinkType() override { return RetroShareLink::TYPE_FORUM; }
+	GroupFrameSettings::Type groupFrameSettingsType() override { return GroupFrameSettings::Forum; }
+	void groupInfoToGroupItemInfo(const RsGroupMetaData &groupInfo, GroupItemInfo &groupItemInfo, const RsUserdata *userdata) override;
 
 private:
 	/* GxsGroupFrameDialog */
-	virtual QString text(TextType type);
-	virtual QString icon(IconType type);
-	virtual QString settingsGroupName() { return "ForumsDialog"; }
-	virtual GxsGroupDialog *createNewGroupDialog(TokenQueue *tokenQueue);
-	virtual GxsGroupDialog *createGroupDialog(TokenQueue *tokenQueue, RsTokenService *tokenService, GxsGroupDialog::Mode mode, RsGxsGroupId groupId);
-	virtual int shareKeyType();
-	virtual GxsMessageFrameWidget *createMessageFrameWidget(const RsGxsGroupId &groupId);
-	virtual uint32_t requestGroupSummaryType() { return GXS_REQUEST_TYPE_GROUP_DATA; } // request complete group data
-	virtual void loadGroupSummaryToken(const uint32_t &token, std::list<RsGroupMetaData> &groupInfo, RsUserdata* &userdata);
+	QString text(TextType type) override;
+	QString icon(IconType type) override;
+	QString settingsGroupName() override { return "ForumsDialog"; }
+	GxsGroupDialog *createNewGroupDialog(TokenQueue *tokenQueue) override;
+	GxsGroupDialog *createGroupDialog(TokenQueue *tokenQueue, RsTokenService *tokenService, GxsGroupDialog::Mode mode, RsGxsGroupId groupId) override;
+	int shareKeyType() override;
+	GxsMessageFrameWidget *createMessageFrameWidget(const RsGxsGroupId &groupId) override;
+	uint32_t requestGroupSummaryType() override { return GXS_REQUEST_TYPE_GROUP_DATA; } // request complete group data
+	void loadGroupSummaryToken(const uint32_t &token, std::list<RsGroupMetaData> &groupInfo, RsUserdata* &userdata) override;
 };
 
 #endif

@@ -38,12 +38,12 @@ class RsTlvKeyValue: public RsTlvItem
 	public:
 	 RsTlvKeyValue() { return; }
 	 RsTlvKeyValue(const std::string& k,const std::string& v): key(k),value(v) {}
-virtual ~RsTlvKeyValue() { return; }
-virtual uint32_t TlvSize() const;
-virtual void	 TlvClear();
-virtual bool     SetTlv(void *data, uint32_t size, uint32_t *offset) const; 
-virtual bool     GetTlv(void *data, uint32_t size, uint32_t *offset); 
-virtual std::ostream &print(std::ostream &out, uint16_t indent) const;
+~RsTlvKeyValue() override { return; }
+uint32_t TlvSize() const override;
+void	 TlvClear() override;
+bool     SetTlv(void *data, uint32_t size, uint32_t *offset) const override; 
+bool     GetTlv(void *data, uint32_t size, uint32_t *offset) override; 
+std::ostream &print(std::ostream &out, uint16_t indent) const override;
 
 	std::string key;	/// Mandatory : For use in hash tables
 	std::string value;	/// Mandatory : For use in hash tables
@@ -53,12 +53,12 @@ class RsTlvKeyValueSet: public RsTlvItem
 {
 	public:
 	 RsTlvKeyValueSet() { return; }
-virtual ~RsTlvKeyValueSet() { return; }
-virtual uint32_t TlvSize() const;
-virtual void	 TlvClear();
-virtual bool     SetTlv(void *data, uint32_t size, uint32_t *offset) const; 
-virtual bool     GetTlv(void *data, uint32_t size, uint32_t *offset);
-virtual std::ostream &print(std::ostream &out, uint16_t indent) const;
+~RsTlvKeyValueSet() override { return; }
+uint32_t TlvSize() const override;
+void	 TlvClear() override;
+bool     SetTlv(void *data, uint32_t size, uint32_t *offset) const override; 
+bool     GetTlv(void *data, uint32_t size, uint32_t *offset) override;
+std::ostream &print(std::ostream &out, uint16_t indent) const override;
 
 	std::list<RsTlvKeyValue> pairs; /// For use in hash tables 
 };

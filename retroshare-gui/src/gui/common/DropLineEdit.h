@@ -37,8 +37,8 @@ public:
 	void setAcceptDir(bool on);
 
 protected:
-	virtual void dropEvent(QDropEvent *event);
-	virtual void dragEnterEvent(QDragEnterEvent *event);
+	void dropEvent(QDropEvent *event) override;
+	void dragEnterEvent(QDragEnterEvent *event) override;
 
 private:
 	struct {

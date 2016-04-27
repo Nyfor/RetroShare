@@ -40,7 +40,7 @@ public:
 
 	RetroStyleLabel(QWidget * parent, Mode = Normal, Qt::AlignmentFlag hAlign = Qt::AlignHCenter);
 
-	~RetroStyleLabel();
+	~RetroStyleLabel() override;
 
 	void setPixmaps(const QPixmap & normalLeftPixmap,
 			const QPixmap & normalRightPixmap,
@@ -75,17 +75,17 @@ Q_SIGNALS:
 
 private:
 
-	void paintEvent(QPaintEvent * event);
+	void paintEvent(QPaintEvent * event) override;
 
-	void resizeEvent(QResizeEvent * event);
+	void resizeEvent(QResizeEvent * event) override;
 
 	void drawText(QPainter * painter);
 
-	void mouseMoveEvent(QMouseEvent * event);
+	void mouseMoveEvent(QMouseEvent * event) override;
 
-	void mousePressEvent(QMouseEvent * event);
+	void mousePressEvent(QMouseEvent * event) override;
 
-	void mouseReleaseEvent(QMouseEvent * event);
+	void mouseReleaseEvent(QMouseEvent * event) override;
 
 	QPixmap _normalFillPixmap;
 

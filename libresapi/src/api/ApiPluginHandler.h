@@ -11,7 +11,7 @@ class ApiPluginHandler: public ResourceRouter
 {
 public:
     ApiPluginHandler(StateTokenServer* statetokenserver, const RsPlugInInterfaces& ifaces);
-    virtual ~ApiPluginHandler();
+    ~ApiPluginHandler() override;
 
 private:
     std::vector<ResourceRouter*> mChildren;

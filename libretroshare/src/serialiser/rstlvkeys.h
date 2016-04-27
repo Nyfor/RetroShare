@@ -50,13 +50,13 @@ class RsTlvSecurityKey: public RsTlvItem
 {
 	public:
 		RsTlvSecurityKey();
-		virtual ~RsTlvSecurityKey() {}
+		~RsTlvSecurityKey() override {}
 
-		virtual uint32_t TlvSize() const;
-		virtual void	 TlvClear();
-		virtual bool     SetTlv(void *data, uint32_t size, uint32_t *offset) const; 
-		virtual bool     GetTlv(void *data, uint32_t size, uint32_t *offset); 
-		virtual std::ostream &print(std::ostream &out, uint16_t indent) const;
+		uint32_t TlvSize() const override;
+		void	 TlvClear() override;
+		bool     SetTlv(void *data, uint32_t size, uint32_t *offset) const override; 
+		bool     GetTlv(void *data, uint32_t size, uint32_t *offset) override; 
+		std::ostream &print(std::ostream &out, uint16_t indent) const override;
 
 		/* clears KeyData - but doesn't delete - to transfer ownership */
 		void ShallowClear(); 
@@ -72,12 +72,12 @@ class RsTlvSecurityKeySet: public RsTlvItem
 {
 	public:
 	 RsTlvSecurityKeySet() { return; }
-virtual ~RsTlvSecurityKeySet() { return; }
-virtual uint32_t TlvSize() const;
-virtual void	 TlvClear();
-virtual bool     SetTlv(void *data, uint32_t size, uint32_t *offset) const; 
-virtual bool     GetTlv(void *data, uint32_t size, uint32_t *offset); 
-virtual std::ostream &print(std::ostream &out, uint16_t indent) const;
+~RsTlvSecurityKeySet() override { return; }
+uint32_t TlvSize() const override;
+void	 TlvClear() override;
+bool     SetTlv(void *data, uint32_t size, uint32_t *offset) const override; 
+bool     GetTlv(void *data, uint32_t size, uint32_t *offset) override; 
+std::ostream &print(std::ostream &out, uint16_t indent) const override;
 
 	std::string groupId;				// Mandatory :
 	std::map<RsGxsId, RsTlvSecurityKey> keys;	// Mandatory :
@@ -88,12 +88,12 @@ class RsTlvKeySignature: public RsTlvItem
 {
 	public:
 		RsTlvKeySignature();
-		virtual ~RsTlvKeySignature() { return; }
-		virtual uint32_t TlvSize() const;
-		virtual void	 TlvClear();
-		virtual bool     SetTlv(void *data, uint32_t size, uint32_t *offset) const; 
-		virtual bool     GetTlv(void *data, uint32_t size, uint32_t *offset); 
-		virtual std::ostream &print(std::ostream &out, uint16_t indent) const;
+		~RsTlvKeySignature() override { return; }
+		uint32_t TlvSize() const override;
+		void	 TlvClear() override;
+		bool     SetTlv(void *data, uint32_t size, uint32_t *offset) const override; 
+		bool     GetTlv(void *data, uint32_t size, uint32_t *offset) override; 
+		std::ostream &print(std::ostream &out, uint16_t indent) const override;
 
 		void	ShallowClear(); /* clears signData - but doesn't delete */
 
@@ -107,12 +107,12 @@ class RsTlvKeySignatureSet : public RsTlvItem
 {
 public:
     RsTlvKeySignatureSet();
-    virtual ~RsTlvKeySignatureSet() { return; }
-    virtual uint32_t TlvSize() const;
-    virtual void	 TlvClear();
-    virtual bool     SetTlv(void *data, uint32_t size, uint32_t *offset) const; 
-    virtual bool     GetTlv(void *data, uint32_t size, uint32_t *offset); 
-    virtual std::ostream &print(std::ostream &out, uint16_t indent) const;
+    ~RsTlvKeySignatureSet() override { return; }
+    uint32_t TlvSize() const override;
+    void	 TlvClear() override;
+    bool     SetTlv(void *data, uint32_t size, uint32_t *offset) const override; 
+    bool     GetTlv(void *data, uint32_t size, uint32_t *offset) override; 
+    std::ostream &print(std::ostream &out, uint16_t indent) const override;
 
     std::map<SignType, RsTlvKeySignature> keySignSet; // mandatory
 };

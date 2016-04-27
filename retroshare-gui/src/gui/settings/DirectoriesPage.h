@@ -33,13 +33,13 @@ public:
     DirectoriesPage(QWidget * parent = 0, Qt::WindowFlags flags = 0);
 
     /** Saves the changes on this page */
-    virtual bool save(QString &errmsg);
+    bool save(QString &errmsg) override;
     /** Loads the settings for this page */
-    virtual void load();
+    void load() override;
 
-	 virtual QPixmap iconPixmap() const { return QPixmap(":/images/folder_doments.png") ; }
-	 virtual QString pageName() const { return tr("Directories") ; }
-	 virtual QString helpText() const { return ""; }
+	 QPixmap iconPixmap() const override { return QPixmap(":/images/folder_doments.png") ; }
+	 QString pageName() const override { return tr("Directories") ; }
+	 QString helpText() const override { return ""; }
 
 private slots:
     void editDirectories() ;

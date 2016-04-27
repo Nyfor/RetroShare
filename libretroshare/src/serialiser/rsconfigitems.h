@@ -69,9 +69,9 @@ class RsPeerNetItem: public RsItem
 		RS_PKT_TYPE_PEER_CONFIG,
 		RS_PKT_SUBTYPE_PEER_NET)
 	{ return; }
-virtual ~RsPeerNetItem();
-virtual void clear();
-std::ostream &print(std::ostream &out, uint16_t indent = 0);
+~RsPeerNetItem() override;
+void clear() override;
+std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
 	/* networking information */
 	RsPeerId    peerId;                       /* Mandatory */
@@ -101,14 +101,14 @@ class RsPeerServicePermissionItem : public RsItem
 {
 	public:
 		RsPeerServicePermissionItem() : RsItem(RS_PKT_VERSION1, RS_PKT_CLASS_CONFIG, RS_PKT_TYPE_PEER_CONFIG, RS_PKT_SUBTYPE_PEER_PERMISSIONS) {}
-		virtual ~RsPeerServicePermissionItem() {}
+		~RsPeerServicePermissionItem() override {}
 
-		virtual void clear()
+		void clear() override
 		{
 			pgp_ids.clear() ;
 			service_flags.clear() ;
 		}
-		std::ostream &print(std::ostream &out, uint16_t indent = 0);
+		std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
 		/* Mandatory */
 		std::vector<RsPgpId> pgp_ids ;
@@ -120,10 +120,10 @@ class RsPeerGroupItem : public RsItem
 {
 public:
 	RsPeerGroupItem();
-	virtual ~RsPeerGroupItem();
+	~RsPeerGroupItem() override;
 
-	virtual void clear();
-	std::ostream &print(std::ostream &out, uint16_t indent = 0);
+	void clear() override;
+	std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
 	/* set data from RsGroupInfo to RsPeerGroupItem */
 	void set(RsGroupInfo &groupInfo);
@@ -147,9 +147,9 @@ class RsPeerStunItem: public RsItem
 		RS_PKT_TYPE_PEER_CONFIG,
 		RS_PKT_SUBTYPE_PEER_STUN)
 	{ return; }
-virtual ~RsPeerStunItem();
-virtual void clear();
-std::ostream &print(std::ostream &out, uint16_t indent = 0);
+~RsPeerStunItem() override;
+void clear() override;
+std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
 	RsTlvPeerIdSet stunList;		  /* Mandatory */
 };
@@ -162,11 +162,11 @@ class RsPeerConfigSerialiser: public RsSerialType
 	                RS_PKT_TYPE_PEER_CONFIG)
 	{ return; }
 
-virtual     ~RsPeerConfigSerialiser();
+    ~RsPeerConfigSerialiser() override;
 	
-virtual	uint32_t    size(RsItem *);
-virtual	bool        serialise  (RsItem *item, void *data, uint32_t *size);
-virtual	RsItem *    deserialise(void *data, uint32_t *size);
+	uint32_t    size(RsItem *) override;
+	bool        serialise  (RsItem *item, void *data, uint32_t *size) override;
+	RsItem *    deserialise(void *data, uint32_t *size) override;
 
 	private:
 
@@ -201,9 +201,9 @@ class RsCacheConfig: public RsItem
 		RS_PKT_TYPE_CACHE_CONFIG,
 		RS_PKT_SUBTYPE_DEFAULT)
 	{ return; }
-virtual ~RsCacheConfig();
-virtual void clear();
-std::ostream &print(std::ostream &out, uint16_t indent = 0);
+~RsCacheConfig() override;
+void clear() override;
+std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
         RsPeerId        pid;                 /* Mandatory */
 	uint16_t        cachetypeid;            /* Mandatory */
@@ -226,11 +226,11 @@ class RsCacheConfigSerialiser: public RsSerialType
 	                RS_PKT_TYPE_CACHE_CONFIG)
 	{ return; }
 
-virtual     ~RsCacheConfigSerialiser();
+    ~RsCacheConfigSerialiser() override;
 	
-virtual	uint32_t    size(RsItem *);
-virtual	bool        serialise  (RsItem *item, void *data, uint32_t *size);
-virtual	RsItem *    deserialise(void *data, uint32_t *size);
+	uint32_t    size(RsItem *) override;
+	bool        serialise  (RsItem *item, void *data, uint32_t *size) override;
+	RsItem *    deserialise(void *data, uint32_t *size) override;
 
 };
 
@@ -251,9 +251,9 @@ class RsFileTransfer: public RsItem
 			flags = 0;
 			chunk_strategy = 0;
 		}
-		virtual ~RsFileTransfer();
-		virtual void clear();
-		std::ostream &print(std::ostream &out, uint16_t indent = 0);
+		~RsFileTransfer() override;
+		void clear() override;
+		std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
 		RsTlvFileItem file;
 		RsTlvPeerIdSet allPeerIds;
@@ -289,9 +289,9 @@ class RsFileConfigItem: public RsItem
 		RS_PKT_TYPE_FILE_CONFIG,
 		RS_PKT_SUBTYPE_FILE_ITEM)
 	{ return; }
-virtual ~RsFileConfigItem();
-virtual void clear();
-std::ostream &print(std::ostream &out, uint16_t indent = 0);
+~RsFileConfigItem() override;
+void clear() override;
+std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
 	RsTlvFileItem file;
 	uint32_t flags;
@@ -307,11 +307,11 @@ class RsFileConfigSerialiser: public RsSerialType
 	:RsSerialType(RS_PKT_VERSION1, RS_PKT_CLASS_CONFIG, 
 		RS_PKT_TYPE_FILE_CONFIG)
 	{ return; }
-virtual     ~RsFileConfigSerialiser() { return; }
+    ~RsFileConfigSerialiser() override { return; }
 	
-virtual	uint32_t    size(RsItem *);
-virtual	bool        serialise  (RsItem *item, void *data, uint32_t *size);
-virtual	RsItem *    deserialise(void *data, uint32_t *size);
+	uint32_t    size(RsItem *) override;
+	bool        serialise  (RsItem *item, void *data, uint32_t *size) override;
+	RsItem *    deserialise(void *data, uint32_t *size) override;
 
 	private:
 
@@ -337,9 +337,9 @@ class RsConfigKeyValueSet: public RsItem
 		RS_PKT_TYPE_GENERAL_CONFIG,
 		RS_PKT_SUBTYPE_KEY_VALUE)
 	{ return; }
-virtual ~RsConfigKeyValueSet();
-virtual void clear();
-std::ostream &print(std::ostream &out, uint16_t indent = 0);
+~RsConfigKeyValueSet() override;
+void clear() override;
+std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
 	RsTlvKeyValueSet tlvkvs;
 };
@@ -353,11 +353,11 @@ class RsGeneralConfigSerialiser: public RsSerialType
 	                RS_PKT_TYPE_GENERAL_CONFIG)
 	{ return; }
 
-virtual     ~RsGeneralConfigSerialiser();
+    ~RsGeneralConfigSerialiser() override;
 	
-virtual	uint32_t    size(RsItem *);
-virtual	bool        serialise  (RsItem *item, void *data, uint32_t *size);
-virtual	RsItem *    deserialise(void *data, uint32_t *size);
+	uint32_t    size(RsItem *) override;
+	bool        serialise  (RsItem *item, void *data, uint32_t *size) override;
+	RsItem *    deserialise(void *data, uint32_t *size) override;
 
 	private:
 uint32_t    sizeKeyValueSet(RsConfigKeyValueSet *item);

@@ -102,11 +102,11 @@ class MHDUploadHandler: public MHDHandlerBase
 {
 public:
     MHDUploadHandler(ApiServer* s): mState(BEGIN), mApiServer(s){}
-    virtual ~MHDUploadHandler(){}
+    ~MHDUploadHandler() override{}
     // return MHD_NO or MHD_YES
-    virtual int handleRequest(  struct MHD_Connection *connection,
+    int handleRequest(  struct MHD_Connection *connection,
                                 const char */*url*/, const char *method, const char */*version*/,
-                                const char *upload_data, size_t *upload_data_size)
+                                const char *upload_data, size_t *upload_data_size) override
     {
         // new request
         if(mState == BEGIN)
@@ -161,11 +161,11 @@ class MHDApiHandler: public MHDHandlerBase
 {
 public:
     MHDApiHandler(ApiServer* s): mState(BEGIN), mApiServer(s){}
-    virtual ~MHDApiHandler(){}
+    ~MHDApiHandler() override{}
     // return MHD_NO or MHD_YES
-    virtual int handleRequest(  struct MHD_Connection *connection,
+    int handleRequest(  struct MHD_Connection *connection,
                                 const char *url, const char *method, const char */*version*/,
-                                const char *upload_data, size_t *upload_data_size)
+                                const char *upload_data, size_t *upload_data_size) override
     {
         // new request
         if(mState == BEGIN)
@@ -261,15 +261,15 @@ class MHDFilestreamerHandler: public MHDHandlerBase
 {
 public:
     MHDFilestreamerHandler(): mSize(0){}
-    virtual ~MHDFilestreamerHandler(){}
+    ~MHDFilestreamerHandler() override{}
 
     RsFileHash mHash;
     uint64_t mSize;
 
     // return MHD_NO or MHD_YES
-    virtual int handleRequest(  struct MHD_Connection *connection,
+    int handleRequest(  struct MHD_Connection *connection,
                                 const char *url, const char */*method*/, const char */*version*/,
-                                const char */*upload_data*/, size_t */*upload_data_size*/)
+                                const char */*upload_data*/, size_t */*upload_data_size*/) override
     {
         if(rsFiles == 0)
         {

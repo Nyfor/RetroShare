@@ -88,7 +88,7 @@ class AudioWizard: public QWizard, public Ui::AudioWizard {
                 void updateTriggerWidgets(bool);
 	public:
                 AudioWizard(QWidget *parent);
-                ~AudioWizard();
+                ~AudioWizard() override;
 
         private slots :
                 void loopAudio();

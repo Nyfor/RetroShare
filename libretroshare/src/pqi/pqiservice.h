@@ -111,8 +111,8 @@ public:
 int	addService(pqiService *, bool defaultOn);
 int	removeService(pqiService *);
 
-bool	recvItem(RsRawItem *);
-bool	sendItem(RsRawItem *);
+bool	recvItem(RsRawItem *) override;
+bool	sendItem(RsRawItem *) override;
 
 int	tick();
 public:

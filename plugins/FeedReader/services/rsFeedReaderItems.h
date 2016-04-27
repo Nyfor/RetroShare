@@ -60,10 +60,10 @@ public:
 
 public:
 	RsFeedReaderFeed();
-	virtual ~RsFeedReaderFeed() {}
+	~RsFeedReaderFeed() override {}
 
-	virtual void clear();
-	virtual std::ostream& print(std::ostream &out, uint16_t indent = 0);
+	void clear() override;
+	std::ostream& print(std::ostream &out, uint16_t indent = 0) override;
 
 	std::string              feedId;
 	std::string              parentId;
@@ -104,10 +104,10 @@ class RsFeedReaderMsg : public RsItem
 {
 public:
 	RsFeedReaderMsg();
-	virtual ~RsFeedReaderMsg() {}
+	~RsFeedReaderMsg() override {}
 
-	virtual void clear();
-	virtual std::ostream& print(std::ostream &out, uint16_t indent = 0);
+	void clear() override;
+	std::ostream& print(std::ostream &out, uint16_t indent = 0) override;
 
 	std::string msgId;
 	std::string feedId;
@@ -124,11 +124,11 @@ class RsFeedReaderSerialiser: public RsSerialType
 {
 public:
 	RsFeedReaderSerialiser()	: RsSerialType(RS_PKT_VERSION_SERVICE, RS_SERVICE_TYPE_PLUGIN_FEEDREADER) {}
-	virtual ~RsFeedReaderSerialiser() {}
+	~RsFeedReaderSerialiser() override {}
 	
-	virtual	uint32_t size(RsItem *item);
-	virtual	bool     serialise(RsItem *item, void *data, uint32_t *size);
-	virtual	RsItem  *deserialise(void *data, uint32_t *size);
+		uint32_t size(RsItem *item) override;
+		bool     serialise(RsItem *item, void *data, uint32_t *size) override;
+		RsItem  *deserialise(void *data, uint32_t *size) override;
 
 private:
 	/* For RS_PKT_SUBTYPE_FEEDREADER_FEED */

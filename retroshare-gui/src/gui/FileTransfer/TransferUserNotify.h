@@ -31,18 +31,18 @@ class TransferUserNotify : public UserNotify
 public:
 	TransferUserNotify(QObject *parent = 0);
 
-	virtual bool hasSetting(QString *name, QString *group);
+	bool hasSetting(QString *name, QString *group) override;
 
 private slots:
 	void downloadCountChanged(int count);
 
 private:
-	virtual QIcon getIcon();
-	virtual QIcon getMainIcon(bool hasNew);
-	virtual unsigned int getNewCount();
-	virtual QString getTrayMessage(bool plural);
-	virtual QString getNotifyMessage(bool plural);
-	virtual void iconClicked();
+	QIcon getIcon() override;
+	QIcon getMainIcon(bool hasNew) override;
+	unsigned int getNewCount() override;
+	QString getTrayMessage(bool plural) override;
+	QString getNotifyMessage(bool plural) override;
+	void iconClicked() override;
 
 	unsigned int newTransferCount;
 };

@@ -37,10 +37,10 @@ class CreateGxsForumMsg : public QDialog, public TokenResponse
 
 public:
         CreateGxsForumMsg(const RsGxsGroupId &fId, const RsGxsMessageId &pId);
-	~CreateGxsForumMsg();
+	~CreateGxsForumMsg() override;
 
 	void newMsg(); /* cleanup */
-	virtual void loadRequest(const TokenQueue *queue, const TokenRequest &req);
+	void loadRequest(const TokenQueue *queue, const TokenRequest &req) override;
 void  insertPastedText(QString msg) ;
 
 private slots:
@@ -51,10 +51,10 @@ private slots:
 	void smileyWidgetForums();
 	void addSmileys();
 	void addFile();
-	void reject();
+	void reject() override;
 
 protected:
-	void closeEvent (QCloseEvent * event);
+	void closeEvent (QCloseEvent * event) override;
     
 private:
 	void loadFormInformation();

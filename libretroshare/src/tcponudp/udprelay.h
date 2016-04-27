@@ -128,7 +128,7 @@ class UdpRelayReceiver: public UdpSubReceiver
 	public:
 
 	UdpRelayReceiver(UdpPublisher *pub);
-virtual ~UdpRelayReceiver();
+~UdpRelayReceiver() override;
 
 	/* add a TCPonUDP stream (ENDs) */
 int	addUdpPeer(UdpPeer *peer, UdpRelayAddrSet *endPoints, const struct sockaddr_in *proxyaddr);
@@ -158,12 +158,12 @@ int 	removeUdpPeer(UdpPeer *peer);
 	int getRelayProxies(std::list<UdpRelayProxy> &relayProxies); 
 	
 	/* callback for recved data (overloaded from UdpReceiver) */
-virtual int recvPkt(void *data, int size, struct sockaddr_in &from);
+int recvPkt(void *data, int size, struct sockaddr_in &from) override;
 
 	/* wrapper function for relay (overloaded from UdpSubReceiver) */
-virtual int sendPkt(const void *data, int size, const struct sockaddr_in &to, int ttl);
+int sendPkt(const void *data, int size, const struct sockaddr_in &to, int ttl) override;
 
-int     status(std::ostream &out);
+int     status(std::ostream &out) override;
 int 	UdpPeersStatus(std::ostream &out);
 
 void 	getDataTransferred(uint32_t &read, uint32_t &write, uint32_t &relay);

@@ -83,7 +83,7 @@ class pqiNetAssistFirewall: public pqiNetAssist
 {
 	public:
 
-virtual	~pqiNetAssistFirewall() { return; }
+	~pqiNetAssistFirewall() override { return; }
 
 		/* the address that the listening port is on */
 virtual void    setInternalPort(unsigned short iport_in) = 0;

@@ -22,7 +22,7 @@ class FeedReaderMessageWidget : public QWidget
 
 public:
 	explicit FeedReaderMessageWidget(const std::string &feedId, RsFeedReader *feedReader, FeedReaderNotify *notify, QWidget *parent = 0);
-	~FeedReaderMessageWidget();
+	~FeedReaderMessageWidget() override;
 
 	std::string feedId() { return mFeedId; }
 	void setFeedId(const std::string &feedId);
@@ -30,8 +30,8 @@ public:
 	QIcon feedIcon();
 
 protected:
-	virtual void showEvent(QShowEvent *e);
-	bool eventFilter(QObject *obj, QEvent *ev);
+	void showEvent(QShowEvent *e) override;
+	bool eventFilter(QObject *obj, QEvent *ev) override;
 
 signals:
 	void feedMessageChanged(QWidget *widget);

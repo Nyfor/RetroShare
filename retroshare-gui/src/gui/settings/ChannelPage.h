@@ -31,16 +31,16 @@ class ChannelPage : public ConfigPage
 
 public:
 	ChannelPage(QWidget * parent = 0, Qt::WindowFlags flags = 0);
-	~ChannelPage();
+	~ChannelPage() override;
 
 	/** Saves the changes on this page */
-	virtual bool save(QString &errmsg);
+	bool save(QString &errmsg) override;
 	/** Loads the settings for this page */
-	virtual void load();
+	void load() override;
 
-	virtual QPixmap iconPixmap() const { return QPixmap(":/images/channels.png") ; }
-	virtual QString pageName() const { return tr("Channels") ; }
-	virtual QString helpText() const { return ""; }
+	QPixmap iconPixmap() const override { return QPixmap(":/images/channels.png") ; }
+	QString pageName() const override { return tr("Channels") ; }
+	QString helpText() const override { return ""; }
 
 private:
 	Ui::ChannelPage ui;

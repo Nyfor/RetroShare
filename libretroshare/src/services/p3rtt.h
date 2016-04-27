@@ -64,21 +64,21 @@ class p3rtt: public RsRtt, public p3FastService
 {
 	public:
 		p3rtt(p3ServiceControl *sc);
-virtual RsServiceInfo getServiceInfo();
+RsServiceInfo getServiceInfo() override;
 
 		/***** overloaded from rsRtt *****/
 
-virtual uint32_t getPongResults(const RsPeerId& id, int n, std::list<RsRttPongResult> &results);
+uint32_t getPongResults(const RsPeerId& id, int n, std::list<RsRttPongResult> &results) override;
 
 		/***** overloaded from p3Service *****/
 
-		virtual int   tick();
+		int   tick() override;
 		virtual int   status();
 
 		int     sendPackets();
 		void 	sendPingMeasurements();
 
-virtual bool recvItem(RsItem *item); // Overloaded from p3FastService.
+bool recvItem(RsItem *item) override; // Overloaded from p3FastService.
 
 		int 	handlePing(RsItem *item);
 		int 	handlePong(RsItem *item);

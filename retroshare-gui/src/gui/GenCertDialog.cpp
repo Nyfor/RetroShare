@@ -46,7 +46,7 @@ class EntropyCollectorWidget: public QTextBrowser
 			setMouseTracking(true) ;
 			entropy_values_collected = 0 ;
 		}
-		virtual void mouseMoveEvent(QMouseEvent *e)
+		void mouseMoveEvent(QMouseEvent *e) override
 		{
 			std::cerr << "Mouse moved: " << e->x() << ", " << e->y() << std::endl;
 			++entropy_values_collected ;
@@ -61,7 +61,7 @@ class EntropyCollectorWidget: public QTextBrowser
 class MyFilter: public QObject
 {
 	public:
-		virtual bool eventFilter(QObject *obj, QEvent *event)
+		bool eventFilter(QObject *obj, QEvent *event) override
 		{
 			if(event->type() == QEvent::MouseMove)
 				std::cerr << "Mouse moved !"<< std::endl;

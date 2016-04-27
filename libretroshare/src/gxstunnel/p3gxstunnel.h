@@ -125,24 +125,24 @@ class p3GxsTunnelService: public RsGxsTunnelService, public RsTurtleClientServic
 {
 public:
     p3GxsTunnelService(RsGixs *pids) ;
-    virtual void connectToTurtleRouter(p3turtle *) ;
+    void connectToTurtleRouter(p3turtle *) override ;
 
     // Creates the invite if the public key of the distant peer is available.
     // Om success, stores the invite in the map above, so that we can respond to tunnel requests.
     //
-    virtual bool requestSecuredTunnel(const RsGxsId& to_id,const RsGxsId& from_id,RsGxsTunnelId& tunnel_id,uint32_t service_id,uint32_t& error_code) ;
+    bool requestSecuredTunnel(const RsGxsId& to_id,const RsGxsId& from_id,RsGxsTunnelId& tunnel_id,uint32_t service_id,uint32_t& error_code) override ;
     
-    virtual bool closeExistingTunnel(const RsGxsTunnelId &tunnel_id,uint32_t service_id) ;
-    virtual bool getTunnelsInfo(std::vector<GxsTunnelInfo>& infos);
-    virtual bool getTunnelInfo(const RsGxsTunnelId& tunnel_id,GxsTunnelInfo& info);
-    virtual bool sendData(const RsGxsTunnelId& tunnel_id,uint32_t service_id,const uint8_t *data,uint32_t size) ;
+    bool closeExistingTunnel(const RsGxsTunnelId &tunnel_id,uint32_t service_id) override ;
+    bool getTunnelsInfo(std::vector<GxsTunnelInfo>& infos) override;
+    bool getTunnelInfo(const RsGxsTunnelId& tunnel_id,GxsTunnelInfo& info) override;
+    bool sendData(const RsGxsTunnelId& tunnel_id,uint32_t service_id,const uint8_t *data,uint32_t size) override ;
     
-    virtual bool registerClientService(uint32_t service_id,RsGxsTunnelClientService *service) ;
+    bool registerClientService(uint32_t service_id,RsGxsTunnelClientService *service) override ;
 
     // derived from p3service
     
-    virtual int tick();
-    virtual RsServiceInfo getServiceInfo();
+    int tick() override;
+    RsServiceInfo getServiceInfo() override;
     
 private:
     void flush() ;
@@ -210,10 +210,10 @@ private:
 
     // Overloaded from RsTurtleClientService
 
-    virtual bool handleTunnelRequest(const RsFileHash &hash,const RsPeerId& peer_id) ;
-    virtual void receiveTurtleData(RsTurtleGenericTunnelItem *item,const RsFileHash& hash,const RsPeerId& virtual_peer_id,RsTurtleGenericTunnelItem::Direction direction) ;
-    void addVirtualPeer(const TurtleFileHash&, const TurtleVirtualPeerId&,RsTurtleGenericTunnelItem::Direction dir) ;
-    void removeVirtualPeer(const TurtleFileHash&, const TurtleVirtualPeerId&) ;
+    bool handleTunnelRequest(const RsFileHash &hash,const RsPeerId& peer_id) override ;
+    void receiveTurtleData(RsTurtleGenericTunnelItem *item,const RsFileHash& hash,const RsPeerId& virtual_peer_id,RsTurtleGenericTunnelItem::Direction direction) override ;
+    void addVirtualPeer(const TurtleFileHash&, const TurtleVirtualPeerId&,RsTurtleGenericTunnelItem::Direction dir) override ;
+    void removeVirtualPeer(const TurtleFileHash&, const TurtleVirtualPeerId&) override ;
     
     // session handling handles
     

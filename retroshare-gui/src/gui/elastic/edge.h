@@ -50,7 +50,7 @@ class Edge : public QGraphicsItem
 {
 public:
     Edge(Node *sourceNode, Node *destNode);
-    ~Edge();
+    ~Edge() override;
 
     Node *sourceNode() const;
     void setSourceNode(Node *node);
@@ -61,11 +61,11 @@ public:
     void adjust();
 
     enum { Type = UserType + 2 };
-    int type() const { return Type; }
+    int type() const override { return Type; }
     
 protected:
-    QRectF boundingRect() const;
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    QRectF boundingRect() const override;
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) override;
     
 private:
     Node *source, *dest;

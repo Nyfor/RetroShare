@@ -388,10 +388,10 @@ class CacheStrapper: public pqiServiceMonitor, public p3Config
 		 * @return
 		 */
         CacheStrapper(p3ServiceControl *sc, uint32_t ftServiceId);
-virtual ~CacheStrapper() { return; }
+~CacheStrapper() override { return; }
 
 	/************* from pqiMonitor *******************/
-virtual void statusChange(const std::list<pqiServicePeer> &plist);
+void statusChange(const std::list<pqiServicePeer> &plist) override;
 	/************* from pqiMonitor *******************/
 
 	/* Feedback from CacheSources */
@@ -454,9 +454,9 @@ bool 	CacheExist(RsCacheData& data);
         protected:
 
 	        /* Key Functions to be overloaded for Full Configuration */
-virtual RsSerialiser *setupSerialiser();
-virtual bool saveList(bool &cleanup, std::list<RsItem *>&);
-virtual bool    loadList(std::list<RsItem *>& load);
+RsSerialiser *setupSerialiser() override;
+bool saveList(bool &cleanup, std::list<RsItem *>&) override;
+bool    loadList(std::list<RsItem *>& load) override;
 
 	private:
 

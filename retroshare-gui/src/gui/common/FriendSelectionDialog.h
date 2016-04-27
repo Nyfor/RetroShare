@@ -24,7 +24,7 @@ class FriendSelectionDialog : public QDialog
                                 const std::set<RsGxsId>& pre_selected_ids = std::set<RsGxsId>()) ;
  
     private:
-		virtual ~FriendSelectionDialog() ;
+		~FriendSelectionDialog() override ;
 		FriendSelectionDialog(QWidget *parent,const QString& header_string,FriendSelectionWidget::Modus modus,FriendSelectionWidget::ShowTypes show_type,
 																	FriendSelectionWidget::IdType pre_selected_id_type,
                                                                     const std::set<std::string>& pre_selected_ids) ;

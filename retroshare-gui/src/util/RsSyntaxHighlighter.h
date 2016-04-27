@@ -16,7 +16,7 @@ public:
 	QColor textColorQuote() const { return quotationFormat.foreground().color(); };
 
 protected:
-	void highlightBlock(const QString &text);
+	void highlightBlock(const QString &text) override;
 
 private:
 	QTextCharFormat quotationFormat;

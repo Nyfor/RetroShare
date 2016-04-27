@@ -81,7 +81,7 @@ class ftServer: public p3Service, public RsFiles, public ftDataSend, public RsTu
 		/***************************************************************/
 
 		ftServer(p3PeerMgr *peerMgr, p3ServiceControl *serviceCtrl);
-		virtual RsServiceInfo getServiceInfo();
+		RsServiceInfo getServiceInfo() override;
 
 		/* Assign important variables */
 		void	setConfigDirectory(std::string path);
@@ -89,14 +89,14 @@ class ftServer: public p3Service, public RsFiles, public ftDataSend, public RsTu
 		/* add Config Items (Extra, Controller) */
 		void	addConfigComponents(p3ConfigMgr *mgr);
 
-		virtual CacheStrapper *getCacheStrapper();
-		virtual CacheTransfer *getCacheTransfer();
+		CacheStrapper *getCacheStrapper() override;
+		CacheTransfer *getCacheTransfer() override;
 
 		const RsPeerId& OwnId();
 
 		/* Final Setup (once everything is assigned) */
 		void    SetupFtServer() ;
-		virtual void    connectToTurtleRouter(p3turtle *p) ;
+		void    connectToTurtleRouter(p3turtle *p) override ;
 
 		// Checks that the given hash is well formed. Used to chase 
 		// string bugs.
@@ -104,12 +104,12 @@ class ftServer: public p3Service, public RsFiles, public ftDataSend, public RsTu
 
 		// Implements RsTurtleClientService
 		//
-		virtual bool handleTunnelRequest(const RsFileHash& hash,const RsPeerId& peer_id) ;
-		virtual void receiveTurtleData(RsTurtleGenericTunnelItem *item,const RsFileHash& hash,const RsPeerId& virtual_peer_id,RsTurtleGenericTunnelItem::Direction direction) ;
-		virtual RsTurtleGenericTunnelItem *deserialiseItem(void *data,uint32_t size) const ;
+		bool handleTunnelRequest(const RsFileHash& hash,const RsPeerId& peer_id) override ;
+		void receiveTurtleData(RsTurtleGenericTunnelItem *item,const RsFileHash& hash,const RsPeerId& virtual_peer_id,RsTurtleGenericTunnelItem::Direction direction) override ;
+		RsTurtleGenericTunnelItem *deserialiseItem(void *data,uint32_t size) const override ;
 
-		void addVirtualPeer(const TurtleFileHash&, const TurtleVirtualPeerId&,RsTurtleGenericTunnelItem::Direction dir) ;
-		void removeVirtualPeer(const TurtleFileHash&, const TurtleVirtualPeerId&) ;
+		void addVirtualPeer(const TurtleFileHash&, const TurtleVirtualPeerId&,RsTurtleGenericTunnelItem::Direction dir) override ;
+		void removeVirtualPeer(const TurtleFileHash&, const TurtleVirtualPeerId&) override ;
 
 		/***************************************************************/
 		/*************** Control Interface *****************************/
@@ -127,103 +127,103 @@ class ftServer: public p3Service, public RsFiles, public ftDataSend, public RsTu
         /**
          * @see RsFiles::getFileData
          */
-        bool getFileData(const RsFileHash& hash, uint64_t offset, uint32_t& requested_size,uint8_t *data);
+        bool getFileData(const RsFileHash& hash, uint64_t offset, uint32_t& requested_size,uint8_t *data) override;
 
 		/***
 		 * Control of Downloads
 		 ***/
-		virtual bool alreadyHaveFile(const RsFileHash& hash, FileInfo &info);
-		virtual bool FileRequest(const std::string& fname, const RsFileHash& hash, uint64_t size, const std::string& dest, TransferRequestFlags flags, const std::list<RsPeerId>& srcIds);
-		virtual bool FileCancel(const RsFileHash& hash);
-		virtual bool FileControl(const RsFileHash& hash, uint32_t flags);
-		virtual bool FileClearCompleted();
-		virtual bool setDestinationDirectory(const RsFileHash& hash,const std::string& new_path) ;
-		virtual bool setDestinationName(const RsFileHash& hash,const std::string& new_name) ;
-		virtual bool setChunkStrategy(const RsFileHash& hash,FileChunksInfo::ChunkStrategy s) ;
-		virtual void setDefaultChunkStrategy(FileChunksInfo::ChunkStrategy) ;
-		virtual FileChunksInfo::ChunkStrategy defaultChunkStrategy() ;
-		virtual uint32_t freeDiskSpaceLimit() const ;
-		virtual void setFreeDiskSpaceLimit(uint32_t size_in_mb) ;
+		bool alreadyHaveFile(const RsFileHash& hash, FileInfo &info) override;
+		bool FileRequest(const std::string& fname, const RsFileHash& hash, uint64_t size, const std::string& dest, TransferRequestFlags flags, const std::list<RsPeerId>& srcIds) override;
+		bool FileCancel(const RsFileHash& hash) override;
+		bool FileControl(const RsFileHash& hash, uint32_t flags) override;
+		bool FileClearCompleted() override;
+		bool setDestinationDirectory(const RsFileHash& hash,const std::string& new_path) override ;
+		bool setDestinationName(const RsFileHash& hash,const std::string& new_name) override ;
+		bool setChunkStrategy(const RsFileHash& hash,FileChunksInfo::ChunkStrategy s) override ;
+		void setDefaultChunkStrategy(FileChunksInfo::ChunkStrategy) override ;
+		FileChunksInfo::ChunkStrategy defaultChunkStrategy() override ;
+		uint32_t freeDiskSpaceLimit() const override ;
+		void setFreeDiskSpaceLimit(uint32_t size_in_mb) override ;
 
 
 		/***
 		 * Control of Downloads Priority.
 		 ***/
-		virtual uint32_t getMinPrioritizedTransfers() ;
-		virtual void setMinPrioritizedTransfers(uint32_t s) ;
-		virtual uint32_t getQueueSize() ;
-		virtual void setQueueSize(uint32_t s) ;
-		virtual bool changeQueuePosition(const RsFileHash& hash, QueueMove queue_mv);
-		virtual bool changeDownloadSpeed(const RsFileHash& hash, int speed);
-		virtual bool getDownloadSpeed(const RsFileHash& hash, int & speed);
-		virtual bool clearDownload(const RsFileHash& hash);
+		uint32_t getMinPrioritizedTransfers() override ;
+		void setMinPrioritizedTransfers(uint32_t s) override ;
+		uint32_t getQueueSize() override ;
+		void setQueueSize(uint32_t s) override ;
+		bool changeQueuePosition(const RsFileHash& hash, QueueMove queue_mv) override;
+		bool changeDownloadSpeed(const RsFileHash& hash, int speed) override;
+		bool getDownloadSpeed(const RsFileHash& hash, int & speed) override;
+		bool clearDownload(const RsFileHash& hash) override;
 		//virtual void getDwlDetails(std::list<DwlDetails> & details);
 
 		/***
 		 * Download/Upload Details
 		 ***/
-        virtual void FileDownloads(std::list<RsFileHash> &hashs);
-		virtual bool FileUploads(std::list<RsFileHash> &hashs);
-		virtual bool FileDetails(const RsFileHash &hash, FileSearchFlags hintflags, FileInfo &info);
-		virtual bool FileDownloadChunksDetails(const RsFileHash& hash,FileChunksInfo& info) ;
-		virtual bool FileUploadChunksDetails(const RsFileHash& hash,const RsPeerId& peer_id,CompressedChunkMap& map) ;
+        void FileDownloads(std::list<RsFileHash> &hashs) override;
+		bool FileUploads(std::list<RsFileHash> &hashs) override;
+		bool FileDetails(const RsFileHash &hash, FileSearchFlags hintflags, FileInfo &info) override;
+		bool FileDownloadChunksDetails(const RsFileHash& hash,FileChunksInfo& info) override ;
+		bool FileUploadChunksDetails(const RsFileHash& hash,const RsPeerId& peer_id,CompressedChunkMap& map) override ;
 
 
 		/***
 		 * Extra List Access
 		 ***/
 		virtual bool ExtraFileAdd(std::string fname, const RsFileHash& hash, uint64_t size, uint32_t period, TransferRequestFlags flags);
-		virtual bool ExtraFileRemove(const RsFileHash& hash, TransferRequestFlags flags);
-		virtual bool ExtraFileHash(std::string localpath, uint32_t period, TransferRequestFlags flags);
-		virtual bool ExtraFileStatus(std::string localpath, FileInfo &info);
-		virtual bool ExtraFileMove(std::string fname, const RsFileHash& hash, uint64_t size, std::string destpath);
+		bool ExtraFileRemove(const RsFileHash& hash, TransferRequestFlags flags) override;
+		bool ExtraFileHash(std::string localpath, uint32_t period, TransferRequestFlags flags) override;
+		bool ExtraFileStatus(std::string localpath, FileInfo &info) override;
+		bool ExtraFileMove(std::string fname, const RsFileHash& hash, uint64_t size, std::string destpath) override;
 
 
 		/***
 		 * Directory Listing / Search Interface
 		 ***/
-		virtual int RequestDirDetails(const RsPeerId& uid, const std::string& path, DirDetails &details);
-		virtual int RequestDirDetails(void *ref, DirDetails &details, FileSearchFlags flags);
-		virtual uint32_t getType(void *ref,FileSearchFlags flags) ;
+		int RequestDirDetails(const RsPeerId& uid, const std::string& path, DirDetails &details) override;
+		int RequestDirDetails(void *ref, DirDetails &details, FileSearchFlags flags) override;
+		uint32_t getType(void *ref,FileSearchFlags flags) override ;
 
-		virtual int SearchKeywords(std::list<std::string> keywords, std::list<DirDetails> &results,FileSearchFlags flags);
-		virtual int SearchKeywords(std::list<std::string> keywords, std::list<DirDetails> &results,FileSearchFlags flags,const RsPeerId& peer_id);
-		virtual int SearchBoolExp(Expression * exp, std::list<DirDetails> &results,FileSearchFlags flags);
-		virtual int SearchBoolExp(Expression * exp, std::list<DirDetails> &results,FileSearchFlags flags,const RsPeerId& peer_id);
+		int SearchKeywords(std::list<std::string> keywords, std::list<DirDetails> &results,FileSearchFlags flags) override;
+		int SearchKeywords(std::list<std::string> keywords, std::list<DirDetails> &results,FileSearchFlags flags,const RsPeerId& peer_id) override;
+		int SearchBoolExp(Expression * exp, std::list<DirDetails> &results,FileSearchFlags flags) override;
+		int SearchBoolExp(Expression * exp, std::list<DirDetails> &results,FileSearchFlags flags,const RsPeerId& peer_id) override;
 
 		/***
 		 * Utility Functions
 		 ***/
-		virtual bool ConvertSharedFilePath(std::string path, std::string &fullpath);
-		virtual void ForceDirectoryCheck();
-		virtual void updateSinceGroupPermissionsChanged() ;
-		virtual bool InDirectoryCheck();
-		virtual bool copyFile(const std::string& source, const std::string& dest);
+		bool ConvertSharedFilePath(std::string path, std::string &fullpath) override;
+		void ForceDirectoryCheck() override;
+		void updateSinceGroupPermissionsChanged() override ;
+		bool InDirectoryCheck() override;
+		bool copyFile(const std::string& source, const std::string& dest) override;
 
 		/***
 		 * Directory Handling
 		 ***/
-		virtual void	setDownloadDirectory(std::string path);
-		virtual void	setPartialsDirectory(std::string path);
-		virtual std::string getDownloadDirectory();
-		virtual std::string getPartialsDirectory();
+		void	setDownloadDirectory(std::string path) override;
+		void	setPartialsDirectory(std::string path) override;
+		std::string getDownloadDirectory() override;
+		std::string getPartialsDirectory() override;
 
-		virtual bool	getSharedDirectories(std::list<SharedDirInfo> &dirs);
+		bool	getSharedDirectories(std::list<SharedDirInfo> &dirs) override;
 		virtual bool	setSharedDirectories(std::list<SharedDirInfo> &dirs);
-		virtual bool 	addSharedDirectory(const SharedDirInfo& dir);
-		virtual bool   updateShareFlags(const SharedDirInfo& dir); 	// updates the flags. The directory should already exist !
-		virtual bool 	removeSharedDirectory(std::string dir);
+		bool 	addSharedDirectory(const SharedDirInfo& dir) override;
+		bool   updateShareFlags(const SharedDirInfo& dir) override; 	// updates the flags. The directory should already exist !
+		bool 	removeSharedDirectory(std::string dir) override;
 
-		virtual bool	getShareDownloadDirectory();
-		virtual bool 	shareDownloadDirectory(bool share);
+		bool	getShareDownloadDirectory() override;
+		bool 	shareDownloadDirectory(bool share) override;
 
-		virtual void	setRememberHashFilesDuration(uint32_t days) ;
-		virtual uint32_t rememberHashFilesDuration() const ;
-		virtual bool rememberHashFiles() const ;
-		virtual void setRememberHashFiles(bool) ;
-		virtual void   clearHashCache() ;
-		virtual void setWatchPeriod(int minutes) ;
-		virtual int watchPeriod() const ;
+		void	setRememberHashFilesDuration(uint32_t days) override ;
+		uint32_t rememberHashFilesDuration() const override ;
+		bool rememberHashFiles() const override ;
+		void setRememberHashFiles(bool) override ;
+		void   clearHashCache() override ;
+		void setWatchPeriod(int minutes) override ;
+		int watchPeriod() const override ;
 
 		/***************************************************************/
 		/*************** Control Interface *****************************/
@@ -233,15 +233,15 @@ class ftServer: public p3Service, public RsFiles, public ftDataSend, public RsTu
 		/*************** Data Transfer Interface ***********************/
 		/***************************************************************/
 	public:
-        virtual bool sendData(const RsPeerId& peerId, const RsFileHash& hash, uint64_t size, uint64_t offset, uint32_t chunksize, void *data);
-        virtual bool sendDataRequest(const RsPeerId& peerId, const RsFileHash& hash, uint64_t size, uint64_t offset, uint32_t chunksize);
-        virtual bool sendChunkMapRequest(const RsPeerId& peer_id,const RsFileHash& hash,bool is_client) ;
-        virtual bool sendChunkMap(const RsPeerId& peer_id,const RsFileHash& hash,const CompressedChunkMap& cmap,bool is_client) ;
-        virtual bool sendSingleChunkCRCRequest(const RsPeerId& peer_id,const RsFileHash& hash,uint32_t chunk_number) ;
-        virtual bool sendSingleChunkCRC(const RsPeerId& peer_id,const RsFileHash& hash,uint32_t chunk_number,const Sha1CheckSum& crc) ;
+        bool sendData(const RsPeerId& peerId, const RsFileHash& hash, uint64_t size, uint64_t offset, uint32_t chunksize, void *data) override;
+        bool sendDataRequest(const RsPeerId& peerId, const RsFileHash& hash, uint64_t size, uint64_t offset, uint32_t chunksize) override;
+        bool sendChunkMapRequest(const RsPeerId& peer_id,const RsFileHash& hash,bool is_client) override ;
+        bool sendChunkMap(const RsPeerId& peer_id,const RsFileHash& hash,const CompressedChunkMap& cmap,bool is_client) override ;
+        bool sendSingleChunkCRCRequest(const RsPeerId& peer_id,const RsFileHash& hash,uint32_t chunk_number) override ;
+        bool sendSingleChunkCRC(const RsPeerId& peer_id,const RsFileHash& hash,uint32_t chunk_number,const Sha1CheckSum& crc) override ;
 
 		/*************** Internal Transfer Fns *************************/
-		virtual int tick();
+		int tick() override;
 
 		/* Configuration */
 		bool	addConfiguration(p3ConfigMgr *cfgmgr);

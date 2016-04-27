@@ -88,7 +88,7 @@ class FileEntry: public RsMemoryManagement::SmallObject
 		: size(0), modtime(0), pop(0), updtime(0), parent(NULL), row(0)
 	{ return; }
 
-	virtual ~FileEntry() { return; }
+	~FileEntry() override { return; }
 	virtual uint32_t type() const { return DIR_TYPE_FILE ; }
 
 virtual int print(std::string &out);
@@ -118,14 +118,14 @@ class DirEntry: public FileEntry
 
 		DirEntry() : most_recent_time(0) {}
 		/* cleanup */
-virtual		~DirEntry();
+		~DirEntry() override;
 
 		/* update local entries */
 DirEntry * 	updateDir(const FileEntry& fe, time_t updtime);
 FileEntry * 	updateFile(const FileEntry& fe, time_t updtime);
 
 
-	virtual uint32_t type() const { return DIR_TYPE_DIR ; }
+	uint32_t type() const override { return DIR_TYPE_DIR ; }
 int  		checkParentPointers();
 int 		updateChildRows();
 
@@ -145,7 +145,7 @@ DirEntry *	findDirectory(const std::string& path);
 int	 	updateDirectories(const std::string& path, int pop, int modtime);
 
 		/* output */
-int 		print(std::string &out);
+int 		print(std::string &out) override;
 
 int 		saveEntry(std::string &out);
 void writeDirInfo(std::string&);
@@ -179,7 +179,7 @@ class PersonEntry: public DirEntry
 	public:
 	/* cleanup */
 	PersonEntry(const RsPeerId& pid) : id(pid) { return; }
-virtual	~PersonEntry() { return; }
+	~PersonEntry() override { return; }
 
 DirEntry &operator=(DirEntry &src)
 {
@@ -187,7 +187,7 @@ DirEntry &operator=(DirEntry &src)
 	(*pdest) = src;
 	return *this;
 }
-	virtual uint32_t type() const { return DIR_TYPE_PERSON ; }
+	uint32_t type() const override { return DIR_TYPE_PERSON ; }
 
 	/* Data */
 	RsPeerId id;

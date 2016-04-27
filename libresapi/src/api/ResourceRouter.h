@@ -34,7 +34,7 @@ private:
     class Handler: public HandlerBase
     {
     public:
-        virtual ResponseTask* handleRequest(Request &req, Response &resp)
+        ResponseTask* handleRequest(Request &req, Response &resp) override
         {
             return (instance->*method)(req, resp);
         }
@@ -45,7 +45,7 @@ private:
     class InstantResponseHandler: public HandlerBase
     {
     public:
-        virtual ResponseTask* handleRequest(Request &req, Response &resp)
+        ResponseTask* handleRequest(Request &req, Response &resp) override
         {
             (instance->*method)(req, resp);
             return 0;

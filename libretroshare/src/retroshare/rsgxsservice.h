@@ -37,7 +37,7 @@ class RsGxsGroupChange : public RsGxsNotify
 public:
 	RsGxsGroupChange(NotifyType type, bool metaChange) : NOTIFY_TYPE(type), mMetaChange(metaChange) {}
     std::list<RsGxsGroupId> mGrpIdList;
-    NotifyType getType(){ return NOTIFY_TYPE;}
+    NotifyType getType() override{ return NOTIFY_TYPE;}
     bool metaChange() { return mMetaChange; }
 private:
     const NotifyType NOTIFY_TYPE;
@@ -52,7 +52,7 @@ class RsGxsMsgChange : public RsGxsNotify
 public:
 	RsGxsMsgChange(NotifyType type, bool metaChange) : NOTIFY_TYPE(type), mMetaChange(metaChange) {}
     std::map<RsGxsGroupId, std::vector<RsGxsMessageId> > msgChangeMap;
-	NotifyType getType(){ return NOTIFY_TYPE;}
+	NotifyType getType() override{ return NOTIFY_TYPE;}
     bool metaChange() { return mMetaChange; }
 private:
     const NotifyType NOTIFY_TYPE;

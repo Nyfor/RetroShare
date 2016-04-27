@@ -24,42 +24,42 @@ public:
     //----------Stream Interface ---------------
 
     // make an array
-    virtual StreamBase& operator<<(ValueReference<bool> value);
-    virtual StreamBase& operator<<(ValueReference<int> value);
-    virtual StreamBase& operator<<(ValueReference<double> value);
-    virtual StreamBase& operator<<(ValueReference<std::string> value);
+    StreamBase& operator<<(ValueReference<bool> value) override;
+    StreamBase& operator<<(ValueReference<int> value) override;
+    StreamBase& operator<<(ValueReference<double> value) override;
+    StreamBase& operator<<(ValueReference<std::string> value) override;
     // usefull if the new array member should be an array or object
     // the reference should be at least valid until another method of this class gets called
-    virtual StreamBase& getStreamToMember();
+    StreamBase& getStreamToMember() override;
 
     // make an object
-    virtual StreamBase& operator<<(KeyValueReference<bool> keyValue);
-    virtual StreamBase& operator<<(KeyValueReference<int> keyValue);
-    virtual StreamBase& operator<<(KeyValueReference<double> keyValue);
-    virtual StreamBase& operator<<(KeyValueReference<std::string> keyValue);
+    StreamBase& operator<<(KeyValueReference<bool> keyValue) override;
+    StreamBase& operator<<(KeyValueReference<int> keyValue) override;
+    StreamBase& operator<<(KeyValueReference<double> keyValue) override;
+    StreamBase& operator<<(KeyValueReference<std::string> keyValue) override;
     // usefull if the new object member should be an array or object
     // the reference should be at least valid until another method of this class gets called
-    virtual StreamBase& getStreamToMember(std::string name);
+    StreamBase& getStreamToMember(std::string name) override;
 
     // make a binay data object (not a real object, just binary data)
     // idea: can use vector.swap() to allow passing larger data items without copying
-    virtual StreamBase& operator<<(std::vector<uint8_t>& data);
+    StreamBase& operator<<(std::vector<uint8_t>& data) override;
 
     // return true if there are more members in this object/array
     // useful for array reading
-    virtual bool hasMore();
+    bool hasMore() override;
 
-    virtual bool serialise(); // let external operators find out they should serialise or deserialise
+    bool serialise() override; // let external operators find out they should serialise or deserialise
     // return true if no serialisation/deserialisation error occoured
-    virtual bool isOK();
-    virtual void setError(); // let external operators set the failed bit
+    bool isOK() override;
+    void setError() override; // let external operators set the failed bit
     //virtual void addLogMsg(std::string msg); // mayb remove? (put log messages to error log einstead)
-    virtual void addErrorMsg(std::string msg);
-    virtual std::string getLog();
-    virtual std::string getErrorLog();
+    void addErrorMsg(std::string msg) override;
+    std::string getLog() override;
+    std::string getErrorLog() override;
 
-    virtual bool isRawData();
-    virtual std::string getRawData();
+    bool isRawData() override;
+    std::string getRawData() override;
 private:
     bool mSerialise;
     enum DataType{ TYPE_UNDEFINED, TYPE_ARRAY, TYPE_OBJECT, TYPE_RAW };

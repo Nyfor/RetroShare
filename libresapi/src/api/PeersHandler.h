@@ -16,20 +16,20 @@ class PeersHandler: public ResourceRouter, NotifyClient, Tickable, public Unread
 {
 public:
     PeersHandler(StateTokenServer* sts, RsNotify* notify, RsPeers* peers, RsMsgs* msgs);
-    virtual ~PeersHandler();
+    ~PeersHandler() override;
 
     // from NotifyClient
     // note: this may get called from foreign threads
-    virtual void notifyListChange(int list, int type); // friends list change
-    virtual void notifyPeerHasNewAvatar(std::string /*peer_id*/);
+    void notifyListChange(int list, int type) override; // friends list change
+    void notifyPeerHasNewAvatar(std::string /*peer_id*/) override;
 
     // from Tickable
-    virtual void tick();
+    void tick() override;
 
     // from UnreadMsgNotify
     // ChatHandler calls this to tell us about unreadmsgs
     // this allows to merge unread msgs info with the peers list
-    virtual void notifyUnreadMsgCountChanged(const RsPeerId& peer, uint32_t count);
+    void notifyUnreadMsgCountChanged(const RsPeerId& peer, uint32_t count) override;
 
 private:
     void handleWildcard(Request& req, Response& resp);

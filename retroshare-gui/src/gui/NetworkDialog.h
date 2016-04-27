@@ -41,7 +41,7 @@ public:
   NetworkDialog(QWidget *parent = 0);
 
   //void load();
-  virtual void updateDisplay() ; // overloaded from RsAutoUpdatePage
+  void updateDisplay() override ; // overloaded from RsAutoUpdatePage
   
   QColor backgroundColorSelf() const { return mBackgroundColorSelf; }
   QColor backgroundColorOwnSign() const { return mBackgroundColorOwnSign; }
@@ -62,7 +62,7 @@ private:
   //void updateNewDiscoveryInfo() ;
 
 protected:
-  void changeEvent(QEvent *e);
+  void changeEvent(QEvent *e) override;
 
 private slots:
 

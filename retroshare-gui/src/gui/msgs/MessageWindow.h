@@ -35,7 +35,7 @@ public:
     /** Default Constructor */
 
     MessageWindow(QWidget *parent = 0, Qt::WindowFlags flags = 0);
-    ~MessageWindow();
+    ~MessageWindow() override;
 
 	void addWidget(MessageWidget *widget);
 

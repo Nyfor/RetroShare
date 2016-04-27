@@ -32,7 +32,7 @@ public:
 	/** Default constructor */
 	CreateGroup(const std::string &groupId, QWidget *parent = 0);
 	/** Default destructor */
-	~CreateGroup();
+	~CreateGroup() override;
 
 private slots:
 	void changeGroup();

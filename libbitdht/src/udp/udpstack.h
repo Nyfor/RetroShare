@@ -75,7 +75,7 @@ class UdpStack: public UdpReceiver, public UdpPublisher
 
 	UdpStack(struct sockaddr_in &local);
 	UdpStack(int testmode, struct sockaddr_in &local);
-virtual ~UdpStack() { return; }
+~UdpStack() override { return; }
 
 UdpLayer *getUdpLayer(); /* for testing only */
 
@@ -89,12 +89,12 @@ int 	removeReceiver(UdpReceiver *recv);
 
 	/* Packet IO */
 		/* pass-through send packets */
-virtual int sendPkt(const void *data, int size, const struct sockaddr_in &to, int ttl);
+int sendPkt(const void *data, int size, const struct sockaddr_in &to, int ttl) override;
 		/* callback for recved data (overloaded from UdpReceiver) */
 
-virtual int recvPkt(void *data, int size, struct sockaddr_in &from);
+int recvPkt(void *data, int size, struct sockaddr_in &from) override;
 
-int     status(std::ostream &out);
+int     status(std::ostream &out) override;
 
 	/* setup connections */
 	int openSocket();

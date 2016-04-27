@@ -17,7 +17,7 @@ class RsGxsUpdateBroadcastBase : public QObject
 
 public:
 	RsGxsUpdateBroadcastBase(RsGxsIfaceHelper* ifaceImpl, QWidget *parent = NULL);
-	virtual ~RsGxsUpdateBroadcastBase();
+	~RsGxsUpdateBroadcastBase() override;
 
 	const std::list<RsGxsGroupId> &getGrpIds() { return mGrpIds; }
 	const std::list<RsGxsGroupId> &getGrpIdsMeta() { return mGrpIdsMeta; }

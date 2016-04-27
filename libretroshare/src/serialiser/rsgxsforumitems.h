@@ -45,10 +45,10 @@ public:
 
 	RsGxsForumGroupItem():  RsGxsGrpItem(RS_SERVICE_GXS_TYPE_FORUMS,
 			RS_PKT_SUBTYPE_GXSFORUM_GROUP_ITEM) { return;}
-        virtual ~RsGxsForumGroupItem() { return;}
+        ~RsGxsForumGroupItem() override { return;}
 
-        void clear();
-	std::ostream &print(std::ostream &out, uint16_t indent = 0);
+        void clear() override;
+	std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
 
 	RsGxsForumGroup mGroup;
@@ -60,9 +60,9 @@ public:
 
 	RsGxsForumMsgItem(): RsGxsMsgItem(RS_SERVICE_GXS_TYPE_FORUMS,
 			RS_PKT_SUBTYPE_GXSFORUM_MESSAGE_ITEM) {return; }
-        virtual ~RsGxsForumMsgItem() { return;}
-        void clear();
-	std::ostream &print(std::ostream &out, uint16_t indent = 0);
+        ~RsGxsForumMsgItem() override { return;}
+        void clear() override;
+	std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
 	RsGxsForumMsg mMsg;
 };
@@ -74,11 +74,11 @@ public:
 	RsGxsForumSerialiser()
 	:RsSerialType(RS_PKT_VERSION_SERVICE, RS_SERVICE_GXS_TYPE_FORUMS)
 	{ return; }
-	virtual     ~RsGxsForumSerialiser() { return; }
+	    ~RsGxsForumSerialiser() override { return; }
 
-	uint32_t    size(RsItem *item);
-	bool        serialise  (RsItem *item, void *data, uint32_t *size);
-	RsItem *    deserialise(void *data, uint32_t *size);
+	uint32_t    size(RsItem *item) override;
+	bool        serialise  (RsItem *item, void *data, uint32_t *size) override;
+	RsItem *    deserialise(void *data, uint32_t *size) override;
 
 	private:
 

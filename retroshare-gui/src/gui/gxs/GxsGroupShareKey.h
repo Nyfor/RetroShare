@@ -18,10 +18,10 @@ public:
 	 *@param chanId The channel id to send request for
 	 */
     GroupShareKey(QWidget *parent = 0, const RsGxsGroupId& grpId = RsGxsGroupId(), int grpType = 0);
-    ~GroupShareKey();
+    ~GroupShareKey() override;
 
 protected:
-	void changeEvent(QEvent *e);
+	void changeEvent(QEvent *e) override;
 
 private slots:
 	void shareKey();

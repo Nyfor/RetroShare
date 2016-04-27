@@ -72,18 +72,18 @@ public:
 
 public:
 	GxsGroupFrameDialog(RsGxsIfaceHelper *ifaceImpl, QWidget *parent = 0);
-	virtual ~GxsGroupFrameDialog();
+	~GxsGroupFrameDialog() override;
 
 	bool navigate(const RsGxsGroupId &groupId, const RsGxsMessageId& msgId);
 
 	// Callback for all Loads.
-	virtual void loadRequest(const TokenQueue *queue, const TokenRequest &req);
+	void loadRequest(const TokenQueue *queue, const TokenRequest &req) override;
 
 	virtual QString getHelpString() const =0;
 
 protected:
-	virtual void showEvent(QShowEvent *event);
-	virtual void updateDisplay(bool complete);
+	void showEvent(QShowEvent *event) override;
+	void updateDisplay(bool complete) override;
 
 	const RsGxsGroupId &groupId() { return mGroupId; }
 	void setSingleTab(bool singleTab);

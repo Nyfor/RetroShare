@@ -20,22 +20,22 @@ class ChatHandler: public ResourceRouter, NotifyClient, Tickable
 {
 public:
     ChatHandler(StateTokenServer* sts, RsNotify* notify, RsMsgs* msgs, RsPeers* peers, RsIdentity *identity, UnreadMsgNotify* unread);
-    virtual ~ChatHandler();
+    ~ChatHandler() override;
 
     // from NotifyClient
     // note: this may get called from the own and from foreign threads
-    virtual void notifyChatMessage(const ChatMessage& msg);
-    virtual void notifyChatCleared(const ChatId& chat_id);
+    void notifyChatMessage(const ChatMessage& msg) override;
+    void notifyChatCleared(const ChatId& chat_id) override;
 
     // typing label for peer, broadcast and distant chat
-    virtual void notifyChatStatus     (const ChatId&      /* chat_id  */, const std::string& /* status_string */);
+    void notifyChatStatus     (const ChatId&      /* chat_id  */, const std::string& /* status_string */) override;
 
     //typing label for lobby chat, peer join and leave messages
-    virtual void notifyChatLobbyEvent (uint64_t           /* lobby id */, uint32_t           /* event type    */ ,
-                                       const RsGxsId& /* nickname */,const std::string& /* any string */);
+    void notifyChatLobbyEvent (uint64_t           /* lobby id */, uint32_t           /* event type    */ ,
+                                       const RsGxsId& /* nickname */,const std::string& /* any string */) override;
 
     // from tickable
-    virtual void tick();
+    void tick() override;
 
 public:
     class Triple

@@ -46,9 +46,9 @@ class SearchTreeWidget : public QTreeWidget
     SearchTreeWidget(QWidget *parent = 0);
 
 	protected:
-virtual QMimeData * mimeData ( const QList<QTreeWidgetItem *> items ) const;
-virtual QStringList mimeTypes () const; 
-virtual Qt::DropActions supportedDropActions () const;
+QMimeData * mimeData ( const QList<QTreeWidgetItem *> items ) const override;
+QStringList mimeTypes () const override; 
+Qt::DropActions supportedDropActions () const override;
 
 };
 

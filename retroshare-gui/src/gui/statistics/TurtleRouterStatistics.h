@@ -35,7 +35,7 @@ class TurtleRouterStatistics: public RsAutoUpdatePage, public Ui::TurtleRouterSt
 
 public:
     TurtleRouterStatistics(QWidget *parent = NULL) ;
-    ~TurtleRouterStatistics();
+    ~TurtleRouterStatistics() override;
 
     // Cache for peer names.
     static QString getPeerName(const RsPeerId& peer_id) ;
@@ -45,7 +45,7 @@ private:
     void processSettings(bool bLoad);
     bool m_bProcessSettings;
 
-    virtual void updateDisplay() ;
+    void updateDisplay() override ;
 
     TurtleRouterStatisticsWidget *_tst_CW ;
 } ;
@@ -57,8 +57,8 @@ class TurtleRouterStatisticsWidget:  public QWidget
 	public:
 		TurtleRouterStatisticsWidget(QWidget *parent = NULL) ;
 
-		virtual void paintEvent(QPaintEvent *event) ;
-		virtual void resizeEvent(QResizeEvent *event);
+		void paintEvent(QPaintEvent *event) override ;
+		void resizeEvent(QResizeEvent *event) override;
 
 		void updateTunnelStatistics(	const std::vector<std::vector<std::basic_string<char> > >&, 
 												const std::vector<std::vector<std::basic_string<char> > >&, 

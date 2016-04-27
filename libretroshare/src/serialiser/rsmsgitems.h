@@ -88,9 +88,9 @@ class RsMessageItem: public RsItem
 			setPriorityLevel(QOS_PRIORITY_RS_MSG_ITEM) ;
 		}
 
-		virtual ~RsMessageItem() {}
-		virtual void clear() {}
-		virtual std::ostream& print(std::ostream &out, uint16_t indent = 0) = 0 ;
+		~RsMessageItem() override {}
+		void clear() override {}
+		std::ostream& print(std::ostream &out, uint16_t indent = 0) override = 0 ;
 
 		virtual bool serialise(void *data,uint32_t& size,bool config) = 0 ;	
 		virtual uint32_t serial_size(bool config) = 0 ; 						
@@ -102,13 +102,13 @@ class RsMsgItem: public RsMessageItem
 	public:
 		RsMsgItem() :RsMessageItem(RS_PKT_SUBTYPE_DEFAULT) {}
 
-		virtual ~RsMsgItem() {}
-		virtual void clear();
+		~RsMsgItem() override {}
+		void clear() override;
 
-		virtual bool serialise(void *data,uint32_t& size,bool config) ;	
-		virtual uint32_t serial_size(bool config) ; 						
+		bool serialise(void *data,uint32_t& size,bool config) override ;	
+		uint32_t serial_size(bool config) override ; 						
 
-		virtual std::ostream &print(std::ostream &out, uint16_t indent = 0);
+		std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
 		// ----------- Specific fields ------------- //
 
@@ -137,13 +137,13 @@ class RsMsgTagType : public RsMessageItem
 	public:
 		RsMsgTagType() :RsMessageItem(RS_PKT_SUBTYPE_MSG_TAG_TYPE) {}
 
-		virtual std::ostream &print(std::ostream &out, uint16_t indent = 0);
+		std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
-		virtual bool serialise(void *data,uint32_t& size,bool config) ;	
-		virtual uint32_t serial_size(bool config) ; 						
+		bool serialise(void *data,uint32_t& size,bool config) override ;	
+		uint32_t serial_size(bool config) override ; 						
 
-		virtual ~RsMsgTagType() {}
-		virtual void clear();
+		~RsMsgTagType() override {}
+		void clear() override;
 
 		// ----------- Specific fields ------------- //
 		//
@@ -158,13 +158,13 @@ public:
 	RsMsgTags()
 		:RsMessageItem(RS_PKT_SUBTYPE_MSG_TAGS) {}
 
-		virtual bool serialise(void *data,uint32_t& size,bool config) ;	
-		virtual uint32_t serial_size(bool config) ; 						
+		bool serialise(void *data,uint32_t& size,bool config) override ;	
+		uint32_t serial_size(bool config) override ; 						
 
-	virtual std::ostream &print(std::ostream &out, uint16_t indent = 0);
+	std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
-	virtual ~RsMsgTags() {}
-	virtual void clear();
+	~RsMsgTags() override {}
+	void clear() override;
 
 		// ----------- Specific fields ------------- //
 		//
@@ -177,13 +177,13 @@ class RsMsgSrcId : public RsMessageItem
 	public:
 		RsMsgSrcId() : RsMessageItem(RS_PKT_SUBTYPE_MSG_SRC_TAG) {}
 
-		std::ostream &print(std::ostream &out, uint16_t indent = 0);
+		std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
-		virtual bool serialise(void *data,uint32_t& size,bool config) ;	
-		virtual uint32_t serial_size(bool config) ; 						
+		bool serialise(void *data,uint32_t& size,bool config) override ;	
+		uint32_t serial_size(bool config) override ; 						
 
-		virtual ~RsMsgSrcId() {}
-		virtual void clear();
+		~RsMsgSrcId() override {}
+		void clear() override;
 
 		// ----------- Specific fields ------------- //
 		//
@@ -196,13 +196,13 @@ class RsPublicMsgInviteConfigItem : public RsMessageItem
 	public:
 		RsPublicMsgInviteConfigItem() : RsMessageItem(RS_PKT_SUBTYPE_MSG_INVITE) {}
 
-		virtual bool serialise(void *data,uint32_t& size,bool config) ;	
-		virtual uint32_t serial_size(bool config) ; 						
+		bool serialise(void *data,uint32_t& size,bool config) override ;	
+		uint32_t serial_size(bool config) override ; 						
 
-		std::ostream &print(std::ostream &out, uint16_t indent = 0);
+		std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
-		virtual ~RsPublicMsgInviteConfigItem() {}
-		virtual void clear();
+		~RsPublicMsgInviteConfigItem() override {}
+		void clear() override;
 
 		// ----------- Specific fields ------------- //
 		//
@@ -215,13 +215,13 @@ class RsMsgGRouterMap : public RsMessageItem
     public:
         RsMsgGRouterMap() : RsMessageItem(RS_PKT_SUBTYPE_MSG_GROUTER_MAP) {}
 
-        std::ostream &print(std::ostream &out, uint16_t indent = 0);
+        std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
-        virtual bool serialise(void *data,uint32_t& size,bool config) ;
-        virtual uint32_t serial_size(bool config) ;
+        bool serialise(void *data,uint32_t& size,bool config) override ;
+        uint32_t serial_size(bool config) override ;
 
-        virtual ~RsMsgGRouterMap() {}
-        virtual void clear();
+        ~RsMsgGRouterMap() override {}
+        void clear() override;
 
         // ----------- Specific fields ------------- //
         //
@@ -232,13 +232,13 @@ class RsMsgDistantMessagesHashMap : public RsMessageItem
     public:
         RsMsgDistantMessagesHashMap() : RsMessageItem(RS_PKT_SUBTYPE_MSG_DISTANT_MSG_MAP) {}
 
-        std::ostream &print(std::ostream &out, uint16_t indent = 0);
+        std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
-        virtual bool serialise(void *data,uint32_t& size,bool config) ;
-        virtual uint32_t serial_size(bool config) ;
+        bool serialise(void *data,uint32_t& size,bool config) override ;
+        uint32_t serial_size(bool config) override ;
 
-        virtual ~RsMsgDistantMessagesHashMap() {}
-        virtual void clear();
+        ~RsMsgDistantMessagesHashMap() override {}
+        void clear() override;
 
         // ----------- Specific fields ------------- //
         //
@@ -249,13 +249,13 @@ class RsMsgParentId : public RsMessageItem
 	public:
 		RsMsgParentId() : RsMessageItem(RS_PKT_SUBTYPE_MSG_PARENT_TAG) {}
 
-		std::ostream &print(std::ostream &out, uint16_t indent = 0);
+		std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
-		virtual bool serialise(void *data,uint32_t& size,bool config) ;	
-		virtual uint32_t serial_size(bool config) ; 						
+		bool serialise(void *data,uint32_t& size,bool config) override ;	
+		uint32_t serial_size(bool config) override ; 						
 
-		virtual ~RsMsgParentId() {}
-		virtual void clear();
+		~RsMsgParentId() override {}
+		void clear() override;
 
 		// ----------- Specific fields ------------- //
 		//
@@ -272,17 +272,17 @@ class RsMsgSerialiser: public RsSerialType
 		RsMsgSerialiser(uint16_t type)
             :RsSerialType(RS_PKT_VERSION_SERVICE, type), m_bConfiguration (false) {}
 
-		virtual     ~RsMsgSerialiser() {}
+		    ~RsMsgSerialiser() override {}
 
-		virtual	uint32_t    size(RsItem *item) 
+			uint32_t    size(RsItem *item) override 
 		{ 
 			return dynamic_cast<RsMessageItem*>(item)->serial_size(m_bConfiguration) ; 
 		}
-		virtual	bool        serialise  (RsItem *item, void *data, uint32_t *size)
+			bool        serialise  (RsItem *item, void *data, uint32_t *size) override
 		{
 			return dynamic_cast<RsMessageItem*>(item)->serialise(data,*size,m_bConfiguration) ; 
 		}
-		virtual	RsItem *    deserialise(void *data, uint32_t *size);
+			RsItem *    deserialise(void *data, uint32_t *size) override;
 
 	private:
 

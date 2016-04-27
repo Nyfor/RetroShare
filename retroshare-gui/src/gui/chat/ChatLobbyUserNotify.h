@@ -47,7 +47,7 @@ class ChatLobbyUserNotify : public UserNotify
 public:
 	ChatLobbyUserNotify(QObject *parent = 0);
 
-	virtual bool hasSetting(QString *name, QString *group);
+	bool hasSetting(QString *name, QString *group) override;
 	void makeSubMenu(QMenu* parentMenu, QIcon icoLobby, QString strLobbyName, ChatLobbyId id);
 	void chatLobbyNewMessage(ChatLobbyId lobby_id, QDateTime time, QString senderName, QString msg);
 	void chatLobbyCleared(ChatLobbyId lobby_id, QString anchor, bool onlyUnread=false);
@@ -69,13 +69,13 @@ private slots:
 	void subMenuHovered(QAction* action);
 
 private:
-	virtual QIcon getIcon();
-	virtual QIcon getMainIcon(bool hasNew);
-	virtual unsigned int getNewCount();
-	virtual QString getTrayMessage(bool plural);
-	virtual QString getNotifyMessage(bool plural);
-	virtual void iconClicked();
-	virtual void iconHovered();
+	QIcon getIcon() override;
+	QIcon getMainIcon(bool hasNew) override;
+	unsigned int getNewCount() override;
+	QString getTrayMessage(bool plural) override;
+	QString getNotifyMessage(bool plural) override;
+	void iconClicked() override;
+	void iconHovered() override;
 	bool checkWord(QString msg, QString word);
 
 	QString _name;

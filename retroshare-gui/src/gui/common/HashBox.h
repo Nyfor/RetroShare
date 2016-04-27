@@ -58,7 +58,7 @@ class HashBox : public QScrollArea
 
 public:
 	explicit HashBox(QWidget *parent = 0);
-	~HashBox();
+	~HashBox() override;
 
 	void setAutoHide(bool autoHide);
 	void addAttachments(const QStringList& files,TransferRequestFlags tfl, HashedFile::Flags flag = HashedFile::NoFlag);
@@ -67,7 +67,7 @@ public:
 	void setDefaultTransferRequestFlags(TransferRequestFlags flags) { mDefaultTransferFlags = flags ; }
 
 protected:
-	bool eventFilter(QObject *object, QEvent *event);
+	bool eventFilter(QObject *object, QEvent *event) override;
 
 private slots:
 	void fileFinished(AttachFileItem* file);

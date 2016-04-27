@@ -233,14 +233,14 @@ class AuthGPG: public p3Config, public RsTickingThread, public PGPHandler
 
 	protected:
 		AuthGPG(const std::string& path_to_pubring, const std::string& path_to_secring,const std::string& path_to_trustdb,const std::string& pgp_lock_file);
-		virtual ~AuthGPG();
+		~AuthGPG() override;
 
 		/*****************************************************************/
 		/***********************  p3config  ******************************/
 		/* Key Functions to be overloaded for Full Configuration */
-		virtual RsSerialiser *setupSerialiser();
-		virtual bool saveList(bool &cleanup, std::list<RsItem *>&);
-		virtual bool    loadList(std::list<RsItem *>& load);
+		RsSerialiser *setupSerialiser() override;
+		bool saveList(bool &cleanup, std::list<RsItem *>&) override;
+		bool    loadList(std::list<RsItem *>& load) override;
 		/*****************************************************************/
 
 	private:
@@ -276,7 +276,7 @@ class AuthGPG: public p3Config, public RsTickingThread, public PGPHandler
 		bool    printOwnKeys_locked();
 
 		/* own thread */
-        virtual void data_tick();
+        void data_tick() override;
 
 	private:
 

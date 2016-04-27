@@ -73,7 +73,7 @@ public:
 
 public:
 	explicit FriendSelectionWidget(QWidget *parent = 0);
-	~FriendSelectionWidget();
+	~FriendSelectionWidget() override;
 
 	void setHeaderText(const QString &text);
 	void setModus(Modus modus);
@@ -116,10 +116,10 @@ public:
 	void addContextMenuAction(QAction *action);
 
 protected:
-	void changeEvent(QEvent *e);
+	void changeEvent(QEvent *e) override;
 
-	virtual void loadRequest(const TokenQueue *queue,const TokenRequest& req);
-	virtual void updateDisplay(bool complete);
+	void loadRequest(const TokenQueue *queue,const TokenRequest& req) override;
+	void updateDisplay(bool complete) override;
 
 signals:
 	void itemAdded(int idType, const QString &id, QTreeWidgetItem *item);

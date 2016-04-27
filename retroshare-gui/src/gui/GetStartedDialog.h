@@ -38,11 +38,11 @@ public:
 	/** Default Constructor */
 	GetStartedDialog(QWidget *parent = 0);
 	/** Default Destructor */
-	~GetStartedDialog();
+	~GetStartedDialog() override;
 
-	virtual QIcon iconPixmap() const { return QIcon(IMG_HELP) ; } //MainPage
-	virtual QString pageName() const { return tr("Getting Started") ; } //MainPage
-	virtual QString helpText() const { return ""; } //MainPage
+	QIcon iconPixmap() const override { return QIcon(IMG_HELP) ; } //MainPage
+	QString pageName() const override { return tr("Getting Started") ; } //MainPage
+	QString helpText() const override { return ""; } //MainPage
 
 	// Single Point for (English) Text of the Invitation.
 	// This is used by other classes.
@@ -53,8 +53,8 @@ public:
 
 protected:
 	// Overloaded to get first show!
-	virtual void showEvent ( QShowEvent * event );
-	virtual void changeEvent(QEvent *e);
+	void showEvent ( QShowEvent * event ) override;
+	void changeEvent(QEvent *e) override;
 
 private slots:
 	void tickInviteChanged();

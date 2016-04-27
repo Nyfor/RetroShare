@@ -122,15 +122,15 @@ public:
     // Unregistering a key might not have an instantaneous effect, so the client is responsible for
     // discarding traffic that might later come for this key.
     //
-    virtual bool   registerKey(const RsGxsId& authentication_id, const GRouterServiceId& client_id,const std::string& description_string) ;
+    bool   registerKey(const RsGxsId& authentication_id, const GRouterServiceId& client_id,const std::string& description_string) override ;
     virtual bool unregisterKey(const RsGxsId &key_id, const GRouterServiceId &sid) ;
 
     //===================================================//
     //         Routing clue collection methods           //
     //===================================================//
 
-    virtual void addRoutingClue(const GRouterKeyId& id,const RsPeerId& peer_id) ;
-    virtual void addTrackingInfo(const RsGxsMessageId& mid,const RsPeerId& peer_id) ;
+    void addRoutingClue(const GRouterKeyId& id,const RsPeerId& peer_id) override ;
+    void addTrackingInfo(const RsGxsMessageId& mid,const RsPeerId& peer_id) override ;
 
     //===================================================//
     //         Client/server request services            //
@@ -142,11 +142,11 @@ public:
     // The client id is supplied so that the client can be notified when the data has been received.
     // Data is not modified by the global router.
     //
-    virtual bool sendData(const RsGxsId& destination, const GRouterServiceId& client_id, const uint8_t *data, uint32_t data_size, const RsGxsId& signing_id, GRouterMsgPropagationId& id) ;
+    bool sendData(const RsGxsId& destination, const GRouterServiceId& client_id, const uint8_t *data, uint32_t data_size, const RsGxsId& signing_id, GRouterMsgPropagationId& id) override ;
 
     // Cancels a given sending order. If called too late, the message might already have left. But this will remove the item from the
     // re-try list.
-    virtual bool cancel(GRouterMsgPropagationId mid) ;
+    bool cancel(GRouterMsgPropagationId mid) override ;
 
     //===================================================//
     //                  Interface with RsGRouter         //
@@ -157,7 +157,7 @@ public:
     // 	- list of clues/time_stamp for each key.
     // 	- real time routing probabilities
     //
-    virtual bool getRoutingMatrixInfo(GRouterRoutingMatrixInfo& info) ;
+    bool getRoutingMatrixInfo(GRouterRoutingMatrixInfo& info) override ;
 
     // debug info from routing cache
     // 	- Cache Items
@@ -167,14 +167,14 @@ public:
     // 		* message type
     // 	- Cache state (memory size, etc)
     //
-    virtual bool getRoutingCacheInfo(std::vector<GRouterRoutingCacheInfo>& info) ;
-    virtual bool getTrackingInfo(const RsGxsMessageId& mid, RsPeerId& provider_id) ;
+    bool getRoutingCacheInfo(std::vector<GRouterRoutingCacheInfo>& info) override ;
+    bool getTrackingInfo(const RsGxsMessageId& mid, RsPeerId& provider_id) override ;
 
     //===================================================//
     //         Derived from p3Service                    //
     //===================================================//
 
-    virtual RsServiceInfo getServiceInfo()
+    RsServiceInfo getServiceInfo() override
     {
         return RsServiceInfo(RS_SERVICE_TYPE_GROUTER,
                              SERVICE_INFO_APP_NAME,
@@ -186,7 +186,7 @@ public:
 
     virtual void setDebugEnabled(bool b) { _debug_enabled = b ; }
 
-    virtual void connectToTurtleRouter(p3turtle *pt) ;
+    void connectToTurtleRouter(p3turtle *pt) override ;
 
 protected:
     //===================================================//
@@ -197,7 +197,7 @@ protected:
     // 	- packet handling methods
     // 	- matrix updates
     //
-    virtual int tick() ;
+    int tick() override ;
 
     static const std::string SERVICE_INFO_APP_NAME ;
     static const uint16_t SERVICE_INFO_APP_MAJOR_VERSION  =	1;
@@ -209,10 +209,10 @@ protected:
     //         Interaction with turtle router            //
     //===================================================//
 
-    virtual bool handleTunnelRequest(const RsFileHash& /*hash*/,const RsPeerId& /*peer_id*/) ;
-    virtual void receiveTurtleData(RsTurtleGenericTunnelItem */*item*/,const RsFileHash& /*hash*/,const RsPeerId& /*virtual_peer_id*/,RsTurtleGenericTunnelItem::Direction /*direction*/);
-    virtual void addVirtualPeer(const TurtleFileHash& hash,const TurtleVirtualPeerId& virtual_peer_id,RsTurtleGenericTunnelItem::Direction dir) ;
-    virtual void removeVirtualPeer(const TurtleFileHash& hash,const TurtleVirtualPeerId& virtual_peer_id) ;
+    bool handleTunnelRequest(const RsFileHash& /*hash*/,const RsPeerId& /*peer_id*/) override ;
+    void receiveTurtleData(RsTurtleGenericTunnelItem */*item*/,const RsFileHash& /*hash*/,const RsPeerId& /*virtual_peer_id*/,RsTurtleGenericTunnelItem::Direction /*direction*/) override;
+    void addVirtualPeer(const TurtleFileHash& hash,const TurtleVirtualPeerId& virtual_peer_id,RsTurtleGenericTunnelItem::Direction dir) override ;
+    void removeVirtualPeer(const TurtleFileHash& hash,const TurtleVirtualPeerId& virtual_peer_id) override ;
 
 private:
     //===================================================//
@@ -275,10 +275,10 @@ private:
 
     // Load/save the routing info, the pending items in transit, and the config variables.
     //
-    virtual bool loadList(std::list<RsItem*>& items) ;
-    virtual bool saveList(bool& cleanup,std::list<RsItem*>& items) ;
+    bool loadList(std::list<RsItem*>& items) override ;
+    bool saveList(bool& cleanup,std::list<RsItem*>& items) override ;
 
-    virtual RsSerialiser *setupSerialiser() ;
+    RsSerialiser *setupSerialiser() override ;
 
     //===================================================//
     //                  Debug methods                    //

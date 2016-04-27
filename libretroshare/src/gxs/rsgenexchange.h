@@ -131,7 +131,7 @@ public:
                   RsSerialType* serviceSerialiser, uint16_t mServType, RsGixs* gixs, uint32_t authenPolicy,
                   uint32_t messageStorePeriod = DEFAULT_MSG_STORE_PERIOD);
 
-    virtual ~RsGenExchange();
+    ~RsGenExchange() override;
 
     // Convention that this is implemented here. 
     // and passes to network service.
@@ -144,22 +144,22 @@ public:
     /*!
      * @param messages messages are deleted after function returns
      */
-    virtual void notifyNewMessages(std::vector<RsNxsMsg*>& messages);
+    void notifyNewMessages(std::vector<RsNxsMsg*>& messages) override;
 
     /*!
      * @param groups groups are deleted after function returns
      */
-    virtual void notifyNewGroups(std::vector<RsNxsGrp*>& groups);
+    void notifyNewGroups(std::vector<RsNxsGrp*>& groups) override;
 
     /*!
      * @param grpId group id
      */
-    virtual void notifyReceivePublishKey(const RsGxsGroupId &grpId);
+    void notifyReceivePublishKey(const RsGxsGroupId &grpId) override;
 
     /*!
      * @param grpId group id
      */
-    virtual void notifyChangedGroupStats(const RsGxsGroupId &grpId);
+    void notifyChangedGroupStats(const RsGxsGroupId &grpId) override;
 
     /** E: Observer implementation **/
 
@@ -180,9 +180,9 @@ public:
      * @return handle to token service handle for making
      * request to this gxs service
      */
-    RsTokenService* getTokenService();
+    RsTokenService* getTokenService() override;
 
-    virtual void data_tick();
+    void data_tick() override;
 
     /*!
      * Policy bit pattern portion
@@ -210,7 +210,7 @@ public:
      * @param groupIds
      * @return false if token cannot be redeemed, if false you may have tried to redeem when not ready
      */
-    bool getGroupList(const uint32_t &token, std::list<RsGxsGroupId> &groupIds);
+    bool getGroupList(const uint32_t &token, std::list<RsGxsGroupId> &groupIds) override;
 
     /*!
      * Retrieve msg list for a given token sectioned by group Ids
@@ -218,7 +218,7 @@ public:
      * @param msgIds a map of grpId -> msgList (vector)
      * @return false if could not redeem token
      */
-    bool getMsgList(const uint32_t &token, GxsMsgIdResult &msgIds);
+    bool getMsgList(const uint32_t &token, GxsMsgIdResult &msgIds) override;
 
     /*!
      * Retrieve msg list for a given token for message related info
@@ -226,7 +226,7 @@ public:
      * @param msgIds a map of RsGxsGrpMsgIdPair -> msgList (vector)
      * @return false if could not redeem token
      */
-    bool getMsgRelatedList(const uint32_t &token, MsgRelatedIdResult& msgIds);
+    bool getMsgRelatedList(const uint32_t &token, MsgRelatedIdResult& msgIds) override;
 
 
     /*!
@@ -235,14 +235,14 @@ public:
      * @param groupInfo
      * @return false if could not redeem token
      */
-    bool getGroupMeta(const uint32_t &token, std::list<RsGroupMetaData> &groupInfo);
+    bool getGroupMeta(const uint32_t &token, std::list<RsGroupMetaData> &groupInfo) override;
 
     /*!
      * retrieves message meta data associated to a request token
      * @param token token to be redeemed
      * @param msgInfo the meta data to be retrieved for token store here
      */
-    bool getMsgMeta(const uint32_t &token, GxsMsgMetaMap &msgInfo);
+    bool getMsgMeta(const uint32_t &token, GxsMsgMetaMap &msgInfo) override;
 
     /*!
      * Retrieve msg meta for a given token for message related info
@@ -250,7 +250,7 @@ public:
      * @param msgIds a map of RsGxsGrpMsgIdPair -> msgList (vector)
      * @return false if could not redeem token
      */
-    bool getMsgRelatedMeta(const uint32_t &token, GxsMsgRelatedMetaMap& msgMeta);
+    bool getMsgRelatedMeta(const uint32_t &token, GxsMsgRelatedMetaMap& msgMeta) override;
 
 
     /*!
@@ -258,9 +258,9 @@ public:
      * changes, send
      * @param changes
      */
-    virtual void receiveChanges(std::vector<RsGxsNotify*>& changes);
+    void receiveChanges(std::vector<RsGxsNotify*>& changes) override;
 
-    bool subscribeToGroup(uint32_t& token, const RsGxsGroupId& grpId, bool subscribe);
+    bool subscribeToGroup(uint32_t& token, const RsGxsGroupId& grpId, bool subscribe) override;
 
 	/*!
 	 * Gets service statistic for a given services
@@ -268,7 +268,7 @@ public:
 	 * @param stats the status
 	 * @return true if token exists false otherwise
 	 */
-	bool getServiceStatistic(const uint32_t& token, GxsServiceStatistic& stats);
+	bool getServiceStatistic(const uint32_t& token, GxsServiceStatistic& stats) override;
 
 	/*!
 	 * Get group statistic
@@ -276,7 +276,7 @@ public:
 	 * @param stats the stats associated to token requ
 	 * @return true if token is false otherwise
 	 */
-	bool getGroupStatistic(const uint32_t& token, GxsGroupStatistic& stats);
+	bool getGroupStatistic(const uint32_t& token, GxsGroupStatistic& stats) override;
 
 protected:
 
@@ -480,7 +480,7 @@ public:
      * @param msgIds map of grpid->msgIds of message created/modified
      * @return true if token exists false otherwise
      */
-    bool acknowledgeTokenMsg(const uint32_t& token, RsGxsGrpMsgIdPair& msgId);
+    bool acknowledgeTokenMsg(const uint32_t& token, RsGxsGrpMsgIdPair& msgId) override;
 
     /*!
 	 * This allows the client service to acknowledge that their grps has \n
@@ -489,7 +489,7 @@ public:
 	 * @param msgIds vector of ids of groups created/modified
 	 * @return true if token exists false otherwise
 	 */
-    bool acknowledgeTokenGrp(const uint32_t& token, RsGxsGroupId& grpId);
+    bool acknowledgeTokenGrp(const uint32_t& token, RsGxsGroupId& grpId) override;
 
 protected:
 
@@ -586,12 +586,12 @@ public:
 	 * @param grpId group id for cutoff value to be set
 	 * @param CutOff The cut off value to set
 	 */
-    void setGroupReputationCutOff(uint32_t& token, const RsGxsGroupId& grpId, int CutOff);
+    void setGroupReputationCutOff(uint32_t& token, const RsGxsGroupId& grpId, int CutOff) override;
 
     /*!
      * @return storage time of messages in months
      */
-    int getStoragePeriod(){ return MESSAGE_STORE_PERIOD/(60*60*24*31);}
+    int getStoragePeriod() override{ return MESSAGE_STORE_PERIOD/(60*60*24*31);}
 
     /*!
      * sets the msg status flag

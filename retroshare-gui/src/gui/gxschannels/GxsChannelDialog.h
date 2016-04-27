@@ -34,20 +34,20 @@ public:
 	/** Default Constructor */
 	GxsChannelDialog(QWidget *parent = 0);
 	/** Default Destructor */
-	~GxsChannelDialog();
+	~GxsChannelDialog() override;
 
-	virtual QIcon iconPixmap() const { return QIcon(IMAGE_GXSCHANNELS) ; } //MainPage
-	virtual QString pageName() const { return tr("Channels") ; } //MainPage
-	virtual QString helpText() const { return ""; } //MainPage
+	QIcon iconPixmap() const override { return QIcon(IMAGE_GXSCHANNELS) ; } //MainPage
+	QString pageName() const override { return tr("Channels") ; } //MainPage
+	QString helpText() const override { return ""; } //MainPage
 
-	virtual UserNotify *getUserNotify(QObject *parent);
+	UserNotify *getUserNotify(QObject *parent) override;
 
 protected:
 	/* GxsGroupFrameDialog */
-	virtual RetroShareLink::enumType getLinkType() { return RetroShareLink::TYPE_CHANNEL; }
-	virtual GroupFrameSettings::Type groupFrameSettingsType() { return GroupFrameSettings::Channel; }
-	virtual QString getHelpString() const ;
-	virtual void groupInfoToGroupItemInfo(const RsGroupMetaData &groupInfo, GroupItemInfo &groupItemInfo, const RsUserdata *userdata);
+	RetroShareLink::enumType getLinkType() override { return RetroShareLink::TYPE_CHANNEL; }
+	GroupFrameSettings::Type groupFrameSettingsType() override { return GroupFrameSettings::Channel; }
+	QString getHelpString() const override ;
+	void groupInfoToGroupItemInfo(const RsGroupMetaData &groupInfo, GroupItemInfo &groupItemInfo, const RsUserdata *userdata) override;
 
 private slots:
 	void toggleAutoDownload();
@@ -57,18 +57,18 @@ private slots:
 
 private:
 	/* GxsGroupFrameDialog */
-	virtual QString text(TextType type);
-	virtual QString icon(IconType type);
-	virtual QString settingsGroupName() { return "ChannelDialog"; }
-	virtual GxsGroupDialog *createNewGroupDialog(TokenQueue *tokenQueue);
-	virtual GxsGroupDialog *createGroupDialog(TokenQueue *tokenQueue, RsTokenService *tokenService, GxsGroupDialog::Mode mode, RsGxsGroupId groupId);
-	virtual int shareKeyType();
-	virtual GxsMessageFrameWidget *createMessageFrameWidget(const RsGxsGroupId &groupId);
-	virtual void groupTreeCustomActions(RsGxsGroupId grpId, int subscribeFlags, QList<QAction*> &actions);
-	virtual RsGxsCommentService *getCommentService();
-	virtual QWidget *createCommentHeaderWidget(const RsGxsGroupId &grpId, const RsGxsMessageId &msgId);
-	virtual uint32_t requestGroupSummaryType() { return GXS_REQUEST_TYPE_GROUP_DATA; } // request complete group data
-	virtual void loadGroupSummaryToken(const uint32_t &token, std::list<RsGroupMetaData> &groupInfo, RsUserdata* &userdata);
+	QString text(TextType type) override;
+	QString icon(IconType type) override;
+	QString settingsGroupName() override { return "ChannelDialog"; }
+	GxsGroupDialog *createNewGroupDialog(TokenQueue *tokenQueue) override;
+	GxsGroupDialog *createGroupDialog(TokenQueue *tokenQueue, RsTokenService *tokenService, GxsGroupDialog::Mode mode, RsGxsGroupId groupId) override;
+	int shareKeyType() override;
+	GxsMessageFrameWidget *createMessageFrameWidget(const RsGxsGroupId &groupId) override;
+	void groupTreeCustomActions(RsGxsGroupId grpId, int subscribeFlags, QList<QAction*> &actions) override;
+	RsGxsCommentService *getCommentService() override;
+	QWidget *createCommentHeaderWidget(const RsGxsGroupId &grpId, const RsGxsMessageId &msgId) override;
+	uint32_t requestGroupSummaryType() override { return GXS_REQUEST_TYPE_GROUP_DATA; } // request complete group data
+	void loadGroupSummaryToken(const uint32_t &token, std::list<RsGroupMetaData> &groupInfo, RsUserdata* &userdata) override;
 };
 
 #endif

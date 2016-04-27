@@ -40,7 +40,7 @@ public:
 	            } voipToasterItem_Type;
 
 	VOIPToasterItem(const RsPeerId &peer_id, const QString &msg, const voipToasterItem_Type type);
-	~VOIPToasterItem();
+	~VOIPToasterItem() override;
 
 private slots:
 	void chatButtonSlot();

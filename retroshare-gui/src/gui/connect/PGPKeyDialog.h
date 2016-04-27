@@ -60,7 +60,7 @@ private:
     /** Default constructor */
     PGPKeyDialog(const RsPeerId &id,const RsPgpId& pgp_id, QWidget *parent = 0, Qt::WindowFlags flags = 0);
     /** Default destructor */
-    ~PGPKeyDialog();
+    ~PGPKeyDialog() override;
 
     static PGPKeyDialog *instance(const RsPgpId &pgp_id);
 

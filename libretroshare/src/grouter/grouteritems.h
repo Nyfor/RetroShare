@@ -61,13 +61,13 @@ class RsGRouterItem: public RsItem
 	public:
 		RsGRouterItem(uint8_t grouter_subtype) : RsItem(RS_PKT_VERSION_SERVICE,RS_SERVICE_TYPE_GROUTER,grouter_subtype) {}
 
-        virtual ~RsGRouterItem() {}
+        ~RsGRouterItem() override {}
 
 		virtual bool serialise(void *data,uint32_t& size) const = 0 ;	
 		virtual uint32_t serial_size() const = 0 ; 						
 
-		virtual void clear() = 0 ;
-		virtual std::ostream& print(std::ostream &out, uint16_t indent = 0) = 0;
+		void clear() override = 0 ;
+		std::ostream& print(std::ostream &out, uint16_t indent = 0) override = 0;
 
 	protected:
 		bool serialise_header(void *data, uint32_t& pktsize, uint32_t& tlvsize, uint32_t& offset) const;
@@ -98,7 +98,7 @@ class RsGRouterAbstractMsgItem: public RsGRouterItem
 {
 public:
     RsGRouterAbstractMsgItem(uint8_t pkt_subtype) : RsGRouterItem(pkt_subtype) {}
-    virtual ~RsGRouterAbstractMsgItem() {}
+    ~RsGRouterAbstractMsgItem() override {}
 
     virtual uint32_t signed_data_size() const = 0 ;
     virtual bool serialise_signed_data(void *data,uint32_t& size) const = 0 ;
@@ -114,17 +114,17 @@ class RsGRouterGenericDataItem: public RsGRouterAbstractMsgItem, public RsGRoute
 {
     public:
         RsGRouterGenericDataItem() : RsGRouterAbstractMsgItem(RS_PKT_SUBTYPE_GROUTER_DATA) { setPriorityLevel(QOS_PRIORITY_RS_GROUTER) ; }
-        virtual ~RsGRouterGenericDataItem() { clear() ; }
+        ~RsGRouterGenericDataItem() override { clear() ; }
 
-        virtual bool serialise(void *data,uint32_t& size) const ;
-        virtual uint32_t serial_size() const ;
+        bool serialise(void *data,uint32_t& size) const override ;
+        uint32_t serial_size() const override ;
 
-        virtual void clear()
+        void clear() override
         {
             free(data_bytes);
             data_bytes=NULL;
         }
-        virtual std::ostream& print(std::ostream &out, uint16_t indent = 0) ;
+        std::ostream& print(std::ostream &out, uint16_t indent = 0) override ;
 
         RsGRouterGenericDataItem *duplicate() const ;
 
@@ -136,21 +136,21 @@ class RsGRouterGenericDataItem: public RsGRouterAbstractMsgItem, public RsGRoute
         uint32_t duplication_factor ;	// number of duplicates allowed. Should be capped at each de-serialise operation!
 
     // utility methods for signing data
-    virtual uint32_t signed_data_size() const ;
-        virtual bool serialise_signed_data(void *data,uint32_t& size) const ;
+    uint32_t signed_data_size() const override ;
+        bool serialise_signed_data(void *data,uint32_t& size) const override ;
 };
 
 class RsGRouterSignedReceiptItem: public RsGRouterAbstractMsgItem
 {
     public:
         RsGRouterSignedReceiptItem() : RsGRouterAbstractMsgItem(RS_PKT_SUBTYPE_GROUTER_SIGNED_RECEIPT) { setPriorityLevel(QOS_PRIORITY_RS_GROUTER) ; }
-    virtual ~RsGRouterSignedReceiptItem() {}
+    ~RsGRouterSignedReceiptItem() override {}
 
-        virtual bool serialise(void *data,uint32_t& size) const ;
-        virtual uint32_t serial_size() const ;
+        bool serialise(void *data,uint32_t& size) const override ;
+        uint32_t serial_size() const override ;
 
-        virtual void clear() {}
-        virtual std::ostream& print(std::ostream &out, uint16_t indent = 0) ;
+        void clear() override {}
+        std::ostream& print(std::ostream &out, uint16_t indent = 0) override ;
 
         RsGRouterSignedReceiptItem *duplicate() const ;
 
@@ -159,8 +159,8 @@ class RsGRouterSignedReceiptItem: public RsGRouterAbstractMsgItem
     Sha1CheckSum data_hash ;		// avoids an attacker to re-use a given signed receipt. This is the hash of the enceypted data.
 
     // utility methods for signing data
-    virtual uint32_t signed_data_size() const ;
-        virtual bool serialise_signed_data(void *data,uint32_t& size) const ;
+    uint32_t signed_data_size() const override ;
+        bool serialise_signed_data(void *data,uint32_t& size) const override ;
 };
 
 // Low-level data items
@@ -170,11 +170,11 @@ class RsGRouterTransactionItem: public RsGRouterItem
     public:
         RsGRouterTransactionItem(uint8_t pkt_subtype) : RsGRouterItem(pkt_subtype) {}
 
-    virtual ~RsGRouterTransactionItem() {}
+    ~RsGRouterTransactionItem() override {}
 
-        virtual bool serialise(void *data,uint32_t& size) const =0;
-        virtual uint32_t serial_size() const =0;
-        virtual void clear() =0;
+        bool serialise(void *data,uint32_t& size) const override =0;
+        uint32_t serial_size() const override =0;
+        void clear() override =0;
 
     virtual RsGRouterTransactionItem *duplicate() const = 0 ;
 };
@@ -184,15 +184,15 @@ class RsGRouterTransactionChunkItem: public RsGRouterTransactionItem, public RsG
     public:
         RsGRouterTransactionChunkItem() : RsGRouterTransactionItem(RS_PKT_SUBTYPE_GROUTER_TRANSACTION_CHUNK) { setPriorityLevel(QOS_PRIORITY_RS_GROUTER) ; }
 
-    virtual ~RsGRouterTransactionChunkItem()  { free(chunk_data) ; }
+    ~RsGRouterTransactionChunkItem() override  { free(chunk_data) ; }
 
-        virtual bool serialise(void *data,uint32_t& size) const ;
-        virtual uint32_t serial_size() const ;
+        bool serialise(void *data,uint32_t& size) const override ;
+        uint32_t serial_size() const override ;
 
-        virtual void clear() {}
-        virtual std::ostream& print(std::ostream &out, uint16_t indent = 0) ;
+        void clear() override {}
+        std::ostream& print(std::ostream &out, uint16_t indent = 0) override ;
 
-    virtual RsGRouterTransactionItem *duplicate() const
+    RsGRouterTransactionItem *duplicate() const override
     {
         RsGRouterTransactionChunkItem *item = new RsGRouterTransactionChunkItem ;
         *item = *this ;	// copy all fields
@@ -215,15 +215,15 @@ class RsGRouterTransactionAcknItem: public RsGRouterTransactionItem
 {
     public:
         RsGRouterTransactionAcknItem() : RsGRouterTransactionItem(RS_PKT_SUBTYPE_GROUTER_TRANSACTION_ACKN) { setPriorityLevel(QOS_PRIORITY_RS_GROUTER) ; }
-    virtual ~RsGRouterTransactionAcknItem() {}
+    ~RsGRouterTransactionAcknItem() override {}
 
-        virtual bool serialise(void *data,uint32_t& size) const ;
-        virtual uint32_t serial_size() const ;
+        bool serialise(void *data,uint32_t& size) const override ;
+        uint32_t serial_size() const override ;
 
-        virtual void clear() {}
-        virtual std::ostream& print(std::ostream &out, uint16_t indent = 0) ;
+        void clear() override {}
+        std::ostream& print(std::ostream &out, uint16_t indent = 0) override ;
 
-    virtual RsGRouterTransactionItem *duplicate() const  { return new RsGRouterTransactionAcknItem(*this) ; }
+    RsGRouterTransactionItem *duplicate() const override  { return new RsGRouterTransactionAcknItem(*this) ; }
 
         GRouterMsgPropagationId propagation_id ;
 };
@@ -236,11 +236,11 @@ class RsGRouterMatrixCluesItem: public RsGRouterItem
         RsGRouterMatrixCluesItem() : RsGRouterItem(RS_PKT_SUBTYPE_GROUTER_MATRIX_CLUES)
 		{ setPriorityLevel(0) ; }	// this item is never sent through the network
 
-		virtual bool serialise(void *data,uint32_t& size) const ;	
-		virtual uint32_t serial_size() const ; 						
+		bool serialise(void *data,uint32_t& size) const override ;	
+		uint32_t serial_size() const override ; 						
 
-		virtual void clear() {} 
-		virtual std::ostream& print(std::ostream &out, uint16_t indent = 0) ;
+		void clear() override {} 
+		std::ostream& print(std::ostream &out, uint16_t indent = 0) override ;
 
 		// packet data
 		//
@@ -254,11 +254,11 @@ class RsGRouterMatrixTrackItem: public RsGRouterItem
         RsGRouterMatrixTrackItem() : RsGRouterItem(RS_PKT_SUBTYPE_GROUTER_MATRIX_TRACK)
 		{ setPriorityLevel(0) ; }	// this item is never sent through the network
 
-		virtual bool serialise(void *data,uint32_t& size) const ;	
-		virtual uint32_t serial_size() const ; 						
+		bool serialise(void *data,uint32_t& size) const override ;	
+		uint32_t serial_size() const override ; 						
 
-		virtual void clear() {} 
-		virtual std::ostream& print(std::ostream &out, uint16_t indent = 0) ;
+		void clear() override {} 
+		std::ostream& print(std::ostream &out, uint16_t indent = 0) override ;
 
 		// packet data
 		//
@@ -272,11 +272,11 @@ class RsGRouterMatrixFriendListItem: public RsGRouterItem
 		RsGRouterMatrixFriendListItem() : RsGRouterItem(RS_PKT_SUBTYPE_GROUTER_FRIENDS_LIST) 
         { setPriorityLevel(0) ; }	// this item is never sent through the network
 
-		virtual bool serialise(void *data,uint32_t& size) const ;	
-		virtual uint32_t serial_size() const ; 						
+		bool serialise(void *data,uint32_t& size) const override ;	
+		uint32_t serial_size() const override ; 						
 
-		virtual void clear() {} 
-		virtual std::ostream& print(std::ostream &out, uint16_t indent = 0) ;
+		void clear() override {} 
+		std::ostream& print(std::ostream &out, uint16_t indent = 0) override ;
 
 		// packet data
 		//
@@ -289,12 +289,12 @@ class RsGRouterRoutingInfoItem: public RsGRouterItem, public GRouterRoutingInfo,
         RsGRouterRoutingInfoItem() : RsGRouterItem(RS_PKT_SUBTYPE_GROUTER_ROUTING_INFO)
 		{ setPriorityLevel(0) ; }	// this item is never sent through the network
 
-		virtual ~RsGRouterRoutingInfoItem() { clear() ; }
+		~RsGRouterRoutingInfoItem() override { clear() ; }
 		
-		virtual bool serialise(void *data,uint32_t& size) const ;	
-		virtual uint32_t serial_size() const ; 						
+		bool serialise(void *data,uint32_t& size) const override ;	
+		uint32_t serial_size() const override ; 						
 
-		virtual void clear() 
+		void clear() override 
 		{
             if(data_item != NULL) delete data_item ;
             if(receipt_item != NULL) delete receipt_item ;
@@ -302,7 +302,7 @@ class RsGRouterRoutingInfoItem: public RsGRouterItem, public GRouterRoutingInfo,
             data_item = NULL ;
             receipt_item = NULL ;
         }
-		virtual std::ostream& print(std::ostream &out, uint16_t indent = 0) ;
+		std::ostream& print(std::ostream &out, uint16_t indent = 0) override ;
 };
 
 /***********************************************************************************/
@@ -314,7 +314,7 @@ class RsGRouterSerialiser: public RsSerialType
 public:
     RsGRouterSerialiser() : RsSerialType(RS_PKT_VERSION_SERVICE, RS_SERVICE_TYPE_GROUTER) {}
 
-    virtual uint32_t 	size (RsItem *item)
+    uint32_t 	size (RsItem *item) override
     {
         RsGRouterItem *gitem = dynamic_cast<RsGRouterItem *>(item);
         if (!gitem)
@@ -323,7 +323,7 @@ public:
         }
         return gitem->serial_size() ;
     }
-    virtual bool serialise(RsItem *item, void *data, uint32_t *size)
+    bool serialise(RsItem *item, void *data, uint32_t *size) override
     {
         RsGRouterItem *gitem = dynamic_cast<RsGRouterItem *>(item);
         if (!gitem)
@@ -332,7 +332,7 @@ public:
         }
         return gitem->serialise(data,*size) ;
     }
-    virtual RsItem *deserialise (void *data, uint32_t *size) ;
+    RsItem *deserialise (void *data, uint32_t *size) override ;
 
 private:
     RsGRouterGenericDataItem      *deserialise_RsGRouterGenericDataItem(void *data,uint32_t size) const ;

@@ -34,11 +34,11 @@ public:
 	GxsChannelGroupDialog(TokenQueue *tokenExternalQueue, RsTokenService *tokenService, Mode mode, RsGxsGroupId groupId, QWidget *parent = NULL);
 
 protected:
-	virtual void initUi();
-	virtual QPixmap serviceImage();
-	virtual bool service_CreateGroup(uint32_t &token, const RsGroupMetaData &meta);
-	virtual bool service_loadGroup(uint32_t token, Mode mode, RsGroupMetaData& groupMetaData, QString &description);
-	virtual bool service_EditGroup(uint32_t &token, RsGroupMetaData &editedMeta);
+	void initUi() override;
+	QPixmap serviceImage() override;
+	bool service_CreateGroup(uint32_t &token, const RsGroupMetaData &meta) override;
+	bool service_loadGroup(uint32_t token, Mode mode, RsGroupMetaData& groupMetaData, QString &description) override;
+	bool service_EditGroup(uint32_t &token, RsGroupMetaData &editedMeta) override;
 
 private:
 	void prepareChannelGroup(RsGxsChannelGroup &group, const RsGroupMetaData &meta);

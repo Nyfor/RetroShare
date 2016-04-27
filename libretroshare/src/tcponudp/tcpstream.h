@@ -81,7 +81,7 @@ class TcpStream: public UdpPeer
 	/* Top-Level exposed */
 
 	TcpStream(UdpSubReceiver *udp);
-virtual ~TcpStream() { return; }
+~TcpStream() override { return; }
 
 	/* user interface */
 int     status(std::ostream &out);
@@ -108,7 +108,7 @@ int	close(); /* standard unix behaviour */
 int	tick(); /* check iface etc */
 
 	/* Callback Funcion from UDP Layers */
-virtual void recvPkt(void *data, int size); /* overloaded */
+void recvPkt(void *data, int size) override; /* overloaded */
 
 
 

@@ -45,7 +45,7 @@ public:
 
 public:
 	AvatarWidget(QWidget *parent = 0);
-	~AvatarWidget();
+	~AvatarWidget() override;
 
 	QString frameState();
 	void setFrameType(FrameType type);
@@ -55,7 +55,7 @@ public:
     void setDefaultAvatar(const QString &avatar_file_name);
 
 protected:
-	void mouseReleaseEvent(QMouseEvent *event);
+	void mouseReleaseEvent(QMouseEvent *event) override;
 
 private slots:
     void updateStatus(const QString& peerId, int status);

@@ -50,28 +50,28 @@ class p3BdCallback: public BitDhtCallback
 	p3BdCallback(p3BitDht *parent)
 	:mParent(parent) { return; }
 
-virtual int dhtNodeCallback(const bdId *id, uint32_t peerflags)
+int dhtNodeCallback(const bdId *id, uint32_t peerflags) override
 {
 	return mParent->NodeCallback(id, peerflags);
 }
 
-virtual int dhtPeerCallback(const bdId *id, uint32_t status)
+int dhtPeerCallback(const bdId *id, uint32_t status) override
 {
 	return mParent->PeerCallback(id, status);
 }
 
-virtual int dhtValueCallback(const bdNodeId *id, std::string key, uint32_t status)
+int dhtValueCallback(const bdNodeId *id, std::string key, uint32_t status) override
 {
 	return mParent->ValueCallback(id, key, status);
 }
 
-virtual int dhtConnectCallback(const bdId *srcId, const bdId *proxyId, const bdId *destId,
-                        uint32_t mode, uint32_t point, uint32_t param, uint32_t cbtype, uint32_t errcode)
+int dhtConnectCallback(const bdId *srcId, const bdId *proxyId, const bdId *destId,
+                        uint32_t mode, uint32_t point, uint32_t param, uint32_t cbtype, uint32_t errcode) override
 { 
 	return mParent->ConnectCallback(srcId, proxyId, destId, mode, point, param, cbtype, errcode);
 }  
 
-virtual int dhtInfoCallback(const bdId *id, uint32_t type, uint32_t flags, std::string info)
+int dhtInfoCallback(const bdId *id, uint32_t type, uint32_t flags, std::string info) override
 { 
 	return mParent->InfoCallback(id, type, flags, info);
 }  

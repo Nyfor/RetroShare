@@ -19,15 +19,15 @@ class CircleWidget : public FlowLayoutItem
 public:
 	explicit CircleWidget(QString name = QString()
 	                    , QWidget *parent = 0);
-	~CircleWidget();
+	~CircleWidget() override;
 	void updateData(const RsGroupMetaData& gxs_group_info
 	          , const RsGxsCircleDetails& details);
 
 	//Start QWidget Properties
 	QSize sizeHint();
 	//Start FlowLayoutItem Properties
-	virtual const QPixmap getImage();
-	virtual const QPixmap getDragImage();
+	const QPixmap getImage() override;
+	const QPixmap getDragImage() override;
 	//End Properties
 
 	void addIdent(IdentityWidget* item);

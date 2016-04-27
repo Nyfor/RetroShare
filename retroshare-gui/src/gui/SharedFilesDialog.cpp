@@ -94,7 +94,7 @@ public:
     }
 
 protected:
-    virtual bool lessThan(const QModelIndex &left, const QModelIndex &right) const
+    bool lessThan(const QModelIndex &left, const QModelIndex &right) const override
     {
         bool dirLeft = (m_dirModel->getType(left) == DIR_TYPE_DIR);
         bool dirRight = (m_dirModel->getType(right) == DIR_TYPE_DIR);

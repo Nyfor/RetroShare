@@ -33,7 +33,7 @@
 class DHTGraphSource: public RSGraphSource
 {
 	public:
-		virtual void getValues(std::map<std::string,float>& values) const
+		void getValues(std::map<std::string,float>& values) const override
 		{
 			RsConfigNetStatus config;
 			rsConfig->getConfigNetStatus(config);
@@ -50,7 +50,7 @@ class DHTGraphSource: public RSGraphSource
 			}
 		}
 
-		virtual QString unitName() const { return tr("users"); }
+		QString unitName() const override { return tr("users"); }
 };
 
 

@@ -55,7 +55,7 @@ class P3Interface: public SearchInterface
 {
 public:
 	P3Interface() {return; }
-virtual ~P3Interface() {return; }
+~P3Interface() override {return; }
 
 virtual int	tick() { return 1; }
 virtual int	status() { return 1; }

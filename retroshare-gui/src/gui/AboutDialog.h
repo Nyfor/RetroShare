@@ -58,8 +58,8 @@ signals:
     void si_levelChanged(QString);
 
 protected:
-    void keyPressEvent(QKeyEvent *event);
-    void mousePressEvent(QMouseEvent *event);
+    void keyPressEvent(QKeyEvent *event) override;
+    void mousePressEvent(QMouseEvent *event) override;
 private:
     void switchPages();
     void installAWidget();
@@ -78,9 +78,9 @@ public:
     AWidget();
 
 protected:
-    void timerEvent(QTimerEvent* e);
-    void paintEvent(QPaintEvent* e);
-    void mouseMoveEvent(QMouseEvent* e);
+    void timerEvent(QTimerEvent* e) override;
+    void paintEvent(QPaintEvent* e) override;
+    void mouseMoveEvent(QMouseEvent* e) override;
   
 private:
     void calcWater(int npage, int density);
@@ -138,8 +138,8 @@ class TBoard : public QWidget {
 
 public:
     TBoard(QWidget *parent = 0);
-    ~TBoard();
-    int heightForWidth ( int w ) const;
+    ~TBoard() override;
+    int heightForWidth ( int w ) const override;
     int getScore() const {return score;}
     int getMaxScore() const {return qMax(maxScore, score);}
     int getLevel() const {return level;}
@@ -157,9 +157,9 @@ signals:
     void linesRemovedChanged(int numLines);
 
 protected:
-    void paintEvent(QPaintEvent *event);
-    void keyPressEvent(QKeyEvent *event);
-    void timerEvent(QTimerEvent *event);
+    void paintEvent(QPaintEvent *event) override;
+    void keyPressEvent(QKeyEvent *event) override;
+    void timerEvent(QTimerEvent *event) override;
 
 private:
 

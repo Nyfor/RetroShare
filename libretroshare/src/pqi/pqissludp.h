@@ -55,22 +55,22 @@ class pqissludp: public pqissl
 public:
 	pqissludp(PQInterface *parent, p3LinkMgr *lm);
 
-	virtual ~pqissludp();
+	~pqissludp() override;
 
 	// NetInterface.
 	// listen fns call the udpproxy.
-	virtual int listen();
-	virtual int stoplistening();
+	int listen() override;
+	int stoplistening() override;
 
-	virtual bool connect_parameter(uint32_t type, uint32_t value);
-	virtual bool connect_additional_address(uint32_t type, const struct sockaddr_storage &addr);
+	bool connect_parameter(uint32_t type, uint32_t value) override;
+	bool connect_additional_address(uint32_t type, const struct sockaddr_storage &addr) override;
 
 	// BinInterface.
 	// These are reimplemented.	
-	virtual bool moretoread(uint32_t usec);
-	virtual bool cansend(uint32_t usec);
+	bool moretoread(uint32_t usec) override;
+	bool cansend(uint32_t usec) override;
 	/* UDP always through firewalls -> always bandwidth Limited */
-	virtual bool bandwidthLimited() { return true; }
+	bool bandwidthLimited() override { return true; }
 
 protected:
 
@@ -78,18 +78,18 @@ protected:
 	// called to initiate a connection;
 	int attach();
 
-	virtual int reset_locked();
+	int reset_locked() override;
 
-	virtual int Initiate_Connection();
-	virtual int Basic_Connection_Complete();
+	int Initiate_Connection() override;
+	int Basic_Connection_Complete() override;
 
 	/* Do we really need this ?
 	 * It is very specific UDP+ToU+SSL stuff and unlikely to be reused.
 	 * In fact we are overloading them here becase they are very do different of pqissl.
 	 */
-	virtual int net_internal_close(int fd);
-	virtual int net_internal_SSL_set_fd(SSL *ssl, int fd);
-	virtual int net_internal_fcntl_nonblock(int fd);
+	int net_internal_close(int fd) override;
+	int net_internal_SSL_set_fd(SSL *ssl, int fd) override;
+	int net_internal_fcntl_nonblock(int fd) override;
 
 private:
 

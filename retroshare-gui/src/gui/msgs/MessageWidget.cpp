@@ -68,7 +68,7 @@ public:
 	}
 
 protected:
-	virtual void anchorTextForImg(QDomDocument &doc, QDomElement &element, const RetroShareLink &link, QString &text)
+	void anchorTextForImg(QDomDocument &doc, QDomElement &element, const RetroShareLink &link, QString &text) override
 	{
 		if (link.type() == RetroShareLink::TYPE_CERTIFICATE) {
 			if (msgFlags & RS_MSG_USER_REQUEST) {

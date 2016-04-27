@@ -70,22 +70,22 @@ class p3VOIP: public RsPQIService, public RsVOIP
 
 		/***** overloaded from rsVOIP *****/
 
-		virtual uint32_t getPongResults(const RsPeerId &id, int n, std::list<RsVOIPPongResult> &results);
+		uint32_t getPongResults(const RsPeerId &id, int n, std::list<RsVOIPPongResult> &results) override;
 
 		// Call stuff.
 		//
 
 		// Sending data. The client keeps the memory ownership and must delete it after calling this.
-		virtual int sendVoipData(const RsPeerId &peer_id,const RsVOIPDataChunk& chunk) ;
+		int sendVoipData(const RsPeerId &peer_id,const RsVOIPDataChunk& chunk) override ;
 
 		// The server fill in the data and gives up memory ownership. The client must delete the memory
 		// in each chunk once it has been used.
 		//
-		virtual bool getIncomingData(const RsPeerId& peer_id,std::vector<RsVOIPDataChunk>& chunks) ;
+		bool getIncomingData(const RsPeerId& peer_id,std::vector<RsVOIPDataChunk>& chunks) override ;
 
-		virtual int sendVoipHangUpCall(const RsPeerId& peer_id, uint32_t flags) ;
-		virtual int sendVoipRinging(const RsPeerId& peer_id, uint32_t flags) ;
-		virtual int sendVoipAcceptCall(const RsPeerId &peer_id, uint32_t flags) ;
+		int sendVoipHangUpCall(const RsPeerId& peer_id, uint32_t flags) override ;
+		int sendVoipRinging(const RsPeerId& peer_id, uint32_t flags) override ;
+		int sendVoipAcceptCall(const RsPeerId &peer_id, uint32_t flags) override ;
 
 		/***** overloaded from p3Service *****/
 		/*!
@@ -95,39 +95,39 @@ class p3VOIP: public RsPQIService, public RsVOIP
 		 * : notifyCustomState, notifyChatStatus, notifyPeerHasNewAvatar
 		 * @see NotifyBase
 		 */
-		virtual int   tick();
+		int   tick() override;
 		virtual int   status();
-		virtual bool  recvItem(RsItem *item);
+		bool  recvItem(RsItem *item) override;
 
 		/*************** pqiMonitor callback ***********************/
 		//virtual void statusChange(const std::list<pqipeer> &plist);
 
-		virtual int  getVoipATransmit() const  { return _atransmit ; }
-		virtual void setVoipATransmit(int) ;
-		virtual int  getVoipVoiceHold() const  { return _voice_hold ; }
-		virtual void setVoipVoiceHold(int) ;
-		virtual int  getVoipfVADmin() const    { return _vadmin ; }
-		virtual void setVoipfVADmin(int) ;
-		virtual int  getVoipfVADmax() const    { return _vadmax ; } 
-		virtual void setVoipfVADmax(int) ;
-		virtual int  getVoipiNoiseSuppress() const { return _noise_suppress ; }
-		virtual void setVoipiNoiseSuppress(int) ;
-		virtual int  getVoipiMinLoudness() const   { return _min_loudness ; }
-		virtual void setVoipiMinLoudness(int) ;
-		virtual bool getVoipEchoCancel() const 	 { return _echo_cancel ; }
-		virtual void setVoipEchoCancel(bool) ;
+		int  getVoipATransmit() const override  { return _atransmit ; }
+		void setVoipATransmit(int) override ;
+		int  getVoipVoiceHold() const override  { return _voice_hold ; }
+		void setVoipVoiceHold(int) override ;
+		int  getVoipfVADmin() const override    { return _vadmin ; }
+		void setVoipfVADmin(int) override ;
+		int  getVoipfVADmax() const override    { return _vadmax ; } 
+		void setVoipfVADmax(int) override ;
+		int  getVoipiNoiseSuppress() const override { return _noise_suppress ; }
+		void setVoipiNoiseSuppress(int) override ;
+		int  getVoipiMinLoudness() const override   { return _min_loudness ; }
+		void setVoipiMinLoudness(int) override ;
+		bool getVoipEchoCancel() const override 	 { return _echo_cancel ; }
+		void setVoipEchoCancel(bool) override ;
 
 		/************* from p3Config *******************/
-		virtual RsSerialiser *setupSerialiser() ;
+		RsSerialiser *setupSerialiser() override ;
 
 		/*!
 		 * chat msg items and custom status are saved
 		 */
-		virtual bool saveList(bool& cleanup, std::list<RsItem*>&) ;
-		virtual bool loadList(std::list<RsItem*>& load) ;
+		bool saveList(bool& cleanup, std::list<RsItem*>&) override ;
+		bool loadList(std::list<RsItem*>& load) override ;
 		virtual std::string configurationFileName() const { return "voip.cfg" ; }
 
-		virtual RsServiceInfo getServiceInfo() ;
+		RsServiceInfo getServiceInfo() override ;
 
 	private:
 		int   sendPackets();

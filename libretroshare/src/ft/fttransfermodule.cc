@@ -548,7 +548,7 @@ class HashThread: public RsSingleJobThread
 		HashThread(ftFileCreator *m) 
 			: _hashThreadMtx("HashThread"), _m(m),_finished(false),_hash("") {}
 
-        virtual void run()
+        void run() override
 		{
 #ifdef FT_DEBUG
 			std::cerr << "hash thread is running for file " << std::endl;

@@ -45,10 +45,10 @@ public:
     /** Default constructor */
     ImHistoryBrowser(const ChatId &chatId, QTextEdit *edit, QWidget *parent = 0);
     /** Default destructor */
-    virtual ~ImHistoryBrowser();
+    ~ImHistoryBrowser() override;
 
 protected:
-    bool eventFilter(QObject *obj, QEvent *ev);
+    bool eventFilter(QObject *obj, QEvent *ev) override;
 
 private slots:
     void createThreadFinished();
@@ -95,9 +95,9 @@ class ImHistoryBrowserCreateItemsThread : public QThread
 
 public:
     ImHistoryBrowserCreateItemsThread(ImHistoryBrowser *parent, const ChatId &peerId);
-    ~ImHistoryBrowserCreateItemsThread();
+    ~ImHistoryBrowserCreateItemsThread() override;
 
-    void run();
+    void run() override;
     void stop();
     bool wasStopped() { return stopped; }
 

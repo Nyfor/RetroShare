@@ -71,16 +71,16 @@ class p3FastService: public pqiService
 
 	public:
 
-virtual ~p3FastService() { delete rsSerialiser; return; }
+~p3FastService() override { delete rsSerialiser; return; }
 
 /*************** INTERFACE ******************************/
 int             sendItem(RsItem *);
-virtual int	tick() { return 0; }
+int	tick() override { return 0; }
 /*************** INTERFACE ******************************/
 
 	public:
 	// overloaded pqiService interface.
-virtual bool	recv(RsRawItem *);
+bool	recv(RsRawItem *) override;
 
 	// called by recv().
 virtual bool	recvItem(RsItem *item) = 0;
@@ -118,7 +118,7 @@ bool		receivedItems();
 
 	public:
 	// overloaded p3FastService interface.
-virtual bool	recvItem(RsItem *item);
+bool	recvItem(RsItem *item) override;
 
 	private:
 
@@ -141,14 +141,14 @@ class nullService: public pqiService
 
 	public:
 	// overloaded NULL pqiService interface.
-virtual bool	recv(RsRawItem *item)
+bool	recv(RsRawItem *item) override
 	{
 		/* drop any items */
 		delete item;
 		return true;
 	}
 
-virtual bool	send(RsRawItem *item)
+bool	send(RsRawItem *item) override
 	{
 		delete item;
 		return true;
@@ -166,7 +166,7 @@ class p3ThreadedService: public p3Service, public RsTickingThread
 
 	public:
 
-virtual ~p3ThreadedService() { return; }
+~p3ThreadedService() override { return; }
 
 	private:
 

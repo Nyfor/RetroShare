@@ -34,7 +34,7 @@ class GxsMessageFrameWidget : public RsGxsUpdateBroadcastWidget, public TokenRes
 
 public:
 	explicit GxsMessageFrameWidget(RsGxsIfaceHelper *ifaceImpl, QWidget *parent = NULL);
-	virtual ~GxsMessageFrameWidget();
+	~GxsMessageFrameWidget() override;
 
 	const RsGxsGroupId &groupId();
 	void setGroupId(const RsGxsGroupId &groupId);
@@ -49,7 +49,7 @@ public:
 
 	/* GXS functions */
 	uint32_t nextTokenType() { return ++mNextTokenType; }
-	virtual void loadRequest(const TokenQueue *queue, const TokenRequest &req);
+	void loadRequest(const TokenQueue *queue, const TokenRequest &req) override;
 
 signals:
 	void groupChanged(QWidget *widget);

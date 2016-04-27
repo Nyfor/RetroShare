@@ -36,15 +36,15 @@ class pqiQoSstreamer: public pqithreadstreamer, public pqiQoS
 		static const uint32_t PQI_QOS_STREAMER_MAX_LEVELS =  10 ;
         static const float    PQI_QOS_STREAMER_ALPHA ;
 
-		virtual void locked_storeInOutputQueue(void *ptr,int priority) ;
-		virtual int locked_out_queue_size() const { return _total_item_count ; }
-		virtual void locked_clear_out_queue() ;
-		virtual int locked_compute_out_pkt_size() const { return _total_item_size ; }
-        virtual void *locked_pop_out_data() ;
+		void locked_storeInOutputQueue(void *ptr,int priority) override ;
+		int locked_out_queue_size() const override { return _total_item_count ; }
+		void locked_clear_out_queue() override ;
+		int locked_compute_out_pkt_size() const override { return _total_item_size ; }
+        void *locked_pop_out_data() override ;
                 //virtual int  locked_gatherStatistics(std::vector<uint32_t>& per_service_count,std::vector<uint32_t>& per_priority_count) const; // extracting data.
 
 
-		virtual int getQueueSize(bool in) ;
+		int getQueueSize(bool in) override ;
 
 	private:
 		uint32_t _total_item_size ;

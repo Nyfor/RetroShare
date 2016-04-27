@@ -46,7 +46,7 @@ class GxsIdChooser : public QComboBox
 public:
 	GxsIdChooser(RsGxsIfaceHelper* ifaceImpl, QWidget *parent = NULL);
 	GxsIdChooser(QWidget *parent = NULL);
-	virtual ~GxsIdChooser();
+	~GxsIdChooser() override;
 
 	void setFlags(uint32_t flags) ;
     uint32_t flags() const { return mFlags ; }
@@ -69,7 +69,7 @@ signals:
     void idsLoaded();
 
 protected:
-	virtual void showEvent(QShowEvent *event);
+	void showEvent(QShowEvent *event) override;
     void updateDisplay(bool reset);
 
 private slots:

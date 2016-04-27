@@ -40,7 +40,7 @@ public:
 
 private:
     ConnectProgressDialog(const RsPeerId& id, QWidget *parent = 0, Qt::WindowFlags flags = 0);
-    ~ConnectProgressDialog();
+    ~ConnectProgressDialog() override;
 
     static ConnectProgressDialog *instance(const RsPeerId& peer_id);
 

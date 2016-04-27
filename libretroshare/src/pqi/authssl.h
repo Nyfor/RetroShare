@@ -152,62 +152,62 @@ class AuthSSLimpl : public AuthSSL, public p3Config
 
         /* Initialisation Functions (Unique) */
 	AuthSSLimpl();
-bool    validateOwnCertificate(X509 *x509, EVP_PKEY *pkey);
+bool    validateOwnCertificate(X509 *x509, EVP_PKEY *pkey) override;
 
-virtual bool	active();
-virtual int	InitAuth(const char *srvr_cert, const char *priv_key, 
-                     const char *passwd, std::string alternative_location_name);
-virtual bool	CloseAuth();
+bool	active() override;
+int	InitAuth(const char *srvr_cert, const char *priv_key, 
+                     const char *passwd, std::string alternative_location_name) override;
+bool	CloseAuth() override;
 
 	/*********** Overloaded Functions from p3AuthMgr **********/
 	
         /* get Certificate Id */
-virtual	const RsPeerId& OwnId();
-virtual	std::string getOwnLocation();
+	const RsPeerId& OwnId() override;
+	std::string getOwnLocation() override;
 
 	/* Load/Save certificates */
-virtual	std::string SaveOwnCertificateToString();
+	std::string SaveOwnCertificateToString() override;
 	
 	/* Sign / Encrypt / Verify Data */
-virtual bool 	SignData(std::string input, std::string &sign);
-virtual bool 	SignData(const void *data, const uint32_t len, std::string &sign);
+bool 	SignData(std::string input, std::string &sign) override;
+bool 	SignData(const void *data, const uint32_t len, std::string &sign) override;
 
-virtual bool 	SignDataBin(std::string, unsigned char*, unsigned int*);
-virtual bool    SignDataBin(const void*, uint32_t, unsigned char*, unsigned int*);
-virtual bool    VerifyOwnSignBin(const void*, uint32_t, unsigned char*, unsigned int);
-virtual bool	VerifySignBin(const void *data, const uint32_t len,
-                        unsigned char *sign, unsigned int signlen, const RsPeerId& sslId);
+bool 	SignDataBin(std::string, unsigned char*, unsigned int*) override;
+bool    SignDataBin(const void*, uint32_t, unsigned char*, unsigned int*) override;
+bool    VerifyOwnSignBin(const void*, uint32_t, unsigned char*, unsigned int) override;
+bool	VerifySignBin(const void *data, const uint32_t len,
+                        unsigned char *sign, unsigned int signlen, const RsPeerId& sslId) override;
 
 // return : false if encrypt failed
-virtual bool     encrypt(void *&out, int &outlen, const void *in, int inlen, const RsPeerId& peerId);
+bool     encrypt(void *&out, int &outlen, const void *in, int inlen, const RsPeerId& peerId) override;
 // return : false if decrypt fails
-virtual bool     decrypt(void *&out, int &outlen, const void *in, int inlen);
+bool     decrypt(void *&out, int &outlen, const void *in, int inlen) override;
 
 
-virtual X509* 	SignX509ReqWithGPG(X509_REQ *req, long days);
-virtual bool 	AuthX509WithGPG(X509 *x509,uint32_t& auth_diagnostic);
+X509* 	SignX509ReqWithGPG(X509_REQ *req, long days) override;
+bool 	AuthX509WithGPG(X509 *x509,uint32_t& auth_diagnostic) override;
 
 
-virtual int 	VerifyX509Callback(int preverify_ok, X509_STORE_CTX *ctx);
-virtual bool 	ValidateCertificate(X509 *x509, RsPeerId& peerId); /* validate + get id */
+int 	VerifyX509Callback(int preverify_ok, X509_STORE_CTX *ctx) override;
+bool 	ValidateCertificate(X509 *x509, RsPeerId& peerId) override; /* validate + get id */
 
 
 /*****************************************************************/
 /***********************  p3config  ******************************/
         /* Key Functions to be overloaded for Full Configuration */
-        virtual RsSerialiser *setupSerialiser();
-        virtual bool saveList(bool &cleanup, std::list<RsItem *>& );
-        virtual bool    loadList(std::list<RsItem *>& load);
+        RsSerialiser *setupSerialiser() override;
+        bool saveList(bool &cleanup, std::list<RsItem *>& ) override;
+        bool    loadList(std::list<RsItem *>& load) override;
 /*****************************************************************/
 
 	public: /* SSL specific functions used in pqissl/pqissllistener */
-virtual SSL_CTX *getCTX();
+SSL_CTX *getCTX() override;
 
 /* Restored these functions: */
-virtual void   setCurrentConnectionAttemptInfo(const RsPgpId& gpg_id,const RsPeerId& ssl_id,const std::string& ssl_cn) ;
-virtual void   getCurrentConnectionAttemptInfo(      RsPgpId& gpg_id,      RsPeerId& ssl_id,      std::string& ssl_cn) ;
-virtual bool    FailedCertificate(X509 *x509, const RsPgpId& gpgid,const RsPeerId& sslid,const std::string& sslcn,const struct sockaddr_storage &addr, bool incoming); /* store for discovery */
-virtual bool 	CheckCertificate(const RsPeerId& peerId, X509 *x509); /* check that they are exact match */
+void   setCurrentConnectionAttemptInfo(const RsPgpId& gpg_id,const RsPeerId& ssl_id,const std::string& ssl_cn) override ;
+void   getCurrentConnectionAttemptInfo(      RsPgpId& gpg_id,      RsPeerId& ssl_id,      std::string& ssl_cn) override ;
+bool    FailedCertificate(X509 *x509, const RsPgpId& gpgid,const RsPeerId& sslid,const std::string& sslcn,const struct sockaddr_storage &addr, bool incoming) override; /* store for discovery */
+bool 	CheckCertificate(const RsPeerId& peerId, X509 *x509) override; /* check that they are exact match */
 
 
     private:

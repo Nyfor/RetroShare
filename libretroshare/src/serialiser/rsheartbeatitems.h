@@ -40,10 +40,10 @@ public:
     { 
 		setPriorityLevel(QOS_PRIORITY_RS_HEARTBEAT_PULSE) ;
     }
-    virtual ~RsHeartbeatItem() {}
+    ~RsHeartbeatItem() override {}
 
-    virtual void clear();
-    virtual std::ostream &print(std::ostream &out, uint16_t indent = 0);
+    void clear() override;
+    std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 };
 
 class RsHeartbeatSerialiser: public RsSerialType
@@ -53,11 +53,11 @@ class RsHeartbeatSerialiser: public RsSerialType
         :RsSerialType(RS_PKT_VERSION_SERVICE, RS_SERVICE_TYPE_HEARTBEAT)
         { return; }
 
-virtual     ~RsHeartbeatSerialiser() { return; }
+    ~RsHeartbeatSerialiser() override { return; }
 
-virtual uint32_t    size(RsItem *);
-virtual bool        serialise  (RsItem *item, void *data, uint32_t *size);
-virtual RsItem *    deserialise(void *data, uint32_t *size);
+uint32_t    size(RsItem *) override;
+bool        serialise  (RsItem *item, void *data, uint32_t *size) override;
+RsItem *    deserialise(void *data, uint32_t *size) override;
 
 	private:
 

@@ -59,7 +59,7 @@ class GuiExprElement: public QWidget
 public:
     GuiExprElement(QWidget * parent = 0);
     virtual void adjustForSearchType(ExprSearchType) {}
-    virtual ~GuiExprElement(){}
+    ~GuiExprElement() override{}
     virtual void set(int){}
     virtual void set(QObject*){}
     bool isStringSearchExpression();
@@ -135,7 +135,7 @@ class ExprOpElement : public GuiExprElement
 public:
     ExprOpElement(QWidget * parent = 0);
     LogicalOperator getLogicalOperator();
-    QString toString();
+    QString toString() override;
 private:
     QComboBox * cb;
 };
@@ -150,8 +150,8 @@ public:
     int getTermsIndex();
     RelOperator getRelOperator();
     StringOperator getStringOperator();
-    void set(int i) {cb->setCurrentIndex(i);}
-    QString toString();
+    void set(int i) override {cb->setCurrentIndex(i);}
+    QString toString() override;
 
 signals:
     void currentIndexChanged(int);
@@ -169,9 +169,9 @@ public:
     ExprConditionElement(ExprSearchType, QWidget * parent = 0);
     RelOperator getRelOperator();
     StringOperator getStringOperator();
-    void adjustForSearchType(ExprSearchType);
-    void set(int i) {cb->setCurrentIndex(i);}
-    QString toString();
+    void adjustForSearchType(ExprSearchType) override;
+    void set(int i) override {cb->setCurrentIndex(i);}
+    QString toString() override;
 
 signals:
     void currentIndexChanged(int);
@@ -188,14 +188,14 @@ class ExprParamElement : public GuiExprElement
 public:
     ExprParamElement(ExprSearchType, QWidget * parent = 0);
     QVariant* getRSExprValue();
-    void adjustForSearchType(ExprSearchType);
+    void adjustForSearchType(ExprSearchType) override;
     void setRangedSearch(bool ranged = true);
     bool ignoreCase();
     QString getStrSearchValue();
     uint64_t getIntValue();
     uint64_t getIntLowValue();
     uint64_t getIntHighValue();
-    virtual QString toString();
+    QString toString() override;
 
 private:
     QRegExpValidator * numValidator;

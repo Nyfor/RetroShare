@@ -37,7 +37,7 @@ class ChatTabWidget : public RSTabWidget
 
 public:
 	explicit ChatTabWidget(QWidget *parent = 0);
-	~ChatTabWidget();
+	~ChatTabWidget() override;
 
 	void addDialog(ChatDialog *dialog);
 	void removeDialog(ChatDialog *dialog);

@@ -72,7 +72,7 @@ public:
 	enum ChatType { CHATTYPE_UNKNOWN, CHATTYPE_PRIVATE, CHATTYPE_LOBBY, CHATTYPE_DISTANT };
 
 	explicit ChatWidget(QWidget *parent = 0);
-	~ChatWidget();
+	~ChatWidget() override;
 
     void init(const ChatId &chat_id, const QString &title);
     ChatId getChatId();
@@ -139,9 +139,9 @@ signals:
 	void statusChanged(int);
 
 protected:
-	bool eventFilter(QObject *obj, QEvent *event);
-	virtual void showEvent(QShowEvent *event);
-	virtual void resizeEvent(QResizeEvent *event);
+	bool eventFilter(QObject *obj, QEvent *event) override;
+	void showEvent(QShowEvent *event) override;
+	void resizeEvent(QResizeEvent *event) override;
 	void updateTitle();
 
 private slots:

@@ -52,7 +52,7 @@ class pqihandler: public P3Interface, public pqiPublisher
         pqihandler();
 
 		/**** Overloaded from pqiPublisher ****/
-		virtual bool sendItem(RsRawItem *item)
+		bool sendItem(RsRawItem *item) override
 		{
 			return SendRsRawItem(item);
 		}
@@ -61,11 +61,11 @@ class pqihandler: public P3Interface, public pqiPublisher
 		bool	RemoveSearchModule(SearchModule *mod);
 
 		// Rest of P3Interface
-		virtual int 	tick();
-		virtual int 	status();
+		int 	tick() override;
+		int 	status() override;
 
 		// Service Data Interface
-		virtual int     SendRsRawItem(RsRawItem *);
+		int     SendRsRawItem(RsRawItem *) override;
 #ifdef TO_BE_REMOVED
 		virtual RsRawItem *GetRsRawItem();
 #endif

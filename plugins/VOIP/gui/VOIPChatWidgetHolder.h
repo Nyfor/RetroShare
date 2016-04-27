@@ -51,9 +51,9 @@ class VOIPChatWidgetHolder : public QObject, public ChatWidgetHolder
 
 public:
 	VOIPChatWidgetHolder(ChatWidget *chatWidget, VOIPNotify *notify);
-	virtual ~VOIPChatWidgetHolder();
+	~VOIPChatWidgetHolder() override;
 
-	virtual void updateStatus(int status);
+	void updateStatus(int status) override;
 
 	void addAudioData(const RsPeerId &peer_id, QByteArray* array) ;
 	void addVideoData(const RsPeerId &peer_id, QByteArray* array) ;
@@ -97,7 +97,7 @@ private:
 	void showNormalView();
 
 protected:
-	bool eventFilter(QObject *obj, QEvent *event);
+	bool eventFilter(QObject *obj, QEvent *event) override;
 
 	// Audio input/output
 	QAudioInput* inputAudioDevice;

@@ -33,21 +33,21 @@ class CryptoPage : public ConfigPage
       /** Default Constructor */
       CryptoPage(QWidget * parent = 0, Qt::WindowFlags flags = 0);
       /** Default Destructor */
-      ~CryptoPage();
+      ~CryptoPage() override;
 
       /** Saves the changes on this page */
-      virtual bool save(QString &errmsg);
+      bool save(QString &errmsg) override;
       /** Loads the settings for this page */
 
-		virtual QPixmap iconPixmap() const { return QPixmap(":/images/contact22.png") ; }
-		virtual QString pageName() const { return tr("Node") ; }
-		virtual QString helpText() const { return ""; }
+		QPixmap iconPixmap() const override { return QPixmap(":/images/contact22.png") ; }
+		QString pageName() const override { return tr("Node") ; }
+		QString helpText() const override { return ""; }
 
   private slots:
-      virtual void load();
+      void load() override;
       void copyPublicKey();
 		void copyRSLink() ;
-		virtual void showEvent ( QShowEvent * event );
+		void showEvent ( QShowEvent * event ) override;
 		void profilemanager();
       bool fileSave();
       bool fileSaveAs();

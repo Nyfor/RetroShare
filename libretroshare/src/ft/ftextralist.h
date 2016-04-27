@@ -138,21 +138,21 @@ bool	 	hashExtraFileDone(std::string path, FileInfo &info);
 		 * implementation of ftSearch.
 		 *
 		 **/
-virtual bool    search(const RsFileHash &hash, FileSearchFlags hintflags, FileInfo &info) const;
+bool    search(const RsFileHash &hash, FileSearchFlags hintflags, FileInfo &info) const override;
 
 		/***
 		 * Thread Main Loop 
 		 **/
-virtual void data_tick();
+void data_tick() override;
 
 		/***
 		 * Configuration - store extra files.
 		 *
 		 **/
         protected:
-virtual RsSerialiser *setupSerialiser();
-virtual bool saveList(bool &cleanup, std::list<RsItem*>&);
-virtual bool    loadList(std::list<RsItem *>& load);
+RsSerialiser *setupSerialiser() override;
+bool saveList(bool &cleanup, std::list<RsItem*>&) override;
+bool    loadList(std::list<RsItem *>& load) override;
 
 	private:
 

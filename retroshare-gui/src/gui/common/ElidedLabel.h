@@ -68,8 +68,8 @@ public slots:
 	void clear();
 
 protected:
-	void paintEvent(QPaintEvent *event);
-	void mousePressEvent(QMouseEvent *ev);
+	void paintEvent(QPaintEvent *event) override;
+	void mousePressEvent(QMouseEvent *ev) override;
 
 signals:
 	void elisionChanged(bool elided);

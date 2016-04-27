@@ -83,16 +83,16 @@ class AudioInputConfig : public ConfigPage
 		/** Default Constructor */
 		AudioInputConfig(QWidget * parent = 0, Qt::WindowFlags flags = 0);
 		/** Default Destructor */
-		~AudioInputConfig();
+		~AudioInputConfig() override;
 
 		/** Saves the changes on this page */
-		virtual bool save(QString &errmsg);
+		bool save(QString &errmsg) override;
 		/** Loads the settings for this page */
-		virtual void load();
+		void load() override;
 
-		virtual QPixmap iconPixmap() const { return QPixmap(":/images/talking_on.svg") ; }
-		virtual QString pageName() const { return tr("VOIP") ; }
-		virtual QString helpText() const { return ""; }
+		QPixmap iconPixmap() const override { return QPixmap(":/images/talking_on.svg") ; }
+		QString pageName() const override { return tr("VOIP") ; }
+		QString helpText() const override { return ""; }
         
 private slots:
 	void updateAvailableBW(double r);

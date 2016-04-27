@@ -51,7 +51,7 @@ public:
     uint32_t iconTypeMask() const { return mIconTypeMask ;}
 
 	void setAvatar(const RsGxsImage &avatar);
-	virtual QVariant data(int column, int role) const;
+	QVariant data(int column, int role) const override;
 	void forceUpdate();
     
     	void setBannedState(bool b) { mBannedState = b; }	// does not actually change the state, but used instead by callbacks to leave a trace

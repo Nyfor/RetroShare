@@ -54,15 +54,15 @@ public:
     /** Default Constructor */
     FriendsDialog(QWidget *parent = 0);
     /** Default Destructor */
-    ~FriendsDialog ();
+    ~FriendsDialog () override;
 
-    virtual QIcon iconPixmap() const { return QIcon(IMAGE_NETWORK) ; } //MainPage
-    virtual QString pageName() const { return tr("Network") ; } //MainPage
-    virtual QString helpText() const { return ""; } //MainPage
+    QIcon iconPixmap() const override { return QIcon(IMAGE_NETWORK) ; } //MainPage
+    QString pageName() const override { return tr("Network") ; } //MainPage
+    QString helpText() const override { return ""; } //MainPage
 
-    virtual UserNotify *getUserNotify(QObject *parent);
+    UserNotify *getUserNotify(QObject *parent) override;
 
-    virtual void updateDisplay() ;	// overloaded from RsAutoUpdatePage
+    void updateDisplay() override ;	// overloaded from RsAutoUpdatePage
 
     static bool isGroupChatActive();
     static void groupChatActivate();
@@ -78,7 +78,7 @@ public:
 	 IdDialog *idDialog;
 	 
 protected:
-    void showEvent (QShowEvent *event);
+    void showEvent (QShowEvent *event) override;
 
 private slots:
     void chatMessageReceived(const ChatMessage& msg);

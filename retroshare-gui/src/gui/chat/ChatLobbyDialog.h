@@ -40,10 +40,10 @@ class ChatLobbyDialog: public ChatDialog
 public:
     void displayLobbyEvent(int event_type, const RsGxsId &gxs_id, const QString& str);
 
-	virtual void showDialog(uint chatflags);
-	virtual ChatWidget *getChatWidget();
-	virtual bool hasPeerStatus() { return false; }
-	virtual bool notifyBlink();
+	void showDialog(uint chatflags) override;
+	ChatWidget *getChatWidget() override;
+	bool hasPeerStatus() override { return false; }
+	bool notifyBlink() override;
     void setIdentity(const RsGxsId& gxs_id);
     bool isParticipantMuted(const RsGxsId &participant);
 	ChatLobbyId id() const { return lobbyId ;}
@@ -66,12 +66,12 @@ protected:
 	ChatLobbyDialog(const ChatLobbyId& lid, QWidget *parent = 0, Qt::WindowFlags flags = 0);
 
 	/** Default destructor */
-	virtual ~ChatLobbyDialog();
+	~ChatLobbyDialog() override;
 
 	void processSettings(bool load);
     virtual void init();
-	virtual bool canClose();
-    virtual void addChatMsg(const ChatMessage &msg);
+	bool canClose() override;
+    void addChatMsg(const ChatMessage &msg) override;
 
 protected slots:
     void changeNickname();

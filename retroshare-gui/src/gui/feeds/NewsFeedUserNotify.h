@@ -37,8 +37,8 @@ private slots:
 	void newsFeedChanged(int count);
 
 private:
-	virtual QIcon getMainIcon(bool hasNew);
-	virtual unsigned int getNewCount();
+	QIcon getMainIcon(bool hasNew) override;
+	unsigned int getNewCount() override;
 
 private:
 	unsigned int mNewFeedCount;

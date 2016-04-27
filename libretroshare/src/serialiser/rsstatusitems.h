@@ -40,9 +40,9 @@ class RsStatusItem: public RsItem
 	{ 
 		setPriorityLevel(QOS_PRIORITY_RS_STATUS_ITEM); 
 	}
-virtual ~RsStatusItem();
-virtual void clear();
-std::ostream &print(std::ostream &out, uint16_t indent = 0);
+~RsStatusItem() override;
+void clear() override;
+std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
 	uint32_t sendTime;
 
@@ -58,12 +58,12 @@ class RsStatusSerialiser: public RsSerialType
 	RsStatusSerialiser()
 	:RsSerialType(RS_PKT_VERSION_SERVICE, RS_SERVICE_TYPE_STATUS)
 	{ return; }
-virtual     ~RsStatusSerialiser()
+    ~RsStatusSerialiser() override
 	{ return; }
 	
-virtual	uint32_t    size(RsItem *);
-virtual	bool        serialise  (RsItem *item, void *data, uint32_t *size);
-virtual	RsItem *    deserialise(void *data, uint32_t *size);
+	uint32_t    size(RsItem *) override;
+	bool        serialise  (RsItem *item, void *data, uint32_t *size) override;
+	RsItem *    deserialise(void *data, uint32_t *size) override;
 
 	private:
 

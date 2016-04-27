@@ -60,10 +60,10 @@ class RsDiscPgpListItem: public RsDiscItem
 		setPriorityLevel(QOS_PRIORITY_RS_DISC_PGP_LIST);
 	}
 
-virtual ~RsDiscPgpListItem();
+~RsDiscPgpListItem() override;
 
-virtual  void clear();
-virtual std::ostream &print(std::ostream &out, uint16_t indent = 0);
+ void clear() override;
+std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
 	uint32_t mode;
 	RsTlvPgpIdSet pgpIdSet;
@@ -81,10 +81,10 @@ class RsDiscPgpCertItem: public RsDiscItem
 		setPriorityLevel(QOS_PRIORITY_RS_DISC_PGP_CERT);
 	}
 
-virtual ~RsDiscPgpCertItem();
+~RsDiscPgpCertItem() override;
 
-virtual  void clear();
-virtual std::ostream &print(std::ostream &out, uint16_t indent = 0);
+ void clear() override;
+std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
 	RsPgpId pgpId;
 	std::string pgpCert;
@@ -101,10 +101,10 @@ class RsDiscContactItem: public RsDiscItem
 		setPriorityLevel(QOS_PRIORITY_RS_DISC_CONTACT); 
 	}
 
-virtual ~RsDiscContactItem();
+~RsDiscContactItem() override;
 
-virtual  void clear();
-virtual std::ostream &print(std::ostream &out, uint16_t indent = 0);
+ void clear() override;
+std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
 	RsPgpId pgpId;
 	RsPeerId sslId;
@@ -171,11 +171,11 @@ class RsDiscSerialiser: public RsSerialType
         :RsSerialType(RS_PKT_VERSION_SERVICE, RS_SERVICE_TYPE_DISC)
         { return; }
 
-virtual     ~RsDiscSerialiser() { return; }
+    ~RsDiscSerialiser() override { return; }
 
-virtual uint32_t    size(RsItem *);
-virtual bool        serialise  (RsItem *item, void *data, uint32_t *size);
-virtual RsItem *    deserialise(void *data, uint32_t *size);
+uint32_t    size(RsItem *) override;
+bool        serialise  (RsItem *item, void *data, uint32_t *size) override;
+RsItem *    deserialise(void *data, uint32_t *size) override;
 
 	private:
 

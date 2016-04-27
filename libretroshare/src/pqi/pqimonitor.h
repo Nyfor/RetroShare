@@ -175,15 +175,15 @@ class pqiConnectCbDummy: public pqiConnectCb
 {
 	public:
 	pqiConnectCbDummy();
-virtual ~pqiConnectCbDummy();
-virtual void	peerStatus(const RsPeerId& id, const pqiIpAddrSet &addrs,
-			uint32_t type, uint32_t mode, uint32_t source);
+~pqiConnectCbDummy() override;
+void	peerStatus(const RsPeerId& id, const pqiIpAddrSet &addrs,
+			uint32_t type, uint32_t mode, uint32_t source) override;
 
 virtual void    peerConnectRequest(const RsPeerId& id,              
                         const struct sockaddr_storage &raddr, uint32_t source);
-virtual void    peerConnectRequest(const RsPeerId& id, const struct sockaddr_storage &raddr,
+void    peerConnectRequest(const RsPeerId& id, const struct sockaddr_storage &raddr,
                 const struct sockaddr_storage &/*proxyaddr*/,  const struct sockaddr_storage &/*srcaddr*/,
-                            uint32_t source, uint32_t /*flags*/, uint32_t /*delay*/, uint32_t /*bandwidth*/);
+                            uint32_t source, uint32_t /*flags*/, uint32_t /*delay*/, uint32_t /*bandwidth*/) override;
 
 //virtual void	stunStatus(std::string id, const struct sockaddr_storage &raddr, uint32_t type, uint32_t flags);
 };

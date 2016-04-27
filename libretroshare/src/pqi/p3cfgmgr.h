@@ -220,8 +220,8 @@ class p3Config: public pqiConfig
 
 	p3Config();
 
-virtual bool	loadConfiguration(RsFileHash &loadHash);
-virtual bool	saveConfiguration();
+bool	loadConfiguration(RsFileHash &loadHash) override;
+bool	saveConfiguration() override;
 
 
 	protected:
@@ -272,9 +272,9 @@ void 		setSetting(const std::string &opt, const std::string &val);
 	protected:
 
 	/* Key Functions to be overloaded for Full Configuration */
-virtual RsSerialiser *setupSerialiser();
-virtual bool saveList(bool &cleanup, std::list<RsItem* >&);
-virtual bool	loadList(std::list<RsItem *>& );
+RsSerialiser *setupSerialiser() override;
+bool saveList(bool &cleanup, std::list<RsItem* >&) override;
+bool	loadList(std::list<RsItem *>& ) override;
 
 	private:
 

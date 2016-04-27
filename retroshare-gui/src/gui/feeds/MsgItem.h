@@ -41,8 +41,8 @@ public:
 
 protected:
 	/* FeedItem */
-	virtual void doExpand(bool open);
-	virtual void expandFill(bool first);
+	void doExpand(bool open) override;
+	void expandFill(bool first) override;
 
 private:
 	void fillExpandFrame();

@@ -42,14 +42,14 @@ class pqistore: public PQInterface
 {
 public:
 	pqistore(RsSerialiser *rss, const RsPeerId&srcId, BinInterface *bio_in, int bio_flagsin);
-virtual ~pqistore();
+~pqistore() override;
 
 // PQInterface
-virtual int     SendItem(RsItem *);
-virtual RsItem *GetItem();
+int     SendItem(RsItem *) override;
+RsItem *GetItem() override;
 
-virtual int     tick();
-virtual int     status();
+int     tick() override;
+int     status() override;
 
 RsFileHash     gethash();
 
@@ -88,7 +88,7 @@ public:
 
 	pqiSSLstore(RsSerialiser *rss, const RsPeerId& srcId, BinEncryptedFileInterface *bio_in, int bio_flagsin);
 
-	virtual ~pqiSSLstore();
+	~pqiSSLstore() override;
 
 	/*!
 	 * send items encrypted to file using client's ssl key
@@ -102,7 +102,7 @@ public:
 
 private:
 
-	RsItem *GetItem();
+	RsItem *GetItem() override;
 	int     readPkt(RsItem **item_out);
 
 	BinEncryptedFileInterface* enc_bio;

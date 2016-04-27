@@ -16,7 +16,7 @@ class GxsResponseTask: public ResponseTask
 public:
     // token service is allowed to be null if no token functions are wanted
     GxsResponseTask(RsIdentity* id_service, RsTokenService* token_service = 0);
-    virtual bool doWork(Request &req, Response& resp);
+    bool doWork(Request &req, Response& resp) override;
 
 protected:
     // this method gets called when all the pending tokens have either status ok or fail

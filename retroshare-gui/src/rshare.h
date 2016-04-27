@@ -58,7 +58,7 @@ public:
   /** Constructor. */
   Rshare(QStringList args, int &argc, char **argv, const QString &dir);
   /** Destructor. */
-  ~Rshare();
+  ~Rshare() override;
 
   /** Return the version info */
   static QString retroshareVersion(bool withRevision);

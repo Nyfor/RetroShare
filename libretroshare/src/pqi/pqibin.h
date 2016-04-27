@@ -44,15 +44,15 @@ class BinFileInterface: public BinInterface
 {
 public:
 	BinFileInterface(const char *fname, int flags);
-virtual ~BinFileInterface();
+~BinFileInterface() override;
 
-virtual int     tick() { return 1; }
+int     tick() override { return 1; }
 
-virtual int	senddata(void *data, int len);
-virtual int	readdata(void *data, int len);
-virtual int	netstatus() { return 1;}
-virtual int	isactive()  { return (buf != NULL);}
-virtual bool	moretoread(uint32_t /* usec */ ) 
+int	senddata(void *data, int len) override;
+int	readdata(void *data, int len) override;
+int	netstatus() override { return 1;}
+int	isactive() override  { return (buf != NULL);}
+bool	moretoread(uint32_t /* usec */ ) override 
 	{ 
         if ((buf) && (bin_flags & BIN_FLAGS_READABLE))
 		{
@@ -64,16 +64,16 @@ virtual bool	moretoread(uint32_t /* usec */ )
 		return false;
 	}
 
-virtual int	close();
-virtual bool 	cansend(uint32_t /* usec */) 
+int	close() override;
+bool 	cansend(uint32_t /* usec */) override 
 	{ 
         return (bin_flags & BIN_FLAGS_WRITEABLE);
 	}
-virtual bool    bandwidthLimited() { return false; }
+bool    bandwidthLimited() override { return false; }
 
 //! if HASHing is switched on
-virtual RsFileHash gethash();
-virtual uint64_t bytecount();
+RsFileHash gethash() override;
+uint64_t bytecount() override;
 
 protected:
 	virtual int getFileSize();
@@ -95,7 +95,7 @@ class BinEncryptedFileInterface : public BinFileInterface
 public:
 
 	BinEncryptedFileInterface(const char *fname, int flags);
-	virtual ~BinEncryptedFileInterface();
+	~BinEncryptedFileInterface() override;
 
 	/*!
 	 * pls note if hashing is on, it is the hash of the encrypted data that is calculated
@@ -105,7 +105,7 @@ public:
 	 * @param len length of data in bytes
 	 * @return -1 if failed to write data, if not number bytes sent to file is returned
 	 */
-	int	senddata(void *data, int len);
+	int	senddata(void *data, int len) override;
 
 	/*!
 	 * uses the hash of the encrypted data
@@ -113,15 +113,15 @@ public:
 	 * @param the length of data to be read
 	 * @return -1 if failed to write data, if not number of bytes read is returned
 	 */
-	int	readdata(void *data, int len);
+	int	readdata(void *data, int len) override;
 
 	/*!
 	 * this releases resources held by an instance
 	 */
-	int	close();
+	int	close() override;
 
-	uint64_t bytecount();
-	bool	moretoread(uint32_t usec);
+	uint64_t bytecount() override;
+	bool	moretoread(uint32_t usec) override;
 
 private:
 
@@ -142,7 +142,7 @@ class BinMemInterface: public BinInterface
 public:
 	BinMemInterface(int defsize, int flags);
 	BinMemInterface(const void *data, const int size, int flags);
-virtual ~BinMemInterface();
+~BinMemInterface() override;
 
 	/* Extra Interfaces */
 int	fseek(int loc);
@@ -153,13 +153,13 @@ void   *memptr() { return buf; }
 bool	writetofile(const char *fname);
 bool	readfromfile(const char *fname);
 
-virtual int     tick() { return 1; }
+int     tick() override { return 1; }
 
-virtual int	senddata(void *data, int len);
-virtual int	readdata(void *data, int len);
-virtual int	netstatus() { return 1; }
-virtual int	isactive()  { return 1; }
-virtual bool	moretoread(uint32_t /* usec */) 
+int	senddata(void *data, int len) override;
+int	readdata(void *data, int len) override;
+int	netstatus() override { return 1; }
+int	isactive() override  { return 1; }
+bool	moretoread(uint32_t /* usec */) override 
 	{ 
         if ((buf) && (bin_flags & BIN_FLAGS_READABLE ))
 		{
@@ -171,15 +171,15 @@ virtual bool	moretoread(uint32_t /* usec */)
 		return false;
 	}
 
-virtual int	close();
-virtual bool 	cansend(uint32_t /* usec */)    
+int	close() override;
+bool 	cansend(uint32_t /* usec */) override    
 	{ 
         return (bin_flags & BIN_FLAGS_WRITEABLE);
 	}
-virtual bool    bandwidthLimited() { return false; }
+bool    bandwidthLimited() override { return false; }
 
-virtual RsFileHash gethash();
-virtual uint64_t bytecount();
+RsFileHash gethash() override;
+uint64_t bytecount() override;
 
 	private:
 	int   bin_flags;
@@ -196,38 +196,38 @@ class NetBinDummy: public NetBinInterface
 {
 public:
 	NetBinDummy(PQInterface *parent, const RsPeerId& id, uint32_t t);
-virtual ~NetBinDummy() { return; }
+~NetBinDummy() override { return; }
 
 	// Net Interface
-virtual int connect(const struct sockaddr_storage &raddr);
-virtual int listen();
-virtual int stoplistening();
-virtual int disconnect();
-virtual int reset();
-virtual bool connect_parameter(uint32_t type, uint32_t value) 
+int connect(const struct sockaddr_storage &raddr) override;
+int listen() override;
+int stoplistening() override;
+int disconnect() override;
+int reset() override;
+bool connect_parameter(uint32_t type, uint32_t value) override 
 	{ 
 		(void) type; /* suppress unused parameter warning */
 		(void) value; /* suppress unused parameter warning */
 		return false; 
 	}
-virtual int getConnectAddress(struct sockaddr_storage &raddr) 
+int getConnectAddress(struct sockaddr_storage &raddr) override 
 	{
 		(void) raddr; /* suppress unused parameter warning */
 		return 0;
 	}
 
 	// Bin Interface.
-virtual int     tick();
+int     tick() override;
 
-virtual int     senddata(void *data, int len);
-virtual int     readdata(void *data, int len);
-virtual int     netstatus();
-virtual int     isactive();
-virtual bool    moretoread(uint32_t usec);
-virtual bool    cansend(uint32_t usec);
-virtual int	close();
+int     senddata(void *data, int len) override;
+int     readdata(void *data, int len) override;
+int     netstatus() override;
+int     isactive() override;
+bool    moretoread(uint32_t usec) override;
+bool    cansend(uint32_t usec) override;
+int	close() override;
 
-virtual RsFileHash gethash();
+RsFileHash gethash() override;
 
 	private:
 	uint32_t type;

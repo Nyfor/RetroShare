@@ -46,24 +46,24 @@ public:
 	/** Default Constructor */
 	NewsFeed(QWidget *parent = 0);
 	/** Default Destructor */
-	virtual ~NewsFeed();
+	~NewsFeed() override;
 
-	virtual QIcon iconPixmap() const { return QIcon(IMAGE_NEWSFEED) ; } //MainPage
-	virtual QString pageName() const { return tr("News feed") ; } //MainPage
-	virtual QString helpText() const { return ""; } //MainPage
+	QIcon iconPixmap() const override { return QIcon(IMAGE_NEWSFEED) ; } //MainPage
+	QString pageName() const override { return tr("News feed") ; } //MainPage
+	QString helpText() const override { return ""; } //MainPage
 
-	virtual UserNotify *getUserNotify(QObject *parent);
+	UserNotify *getUserNotify(QObject *parent) override;
 
 	/* FeedHolder Functions (for FeedItem functionality) */
-	virtual QScrollArea *getScrollArea();
-	virtual void deleteFeedItem(QWidget *item, uint32_t type);
-	virtual void openChat(const RsPeerId& peerId);
-	virtual void openComments(uint32_t type, const RsGxsGroupId &groupId, const RsGxsMessageId &msgId, const QString &title);
+	QScrollArea *getScrollArea() override;
+	void deleteFeedItem(QWidget *item, uint32_t type) override;
+	void openChat(const RsPeerId& peerId) override;
+	void openComments(uint32_t type, const RsGxsGroupId &groupId, const RsGxsMessageId &msgId, const QString &title) override;
 
 	static void testFeeds(uint notifyFlags);
 	static void testFeed(FeedNotify *feedNotify);
 
-	virtual void updateDisplay();
+	void updateDisplay() override;
 
 signals:
 	void newsFeedChanged(int count);
@@ -72,7 +72,7 @@ protected:
 	void processSettings(bool load);
 
 	/* TokenResponse */
-	virtual void loadRequest(const TokenQueue *queue, const TokenRequest &req);
+	void loadRequest(const TokenQueue *queue, const TokenRequest &req) override;
 
 private slots:
 //	void toggleChanMsgItems(bool on);

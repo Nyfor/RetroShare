@@ -69,7 +69,7 @@ public:
 	///
 	/// \brief ~PictureFlow
 	///Destroys the widget.
-	~PictureFlow();
+	~PictureFlow() override;
 
 	///
 	/// \brief backgroundColor
@@ -242,14 +242,14 @@ signals:
 	void dropEventOccurs(QDropEvent *event);
 
 protected:
-	void paintEvent(QPaintEvent* event);
-	void keyPressEvent(QKeyEvent* event);
-	void mouseMoveEvent(QMouseEvent* event);
-	void mousePressEvent(QMouseEvent* event);
-	void resizeEvent(QResizeEvent* event);
-	void dragEnterEvent(QDragEnterEvent *event);
-	void dragMoveEvent(QDragMoveEvent *event);
-	void dropEvent(QDropEvent *event);
+	void paintEvent(QPaintEvent* event) override;
+	void keyPressEvent(QKeyEvent* event) override;
+	void mouseMoveEvent(QMouseEvent* event) override;
+	void mousePressEvent(QMouseEvent* event) override;
+	void resizeEvent(QResizeEvent* event) override;
+	void dragEnterEvent(QDragEnterEvent *event) override;
+	void dragMoveEvent(QDragMoveEvent *event) override;
+	void dropEvent(QDropEvent *event) override;
 
 private slots:
 	void updateAnimation();

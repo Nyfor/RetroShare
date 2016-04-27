@@ -93,18 +93,18 @@ class p3GxsReputation: public p3Service, public p3Config, public RsReputations /
 {
 	public:
 		p3GxsReputation(p3LinkMgr *lm);
-		virtual RsServiceInfo getServiceInfo();
+		RsServiceInfo getServiceInfo() override;
 
 		/***** Interface for RsReputations *****/
-		virtual bool setOwnOpinion(const RsGxsId& key_id, const Opinion& op) ;
-		virtual bool getReputationInfo(const RsGxsId& id,ReputationInfo& info) ;
-		virtual bool isIdentityBanned(const RsGxsId& id) ;
+		bool setOwnOpinion(const RsGxsId& key_id, const Opinion& op) override ;
+		bool getReputationInfo(const RsGxsId& id,ReputationInfo& info) override ;
+		bool isIdentityBanned(const RsGxsId& id) override ;
         
-        	virtual void setNodeAutoBanThreshold(uint32_t n) ;
-        	virtual uint32_t nodeAutoBanThreshold() ;
+        	void setNodeAutoBanThreshold(uint32_t n) override ;
+        	uint32_t nodeAutoBanThreshold() override ;
                 
 		/***** overloaded from p3Service *****/
-		virtual int   tick();
+		int   tick() override;
 		virtual int   status();
 
 		/*!
@@ -112,10 +112,10 @@ class p3GxsReputation: public p3Service, public p3Config, public RsReputations /
 		 */
 
 		/************* from p3Config *******************/
-		virtual RsSerialiser *setupSerialiser() ;
-		virtual bool saveList(bool& cleanup, std::list<RsItem*>&) ;
-		virtual void saveDone();
-		virtual bool loadList(std::list<RsItem*>& load) ;
+		RsSerialiser *setupSerialiser() override ;
+		bool saveList(bool& cleanup, std::list<RsItem*>&) override ;
+		void saveDone() override;
+		bool loadList(std::list<RsItem*>& load) override ;
         
 private:
 

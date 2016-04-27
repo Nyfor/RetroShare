@@ -13,7 +13,7 @@ class TurtleRouterDialog: public RsAutoUpdatePage, public Ui::TurtleRouterDialog
 
 	public:
 		TurtleRouterDialog(QWidget *parent = NULL) ;
-		~TurtleRouterDialog();
+		~TurtleRouterDialog() override;
 		
 		// Cache for peer names.
         static QString getPeerName(const RsPeerId &peer_id) ;
@@ -27,7 +27,7 @@ class TurtleRouterDialog: public RsAutoUpdatePage, public Ui::TurtleRouterDialog
 		void processSettings(bool bLoad);
 		bool m_bProcessSettings;
 
-		virtual void updateDisplay() ;
+		void updateDisplay() override ;
 		QTreeWidgetItem *findParentHashItem(const std::string& hash) ;
 
 		std::map<std::string,QTreeWidgetItem*> top_level_hashes ;
@@ -43,20 +43,20 @@ class GxsTunnelsDialog: public RsAutoUpdatePage
 
 public:
     GxsTunnelsDialog(QWidget *parent = NULL) ;
-    ~GxsTunnelsDialog();
+    ~GxsTunnelsDialog() override;
 
     // Cache for peer names.
     static QString getPeerName(const RsPeerId &peer_id) ;
 
 protected:
-    virtual void paintEvent(QPaintEvent *);
-    virtual void resizeEvent(QResizeEvent *event);
+    void paintEvent(QPaintEvent *) override;
+    void resizeEvent(QResizeEvent *event) override;
 private:
     void processSettings(bool bLoad);
     bool m_bProcessSettings;
     static QString speedString(float f);
 
-    virtual void updateDisplay() ;
+    void updateDisplay() override ;
     
     int maxWidth ;
     int maxHeight ;

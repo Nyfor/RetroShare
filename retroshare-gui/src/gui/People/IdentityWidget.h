@@ -19,7 +19,7 @@ class IdentityWidget : public FlowLayoutItem
 public:
 	explicit IdentityWidget(QString name = QString()
 	                        , QWidget *parent = 0);
-	~IdentityWidget();
+	~IdentityWidget() override;
 	void updateData(const RsGxsIdGroup& gxs_group_info);
 	void updateData(const RsPeerDetails& pgp_details);
 	void updateData(const RsGxsIdGroup& gxs_group_info
@@ -28,10 +28,10 @@ public:
 	//Start QWidget Properties
 	QSize sizeHint();
 	//Start FlowLayoutItem Properties
-	virtual const QPixmap getImage();
-	virtual const QPixmap getDragImage();
-	virtual void setIsSelected(bool value);
-	virtual void setIsCurrent(bool value);
+	const QPixmap getImage() override;
+	const QPixmap getDragImage() override;
+	void setIsSelected(bool value) override;
+	void setIsCurrent(bool value) override;
 	//End Properties
 
 	bool haveGXSId() { return _haveGXSId; }

@@ -30,7 +30,7 @@ class QVideoInputDevice: public QObject
 
 	public:
 		QVideoInputDevice(QWidget *parent = 0) ;
-		~QVideoInputDevice() ;
+		~QVideoInputDevice() override ;
 
 		// Captured images are sent to this encoder. Can be NULL.
 		//

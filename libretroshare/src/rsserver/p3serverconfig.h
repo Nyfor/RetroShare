@@ -44,21 +44,21 @@ class p3ServerConfig: public RsServerConfig
 	public:
 
 	p3ServerConfig(p3PeerMgr *peerMgr, p3LinkMgr *linkMgr, p3NetMgr *netMgr, pqihandler *pqih, p3GeneralConfig *genCfg);
-virtual ~p3ServerConfig();
+~p3ServerConfig() override;
 
 	void load_config();
 
 	/* From RsIface::RsConfig */
 
-virtual int 	getConfigNetStatus(RsConfigNetStatus &status);
+int 	getConfigNetStatus(RsConfigNetStatus &status) override;
 virtual int 	getConfigStartup(RsConfigStartup &params);
 //virtual int 	getConfigDataRates(RsConfigDataRates &params);
 
                 /***** for RsConfig -> p3BandwidthControl ****/
 
-virtual int getTotalBandwidthRates(RsConfigDataRates &rates);
-virtual int getAllBandwidthRates(std::map<RsPeerId, RsConfigDataRates> &ratemap);
-    virtual int getTrafficInfo(std::list<RSTrafficClue>& out_lst, std::list<RSTrafficClue> &in_lst) ;
+int getTotalBandwidthRates(RsConfigDataRates &rates) override;
+int getAllBandwidthRates(std::map<RsPeerId, RsConfigDataRates> &ratemap) override;
+    int getTrafficInfo(std::list<RSTrafficClue>& out_lst, std::list<RSTrafficClue> &in_lst) override ;
 
 	/* From RsInit */
 
@@ -77,24 +77,24 @@ virtual std::string getRetroshareDataDirectory();
 
 	/* New Stuff */
 
-virtual uint32_t getUserLevel();
+uint32_t getUserLevel() override;
 
-virtual uint32_t getNetState();
-virtual uint32_t getNetworkMode();
-virtual uint32_t getNatTypeMode();
-virtual uint32_t getNatHoleMode();
-virtual uint32_t getConnectModes();
+uint32_t getNetState() override;
+uint32_t getNetworkMode() override;
+uint32_t getNatTypeMode() override;
+uint32_t getNatHoleMode() override;
+uint32_t getConnectModes() override;
 
-virtual bool getConfigurationOption(uint32_t key, std::string &opt);
-virtual bool setConfigurationOption(uint32_t key, const std::string &opt);
+bool getConfigurationOption(uint32_t key, std::string &opt) override;
+bool setConfigurationOption(uint32_t key, const std::string &opt) override;
 
 	/* Operating Mode */
-virtual uint32_t getOperatingMode();
-virtual bool     setOperatingMode(uint32_t opMode);
+uint32_t getOperatingMode() override;
+bool     setOperatingMode(uint32_t opMode) override;
 
-virtual int SetMaxDataRates( int downKb, int upKb );
-virtual int GetMaxDataRates( int &downKb, int &upKb );
-virtual int GetCurrentDataRates( float &inKb, float &outKb );
+int SetMaxDataRates( int downKb, int upKb ) override;
+int GetMaxDataRates( int &downKb, int &upKb ) override;
+int GetCurrentDataRates( float &inKb, float &outKb ) override;
 
 /********************* ABOVE is RsConfig Interface *******/
 

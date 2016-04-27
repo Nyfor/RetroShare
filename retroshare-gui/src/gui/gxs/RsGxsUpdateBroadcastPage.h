@@ -20,7 +20,7 @@ class RsGxsUpdateBroadcastPage : public MainPage
 
 public:
 	RsGxsUpdateBroadcastPage(RsGxsIfaceHelper* ifaceImpl, QWidget *parent = NULL, Qt::WindowFlags flags = 0);
-	virtual ~RsGxsUpdateBroadcastPage();
+	~RsGxsUpdateBroadcastPage() override;
 
 	void fillComplete();
 	void setUpdateWhenInvisible(bool update);
@@ -32,7 +32,7 @@ public:
 	void getAllMsgIds(std::map<RsGxsGroupId, std::vector<RsGxsMessageId> > &msgIds);
 
 protected:
-	virtual void showEvent(QShowEvent *event);
+	void showEvent(QShowEvent *event) override;
 
 	// This is overloaded in subclasses.
 	virtual void updateDisplay(bool complete) = 0;

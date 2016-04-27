@@ -43,7 +43,7 @@ public:
 	 * @param posted
 	 */
 	explicit PostedCreatePostDialog(TokenQueue* tokenQ, RsPosted* posted, const RsGxsGroupId& grpId, QWidget *parent = 0);
-	~PostedCreatePostDialog();
+	~PostedCreatePostDialog() override;
 
 private slots:
 	void createPost();

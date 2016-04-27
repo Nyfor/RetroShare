@@ -32,7 +32,7 @@ class HashingStatus : public QWidget
 
 public:
     HashingStatus(QWidget *parent = 0);
-    ~HashingStatus();
+    ~HashingStatus() override;
 
     void setCompactMode(bool compact) {_compactMode = compact; }
 

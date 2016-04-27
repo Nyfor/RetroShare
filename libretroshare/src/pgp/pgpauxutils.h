@@ -51,14 +51,14 @@ class PgpAuxUtilsImpl: public PgpAuxUtils
 public:
 	PgpAuxUtilsImpl();
 
-	virtual const RsPgpId &getPGPOwnId();
-	virtual RsPgpId getPGPId(const RsPeerId& sslid);
+	const RsPgpId &getPGPOwnId() override;
+	RsPgpId getPGPId(const RsPeerId& sslid) override;
 
-	virtual bool parseSignature(unsigned char *sign, unsigned int signlen, RsPgpId& issuer) const ;
-	virtual	bool getKeyFingerprint(const RsPgpId& id,PGPFingerprintType& fp) const;
-	virtual bool VerifySignBin(const void *data, uint32_t len, unsigned char *sign, unsigned int signlen, const PGPFingerprintType& withfingerprint);
-	virtual bool getGPGAllList(std::list<RsPgpId> &ids);
-    virtual bool askForDeferredSelfSignature(const void *data, const uint32_t len, unsigned char *sign, unsigned int *signlen,int& signature_result );
+	bool parseSignature(unsigned char *sign, unsigned int signlen, RsPgpId& issuer) const override ;
+		bool getKeyFingerprint(const RsPgpId& id,PGPFingerprintType& fp) const override;
+	bool VerifySignBin(const void *data, uint32_t len, unsigned char *sign, unsigned int signlen, const PGPFingerprintType& withfingerprint) override;
+	bool getGPGAllList(std::list<RsPgpId> &ids) override;
+    bool askForDeferredSelfSignature(const void *data, const uint32_t len, unsigned char *sign, unsigned int *signlen,int& signature_result ) override;
 
 };
 

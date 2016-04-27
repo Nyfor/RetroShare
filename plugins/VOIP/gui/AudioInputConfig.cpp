@@ -57,9 +57,9 @@ public:
     
     void setVideoInput(const QVideoInputDevice *vid) { video_input = vid ; }
     
-     virtual QString displayName(int) const { return tr("Required bandwidth") ;}
+     QString displayName(int) const override { return tr("Required bandwidth") ;}
     
-    virtual QString displayValue(float v) const
+    QString displayValue(float v) const override
     {
         if(v < 1000)
             return QString::number(v,10,2) + " B/s" ;
@@ -69,7 +69,7 @@ public:
             return QString::number(v/(1024*1024),10,2) + " MB/s" ;
     }
     
-    virtual void getValues(std::map<std::string,float>& vals) const
+    void getValues(std::map<std::string,float>& vals) const override
 	 {
         vals.clear() ;
         

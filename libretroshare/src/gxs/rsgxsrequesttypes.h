@@ -48,7 +48,7 @@ public:
 class GroupMetaReq : public GxsRequest
 {
 public:
-	virtual ~GroupMetaReq();
+	~GroupMetaReq() override;
 
 public:
 	std::list<RsGxsGroupId> mGroupIds;
@@ -65,7 +65,7 @@ public:
 class GroupDataReq : public GxsRequest
 {
 public:
-	virtual ~GroupDataReq();
+	~GroupDataReq() override;
 
 public:
 	std::list<RsGxsGroupId> mGroupIds;
@@ -82,7 +82,7 @@ public:
 class MsgMetaReq : public GxsRequest
 {
 public:
-	virtual ~MsgMetaReq();
+	~MsgMetaReq() override;
 
 public:
 	GxsMsgReq mMsgIds;
@@ -92,7 +92,7 @@ public:
 class MsgDataReq : public GxsRequest
 {
 public:
-	virtual ~MsgDataReq();
+	~MsgDataReq() override;
 
 public:
 	GxsMsgReq mMsgIds;
@@ -115,7 +115,7 @@ public:
 class MsgRelatedInfoReq : public GxsRequest
 {
 public:
-	virtual ~MsgRelatedInfoReq();
+	~MsgRelatedInfoReq() override;
 
 public:
 	std::vector<RsGxsGrpMsgIdPair> mMsgIds;

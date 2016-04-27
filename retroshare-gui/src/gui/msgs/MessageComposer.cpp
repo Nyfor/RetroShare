@@ -103,7 +103,7 @@ public:
     {
     }
 
-    void paint (QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
+    void paint (QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override
     {
         QStyleOptionViewItem ownOption (option);
 

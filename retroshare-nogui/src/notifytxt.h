@@ -36,15 +36,15 @@ class NotifyTxt: public NotifyClient
 {
 	public:
 		NotifyTxt():mNotifyMtx("NotifyMtx") { return; }
-		virtual ~NotifyTxt() { return; }
+		~NotifyTxt() override { return; }
 
-		virtual void notifyListChange(int list, int type);
-		virtual void notifyErrorMsg(int list, int sev, std::string msg);
+		void notifyListChange(int list, int type) override;
+		void notifyErrorMsg(int list, int sev, std::string msg) override;
 		virtual void notifyChat();
-        virtual bool askForPassword(const std::string& question, bool prev_is_bad, std::string& password,bool& cancel);
-		virtual bool askForPluginConfirmation(const std::string& plugin_file, const std::string& plugin_hash);
+        bool askForPassword(const std::string& question, bool prev_is_bad, std::string& password,bool& cancel) override;
+		bool askForPluginConfirmation(const std::string& plugin_file, const std::string& plugin_hash) override;
 
-		virtual void notifyTurtleSearchResult(uint32_t search_id,const std::list<TurtleFileInfo>& found_files);
+		void notifyTurtleSearchResult(uint32_t search_id,const std::list<TurtleFileInfo>& found_files) override;
 
 		/* interface for handling SearchResults */
 		void getSearchIds(std::list<uint32_t> &searchIds);

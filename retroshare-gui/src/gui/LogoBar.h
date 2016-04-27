@@ -47,7 +47,7 @@ public:
 
 	LogoBar(QWidget * parent);
 
-	~LogoBar();
+	~LogoBar() override;
 
 	void setEnabledLogoButton(bool enable);
 

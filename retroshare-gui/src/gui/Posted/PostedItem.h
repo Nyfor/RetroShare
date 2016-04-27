@@ -43,7 +43,7 @@ public:
 	PostedItem(FeedHolder *parent, uint32_t feedId, const RsGxsGroupId &groupId, const RsGxsMessageId &messageId, bool isHome, bool autoUpdate);
 	PostedItem(FeedHolder *parent, uint32_t feedId, const RsPostedGroup &group, const RsPostedPost &post, bool isHome, bool autoUpdate);
 	PostedItem(FeedHolder *parent, uint32_t feedId, const RsPostedPost &post, bool isHome, bool autoUpdate);
-	virtual ~PostedItem();
+	~PostedItem() override;
 
 	bool setGroup(const RsPostedGroup& group, bool doFill = true);
 	bool setPost(const RsPostedPost& post, bool doFill = true);
@@ -53,7 +53,7 @@ public:
 
 protected:
 	/* FeedItem */
-	virtual void doExpand(bool /*open*/) {}
+	void doExpand(bool /*open*/) override {}
 
 private slots:
 	void loadComments();
@@ -67,13 +67,13 @@ signals:
 
 protected:
 	/* GxsGroupFeedItem */
-	virtual QString groupName();
-	virtual void loadGroup(const uint32_t &token);
-	virtual RetroShareLink::enumType getLinkType() { return RetroShareLink::TYPE_UNKNOWN; }
+	QString groupName() override;
+	void loadGroup(const uint32_t &token) override;
+	RetroShareLink::enumType getLinkType() override { return RetroShareLink::TYPE_UNKNOWN; }
 
 	/* GxsFeedItem */
-	virtual void loadMessage(const uint32_t &token);
-	virtual QString messageName();
+	void loadMessage(const uint32_t &token) override;
+	QString messageName() override;
 
 private:
 	void setup();

@@ -78,7 +78,7 @@ public:
     /* Default constructor */
     ChatStyle();
     /* Default destructor */
-    ~ChatStyle();
+    ~ChatStyle() override;
 
     bool setStylePath(const QString &stylePath, const QString &styleVariant);
     bool setStyleFromSettings(enumStyleType styleType);

@@ -47,9 +47,9 @@ class RsBwCtrlAllowedItem: public RsItem
 		return; 
 	}
 
-virtual ~RsBwCtrlAllowedItem();
-virtual void clear();  
-std::ostream &print(std::ostream &out, uint16_t indent = 0);
+~RsBwCtrlAllowedItem() override;
+void clear() override;  
+std::ostream &print(std::ostream &out, uint16_t indent = 0) override;
 
 	uint32_t	allowedBw; // Units are bytes/sec => 4Gb/s; 
 
@@ -62,12 +62,12 @@ class RsBwCtrlSerialiser: public RsSerialType
 	RsBwCtrlSerialiser()
 	:RsSerialType(RS_PKT_VERSION_SERVICE, RS_SERVICE_TYPE_BWCTRL)
 	{ return; }
-virtual     ~RsBwCtrlSerialiser()
+    ~RsBwCtrlSerialiser() override
 	{ return; }
 	
-virtual	uint32_t    size(RsItem *);
-virtual	bool        serialise  (RsItem *item, void *data, uint32_t *size);
-virtual	RsItem *    deserialise(void *data, uint32_t *size);
+	uint32_t    size(RsItem *) override;
+	bool        serialise  (RsItem *item, void *data, uint32_t *size) override;
+	RsItem *    deserialise(void *data, uint32_t *size) override;
 
 	private:
 
