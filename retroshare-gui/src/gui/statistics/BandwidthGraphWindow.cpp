@@ -24,7 +24,7 @@
 #include <rshare.h>
 #include <control/bandwidthevent.h>
 #include <gui/statistics/BandwidthGraphWindow.h>
-#include <retroshare-gui/RsAutoUpdatePage.h>
+#include <gui/RsAutoUpdatePage.h>
 #include <retroshare/rsconfig.h>
 
 #include <iomanip>

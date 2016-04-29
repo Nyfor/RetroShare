@@ -22,9 +22,9 @@
 #ifndef MESSAGEPAGE_H
 #define MESSAGEPAGE_H
 
+#include <gui/ConfigPage.h>
 #include <stdint.h>
 
-#include <retroshare-gui/configpage.h>
 #include "ui_MessagePage.h"
 
 #include "gui/msgs/MessageInterface.h"

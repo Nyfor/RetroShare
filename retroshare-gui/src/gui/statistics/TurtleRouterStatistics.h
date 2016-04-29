@@ -25,7 +25,7 @@
 #include <retroshare/rsturtle.h>
 #include <retroshare/rstypes.h>
 #include "ui_TurtleRouterStatistics.h"
-#include "RsAutoUpdatePage.h"
+#include "gui/RsAutoUpdatePage.h"
 
 class TurtleRouterStatisticsWidget ;
 

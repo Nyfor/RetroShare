@@ -1,5 +1,7 @@
-#include "ui_BandwidthStatsWidget.h"
+#pragma once
+
 #include "BWGraph.h"
+#include "ui_BandwidthStatsWidget.h"
 
 class BandwidthStatsWidget: public QWidget
 {

@@ -22,7 +22,7 @@
 #ifndef PEOPLEPAGE_H
 #define PEOPLEPAGE_H
 
-#include <retroshare-gui/configpage.h>
+#include <gui/ConfigPage.h>
 #include "ui_PeoplePage.h"
 
 class PeoplePage : public ConfigPage

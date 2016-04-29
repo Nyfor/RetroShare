@@ -25,7 +25,7 @@
 #include <QMimeData>
 #include <QTimer>
 
-#include <retroshare-gui/RsAutoUpdatePage.h>
+#include <gui/RsAutoUpdatePage.h>
 #include <gui/common/RsCollectionFile.h>
 #include <gui/common/RsUrlHandler.h>
 #include <gui/common/FilesDefs.h>

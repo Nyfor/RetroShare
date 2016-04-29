@@ -25,7 +25,7 @@
 #include "retroshare/rsdisc.h"
 #include "retroshare/rsconfig.h"
 
-#include "retroshare-gui/RsAutoUpdatePage.h"
+#include "RsAutoUpdatePage.h"
 #include "rshare.h"
 
 #include <QDesktopServices>

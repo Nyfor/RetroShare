@@ -23,7 +23,7 @@
 #define _GXSGROUPFRAMEDIALOG_H
 
 #include "gui/gxs/RsGxsUpdateBroadcastPage.h"
-#include "RsAutoUpdatePage.h"
+#include <gui/RsAutoUpdatePage.h>
 #include "gui/RetroShareLink.h"
 #include "gui/settings/rsharesettings.h"
 #include "util/RsUserdata.h"

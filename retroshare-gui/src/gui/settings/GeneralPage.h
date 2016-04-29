@@ -23,7 +23,7 @@
 #ifndef _GENERALPAGE_H
 #define _GENERALPAGE_H
 
-#include <retroshare-gui/configpage.h>
+#include <gui/ConfigPage.h>
 #include "ui_GeneralPage.h"
 
 class GeneralPage : public ConfigPage

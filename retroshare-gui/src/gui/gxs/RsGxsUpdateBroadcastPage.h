@@ -1,6 +1,6 @@
 #pragma once
 
-#include "mainpage.h"
+#include <gui/MainPage.h>
 #include <retroshare/rsgxsifacetypes.h>
 
 // This class implement a basic RS functionality which is that widgets displaying info

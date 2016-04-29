@@ -22,7 +22,7 @@
 #ifndef FORUMPAGE_H
 #define FORUMPAGE_H
 
-#include <retroshare-gui/configpage.h>
+#include <gui/ConfigPage.h>
 #include "ui_ForumPage.h"
 
 class ForumPage : public ConfigPage

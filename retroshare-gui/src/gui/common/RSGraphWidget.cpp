@@ -33,7 +33,7 @@
 #include <QWheelEvent>
 #include <QTimer>
 
-#include <retroshare-gui/RsAutoUpdatePage.h>
+#include <gui/RsAutoUpdatePage.h>
 #include "RSGraphWidget.h"
 
 #if QT_VERSION < 0x040700

@@ -23,7 +23,7 @@
 
 #include <serialiser/rsserviceids.h>
 #include <retroshare/rsplugin.h>
-#include <retroshare-gui/mainpage.h>
+#include <gui/MainPage.h>
 #include "services/p3FeedReader.h"
 
 class p3FeedReader;

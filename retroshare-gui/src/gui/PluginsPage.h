@@ -22,7 +22,7 @@
 #ifndef _PLUGINS_PAGE_H_
 #define _PLUGINS_PAGE_H_
 
-#include "mainpage.h"
+#include "MainPage.h"
 
 #include <QGroupBox>
 #include <QString>

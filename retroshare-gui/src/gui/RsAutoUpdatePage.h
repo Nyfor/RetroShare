@@ -2,7 +2,7 @@
 
 #include <QApplication>
 #include <QWidget>
-#include "mainpage.h"
+#include "MainPage.h"
 
 // This class implement a basic RS functionality which is that widgets displayign info
 // should update regularly. They also should update only when visible, to save CPU time.

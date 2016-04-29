@@ -24,7 +24,7 @@
 
 #include <retroshare/rstypes.h>
 #include "ui_SearchDialog.h"
-#include "mainpage.h"
+#include <gui/MainPage.h>
 
 class AdvancedSearchDialog;
 class Expression;

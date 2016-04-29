@@ -22,9 +22,9 @@
 #ifndef SERVERPAGE_H
 #define SERVERPAGE_H
 
-#include <retroshare-gui/configpage.h>
+#include <gui/ConfigPage.h>
 #include "ui_ServerPage.h"
-#include "RsAutoUpdatePage.h"
+#include <gui/RsAutoUpdatePage.h>
 #include <inttypes.h>
 
 class QNetworkReply;

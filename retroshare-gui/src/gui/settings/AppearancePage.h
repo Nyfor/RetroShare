@@ -22,7 +22,7 @@
 #ifndef _APPERARANCEPAGE_H
 #define _APPERARANCEPAGE_H
 
-#include <retroshare-gui/configpage.h>
+#include <gui/ConfigPage.h>
 #include "ui_AppearancePage.h"
 
 class AppearancePage : public ConfigPage

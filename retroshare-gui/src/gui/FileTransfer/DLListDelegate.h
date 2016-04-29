@@ -25,29 +25,27 @@
 #include <QAbstractItemDelegate>
 #include "xprogressbar.h"
 
-
-// Defines for download list list columns
-#define COLUMN_NAME 0
-#define COLUMN_SIZE 1
-#define COLUMN_COMPLETED 2
-#define COLUMN_DLSPEED 3
-#define COLUMN_PROGRESS 4
-#define COLUMN_SOURCES 5
-#define COLUMN_STATUS 6
-#define COLUMN_PRIORITY 7
-#define COLUMN_REMAINING 8
-#define COLUMN_DOWNLOADTIME 9
-#define COLUMN_ID 10
-#define COLUMN_LASTDL 11
-#define COLUMN_PATH 12
-#define COLUMN_COUNT 13
-
-
 #define MAX_CHAR_TMP 128
 
 class QModelIndex;
 class QPainter;
 
+enum{
+    COLUMN_NAME,
+    COLUMN_SIZE,
+    COLUMN_COMPLETED,
+    COLUMN_DLSPEED,
+    COLUMN_PROGRESS,
+    COLUMN_SOURCES,
+    COLUMN_STATUS,
+    COLUMN_PRIORITY,
+    COLUMN_REMAINING,
+    COLUMN_DOWNLOADTIME,
+    COLUMN_ID,
+    COLUMN_LASTDL,
+    COLUMN_PATH,
+    COLUMN_COUNT
+};
 
 class DLListDelegate: public QAbstractItemDelegate {
 

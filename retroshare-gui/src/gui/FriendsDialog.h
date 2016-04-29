@@ -22,8 +22,7 @@
 #ifndef _FRIENDSDIALOG_H
 #define _FRIENDSDIALOG_H
 
-#include "retroshare-gui/RsAutoUpdatePage.h"
-
+#include "RsAutoUpdatePage.h"
 #include "ui_FriendsDialog.h"
 
 #define IMAGE_NETWORK         	":/icons/logo_128.png"

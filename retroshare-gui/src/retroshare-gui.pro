@@ -285,9 +285,9 @@ LIBS += ../../libresapi/src/lib/libresapi.a
 
 # Input
 HEADERS +=  rshare.h \
-            retroshare-gui/configpage.h \
-            retroshare-gui/RsAutoUpdatePage.h \
-            retroshare-gui/mainpage.h \
+            gui/ConfigPage.h \
+            gui/RsAutoUpdatePage.h \
+            gui/MainPage.h \
             gui/notifyqt.h \
             control/bandwidthevent.h \
             control/eventtype.h \

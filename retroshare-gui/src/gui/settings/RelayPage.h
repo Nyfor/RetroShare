@@ -22,9 +22,9 @@
 #ifndef RELAYPAGE_H
 #define RELAYPAGE_H
 
+#include <gui/ConfigPage.h>
 # include <QWidget>
 
-#include <retroshare-gui/configpage.h>
 #include "ui_RelayPage.h"
 
 class RelayPage: public ConfigPage

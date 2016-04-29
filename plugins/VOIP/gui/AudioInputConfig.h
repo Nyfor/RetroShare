@@ -30,10 +30,9 @@
 
 #pragma once
 
+#include <gui/ConfigPage.h>
 #include <QAudioInput>
 #include <QWidget>
-
-#include "retroshare-gui/configpage.h"
 
 #include "SpeexProcessor.h"
 #include "VideoProcessor.h"

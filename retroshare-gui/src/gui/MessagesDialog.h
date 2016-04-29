@@ -24,7 +24,7 @@
 
 #include <QSortFilterProxyModel>
 
-#include "mainpage.h"
+#include "MainPage.h"
 #include "ui_MessagesDialog.h"
 
 #define IMAGE_MESSAGES          ":/images/evolution.png"

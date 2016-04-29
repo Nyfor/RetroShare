@@ -22,7 +22,7 @@
 #ifndef NOTIFYPAGE_H
 #define NOTIFYPAGE_H
 
-#include <retroshare-gui/configpage.h>
+#include <gui/ConfigPage.h>
 #include "ui_NotifyPage.h"
 
 #include "gui/chat/ChatLobbyUserNotify.h"

@@ -21,7 +21,7 @@
 #include <retroshare/rsplugin.h>
 #include <retroshare/rsversion.h>
 #include <retroshare/rsinit.h>
-#include <retroshare-gui/RsAutoUpdatePage.h>
+#include <gui/RsAutoUpdatePage.h>
 #include <QTranslator>
 #include <QApplication>
 #include <QString>

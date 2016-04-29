@@ -22,9 +22,9 @@
 #ifndef SERVICEPERMISSIONSPAGE_H
 #define SERVICEPERMISSIONSPAGE_H
 
+#include <gui/ConfigPage.h>
 # include <QWidget>
 
-#include <retroshare-gui/configpage.h>
 #include "ui_ServicePermissionsPage.h"
 
 class ServicePermissionsPage: public ConfigPage

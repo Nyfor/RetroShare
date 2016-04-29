@@ -22,7 +22,7 @@
 #ifndef NETWORKPAGE_H
 #define NETWORKPAGE_H
 
-#include <retroshare-gui/configpage.h>
+#include <gui/ConfigPage.h>
 #include "ui_NetworkPage.h"
 
 class NetworkPage : public ConfigPage

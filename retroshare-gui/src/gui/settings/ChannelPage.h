@@ -22,7 +22,7 @@
 #ifndef CHANNELPAGE_H
 #define CHANNELPAGE_H
 
-#include <retroshare-gui/configpage.h>
+#include <gui/ConfigPage.h>
 #include "ui_ChannelPage.h"
 
 class ChannelPage : public ConfigPage

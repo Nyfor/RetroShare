@@ -28,7 +28,7 @@
 
 #include <math.h>
 #include "GxsIdDetails.h"
-#include "retroshare-gui/RsAutoUpdatePage.h"
+#include "gui/RsAutoUpdatePage.h"
 #include "retroshare/rsreputations.h"
 
 #include <retroshare/rspeers.h>

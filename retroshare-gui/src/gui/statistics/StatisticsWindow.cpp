@@ -29,7 +29,7 @@
 #include <iomanip>
 #include <time.h>
 
-#include "retroshare-gui/RsAutoUpdatePage.h"
+#include "gui/RsAutoUpdatePage.h"
 #include "retroshare/rsconfig.h"
 #include "retroshare/rspeers.h"
 #include <retroshare/rsplugin.h>

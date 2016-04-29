@@ -23,7 +23,7 @@
  ****************************************************************/
 
 
-#include "RsAutoUpdatePage.h"
+#include "gui/RsAutoUpdatePage.h"
 #include "ui_DhtWindow.h"
 
 class DhtWindow : public RsAutoUpdatePage/*,  public Ui::DhtWindow*/ {

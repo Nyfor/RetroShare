@@ -25,7 +25,7 @@
 #include <retroshare/rsgrouter.h>
 #include <retroshare/rstypes.h>
 
-#include "RsAutoUpdatePage.h"
+#include "gui/RsAutoUpdatePage.h"
 #include "ui_GlobalRouterStatistics.h"
 
 class GlobalRouterStatisticsWidget ;

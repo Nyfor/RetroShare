@@ -29,7 +29,7 @@
 #include <retroshare/rspeers.h>
 #include <retroshare/rsidentity.h>
 
-#include "RsAutoUpdatePage.h"
+#include <gui/RsAutoUpdatePage.h>
 #include "PopupDistantChatDialog.h"
 
 #define IMAGE_RED_LED ":/icons/bullet_red_64.png"

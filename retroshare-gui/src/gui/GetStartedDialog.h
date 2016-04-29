@@ -24,7 +24,7 @@
 
 //#include <retroshare/rstypes.h>
 #include "ui_GetStartedDialog.h"
-#include "mainpage.h"
+#include "MainPage.h"
 
 #include <QTimer>
 

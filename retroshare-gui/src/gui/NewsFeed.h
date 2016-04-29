@@ -22,11 +22,11 @@
 #ifndef _NEWS_FEED_DIALOG_H
 #define _NEWS_FEED_DIALOG_H
 
-#include "mainpage.h"
+#include "MainPage.h"
 
 #include "gui/feeds/FeedHolder.h"
 #include "util/TokenQueue.h"
-#include <retroshare-gui/RsAutoUpdatePage.h>
+#include "RsAutoUpdatePage.h"
 
 #define IMAGE_NEWSFEED ":/icons/plugins_128.png"
 

@@ -25,7 +25,7 @@
 #include "FriendSelectionWidget.h"
 #include "ui_FriendSelectionWidget.h"
 #include "gui/gxs/GxsIdDetails.h"
-#include <retroshare-gui/RsAutoUpdatePage.h>
+#include <gui/RsAutoUpdatePage.h>
 #include "gui/notifyqt.h"
 #include "gui/common/RSTreeWidgetItem.h"
 #include "gui/common/StatusDefs.h"

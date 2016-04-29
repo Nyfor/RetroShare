@@ -22,7 +22,7 @@
 #ifndef _FEEDREADERDIALOG_H
 #define _FEEDREADERDIALOG_H
 
-#include <retroshare-gui/mainpage.h>
+#include <gui/MainPage.h>
 #include "interface/rsFeedReader.h"
 
 namespace Ui {

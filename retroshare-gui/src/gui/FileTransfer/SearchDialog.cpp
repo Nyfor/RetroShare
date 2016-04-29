@@ -28,7 +28,7 @@
 #include "SearchDialog.h"
 #include "gui/RSHumanReadableDelegate.h"
 #include "gui/RetroShareLink.h"
-#include "retroshare-gui/RsAutoUpdatePage.h"
+#include <gui/RsAutoUpdatePage.h>
 #include "gui/msgs/MessageComposer.h"
 #include "gui/common/RsCollectionFile.h"
 #include "gui/common/FilesDefs.h"

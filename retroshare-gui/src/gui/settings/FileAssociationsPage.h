@@ -22,7 +22,7 @@
 #ifndef __FileAssociationsPage__
 #define __FileAssociationsPage__
 
-#include <retroshare-gui/configpage.h>
+#include <gui/ConfigPage.h>
 
 class QToolBar;
 class QAction;

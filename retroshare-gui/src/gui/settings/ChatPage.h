@@ -22,7 +22,7 @@
 #ifndef _CHATPAGE_H
 #define _CHATPAGE_H
 
-#include <retroshare-gui/configpage.h>
+#include <gui/ConfigPage.h>
 #include "ui_ChatPage.h"
 
 class ChatPage : public ConfigPage

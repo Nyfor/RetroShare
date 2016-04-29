@@ -19,7 +19,7 @@
  *  Boston, MA  02110-1301, USA.
  ****************************************************************/
 
-#include <retroshare-gui/RsAutoUpdatePage.h>
+#include <gui/RsAutoUpdatePage.h>
 #include <iostream>
 
 #include "RsProtectedTimer.h"

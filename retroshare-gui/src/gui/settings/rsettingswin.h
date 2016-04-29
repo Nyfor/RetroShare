@@ -22,8 +22,8 @@
 #ifndef RSETTINGSWIN_HPP_
 #define RSETTINGSWIN_HPP_
 
+#include <gui/ConfigPage.h>
 #include <QDialog>
-#include <retroshare-gui/configpage.h>
 #include "ui_settings.h"
 
 class FloatingHelpBrowser;

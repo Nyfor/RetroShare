@@ -1,7 +1,7 @@
 #include <QTimer>
 
 #include "RsGxsUpdateBroadcastBase.h"
-#include "RsAutoUpdatePage.h"
+#include "gui/RsAutoUpdatePage.h"
 #include "util/RsGxsUpdateBroadcast.h"
 
 #include <algorithm>

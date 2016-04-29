@@ -24,7 +24,7 @@
 
 #include "ChatMsgItem.h"
 #include "FeedHolder.h"
-#include "retroshare-gui/RsAutoUpdatePage.h"
+#include "gui/RsAutoUpdatePage.h"
 #include "gui/msgs/MessageComposer.h"
 #include "util/HandleRichText.h"
 #include "util/DateTime.h"

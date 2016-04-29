@@ -22,7 +22,7 @@
 #ifndef POSTEDPAGE_H
 #define POSTEDPAGE_H
 
-#include <retroshare-gui/configpage.h>
+#include <gui/ConfigPage.h>
 
 namespace Ui {
 class PostedPage;

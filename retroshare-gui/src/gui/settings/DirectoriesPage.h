@@ -22,7 +22,7 @@
 #ifndef DIRECTORIESPAGE_H
 #define DIRECTORIESPAGE_H
 
-#include <retroshare-gui/configpage.h>
+#include <gui/ConfigPage.h>
 #include "ui_DirectoriesPage.h"
 
 class DirectoriesPage: public ConfigPage

@@ -22,9 +22,9 @@
 #ifndef TRANSFERPAGE_H
 # define TRANSFERPAGE_H
 
+#include <gui/ConfigPage.h>
 # include <QWidget>
 
-#include <retroshare-gui/configpage.h>
 #include "ui_TransferPage.h"
 
 class TransferPage: public ConfigPage

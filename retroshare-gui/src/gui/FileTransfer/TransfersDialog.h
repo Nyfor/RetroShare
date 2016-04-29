@@ -25,7 +25,7 @@
 #include <set>
 
 #include <retroshare/rstypes.h>
-#include "RsAutoUpdatePage.h"
+#include <gui/RsAutoUpdatePage.h>
 
 #include "ui_TransfersDialog.h"
 

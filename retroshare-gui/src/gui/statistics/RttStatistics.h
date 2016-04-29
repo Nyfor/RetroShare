@@ -24,7 +24,7 @@
 #include <QPoint>
 #include <retroshare/rsrtt.h>
 #include "ui_RttStatistics.h"
-#include "RsAutoUpdatePage.h"
+#include "gui/RsAutoUpdatePage.h"
 #include <gui/common/RSGraphWidget.h>
 
 class RttStatisticsWidget ;

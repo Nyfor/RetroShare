@@ -1,6 +1,6 @@
 #pragma once
 
-#include <retroshare-gui/configpage.h>
+#include <gui/ConfigPage.h>
 #include "ui_WebuiPage.h"
 
 namespace resource_api{

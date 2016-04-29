@@ -24,7 +24,7 @@
 #ifndef MRK_COMMENT_CONTAINER_DIALOG_H
 #define MRK_COMMENT_CONTAINER_DIALOG_H
 
-#include "retroshare-gui/mainpage.h"
+#include "gui/MainPage.h"
 #include "ui_GxsCommentContainer.h"
 
 #include <retroshare/rsgxscommon.h>

@@ -4,7 +4,7 @@
 #include <retroshare/rstypes.h>
 #include "ui_TurtleRouterDialog.h"
 #include "ui_TurtleRouterStatistics.h"
-#include "RsAutoUpdatePage.h"
+#include "gui/RsAutoUpdatePage.h"
 
 
 class TurtleRouterDialog: public RsAutoUpdatePage, public Ui::TurtleRouterDialogForm

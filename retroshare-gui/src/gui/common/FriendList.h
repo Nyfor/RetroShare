@@ -25,7 +25,7 @@
 #include <set>
 #include <QShortcut>
 #include <QWidget>
-#include "retroshare-gui/RsAutoUpdatePage.h"
+#include <gui/RsAutoUpdatePage.h>
 #include "retroshare/rsstatus.h"
 
 namespace Ui {

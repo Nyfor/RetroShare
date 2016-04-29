@@ -22,9 +22,9 @@
 #ifndef _SOUNDPAGE_H
 #define _SOUNDPAGE_H
 
+#include <gui/ConfigPage.h>
 #include <QFileDialog>
 
-#include <retroshare-gui/configpage.h>
 #include "ui_SoundPage.h"
 
 class SoundPage : public ConfigPage

@@ -24,8 +24,8 @@
 
 #include "SecurityIpItem.h"
 #include "FeedHolder.h"
-#include"ui_SecurityIpItem.h"
-#include "retroshare-gui/RsAutoUpdatePage.h"
+#include "ui_SecurityIpItem.h"
+#include "gui/RsAutoUpdatePage.h"
 #include "gui/connect/ConfCertDialog.h"
 #include "util/DateTime.h"
 #include "gui/common/PeerDefs.h"

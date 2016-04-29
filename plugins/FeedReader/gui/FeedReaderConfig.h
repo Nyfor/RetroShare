@@ -22,7 +22,7 @@
 #ifndef _FEEDREADERCONFIG_H
 #define _FEEDREADERCONFIG_H
 
-#include "retroshare-gui/configpage.h"
+#include <gui/ConfigPage.h>
 
 namespace Ui {
 class FeedReaderConfig;

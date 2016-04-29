@@ -22,7 +22,7 @@
 #ifndef _CRYPTOPAGE_H
 #define _CRYPTOPAGE_H
 
-#include <retroshare-gui/configpage.h>
+#include <gui/ConfigPage.h>
 #include "ui_CryptoPage.h"
 
 class CryptoPage : public ConfigPage

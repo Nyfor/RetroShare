@@ -29,7 +29,7 @@
 #include "IdDialog.h"
 #include "ui_IdDialog.h"
 #include "IdEditDialog.h"
-#include "retroshare-gui/RsAutoUpdatePage.h"
+#include "gui/RsAutoUpdatePage.h"
 #include "gui/gxs/GxsIdDetails.h"
 #include "gui/gxs/RsGxsUpdateBroadcastBase.h"
 #include "gui/common/UIStateHelper.h"

@@ -40,7 +40,7 @@
 #include "gui/notifyqt.h"
 #include "gui/common/AvatarDefs.h"
 #include "gui/MainWindow.h"
-#include "mainpage.h"
+#include "gui/MainPage.h"
 #include "util/DateTime.h"
 #include "util/misc.h"
 

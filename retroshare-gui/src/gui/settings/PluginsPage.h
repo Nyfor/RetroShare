@@ -21,7 +21,7 @@
 
 #pragma once
 
-#include <retroshare-gui/configpage.h>
+#include <gui/ConfigPage.h>
 #include "ui_PluginsPage.h"
 
 class PluginsPage : public ConfigPage

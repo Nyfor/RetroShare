@@ -1,6 +1,6 @@
 #include <QToolButton>
 
-#include <retroshare-gui/mainpage.h>
+#include "MainPage.h"
 #include "common/FloatingHelpBrowser.h"
 
 MainPage::MainPage(QWidget *parent , Qt::WindowFlags flags ) : QWidget(parent, flags)
